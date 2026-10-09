@@ -1,4 +1,0 @@
-git rm Starter
-git commit -m "Remove Starter"
-git push
-
