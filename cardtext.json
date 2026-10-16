@@ -2618,211 +2618,283 @@
  "OGS-001": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5386/image_1024/OGS%C2%B7001-024%20Annie?unique=26e6eea",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-001.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-001.jpg",
    "fr": "coming soon"
   },
   "text": "Your spells and abilities deal 1 Bonus Damage. (Each instance of damage they deal is increased by 1.)",
-  "lore": "I never play with matches."
+  "lore": "I never play with matches.",
+  "translations": {
+   "ko": "애니, 화염"
+  }
  },
  "OGS-002": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5378/image_1024/OGS%C2%B7002-024%20Infernal%20Blaze?unique=45a2bec",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-002.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-002.jpg",
    "fr": "coming soon"
   },
   "text": "Deal 3 to all enemy units at a battlefield.",
-  "lore": "Eeny, meeny, miny, burn! —Annie"
+  "lore": "Eeny, meeny, miny, burn! —Annie",
+  "translations": {
+   "ko": "불의 폭풍"
+  }
  },
  "OGS-003": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5390/image_1024/OGS%C2%B7003-024%20Incinerate?unique=e708c53",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-003.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-003.jpg",
    "fr": "coming soon"
   },
   "text": "Action (Play on your turn or in showdowns.)\nDeal 2 to a unit at a battlefield.",
-  "lore": "You smell like burning! —Annie"
+  "lore": "You smell like burning! —Annie",
+  "translations": {
+   "ko": "소각"
+  }
  },
  "OGS-004": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5381/image_1024/OGS%C2%B7004-024%20Master%20Yi?unique=24d89e1",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-004.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-004.jpg",
    "fr": "coming soon"
   },
   "text": "While you have 8+ runes, I have +4 [Might].",
-  "lore": "Anger gives motivation without purpose."
+  "lore": "Anger gives motivation without purpose.",
+  "translations": {
+   "ko": "마스터 이, 사색"
+  }
  },
  "OGS-005": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5375/image_1024/OGS%C2%B7005-024%20Zephyr%20Sage?unique=646b8a6",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-005.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-005.jpg",
    "fr": "coming soon"
   },
   "text": "Shield (+1 [Might] while I'm a defender.)",
-  "lore": "A true master is an eternal student. —Master Yi"
+  "lore": "A true master is an eternal student. —Master Yi",
+  "translations": {
+   "ko": "서풍의 현자"
+  }
  },
  "OGS-006": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5391/image_1024/OGS%C2%B7006-024%20Lux?unique=93db53c",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-006.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-006.jpg",
    "fr": "coming soon"
   },
   "text": "When you play a spell that costs [5] or more, give me +3 [Might] this turn.",
-  "lore": "No more holding back!"
+  "lore": "No more holding back!",
+  "translations": {
+   "ko": "럭스, 광명"
+  }
  },
  "OGS-007": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5384/image_1024/OGS%C2%B7007-024%20Garen?unique=1e12cee",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-007.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-007.jpg",
    "fr": "coming soon"
   },
   "text": "Assault 2, Shield 2 (+2 [Might] while I'm an attacker or defender.)",
-  "lore": "Fear is the first of many foes."
+  "lore": "Fear is the first of many foes.",
+  "translations": {
+   "ko": "가렌, 강건"
+  }
  },
  "OGS-008": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5371/image_1024/OGS%C2%B7008-024%20Gentleman%E2%80%99s%20Duel?unique=7698ca2",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-008.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-008.jpg",
    "fr": "coming soon"
   },
   "text": "Action (Play on your turn or in showdowns.)\nGive a friendly unit +3 [Might] this turn. Then choose an enemy unit. They deal damage equal to their Mights to each other.",
-  "lore": "A proper and formal way to kill your enemies."
+  "lore": "A proper and formal way to kill your enemies.",
+  "translations": {
+   "ko": "신사의 결투"
+  }
  },
  "OGS-009": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5376/image_1024/OGS%C2%B7009-024%20Master%20Yi?unique=c151732",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-009.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-009.jpg",
    "fr": "coming soon"
   },
   "text": "Ganking (I can move from battlefield to battlefield.)\nI enter ready.",
-  "lore": "The focused mind can pierce through stone."
+  "lore": "The focused mind can pierce through stone.",
+  "translations": {
+   "ko": "마스터 이, 연마"
+  }
  },
  "OGS-010": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5379/image_1024/OGS%C2%B7010-024%20Annie?unique=ef07dbf",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-010.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-010.jpg",
    "fr": "coming soon"
   },
   "text": "When you play me, return a spell from your trash to your hand.",
-  "lore": "I want a turn!"
+  "lore": "I want a turn!",
+  "translations": {
+   "ko": "애니, 고집불통"
+  }
  },
  "OGS-011": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/7547/image_1024/OGS%C2%B7011-024%20Flash?unique=cb0b720",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-011.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-011.jpg",
    "fr": "coming soon"
   },
   "text": "Reaction (Play any time, even before spells and abilities resolve.)\nMove up to 2 friendly units to base.",
-  "lore": "It's not running away. It's strategic repositioning."
+  "lore": "It's not running away. It's strategic repositioning.",
+  "translations": {
+   "ko": "점멸"
+  }
  },
  "OGS-012": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5385/image_1024/OGS%C2%B7012-024%20Hextech%20Burst?unique=47fc5e7",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-012.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-012.jpg",
    "fr": "coming soon"
   },
   "text": "Action (Play on your turn or in showdowns.)\nKill a unit at a battlefield.",
-  "lore": "Illuminate the enemy! —Lux"
+  "lore": "Illuminate the enemy! —Lux",
+  "translations": {
+   "ko": "폭발하는 힘"
+  }
  },
  "OGS-013": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5387/image_1024/OGS%C2%B7013-024%20Garen?unique=8965c53",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-013.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-013.jpg",
    "fr": "coming soon"
   },
   "text": "Other friendly units have +1 [Might] here.",
-  "lore": "For Demacia!"
+  "lore": "For Demacia!",
+  "translations": {
+   "ko": "가렌, 지휘관"
+  }
  },
  "OGS-014": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5377/image_1024/OGS%C2%B7014-024%20Lux?unique=d0e1eb2",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-014.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-014.jpg",
    "fr": "coming soon"
   },
   "text": "[Exhaust]: Reaction — Add [2]. Use only to play spells. (Abilities that add resources can't be reacted to.)",
-  "lore": "I've been hiding my light long enough."
+  "lore": "I've been hiding my light long enough.",
+  "translations": {
+   "ko": "럭스, 크라운가드"
+  }
  },
  "OGS-015": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5380/image_1024/OGS%C2%B7015-024%20Shared%20Sacrifice?unique=ee81b55",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-015.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-015.jpg",
    "fr": "coming soon"
   },
   "text": "Action (Play on your turn or in showdowns.)\nPlay four 1 [Might] Recruit unit tokens. (They can be played to your base or to battlefields you control.)",
-  "lore": "My heart and sword always for Demacia. —Garen"
+  "lore": "My heart and sword always for Demacia. —Garen",
+  "translations": {
+   "ko": "선봉대 모집"
+  }
  },
  "OGS-016": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5383/image_1024/OGS%C2%B7016-024%20Vanguard%20Squire?unique=b929187",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-016.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-016.jpg",
    "fr": "coming soon"
   },
   "text": "I enter ready.",
-  "lore": "Even the Vanguard needs a first line of defense."
+  "lore": "Even the Vanguard needs a first line of defense.",
+  "translations": {
+   "ko": "선봉대 수행원"
+  }
  },
  "OGS-017": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5372/image_1024/OGS%C2%B7017-024%20The%20Dark%20Child?unique=f2af508",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-017.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-017.jpg",
    "fr": "coming soon"
   },
-  "text": "At the end of your turn, ready 2 runes."
+  "text": "At the end of your turn, ready 2 runes.",
+  "translations": {
+   "ko": "어둠의 아이 - 입문자"
+  }
  },
  "OGS-018": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5388/image_1024/OGS%C2%B7018-024%20Tibbers?unique=e9e27bf",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-018.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-018.jpg",
    "fr": "coming soon"
   },
   "text": "When you play me, deal 3 to all units at battlefields.",
-  "lore": "Bear hug! —Annie"
+  "lore": "Bear hug! —Annie",
+  "translations": {
+   "ko": "티버"
+  }
  },
  "OGS-019": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5373/image_1024/OGS%C2%B7019-024%20The%20Wuju%20Bladesman?unique=41dc8b6",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-019.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-019.jpg",
    "fr": "coming soon"
   },
-  "text": "While a friendly unit defends alone, it gets +2 [Might]."
+  "text": "While a friendly unit defends alone, it gets +2 [Might].",
+  "translations": {
+   "ko": "우주 검사 - 입문자"
+  }
  },
  "OGS-020": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5389/image_1024/OGS%C2%B7020-024%20Highlander?unique=556d0b2",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-020.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-020.jpg",
    "fr": "coming soon"
   },
-  "text": "Reaction (Play any time, even before spells and abilities resolve.)\nChoose a friendly unit. The next time it dies this turn, recall it exhausted instead. (Send it to base. This isn't a move.)"
+  "text": "Reaction (Play any time, even before spells and abilities resolve.)\nChoose a friendly unit. The next time it dies this turn, recall it exhausted instead. (Send it to base. This isn't a move.)",
+  "translations": {
+   "ko": "최후의 전사"
+  }
  },
  "OGS-021": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5374/image_1024/OGS%C2%B7021-024%20The%20Lady%20of%20Luminosity?unique=bdf63fe",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-021.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-021.jpg",
    "fr": "coming soon"
   },
-  "text": "When you play a spell that costs [5] or more, draw 1."
+  "text": "When you play a spell that costs [5] or more, draw 1.",
+  "translations": {
+   "ko": "광명의 소녀 - 입문자"
+  }
  },
  "OGS-022": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/4672/image_1024/OGS%C2%B7022-024%20Demacian%20Justice?unique=7414ae8",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-022.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-022.jpg",
    "fr": "coming soon"
   },
-  "text": "Action (Play on your turn or in showdowns.)\nDeal 8 to a unit."
+  "text": "Action (Play on your turn or in showdowns.)\nDeal 8 to a unit.",
+  "translations": {
+   "ko": "최후의 섬광"
+  }
  },
  "OGS-023": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/4673/image_1024/OGS%C2%B7023-024%20The%20Might%20of%20Demacia?unique=8a8a2e8",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-023.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-023.jpg",
    "fr": "coming soon"
   },
-  "text": "When you conquer, if you have 4+ units at that battlefield, draw 2."
+  "text": "When you conquer, if you have 4+ units at that battlefield, draw 2.",
+  "translations": {
+   "ko": "데마시아의 힘 - 입문자"
+  }
  },
  "OGS-024": {
   "images": {
    "zh": "https://darkworldzero-tcg.odoo.com/web/image/product.product/5393/image_1024/OGS%C2%B7024-024%20Lethal%20Strike?unique=e4e3a6c",
-   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images/ko/OGS-024.jpg",
+   "ko": "https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/main/lang-images-ko-OGS/lang-images/ko/OGS-024.jpg",
    "fr": "coming soon"
   },
-  "text": "Action (Play on your turn or in showdowns.)\nGive friendly units +2 [Might] this turn."
+  "text": "Action (Play on your turn or in showdowns.)\nGive friendly units +2 [Might] this turn.",
+  "translations": {
+   "ko": "결정타"
+  }
  },
  "SFD-001": {
   "images": {
