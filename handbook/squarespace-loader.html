@@ -1,0 +1,74 @@
+<!--
+  Riftbound Starter Handbook — Squarespace loader
+  Paste this whole snippet into the Code Block on the Starter Handbook page.
+  It loads the real handbook from the collect-bound-data GitHub repo, so content
+  updates happen in GitHub and this snippet never needs to change.
+
+  Preview a proposed update: add ?preview=BRANCH-NAME to the page address,
+  e.g. /starter-handbook?preview=handbook-update-2026-10-19
+-->
+<div id="rift-handbook-root">
+  <p style="text-align:center;padding:120px 20px;font-family:system-ui,sans-serif;color:#a8adc0;">Loading the Starter Handbook…</p>
+</div>
+<script>
+(function () {
+  var REPO = 'unravelingtherift/collect-bound-data';
+  var FILE = 'handbook/riftbound-starter-handbook.html';
+  var root = document.getElementById('rift-handbook-root');
+  if (!root || root.dataset.loaded) return;
+  root.dataset.loaded = '1';
+
+  var asked = new URLSearchParams(location.search).get('preview');
+  var isPreview = !!(asked && /^[A-Za-z0-9._\/-]{1,100}$/.test(asked));
+  var ref = isPreview ? asked : 'main';
+  var url = 'https://cdn.jsdelivr.net/gh/' + REPO + '@' + ref + '/' + FILE;
+
+  function fail(msg) {
+    root.innerHTML = '<p style="text-align:center;padding:120px 20px;font-family:system-ui,sans-serif;color:#a8adc0;">' +
+      msg + ' <a href="" style="color:#e3c17e;">Refresh to try again.</a></p>';
+  }
+
+  fetch(url, { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function (html) {
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+
+      // Fonts and styles from the handbook's <head>
+      doc.head.querySelectorAll('link[rel="stylesheet"], link[rel="preconnect"], style').forEach(function (n) {
+        document.head.appendChild(document.importNode(n, true));
+      });
+
+      // Page content
+      root.innerHTML = '';
+      Array.prototype.forEach.call(doc.body.childNodes, function (n) {
+        root.appendChild(document.importNode(n, true));
+      });
+
+      // Scripts copied this way don't run, so re-create each one (in order) to run it
+      root.querySelectorAll('script').forEach(function (old) {
+        var s = document.createElement('script');
+        Array.prototype.forEach.call(old.attributes, function (a) { s.setAttribute(a.name, a.value); });
+        s.textContent = old.textContent;
+        old.parentNode.replaceChild(s, old);
+      });
+
+      if (isPreview) {
+        var bar = document.createElement('div');
+        bar.textContent = 'Preview of a proposed handbook update (' + ref + '). Visitors don’t see this version.';
+        bar.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:2000;padding:10px 16px;text-align:center;' +
+          'font:600 13px system-ui,sans-serif;color:#1a1406;background:#e3c17e;box-shadow:0 -6px 20px rgba(0,0,0,.4);';
+        document.body.appendChild(bar);
+      }
+
+      // Honor a #section link that arrived before the content did
+      if (location.hash.length > 1) {
+        var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        if (target) setTimeout(function () { target.scrollIntoView(); }, 50);
+      }
+    })
+    .catch(function () {
+      fail(isPreview ? 'That preview couldn’t be found — the update may already have been merged or closed.'
+                     : 'The handbook couldn’t load right now.');
+    });
+})();
+</script>

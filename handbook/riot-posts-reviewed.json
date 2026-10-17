@@ -1,0 +1,33 @@
+{
+  "_about": "Riot posts already reviewed for the Starter Handbook. The weekly update task only considers posts published after checked_through or not listed below, and adds every post it reviews here (including ones it decided not to use).",
+  "checked_through": "2026-10-16",
+  "posts": [
+    {
+      "url": "https://playriftbound.com/en-us/news/organizedplay/regional-championships-competitive-integrity-prizing/",
+      "published": "2026-10-15",
+      "result": "added",
+      "note": "Regional Championships prizing, competitive integrity policy, World Championship Showcase"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/organizedplay/testing-start-of-game-rules/",
+      "published": "2026-10-15",
+      "result": "added",
+      "note": "Start-of-game rules playtest (Tournament rules section)"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/organizedplay/riftbound-premier-play-early-2027-events/",
+      "result": "added",
+      "note": "Organized play changes in 2027 (Rotation section)"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/koreas-rift-opens-on-september-18/",
+      "result": "added",
+      "note": "Korean launch and schedule"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/from-en-garde-to-en-route-our-french-roadmap/",
+      "result": "added",
+      "note": "French roadmap and catch-up schedule"
+    }
+  ]
+}
