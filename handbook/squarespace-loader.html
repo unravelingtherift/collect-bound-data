@@ -1,6 +1,7 @@
 <!--
   Riftbound Starter Handbook — Squarespace loader
-  Paste this whole snippet into the Code Block on the Starter Handbook page.
+  Paste this whole snippet into the Starter Handbook page's
+  Page Settings > Advanced > Page Header Code Injection (replacing what's there).
   It loads the real handbook from the collect-bound-data GitHub repo, so content
   updates happen in GitHub and this snippet never needs to change.
 
@@ -8,7 +9,7 @@
   e.g. /starter-handbook?preview=handbook-update-2026-10-19
 -->
 <div id="rift-handbook-root">
-  <p style="text-align:center;padding:120px 20px;font-family:system-ui,sans-serif;color:#a8adc0;">Loading the Starter Handbook…</p>
+  <p style="text-align:center;padding:220px 20px 120px;font-family:system-ui,sans-serif;color:#a8adc0;">Loading the Starter Handbook…</p>
 </div>
 <script>
 (function () {
@@ -24,7 +25,7 @@
   var url = 'https://cdn.jsdelivr.net/gh/' + REPO + '@' + ref + '/' + FILE;
 
   function fail(msg) {
-    root.innerHTML = '<p style="text-align:center;padding:120px 20px;font-family:system-ui,sans-serif;color:#a8adc0;">' +
+    root.innerHTML = '<p style="text-align:center;padding:220px 20px 120px;font-family:system-ui,sans-serif;color:#a8adc0;">' +
       msg + ' <a href="" style="color:#e3c17e;">Refresh to try again.</a></p>';
   }
 
