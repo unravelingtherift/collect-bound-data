@@ -7,7 +7,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'handbook/riftbound-starter-handbook.html'
+      - 'handbook/**'
+      - 'handbook-images/**'
   workflow_dispatch: # also lets you run it by hand from the Actions tab
 
 jobs:
@@ -16,5 +17,8 @@ jobs:
     steps:
       - name: Purge jsDelivr cache
         run: |
-          curl -fsS "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/handbook/riftbound-starter-handbook.html"
-          echo
+          # jsDelivr needs a moment to see the new commit; purging immediately
+          # can re-cache the old version. Purge after 1 minute, then again after 3.
+          URL="https://purge.jsdelivr.net/gh/${{ github.repository }}@main/handbook/riftbound-starter-handbook.html"
+          sleep 60;  curl -fsS "$URL"; echo
+          sleep 120; curl -fsS "$URL"; echo
