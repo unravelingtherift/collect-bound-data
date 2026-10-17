@@ -1,0 +1,20 @@
+# When the handbook changes on main (for example, after you merge a weekly update),
+# tell jsDelivr to drop its cached copy so the live Squarespace page shows the
+# new version within minutes instead of up to 12 hours.
+name: Refresh handbook on CDN
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'handbook/riftbound-starter-handbook.html'
+  workflow_dispatch: # also lets you run it by hand from the Actions tab
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Purge jsDelivr cache
+        run: |
+          curl -fsS "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/handbook/riftbound-starter-handbook.html"
+          echo
