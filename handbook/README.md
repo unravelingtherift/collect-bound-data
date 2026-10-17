@@ -5,7 +5,7 @@ The live Starter Handbook on unravelingtherift.com loads from this folder.
 | File | What it is |
 | --- | --- |
 | `riftbound-starter-handbook.html` | The handbook itself. Edit this to change the live page. |
-| `squarespace-loader.html` | The small snippet pasted into the Squarespace Code Block. It fetches the handbook from here, so it never needs to change. |
+| `squarespace-loader.html` | The small snippet pasted into the Starter Handbook's Page Settings → Advanced → Page Header Code Injection in Squarespace. It fetches the handbook from here, so it never needs to change. |
 | `riot-posts-reviewed.json` | Riot news posts already reviewed for the handbook, so the weekly update doesn't repeat them. |
 | `tools/validate.mjs` | Safety check run before any update is proposed: `node handbook/tools/validate.mjs` |
 
