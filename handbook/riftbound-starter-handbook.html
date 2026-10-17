@@ -552,13 +552,12 @@ section.alt{background:linear-gradient(180deg,transparent,rgba(255,255,255,.015)
 
 /* ---------- BOARD MAT (interactive playmat) ---------- */
 .mat-scroll{overflow-x:auto;padding-bottom:8px;}
-.mat{min-width:640px;max-width:800px;margin:0 auto;padding:18px 18px 16px 14px;border-radius:18px;border:1px solid var(--panel-border);background:radial-gradient(120% 90% at 50% 0%,#1d2547 0%,#10162b 62%,#0c1122 100%);box-shadow:0 18px 50px -24px rgba(0,0,0,.8);}
-.mat-grid{display:grid;grid-template-columns:40px 1fr 1fr 3.9fr 1fr;grid-template-rows:112px 118px 100px;gap:12px;}
-.mat-track{grid-column:1;grid-row:1 / 4;display:flex;flex-direction:column;justify-content:space-between;align-items:center;cursor:pointer;border-radius:20px;outline:none;transition:background .2s,box-shadow .2s;}
+.mat{min-width:720px;max-width:800px;margin:0 auto;padding:18px 18px 16px 14px;border-radius:18px;border:1px solid var(--panel-border);background:radial-gradient(120% 90% at 50% 0%,#1d2547 0%,#10162b 62%,#0c1122 100%);box-shadow:0 18px 50px -24px rgba(0,0,0,.8);}
+.mat-grid{display:grid;grid-template-columns:40px 1fr 5fr 1fr 1fr;grid-template-rows:112px 132px 120px;gap:12px;}
+.mat-track{grid-column:1;grid-row:2 / 4;display:flex;flex-direction:column;justify-content:space-between;align-items:center;cursor:pointer;border-radius:20px;outline:none;transition:background .2s,box-shadow .2s;}
 .mat-track:hover,.mat-track:focus-visible,.mat-track.active{background:rgba(227,193,126,.07);box-shadow:0 0 0 1px var(--gold-dim);}
-.mat-pt{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);color:#fff;display:flex;align-items:center;justify-content:center;font:600 .72rem var(--mono);}
+.mat-pt{width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);color:#fff;display:flex;align-items:center;justify-content:center;font:600 .72rem var(--mono);}
 .mat-pt.on{background:radial-gradient(circle at 35% 30%,var(--gold-bright),var(--gold) 60%,#a78635);color:#1a1406;border-color:var(--gold-bright);box-shadow:0 0 12px rgba(227,193,126,.6);}
-.mat-row1{grid-column:2 / -1;grid-row:1;display:grid;grid-template-columns:5fr 1fr 1fr;gap:12px;}
 .mz{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1.5px solid var(--gold-dim);border-radius:10px;background:rgba(255,255,255,.015);cursor:pointer;outline:none;transition:border-color .2s,box-shadow .2s,background .2s;}
 .mz:hover,.mz:focus-visible,.mz.active{border-color:var(--gold-bright);background:rgba(227,193,126,.06);box-shadow:0 0 0 1px var(--gold-dim),0 0 20px -4px rgba(227,193,126,.5);}
 .mz-label{position:absolute;left:0;right:0;bottom:6px;text-align:center;font:600 .6rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);}
@@ -1027,27 +1026,23 @@ footer .fbrand{font-family:var(--serif);color:var(--gold);font-size:1.1rem;margi
     <p style="color:var(--text-dim);font-size:.92rem;margin:0 0 16px;">This is the standard Riftbound playmat — the layout nearly every mat shares, whatever art is printed behind it. Tap or hover a zone to see what it does, and watch the Runes row: <b style="color:var(--gold-bright);">upright runes are ready; runes turned sideways are exhausted</b> (in use).</p>
     <div class="mat-scroll"><div class="mat" id="boardMat">
       <div class="mat-grid">
+        <div class="mz" data-zone="battlefield" tabindex="0" role="button" aria-label="Battlefield zone" style="grid-column:2 / -1;grid-row:1;">
+          <div class="mz-cards" style="gap:40px;margin-bottom:12px;"><div class="mc landscape">Battlefield</div><div class="mc landscape">Battlefield</div></div>
+          <span class="mz-label">Battlefield zone</span>
+        </div>
         <div class="mat-track" data-zone="score" tabindex="0" role="button" aria-label="Score track">
           <div class="mat-pt">8</div><div class="mat-pt">7</div><div class="mat-pt">6</div><div class="mat-pt">5</div><div class="mat-pt">4</div><div class="mat-pt">3</div><div class="mat-pt">2</div><div class="mat-pt">1</div><div class="mat-pt on">0</div>
         </div>
-        <div class="mat-row1">
-          <div class="mz" data-zone="battlefield" tabindex="0" role="button" aria-label="Battlefield zone">
-            <div class="mz-cards" style="gap:16px;margin-bottom:12px;"><div class="mc landscape">Battlefield</div><div class="mc landscape">Battlefield</div></div>
-            <span class="mz-label">Battlefield</span>
-          </div>
-          <div class="mz" data-zone="hidden" tabindex="0" role="button" aria-label="Hidden card slot"><div class="mc back" style="margin-bottom:10px;"></div><span class="mz-label">Hidden</span></div>
-          <div class="mz" data-zone="hidden" tabindex="0" role="button" aria-label="Hidden card slot"><span class="mz-label">Hidden</span></div>
-        </div>
-        <div class="mz" data-zone="champion" tabindex="0" role="button" aria-label="Champion zone" style="grid-column:2;grid-row:2;"><div class="mc" style="margin-bottom:12px;">♛</div><span class="mz-label">Champion</span></div>
-        <div class="mz" data-zone="legend" tabindex="0" role="button" aria-label="Legend zone" style="grid-column:3;grid-row:2;"><div class="mc" style="margin-bottom:12px;">✦</div><span class="mz-label">Legend</span></div>
-        <div class="mz" data-zone="base" tabindex="0" role="button" aria-label="Base" style="grid-column:4;grid-row:2;">
+        <div class="mz" data-zone="base" tabindex="0" role="button" aria-label="Base" style="grid-column:2 / 4;grid-row:2;">
           <span class="mz-hint">Units start &amp; return here</span>
           <div class="mz-cards" style="margin:6px 0 10px;"><div class="slot"><div class="mc unit"></div></div><div class="slot"><div class="mc unit"></div></div><div class="slot"><div class="mc unit exh"></div></div></div>
           <span class="mz-label">Base</span>
         </div>
-        <div class="mz" data-zone="maindeck" tabindex="0" role="button" aria-label="Main Deck" style="grid-column:5;grid-row:2;"><div class="mc back stack" style="margin-bottom:12px;"></div><span class="mz-label">Main Deck</span></div>
+        <div class="mz" data-zone="legend" tabindex="0" role="button" aria-label="Legend zone" style="grid-column:4;grid-row:2;"><div class="mc" style="margin-bottom:12px;">✦</div><span class="mz-label">Legend</span></div>
+        <div class="mz" data-zone="champion" tabindex="0" role="button" aria-label="Champion zone" style="grid-column:5;grid-row:2;"><div class="mc" style="margin-bottom:12px;">♛</div><span class="mz-label">Champion</span></div>
         <div class="mz" data-zone="rundeck" id="matRuneDeck" tabindex="0" role="button" aria-label="Rune Deck" style="grid-column:2;grid-row:3;"><div class="mc back stack" style="width:34px;height:48px;margin-bottom:12px;"></div><span class="mz-label">Rune Deck</span></div>
-        <div class="mz" data-zone="runes" tabindex="0" role="button" aria-label="Runes" style="grid-column:3 / 5;grid-row:3;"><div class="rune-row" id="matRunes"></div><span class="mz-label">Runes</span></div>
+        <div class="mz" data-zone="runes" tabindex="0" role="button" aria-label="Runes" style="grid-column:3;grid-row:3;"><div class="rune-row" id="matRunes"></div><span class="mz-label">Runes</span></div>
+        <div class="mz" data-zone="maindeck" tabindex="0" role="button" aria-label="Main Deck" style="grid-column:4;grid-row:3;"><div class="mc back stack" style="margin-bottom:12px;"></div><span class="mz-label">Main Deck</span></div>
         <div class="mz" data-zone="trash" tabindex="0" role="button" aria-label="Trash" style="grid-column:5;grid-row:3;"><div class="mc" style="width:34px;height:44px;margin-bottom:12px;opacity:.7;font-size:.9rem;">🗑</div><span class="mz-label">Trash</span></div>
       </div>
       <div class="mat-strips">
@@ -1303,6 +1298,7 @@ footer .fbrand{font-family:var(--serif);color:var(--gold);font-size:1.1rem;margi
 
     <h3 style="color:var(--text-dim);font-size:.85rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;margin:40px 0 6px;">Korean release schedule</h3>
     <p style="color:var(--text-faint);font-size:.84rem;margin:0 0 14px;">Korea launched on September 18, 2026 with Origins and is on an accelerated schedule to reach global parity by the start of 2028. Only Origins and Spiritforged have confirmed timing; later dates are still to be announced.</p>
+    <div class="zoomable" style="max-width:340px;margin-bottom:16px;"><img src="https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/korea-launch-september-2026.webp" style="border-radius:10px;border:1px solid var(--panel-border);display:block;width:100%;" alt="Riftbound Korean launch announcement: Riftbound lands in Korea in September 2026"><span class="zoom-hint">🔍 Click to enlarge</span></div>
     <div class="table-wrap">
       <table class="yield-table"><thead><tr><th>Set</th><th>Name</th><th>Korean release</th></tr></thead><tbody><tr><td>Set 1</td><td>Origins</td><td>September 18, 2026 (launched)</td></tr><tr><td>Set 2</td><td>Spiritforged</td><td>December 2026</td></tr><tr><td>Set 3</td><td>Unleashed</td><td>Early 2027</td></tr><tr><td>Set 4</td><td>Vendetta</td><td>2027 (date to be announced)</td></tr><tr><td>Set 5</td><td>Radiance</td><td>2027 (date to be announced)</td></tr><tr><td>Set 6</td><td>Legacy</td><td>2027 (date to be announced)</td></tr><tr><td>Set 7</td><td>The Reckoning</td><td>2027 (date to be announced)</td></tr><tr><td>Set 8</td><td>Not yet named</td><td>2027 (date to be announced)</td></tr><tr><td>Set 9</td><td>Not yet named</td><td>Late 2027</td></tr><tr><td>Set 10</td><td>Global parity set</td><td>Early 2028 — simultaneous global launch</td></tr></tbody></table>
     </div>
@@ -1799,8 +1795,8 @@ RIFT.path = [
    text:"Events you can expect to find at your local store, beginning on a regular cadence following the Origins Release Event. Any events at this level may include additional prizing as your local store sees fit."},
   {level:"casual", title:"Origins Release Event", when:"Oct 2025 (English) · Aug 2025 (Chinese) · May 2026 (French)", format:"Precon battles", qual:"Not required", prizes:"Participation reward",
    text:"The very first organized-play event for Riftbound. Participants purchase preconstructed Champion Decks featuring Jinx, Lee Sin, and Viktor, and battle it out on day one."},
-  {level:"casual", title:"Prerelease Events", when:"One week before each set release", format:"Sealed", qual:"Not required", prizes:"Product from the new set",
-   text:"Every set after Origins gets a prerelease — happening before official release, giving you the chance to get your hands on new cards before they hit shelves."},
+  {level:"casual", title:"Prerelease Events (Pre-Rift)", when:"One week before each set release", format:"Sealed", qual:"Not required", prizes:"Product from the new set",
+   text:"Every set after Origins gets a prerelease — happening before official release, giving you the chance to get your hands on new cards before they hit shelves. Since Origins, Riftbound calls these <b style=\"color:var(--gold-bright);\">Pre-Rift</b> events, so look for that name on store calendars and products like the Pre-Rift Kit."},
   {level:"casual", title:"Nexus Nights", when:"Weekly, store's choice of day", format:"Store preference", qual:"Not required", prizes:"3-card packs incl. promos",
    text:"Your bread-and-butter weekly event — a regular chance to get together with friends and play in a relaxed environment, in the way that best fits your store."},
   {level:"casual", title:"Summoner Skirmish", when:"Twice per set (retiring end of 2026)", format:"1v1 Constructed", qual:"Not required", prizes:"Participation & Top 8 promo, Champion Playmat, RQ bye",
@@ -2453,8 +2449,7 @@ document.querySelectorAll('section').forEach(sec=>{
   const mat = document.getElementById('boardMat');
   if (mat){
     const ZONES = {
-      battlefield:{t:'Battlefield zone', d:'The shared middle of the table. In a 1v1 each player brings three Battlefield cards and one is picked for the game, so two sit here. Move units onto a battlefield to fight for it; controlling one lets you score — a Conquer when you take it, a Hold when you still own it at the start of your turn.'},
-      hidden:{t:'Hidden slots', d:'Every battlefield you control has room for one face-down card (the Hidden keyword): play it face down on your turn, then reveal it and play it for free on a later turn. Use these small side slots to keep them tidy.'},
+      battlefield:{t:'Battlefield zone', d:'The shared middle of the table. In a 1v1 each player brings three Battlefield cards and one is picked for the game, so two sit here. Move units onto a battlefield to fight for it; controlling one lets you score — a Conquer when you take it, a Hold when you still own it at the start of your turn. Hidden cards are played face down at a battlefield you control (one per battlefield).'},
       champion:{t:'Champion zone', d:'Your Chosen Champion starts the game here instead of in your deck. You can play it from this zone just like a card from your hand.'},
       legend:{t:'Legend zone', d:'Your Champion Legend lives here all game and can never be moved or removed. It defines your deck’s Domain Identity and brings abilities of its own that you can activate on your turn.'},
       base:{t:'Base', d:'Home turf. Units and gear you control sit here in plain view. Units start (and retreat) here, and enter exhausted unless a keyword like Accelerate says otherwise. From the Base you move units onto a battlefield to attack or defend.'},
