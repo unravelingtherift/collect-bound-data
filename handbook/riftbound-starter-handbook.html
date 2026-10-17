@@ -1313,9 +1313,9 @@ footer .fbrand{font-family:var(--serif);color:var(--gold);font-size:1.1rem;margi
 
     <h3 style="color:var(--text-dim);font-size:.85rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;margin:40px 0 6px;">Korean release schedule</h3>
     <p style="color:var(--text-faint);font-size:.84rem;margin:0 0 14px;">Korea launched on September 18, 2026 with Origins and is on an accelerated schedule to reach global parity by the start of 2028. Only Origins and Spiritforged have confirmed timing; later dates are still to be announced.</p>
-    <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;">
-    <div class="zoomable" style="flex:0 1 300px;min-width:220px;"><img src="https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/korea-launch-september-2026.webp" style="border-radius:10px;border:1px solid var(--panel-border);display:block;width:100%;" alt="Riftbound Korean launch announcement: Riftbound lands in Korea in September 2026"><span class="zoom-hint">🔍 Click to enlarge</span></div>
-    <div class="table-wrap" style="flex:1 1 380px;min-width:0;margin:0;">
+    <div id="koreaRow" style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;">
+    <div class="zoomable" id="koreaImgBox" style="flex:0 1 300px;min-width:220px;"><img id="koreaImg" src="https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/korea-launch-september-2026.webp" style="border-radius:10px;border:1px solid var(--panel-border);display:block;width:100%;" alt="Riftbound Korean launch announcement: Riftbound lands in Korea in September 2026"><span class="zoom-hint">🔍 Click to enlarge</span></div>
+    <div class="table-wrap" id="koreaTable" style="flex:1 1 380px;min-width:0;margin:0;">
       <table class="yield-table"><thead><tr><th>Set</th><th>Name</th><th>Korean release</th></tr></thead><tbody><tr><td>Set 1</td><td>Origins</td><td>September 18, 2026 (launched)</td></tr><tr><td>Set 2</td><td>Spiritforged</td><td>December 2026</td></tr><tr><td>Set 3</td><td>Unleashed</td><td>Early 2027</td></tr><tr><td>Set 4</td><td>Vendetta</td><td>2027 (date to be announced)</td></tr><tr><td>Set 5</td><td>Radiance</td><td>2027 (date to be announced)</td></tr><tr><td>Set 6</td><td>Legacy</td><td>2027 (date to be announced)</td></tr><tr><td>Set 7</td><td>The Reckoning</td><td>2027 (date to be announced)</td></tr><tr><td>Set 8</td><td>Not yet named</td><td>2027 (date to be announced)</td></tr><tr><td>Set 9</td><td>Not yet named</td><td>Late 2027</td></tr><tr><td>Set 10</td><td>Global parity set</td><td>Early 2028 — simultaneous global launch</td></tr></tbody></table>
     </div>
     </div>
@@ -2800,6 +2800,27 @@ document.querySelectorAll('section').forEach(sec=>{
   function upd(){ b.classList.toggle('show', window.scrollY > 600); }
   window.addEventListener('scroll', upd, {passive:true}); upd();
   b.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+</script>
+<script>
+/* Korea launch image: match the height of the Korean release table beside it */
+(function(){
+  var box=document.getElementById('koreaImgBox'), img=document.getElementById('koreaImg'), tbl=document.getElementById('koreaTable');
+  if(!box||!img||!tbl) return;
+  var RATIO=397/501;
+  function fit(){
+    var side = box.offsetTop === tbl.offsetTop;           // side by side (not stacked on phones)
+    if(side){
+      var h=tbl.offsetHeight, w=Math.round(h*RATIO);
+      var room=box.parentNode.clientWidth-20-380;         // keep the table at least 380px wide
+      if(w>room) w=Math.max(220,room);
+      box.style.flex='0 0 '+w+'px'; img.style.height=Math.round(w/RATIO)+'px'; img.style.objectFit='cover';
+    } else {
+      box.style.flex='0 1 300px'; img.style.height=''; img.style.objectFit='';
+    }
+  }
+  if(window.ResizeObserver) new ResizeObserver(fit).observe(tbl);
+  window.addEventListener('resize',fit); img.addEventListener('load',fit); fit();
 })();
 </script>
 </body>
