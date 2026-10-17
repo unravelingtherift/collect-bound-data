@@ -99,6 +99,20 @@ section.alt{background:linear-gradient(180deg,transparent,rgba(255,255,255,.015)
 }
 .nav-toggle-float:hover{background:rgba(227,193,126,.14);border-color:var(--gold);transform:translateY(-1px);}
 .nav-toggle-float svg{flex:none;}
+.to-top{
+  position:fixed;right:18px;bottom:18px;z-index:97;
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--gold-bright);background:rgba(13,17,27,.92);backdrop-filter:blur(8px);
+  border:1px solid rgba(227,193,126,.4);border-radius:999px;
+  padding:11px 18px;cursor:pointer;box-shadow:0 10px 30px -8px rgba(0,0,0,.6);
+  opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:opacity .2s,visibility .2s,transform .2s,background .15s,border-color .15s;
+}
+.to-top.show{opacity:1;visibility:visible;transform:none;}
+.to-top:hover{background:rgba(227,193,126,.14);border-color:var(--gold);}
+.hero-note{margin-top:12px;font-family:var(--mono);font-size:.74rem;letter-spacing:.03em;color:var(--text-faint);display:flex;align-items:center;gap:8px;}
+.hero-note::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);flex:none;box-shadow:0 0 8px var(--gold);}
 
 /* ---------- SIDE PANEL (docked / drawer section nav) ---------- */
 .side-backdrop{
@@ -878,6 +892,7 @@ footer .fbrand{font-family:var(--serif);color:var(--gold);font-size:1.1rem;margi
     <div class="hero-copy">
       <h1 class="hero-title"><span>An unofficial field guide to</span>Riftbound<br>Trading Card Game</h1>
       <p class="hero-sub">Everything one collector wishes they'd known on day one — card anatomy, rarity, domains, set codes, the road from your local shop to Worlds, and how the Chinese and English print runs actually differ.</p>
+      <p class="hero-note">New information is added regularly from Riot’s official Riftbound news.</p>
       <div class="hero-cta">
         <a href="#rarity" class="btn btn-gold">Start with Rarity ↓</a>
         <a href="#path" class="btn btn-ghost">See the Path to Worlds</a>
@@ -2774,6 +2789,18 @@ document.querySelectorAll('section').forEach(sec=>{
   if ('requestIdleCallback' in window) requestIdleCallback(preload, {timeout: 2000}); else setTimeout(preload, 800);
 })();
 
+</script>
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">
+  <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 10V2M2.5 5.5 6 2l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <span>Top</span>
+</button>
+<script>
+(function(){
+  var b=document.getElementById('toTop'); if(!b) return;
+  function upd(){ b.classList.toggle('show', window.scrollY > 600); }
+  window.addEventListener('scroll', upd, {passive:true}); upd();
+  b.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
 </script>
 </body>
 </html>
