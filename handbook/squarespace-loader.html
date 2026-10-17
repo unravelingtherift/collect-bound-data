@@ -32,6 +32,9 @@
   fetch(url, { cache: 'no-cache' })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
     .then(function (html) {
+      // In a preview, load the handbook's own images from the preview branch too,
+      // so newly added pictures show before the update is merged.
+      if (isPreview) html = html.split('collect-bound-data@main/').join('collect-bound-data@' + ref + '/');
       var doc = new DOMParser().parseFromString(html, 'text/html');
 
       // Fonts and styles from the handbook's <head>
