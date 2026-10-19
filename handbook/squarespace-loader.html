@@ -22,19 +22,34 @@
   var asked = new URLSearchParams(location.search).get('preview');
   var isPreview = !!(asked && /^[A-Za-z0-9._\/-]{1,100}$/.test(asked));
   var ref = isPreview ? asked : 'main';
-  var url = 'https://cdn.jsdelivr.net/gh/' + REPO + '@' + ref + '/' + FILE;
+
+  // Ask GitHub for the exact latest version (commit) of the branch, then load that
+  // exact version from jsDelivr. An exact version can never be served stale, so a
+  // merged update shows up right away. If GitHub can't be reached, fall back to the branch.
+  function resolve() {
+    return fetch('https://api.github.com/repos/' + REPO + '/commits/' + encodeURIComponent(ref),
+                 { headers: { Accept: 'application/vnd.github.sha' }, cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.text() : ref; })
+      .then(function (t) { t = (t || '').trim(); return /^[0-9a-f]{40}$/.test(t) ? t : ref; })
+      .catch(function () { return ref; });
+  }
 
   function fail(msg) {
     root.innerHTML = '<p style="text-align:center;padding:220px 20px 120px;font-family:system-ui,sans-serif;color:#a8adc0;">' +
       msg + ' <a href="" style="color:#e3c17e;">Refresh to try again.</a></p>';
   }
 
-  fetch(url, { cache: 'no-cache' })
+  var version = ref;
+  resolve()
+    .then(function (v) {
+      version = v;
+      return fetch('https://cdn.jsdelivr.net/gh/' + REPO + '@' + version + '/' + FILE, { cache: 'no-cache' });
+    })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
     .then(function (html) {
-      // In a preview, load the handbook's own images from the preview branch too,
-      // so newly added pictures show before the update is merged.
-      if (isPreview) html = html.split('collect-bound-data@main/').join('collect-bound-data@' + ref + '/');
+      // Load the handbook's own images from the same version, so newly added
+      // pictures show right away (and in previews before the update is merged).
+      html = html.split('collect-bound-data@main/').join('collect-bound-data@' + version + '/');
       var doc = new DOMParser().parseFromString(html, 'text/html');
 
       // Fonts and styles from the handbook's <head>
