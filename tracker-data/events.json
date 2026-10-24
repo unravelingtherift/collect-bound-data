@@ -1,0 +1,60 @@
+{
+ "_about": "Dated Riftbound events and drops for the tracker timeline. status: announced = dates published by the organizer and may still change. Times are local to the event.",
+ "events": [
+  {
+   "id": "cn-2026-rad-prerelease",
+   "region": "China",
+   "channel": "Pre-release",
+   "name": "辉耀群星 Pre-release Challenge (售前现开挑战场)",
+   "start": "2026-10-17",
+   "end": "2026-10-18",
+   "details": "Registration Oct 10–16 (random draw). 32–64 players per event. Entry ¥150 includes a 辉耀群星 pre-release kit. Prizes by final placing.",
+   "status": "announced",
+   "source": "符文战场 official, via Exchange Society 集换资讯板"
+  },
+  {
+   "id": "cn-2026-rune-night",
+   "region": "China",
+   "channel": "Weekly store event",
+   "name": "Rune Night (符文之夜)",
+   "start": "2026-10-30",
+   "end": null,
+   "details": "Weekly in-store event, officially starting Oct 30. Entry ¥10.",
+   "status": "announced",
+   "source": "符文战场 official, via Exchange Society 集换资讯板"
+  },
+  {
+   "id": "cn-2026-city-challenge-s5",
+   "region": "China",
+   "channel": "Store championship",
+   "name": "City Challenge Season 5 (城市挑战赛 第五赛季)",
+   "start": "2026-10-31",
+   "end": null,
+   "details": "Season 5 opens Oct 31. Free entry.",
+   "status": "announced",
+   "source": "符文战场 official, via Exchange Society 集换资讯板"
+  },
+  {
+   "id": "cn-2026-regional-open-ningbo",
+   "region": "China",
+   "channel": "Regional open",
+   "name": "Season 5 Regional Open: Ningbo (区域公开赛 宁波站)",
+   "start": "2026-11-21",
+   "end": "2026-11-22",
+   "details": "First Season 5 regional open. Registration, venue and schedule to be announced by the official account.",
+   "status": "announced",
+   "source": "符文战场 official, via Exchange Society 集换资讯板 (posted Oct 12)"
+  },
+  {
+   "id": "cn-2026-regional-open-qingdao",
+   "region": "China",
+   "channel": "Regional open",
+   "name": "Season 5 Regional Open: Qingdao (区域公开赛 青岛站)",
+   "start": "2026-12-05",
+   "end": "2026-12-06",
+   "details": "Second Season 5 regional open. Registration, venue and schedule to be announced by the official account.",
+   "status": "announced",
+   "source": "符文战场 official, via Exchange Society 集换资讯板 (posted Oct 12)"
+  }
+ ]
+}
