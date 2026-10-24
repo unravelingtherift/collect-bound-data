@@ -1,0 +1,32 @@
+Copyright (c) 2025-2026 Jessica Deakin, doing business as Unraveling the Rift
+(unravelingtherift.com). All rights reserved.
+
+This repository holds the data and assets behind the Collection-Bound tracker,
+the Riftbound Starter Handbook and the Lore Codex on unravelingtherift.com.
+
+WHAT IS COVERED
+The following are the original work of Unraveling the Rift and are NOT licensed
+for reuse:
+  - the selection, arrangement and compilation of the card, product, promo and
+    regional-variant data in this repository (including ogn.json, ogs.json,
+    sfd.json, unl.json, ven.json, products.json, cardtext.json and the files in
+    codex/ and handbook/), including the research identifying regional
+    printings, sealed products and image sources;
+  - original writing, guides, layouts and code;
+  - original photographs and scans, logos and branding.
+
+No permission is granted to copy, scrape, mirror, republish, redistribute,
+sell, or use any of the above to build or populate another website, app,
+database or dataset, in whole or in part, without written permission.
+Files are public on GitHub only so the unravelingtherift.com website can load
+them; being publicly reachable does not grant a license.
+
+RIOT GAMES MATERIAL
+Riftbound, League of Legends, card names, card text, card art and product
+images are the property of Riot Games and are used under Riot Games' "Legal
+Jibber Jabber" policy. Riot Games does not endorse or sponsor this project.
+Nothing in this file claims ownership of Riot Games' material or restricts
+anyone's use of it as permitted by Riot Games.
+
+PERMISSIONS
+For permission requests, contact customerservice@unravelingtherift.com.
