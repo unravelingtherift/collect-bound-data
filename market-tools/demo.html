@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Market Tools Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root { --page: #0f0c08; --note: #a99a7c; }
+  body { margin: 0; background: var(--page); padding: 28px 16px 60px; font-family: Spectral, Georgia, serif; }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  .sample { color: var(--note); font-size: .85rem; margin: 0 0 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="sample">Preview with sample prices and exchange rates. In the tracker these come from your price lookup and rate sync.</p>
+  <div id="market-tools"></div>
+</div>
+<script src="market-tools.js"></script>
+<script>
+  CBMarketTools.mount(document.getElementById("market-tools"), {
+    card: {
+      name: "Jinx, Demolitionist",
+      set: "Origins",
+      number: "OGN 030a/298",
+      image: "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/60ff1aec7ecb1b11ff89fdb620c6182897a8b402-744x1039.png?accountingTag=RB&auto=format&fit=fill&q=80&w=355"
+    },
+    markets: [
+      { lang: "en", price: 24.99, source: "TCGplayer", updated: "Oct 23" },
+      { lang: "zh", price: 98, source: "China market", updated: "Oct 23" },
+      { lang: "ko", price: 21000, source: "Korea market", updated: "Oct 22" },
+      { lang: "fr", price: null, source: "Cardmarket" }
+    ],
+    rates: { USD: 1, CNY: 0.14, KRW: 0.00072, EUR: 1.08 },
+    ratesUpdated: "Oct 24, 2026 (sample)",
+    home: "en"
+  });
+</script>
+</body>
+</html>
