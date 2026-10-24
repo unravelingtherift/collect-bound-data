@@ -365,7 +365,22 @@
         '" data-k="' + key + '" value="' + esc(state.values[key]) + '"></div></div>';
     }
 
-    var uid = Math.random().toString(36).slice(2, 7);
+    function secureUid(len) {
+      var n = len || 5;
+      var alphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
+      var out = "";
+      var c = global.crypto || global.msCrypto;
+      if (c && typeof c.getRandomValues === "function") {
+        var bytes = new Uint8Array(n);
+        c.getRandomValues(bytes);
+        for (var i = 0; i < n; i++) out += alphabet[bytes[i] % alphabet.length];
+        return out;
+      }
+      // Non-cryptographic fallback for very old environments (DOM id uniqueness only).
+      return (Date.now().toString(36) + "00000").slice(-n);
+    }
+
+    var uid = secureUid(5);
 
     function render() {
       var html = '<div class="cbmt-lc"><h4>Import cost</h4>' +
