@@ -1,0 +1,520 @@
+{
+ "_about": "Everything poro: set cards with Poro in the name or tags, plus promos and collectibles from the master promo list. Cards showing a poro only in the artwork are not detected automatically; add them by hand.",
+ "cards": [
+  {
+   "name": "Pouty Poro",
+   "key": "OGN-13",
+   "set": "OGN",
+   "rarity": "Common",
+   "ids": [
+    "card-20013",
+    "card-41013",
+    "card-kr-81013"
+   ]
+  },
+  {
+   "name": "Stalwart Poro",
+   "key": "OGN-52",
+   "set": "OGN",
+   "rarity": "Common",
+   "ids": [
+    "card-20057",
+    "card-41057",
+    "card-kr-81057"
+   ]
+  },
+  {
+   "name": "Poro Herder",
+   "key": "OGN-61",
+   "set": "OGN",
+   "rarity": "Uncommon",
+   "ids": [
+    "card-20066",
+    "card-41066",
+    "card-kr-81066"
+   ]
+  },
+  {
+   "name": "Mystic Poro",
+   "key": "OGN-171",
+   "set": "OGN",
+   "rarity": "Common",
+   "ids": [
+    "card-20191",
+    "card-41191",
+    "card-kr-81191"
+   ]
+  },
+  {
+   "name": "Daring Poro",
+   "key": "OGN-210",
+   "set": "OGN",
+   "rarity": "Common",
+   "ids": [
+    "card-20234",
+    "card-41234",
+    "card-kr-81234"
+   ]
+  },
+  {
+   "name": "Lonely Poro",
+   "key": "SFD-36",
+   "set": "SFD",
+   "rarity": "Common",
+   "ids": [
+    "card-30039",
+    "card-31039"
+   ]
+  },
+  {
+   "name": "Poro Snax",
+   "key": "SFD-46",
+   "set": "SFD",
+   "rarity": "Uncommon",
+   "ids": [
+    "card-30049",
+    "card-31049"
+   ]
+  },
+  {
+   "name": "Plundering Poro",
+   "key": "SFD-69",
+   "set": "SFD",
+   "rarity": "Common",
+   "ids": [
+    "card-30075",
+    "card-31076"
+   ]
+  },
+  {
+   "name": "Veteran Poro",
+   "key": "SFD-99",
+   "set": "SFD",
+   "rarity": "Common",
+   "ids": [
+    "card-30109",
+    "card-31110"
+   ]
+  },
+  {
+   "name": "Sinister Poro",
+   "key": "UNL-137",
+   "set": "UNL",
+   "rarity": "Uncommon",
+   "ids": [
+    "card-40156",
+    "card-41156"
+   ]
+  },
+  {
+   "name": "Loyal Poro",
+   "key": "UNL-156",
+   "set": "UNL",
+   "rarity": "Common",
+   "ids": [
+    "card-40180",
+    "card-41180"
+   ]
+  },
+  {
+   "name": "Ultrasoft Poro",
+   "key": "UNL-160",
+   "set": "UNL",
+   "rarity": "Common",
+   "ids": [
+    "card-40184",
+    "card-41184"
+   ]
+  },
+  {
+   "name": "Pouty Poro",
+   "key": "UNL-220",
+   "set": "UNL",
+   "rarity": "Overnumber Showcase",
+   "ids": [
+    "card-40249",
+    "card-41249"
+   ]
+  },
+  {
+   "name": "Lonely Poro",
+   "key": "UNL-221",
+   "set": "UNL",
+   "rarity": "Overnumber Showcase",
+   "ids": [
+    "card-40250",
+    "card-41250"
+   ]
+  },
+  {
+   "name": "Plundering Poro",
+   "key": "UNL-222",
+   "set": "UNL",
+   "rarity": "Overnumber Showcase",
+   "ids": [
+    "card-40251",
+    "card-41251"
+   ]
+  },
+  {
+   "name": "Veteran Poro",
+   "key": "UNL-223",
+   "set": "UNL",
+   "rarity": "Overnumber Showcase",
+   "ids": [
+    "card-40252",
+    "card-41252"
+   ]
+  },
+  {
+   "name": "Mystic Poro",
+   "key": "UNL-224",
+   "set": "UNL",
+   "rarity": "Overnumber Showcase",
+   "ids": [
+    "card-40253",
+    "card-41253"
+   ]
+  },
+  {
+   "name": "Daring Poro",
+   "key": "UNL-225",
+   "set": "UNL",
+   "rarity": "Overnumber Showcase",
+   "ids": [
+    "card-40254",
+    "card-41254"
+   ]
+  },
+  {
+   "name": "Punching Poro",
+   "key": "VEN-7",
+   "set": "VEN",
+   "rarity": "Common",
+   "ids": [
+    "card-50006",
+    "card-51006"
+   ]
+  },
+  {
+   "name": "Affectionate Poro",
+   "key": "VEN-24",
+   "set": "VEN",
+   "rarity": "Common",
+   "ids": [
+    "card-50026",
+    "card-51026"
+   ]
+  },
+  {
+   "name": "Ol' Poro",
+   "key": "VEN-29",
+   "set": "VEN",
+   "rarity": "Common",
+   "ids": [
+    "card-50031",
+    "card-51031"
+   ]
+  },
+  {
+   "name": "Patched Porobot",
+   "key": "VEN-58",
+   "set": "VEN",
+   "rarity": "Uncommon",
+   "ids": [
+    "card-50063",
+    "card-51063"
+   ]
+  }
+ ],
+ "promosAndCollectibles": [
+  {
+   "name": "Poro Coin",
+   "category": "COLLECTIBLE",
+   "set": "FND",
+   "number": "N/A",
+   "language": "Chinese",
+   "event": "Multiple Events/Cons in China",
+   "masterRow": 18
+  },
+  {
+   "name": "Riftbound French La Premiere Event Exclusive Poro Coin",
+   "category": "COLLECTIBLE",
+   "set": "OGN",
+   "number": "N/A",
+   "language": "French",
+   "event": "Event in France",
+   "masterRow": 69
+  },
+  {
+   "name": "Stalwart Poro",
+   "category": "PROMO",
+   "set": "OGN",
+   "number": "52",
+   "language": "Chinese",
+   "event": "NN - China",
+   "masterRow": 100
+  },
+  {
+   "name": "Pouty Poro",
+   "category": "PROMO",
+   "set": "OGN",
+   "number": "13",
+   "language": "Chinese",
+   "event": "NN - China",
+   "masterRow": 102
+  },
+  {
+   "name": "Mystic Poro",
+   "category": "PROMO",
+   "set": "OGN",
+   "number": "171",
+   "language": "Chinese",
+   "event": "NN - China",
+   "masterRow": 106
+  },
+  {
+   "name": "Daring Poro",
+   "category": "PROMO",
+   "set": "OGN",
+   "number": "210",
+   "language": "Chinese",
+   "event": "NN - China",
+   "masterRow": 107
+  },
+  {
+   "name": "Stalwart Poro",
+   "category": "PROMO",
+   "set": "OGN",
+   "number": "52",
+   "language": "English",
+   "event": "NN - China",
+   "masterRow": 125
+  },
+  {
+   "name": "Pouty Poro",
+   "category": "PROMO",
+   "set": "OGN",
+   "number": "13",
+   "language": "English",
+   "event": "NN - China",
+   "masterRow": 127
+  },
+  {
+   "name": "Mystic Poro",
+   "category": "PROMO",
+   "set": "OGN",
+   "number": "171",
+   "language": "English",
+   "event": "NN - China",
+   "masterRow": 131
+  },
+  {
+   "name": "Daring Poro",
+   "category": "PROMO",
+   "set": "OGN",
+   "number": "210",
+   "language": "English",
+   "event": "NN - China",
+   "masterRow": 132
+  },
+  {
+   "name": "Riot League of Legends Crying Poro Plush Cushion",
+   "category": "COLLECTIBLE",
+   "set": "N/A",
+   "number": "N/A",
+   "language": "Chinese",
+   "event": "RO - China / NO - China",
+   "masterRow": 180
+  },
+  {
+   "name": "Riot League of Legends Happy Poro Plush Pillow",
+   "category": "COLLECTIBLE",
+   "set": "N/A",
+   "number": "N/A",
+   "language": "Chinese",
+   "event": "RO - China / NO - China",
+   "masterRow": 181
+  },
+  {
+   "name": "Snowbaord Poro Figurine",
+   "category": "COLLECTIBLE",
+   "set": "N/A",
+   "number": "N/A",
+   "language": "Chinese",
+   "event": "RO - China / NO - China",
+   "masterRow": 183
+  },
+  {
+   "name": "Bee Poro Figurine",
+   "category": "COLLECTIBLE",
+   "set": "N/A",
+   "number": "N/A",
+   "language": "Chinese",
+   "event": "RO - China / NO - China",
+   "masterRow": 184
+  },
+  {
+   "name": "White Poro Figure",
+   "category": "COLLECTIBLE",
+   "set": "N/A",
+   "number": "N/A",
+   "language": "Chinese",
+   "event": "RO - China / NO - China",
+   "masterRow": 185
+  },
+  {
+   "name": "2025 League of Legends World Championship Poro Plush",
+   "category": "COLLECTIBLE",
+   "set": "N/A",
+   "number": "N/A",
+   "language": "Chinese",
+   "event": "RO - China / NO - China",
+   "masterRow": 193
+  },
+  {
+   "name": "Heart Emoji Poro Eye Mask",
+   "category": "COLLECTIBLE",
+   "set": "UNL",
+   "number": "N/A",
+   "language": "Chinese",
+   "event": "RO - China / NO - China",
+   "masterRow": 202
+  },
+  {
+   "name": "Sleeping Emoji Poro Eye Mask",
+   "category": "COLLECTIBLE",
+   "set": "UNL",
+   "number": "N/A",
+   "language": "Chinese",
+   "event": "RO - China / NO - China",
+   "masterRow": 203
+  },
+  {
+   "name": "League of Legends Poro Plush Ita Backpack",
+   "category": "COLLECTIBLE",
+   "set": "N/A",
+   "number": "N/A",
+   "language": "Chinese",
+   "event": "RO - China / NO - China",
+   "masterRow": 204
+  },
+  {
+   "name": "League of Legends Poro Plush Ita Crossbody Backoack",
+   "category": "COLLECTIBLE",
+   "set": "N/A",
+   "number": "N/A",
+   "language": "Chinese",
+   "event": "RO - China / NO - China",
+   "masterRow": 205
+  },
+  {
+   "name": "White Poro Figure",
+   "category": "COLLECTIBLE",
+   "set": "N/A",
+   "number": "N/A",
+   "language": "English",
+   "event": "RQ - Houston, TX USA",
+   "masterRow": 270
+  },
+  {
+   "name": "Poro Coin - Silver (2026 Lunar New Year)",
+   "category": "COLLECTIBLE",
+   "set": "SFD",
+   "number": "N/A",
+   "language": "Chinese",
+   "event": "China",
+   "masterRow": 438
+  },
+  {
+   "name": "Poro Coin - Gold (2026 Lunar New Year)",
+   "category": "COLLECTIBLE",
+   "set": "SFD",
+   "number": "N/A",
+   "language": "Chinese",
+   "event": "China",
+   "masterRow": 439
+  },
+  {
+   "name": "Sinister Poro",
+   "category": "PROMO",
+   "set": "UNL",
+   "number": "137",
+   "language": "Chinese",
+   "event": "NN - China / SS / SSK - China",
+   "masterRow": 561
+  },
+  {
+   "name": "Loyal Poro",
+   "category": "PROMO",
+   "set": "UNL",
+   "number": "156",
+   "language": "Chinese",
+   "event": "NN - China / SS / SSK - China",
+   "masterRow": 562
+  },
+  {
+   "name": "Ultrasoft Poro",
+   "category": "PROMO",
+   "set": "UNL",
+   "number": "160",
+   "language": "Chinese",
+   "event": "NN - China / SS / SSK - China",
+   "masterRow": 563
+  },
+  {
+   "name": "Sinister Poro",
+   "category": "PROMO",
+   "set": "UNL",
+   "number": "137",
+   "language": "English",
+   "event": "NN - Global regions excluding China / SS / SSK - Global regions excluding China",
+   "masterRow": 586
+  },
+  {
+   "name": "Loyal Poro",
+   "category": "PROMO",
+   "set": "UNL",
+   "number": "156",
+   "language": "English",
+   "event": "NN - Global regions excluding China / SS / SSK - Global regions excluding China",
+   "masterRow": 587
+  },
+  {
+   "name": "Ultrasoft Poro",
+   "category": "PROMO",
+   "set": "UNL",
+   "number": "160",
+   "language": "English",
+   "event": "NN - Global regions excluding China / SS / SSK - Global regions excluding China",
+   "masterRow": 588
+  },
+  {
+   "name": "Le Rift Tour Poro Coin",
+   "category": "COLLECTIBLE",
+   "set": "OGN",
+   "number": "N/A",
+   "language": "French",
+   "event": "LRT - France",
+   "masterRow": 685
+  },
+  {
+   "name": "Ultrasoft Poro Alt Art",
+   "category": "PROMO + COLLECTIBLE",
+   "set": "UNL",
+   "number": "",
+   "language": "English",
+   "event": "Multiple Events/Cons global regions excluding China",
+   "masterRow": 717
+  },
+  {
+   "name": "Ultrasoft Poro Alt Art",
+   "category": "PROMO + COLLECTIBLE",
+   "set": "UNL",
+   "number": "",
+   "language": "Chinese",
+   "event": "Multiple Events/Cons global regions excluding China",
+   "masterRow": 721
+  }
+ ]
+}
