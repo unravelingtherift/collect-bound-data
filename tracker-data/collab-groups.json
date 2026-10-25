@@ -1,0 +1,324 @@
+{
+ "_about": "Collab and connecting-art groups for a Collab Groups tab in the tracker. 'ids' are card ids in the set files (all languages).",
+ "groups": [
+  {
+   "id": "wild-rift-crystal-rose",
+   "title": "Wild Rift Crystal Rose",
+   "set": "VEN",
+   "about": "Vendetta's Crystal Rose cards are alternate-art versions using Wild Rift's Crystal Rose skins, found in Vendetta booster packs. Vendetta also linked to Wild Rift itself: players who joined a Vendetta Pre-Rift (window closed July 30, 2026) were emailed a code for a Wild Rift reward, and winners of the first Vendetta Summoner Skirmish received the Arcade Ahri skin in Wild Rift. Rewards went to the Riot account used for the Riftbound Gaming Network.",
+   "source": "https://playriftbound.com/en-us/news/announcements/riftbound-vendetta-wild-rift-and-you/",
+   "cards": [
+    {
+     "name": "Kai'Sa, Survivor (Crystal Rose)  AA",
+     "key": "VEN-SP1",
+     "ids": [
+      "card-50236",
+      "card-51235"
+     ]
+    },
+    {
+     "name": "Sona, Harmonious (Crystal Rose)  AA",
+     "key": "VEN-SP2",
+     "ids": [
+      "card-50237",
+      "card-51236"
+     ]
+    },
+    {
+     "name": "Ahri, Inquisitive (Crystal Rose)  AA",
+     "key": "VEN-SP3",
+     "ids": [
+      "card-50238",
+      "card-51237"
+     ]
+    },
+    {
+     "name": "Sett, Brawler (Crystal Rose)  AA",
+     "key": "VEN-SP4",
+     "ids": [
+      "card-50239",
+      "card-51238"
+     ]
+    },
+    {
+     "name": "Ezreal, Prodigy (Crystal Rose)  AA",
+     "key": "VEN-SP5",
+     "ids": [
+      "card-50240",
+      "card-51239"
+     ]
+    },
+    {
+     "name": "Lux, Crownguard (Crystal Rose)  AA",
+     "key": "VEN-SP6",
+     "ids": [
+      "card-50241",
+      "card-51240"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vendetta-connecting-art",
+   "title": "Vendetta Connecting Art Champion Units",
+   "set": "VEN",
+   "about": "Overnumbered Champion Units printed as pairs of rivals. Place each pair side by side and the two artworks join into one battle scene.",
+   "pairs": [
+    [
+     {
+      "name": "Vi, Destructive",
+      "key": "VEN-167",
+      "ids": [
+       "card-50184",
+       "card-51183"
+      ]
+     },
+     {
+      "name": "Jinx, Demolitionist",
+      "key": "VEN-168",
+      "ids": [
+       "card-50185",
+       "card-51184"
+      ]
+     }
+    ],
+    [
+     {
+      "name": "Zed, From the Shadows",
+      "key": "VEN-169",
+      "ids": [
+       "card-50186",
+       "card-51185"
+      ]
+     },
+     {
+      "name": "Shen, Scourge of Shadows",
+      "key": "VEN-170",
+      "ids": [
+       "card-50187",
+       "card-51186"
+      ]
+     }
+    ],
+    [
+     {
+      "name": "Riven, Shattered",
+      "key": "VEN-171",
+      "ids": [
+       "card-50188",
+       "card-51187"
+      ]
+     },
+     {
+      "name": "Draven, Showboat",
+      "key": "VEN-172",
+      "ids": [
+       "card-50189",
+       "card-51188"
+      ]
+     }
+    ],
+    [
+     {
+      "name": "Swain, Visionary",
+      "key": "VEN-173",
+      "ids": [
+       "card-50190",
+       "card-51189"
+      ]
+     },
+     {
+      "name": "Irelia, Fervent",
+      "key": "VEN-174",
+      "ids": [
+       "card-50191",
+       "card-51190"
+      ]
+     }
+    ],
+    [
+     {
+      "name": "Jayce, Man of Progress",
+      "key": "VEN-175",
+      "ids": [
+       "card-50192",
+       "card-51191"
+      ]
+     },
+     {
+      "name": "Viktor, Innovator",
+      "key": "VEN-176",
+      "ids": [
+       "card-50193",
+       "card-51192"
+      ]
+     }
+    ],
+    [
+     {
+      "name": "Renekton, Brute",
+      "key": "VEN-177",
+      "ids": [
+       "card-50194",
+       "card-51193"
+      ]
+     },
+     {
+      "name": "Nasus, Guardian of Knowledge",
+      "key": "VEN-178",
+      "ids": [
+       "card-50195",
+       "card-51194"
+      ]
+     }
+    ],
+    [
+     {
+      "name": "Rengar, Trophy Hunter",
+      "key": "VEN-179",
+      "ids": [
+       "card-50196",
+       "card-51195"
+      ]
+     },
+     {
+      "name": "Kha'Zix, Evolving Hunter",
+      "key": "VEN-180",
+      "ids": [
+       "card-50197",
+       "card-51196"
+      ]
+     }
+    ],
+    [
+     {
+      "name": "Gangplank, Naval",
+      "key": "VEN-181",
+      "ids": [
+       "card-50198",
+       "card-51197"
+      ]
+     },
+     {
+      "name": "Illaoi, Prophet of the Great Kraken",
+      "key": "VEN-182",
+      "ids": [
+       "card-50199",
+       "card-51198"
+      ]
+     }
+    ],
+    [
+     {
+      "name": "Diana, No Longer Human",
+      "key": "VEN-183",
+      "ids": [
+       "card-50200",
+       "card-51199"
+      ]
+     },
+     {
+      "name": "Leona, Determined",
+      "key": "VEN-184",
+      "ids": [
+       "card-50201",
+       "card-51200"
+      ]
+     }
+    ],
+    [
+     {
+      "name": "Kayle, Justified",
+      "key": "VEN-185",
+      "ids": [
+       "card-50202",
+       "card-51201"
+      ]
+     },
+     {
+      "name": "Morgana, Vindictive",
+      "key": "VEN-186",
+      "ids": [
+       "card-50203",
+       "card-51202"
+      ]
+     }
+    ],
+    [
+     {
+      "name": "Ambessa, Respected and Feared",
+      "key": "VEN-187",
+      "ids": [
+       "card-50204",
+       "card-51203"
+      ]
+     },
+     {
+      "name": "Mel, Defiant Soul",
+      "key": "VEN-188",
+      "ids": [
+       "card-50205",
+       "card-51204"
+      ]
+     }
+    ]
+   ]
+  },
+  {
+   "id": "unleashed-poro-overnumbers",
+   "title": "Unleashed Poro Overnumbers",
+   "set": "UNL",
+   "about": "Six Overnumbered Poro units whose artwork connects into one wintry poro scene when laid out in two rows of three.",
+   "cards": [
+    {
+     "name": "Pouty Poro",
+     "key": "UNL-220",
+     "ids": [
+      "card-40249",
+      "card-41249"
+     ]
+    },
+    {
+     "name": "Lonely Poro",
+     "key": "UNL-221",
+     "ids": [
+      "card-40250",
+      "card-41250"
+     ]
+    },
+    {
+     "name": "Plundering Poro",
+     "key": "UNL-222",
+     "ids": [
+      "card-40251",
+      "card-41251"
+     ]
+    },
+    {
+     "name": "Veteran Poro",
+     "key": "UNL-223",
+     "ids": [
+      "card-40252",
+      "card-41252"
+     ]
+    },
+    {
+     "name": "Mystic Poro",
+     "key": "UNL-224",
+     "ids": [
+      "card-40253",
+      "card-41253"
+     ]
+    },
+    {
+     "name": "Daring Poro",
+     "key": "UNL-225",
+     "ids": [
+      "card-40254",
+      "card-41254"
+     ]
+    }
+   ]
+  }
+ ]
+}
