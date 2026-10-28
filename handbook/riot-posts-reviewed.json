@@ -1,7 +1,25 @@
 {
   "_about": "Riot posts already reviewed for the Starter Handbook. The weekly update task only considers posts published after checked_through or not listed below, and adds every post it reviews here (including ones it decided not to use).",
-  "checked_through": "2026-10-16",
+  "checked_through": "2026-10-26",
   "posts": [
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/riftbounds-2026-drawings",
+      "published": "2026-10-22",
+      "result": "added",
+      "note": "K/DA Couture Collection, T1 Player Bundle and Worlds 2026 Edition drawing dates, Gift of the Rift price (Types section note + New Releases cards)"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/product-drawing-faq/",
+      "published": "2026-10-21",
+      "result": "added",
+      "note": "How Riot Merch drawings work, K/DA Couture Collection contents (Types section drawings note)"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=n-53EjaNrdU",
+      "published": "2026-10-21",
+      "result": "skipped",
+      "note": "K/DA Couture Collection video (marketing; facts covered by the drawings posts)"
+    },
     {
       "url": "https://playriftbound.com/en-us/news/organizedplay/regional-championships-competitive-integrity-prizing/",
       "published": "2026-10-15",
