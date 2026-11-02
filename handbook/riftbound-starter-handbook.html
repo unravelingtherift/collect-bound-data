@@ -1504,6 +1504,28 @@ footer .fbrand{font-family:var(--serif);color:var(--gold);font-size:1.1rem;margi
 </div>
 
 <script id="data-types">
+/* Image safety net: right after an update, jsDelivr sometimes fails a few of the
+   handbook's images while it fetches the new version. If one fails, retry it from
+   GitHub directly, then from the main copy on jsDelivr. */
+(function(){
+  if (typeof document === 'undefined') return;
+  var RE = /^https:\/\/cdn\.jsdelivr\.net\/gh\/unravelingtherift\/collect-bound-data@([^\/]+)\/(.+)$/;
+  function retry(img){
+    if (!img.dataset.origSrc) {
+      if (!RE.test(img.src)) return;
+      img.dataset.origSrc = img.src;
+    }
+    var m = img.dataset.origSrc.match(RE), tries = +(img.dataset.retry || 0), next = null;
+    if (tries === 0) next = 'https://raw.githubusercontent.com/unravelingtherift/collect-bound-data/' + m[1] + '/' + m[2];
+    else if (tries === 1 && m[1] !== 'main') next = 'https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/' + m[2];
+    if (!next) return;
+    img.dataset.retry = tries + 1;
+    img.src = next;
+  }
+  document.addEventListener('error', function(e){ var t = e.target; if (t && t.tagName === 'IMG') retry(t); }, true);
+  function sweep(){ document.querySelectorAll('img').forEach(function(i){ if (i.complete && i.naturalWidth === 0 && i.getAttribute('src')) retry(i); }); }
+  sweep(); window.addEventListener('load', sweep); setTimeout(sweep, 4000);
+})();
 window.RIFT = {};
 RIFT.rarity = [
   {img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/common.png", name:"Common", tier:"Booster: 7 / 14 slots", text:"The basic card. Plenty of them to acquire without difficulty."},
