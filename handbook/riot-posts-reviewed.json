@@ -1,7 +1,37 @@
 {
   "_about": "Riot posts already reviewed for the Starter Handbook. The weekly update task only considers posts published after checked_through or not listed below, and adds every post it reviews here (including ones it decided not to use).",
-  "checked_through": "2026-10-26",
+  "checked_through": "2026-11-02",
   "posts": [
+    {
+      "url": "https://playriftbound.com/en-us/news/organizedplay/all-eyes-on-rc-europe",
+      "published": "2026-10-27",
+      "result": "added",
+      "note": "RC Europe $50,000 cash prizing breakdown and stream coverage (Path to Worlds > Regional Championships); grading note already present"
+    },
+    {
+      "url": "https://youtu.be/egXq3n8UHfE",
+      "published": "2026-10-27",
+      "result": "skipped",
+      "note": "K/DA Behind the Scenes with Fortiche video (marketing)"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/organizedplay/riftbound-2027-premier-play",
+      "published": "2026-10-26",
+      "result": "added",
+      "note": "2027 Regionals/Continentals schedule, Ladder Points, ranks, tokens, Top Finish Races, Showdown tiers, regional tours (Rotation section 2027 panels + table); Showcase Jan 23-24 2027 Shanghai, 2027 Worlds invites (Path to Worlds)"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/organizedplay/riftbound-2027-local-play",
+      "published": "2026-10-26",
+      "result": "added",
+      "note": "Nexus Cup (per set, prizing), Challenge Series LP/prizes, Summoner Skirmish bye redemption (2027 panels + glossary SS entry)"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/organizedplay/radiance-rules-faq-and-clarifications",
+      "published": "2026-10-26",
+      "result": "skipped",
+      "note": "Card-specific Radiance rulings; no rules changes, errata or bans, and the handbook doesn't cover individual card rulings"
+    },
     {
       "url": "https://playriftbound.com/en-us/news/announcements/riftbounds-2026-drawings",
       "published": "2026-10-22",
