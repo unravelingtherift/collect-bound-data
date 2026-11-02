@@ -1,0 +1,399 @@
+{
+  "_about": "Riftbound news posts and China-inbox files already reviewed by the hourly Collection-Bound news check, so later runs skip them.",
+  "checked_through": "2026-10-26",
+  "posts": [
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/riftbounds-2026-drawings",
+      "locale": "en-us",
+      "date": "2026-10-22",
+      "title": "Riftbound's 2026 Drawings",
+      "result": "drafted",
+      "note": "K/DA Couture Collection, T1 Player Bundle, Worlds 2026 Edition, Gift of the Rift: renames, English entries, prices, drawing dates"
+    },
+    {
+      "url": "https://playriftbound.com/fr-fr/news/announcements/riftbounds-2026-drawings",
+      "locale": "fr-fr",
+      "date": "2026-10-22",
+      "title": "Riftbound's 2026 Drawings",
+      "result": "drafted",
+      "note": "K/DA Couture Collection, T1 Player Bundle, Worlds 2026 Edition, Gift of the Rift: renames, English entries, prices, drawing dates"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/product-drawing-faq/",
+      "locale": "en-us",
+      "date": "2026-10-21",
+      "title": "Riftbound x K/DA: Couture Collection Drawing FAQ",
+      "result": "drafted",
+      "note": "K/DA Couture Collection official name and contents"
+    },
+    {
+      "url": "https://playriftbound.com/fr-fr/news/announcements/product-drawing-faq/",
+      "locale": "fr-fr",
+      "date": "2026-10-21",
+      "title": "Riftbound x K/DA: Couture Collection Drawing FAQ",
+      "result": "drafted",
+      "note": "K/DA Couture Collection official name and contents"
+    },
+    {
+      "url": "https://playriftbound.com/ko-kr/news/announcements/product-drawing-faq/",
+      "locale": "ko-kr",
+      "date": "2026-10-21",
+      "title": "Riftbound x K/DA: Couture Collection Drawing FAQ",
+      "result": "drafted",
+      "note": "K/DA Couture Collection official name and contents"
+    },
+    {
+      "url": "https://playriftbound.com/zh-cn/news/announcements/product-drawing-faq/",
+      "locale": "zh-cn",
+      "date": "2026-10-21",
+      "title": "Riftbound x K/DA: Couture Collection Drawing FAQ",
+      "result": "drafted",
+      "note": "K/DA Couture Collection official name and contents"
+    },
+    {
+      "url": "https://playriftbound.com/zh-tw/news/announcements/product-drawing-faq/",
+      "locale": "zh-tw",
+      "date": "2026-10-21",
+      "title": "Riftbound x K/DA: Couture Collection Drawing FAQ",
+      "result": "drafted",
+      "note": "K/DA Couture Collection official name and contents"
+    },
+    {
+      "url": "https://playriftbound.com/ko-kr/news/riftbound-limited-edition-sale",
+      "locale": "ko-kr",
+      "date": "2026-10-23",
+      "title": "2026년 리프트바운드 한정 상품 한국 판매",
+      "result": "drafted",
+      "note": "Korea sale from Oct 29: K/DA (English ed.), T1 Player Bundle (Korean), Worlds 2026 set (English ed.); KRW prices"
+    },
+    {
+      "url": "https://playriftbound.com/fr-fr/news/announcements/riftbound-a-la-paris-games-week-2026",
+      "locale": "fr-fr",
+      "date": "2026-10-12",
+      "title": "Riftbound à la Paris Games Week 2026",
+      "result": "drafted",
+      "note": "PGW event promo Riven, Brisée and passport-wheel pins (promo sheet only)"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/preparing-for-the-radiance-pre-rift",
+      "locale": "en-us",
+      "date": "2026-10-12",
+      "title": "Preparing for the Radiance Pre-Rift",
+      "result": "drafted",
+      "note": "Pre-Rift promo Heimerdinger, Academy Instructor added to Radiance Pre-Rift (English)"
+    },
+    {
+      "url": "https://playriftbound.com/fr-fr/news/announcements/preparing-for-the-radiance-pre-rift",
+      "locale": "fr-fr",
+      "date": "2026-10-12",
+      "title": "Preparing for the Radiance Pre-Rift",
+      "result": "drafted",
+      "note": "Pre-Rift promo Heimerdinger, Academy Instructor added to Radiance Pre-Rift (English)"
+    },
+    {
+      "url": "https://playriftbound.com/ko-kr/news/announcements/preparing-for-the-radiance-pre-rift",
+      "locale": "ko-kr",
+      "date": "2026-10-12",
+      "title": "Preparing for the Radiance Pre-Rift",
+      "result": "drafted",
+      "note": "Pre-Rift promo Heimerdinger, Academy Instructor added to Radiance Pre-Rift (English)"
+    },
+    {
+      "url": "https://playriftbound.com/zh-cn/news/announcements/preparing-for-the-radiance-pre-rift",
+      "locale": "zh-cn",
+      "date": "2026-10-12",
+      "title": "Preparing for the Radiance Pre-Rift",
+      "result": "drafted",
+      "note": "Pre-Rift promo Heimerdinger, Academy Instructor added to Radiance Pre-Rift (English)"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/organizedplay/regional-championships-competitive-integrity-prizing",
+      "locale": "en-us",
+      "date": "2026-10-15",
+      "title": "Regional Championships: Competitive Integrity & Prizing",
+      "result": "skipped",
+      "note": "Prize program (Foil Plated Legends draft); no new named promo"
+    },
+    {
+      "url": "https://playriftbound.com/fr-fr/news/organizedplay/regional-championships-competitive-integrity-prizing",
+      "locale": "fr-fr",
+      "date": "2026-10-15",
+      "title": "Regional Championships: Competitive Integrity & Prizing",
+      "result": "skipped",
+      "note": "Prize program (Foil Plated Legends draft); no new named promo"
+    },
+    {
+      "url": "https://playriftbound.com/ko-kr/news/organizedplay/regional-championships-competitive-integrity-prizing",
+      "locale": "ko-kr",
+      "date": "2026-10-15",
+      "title": "Regional Championships: Competitive Integrity & Prizing",
+      "result": "skipped",
+      "note": "Prize program (Foil Plated Legends draft); no new named promo"
+    },
+    {
+      "url": "https://playriftbound.com/zh-cn/news/organizedplay/regional-championships-competitive-integrity-prizing",
+      "locale": "zh-cn",
+      "date": "2026-10-15",
+      "title": "Regional Championships: Competitive Integrity & Prizing",
+      "result": "skipped",
+      "note": "Prize program (Foil Plated Legends draft); no new named promo"
+    },
+    {
+      "url": "https://playriftbound.com/zh-tw/news/organizedplay/regional-championships-competitive-integrity-prizing",
+      "locale": "zh-tw",
+      "date": "2026-10-15",
+      "title": "Regional Championships: Competitive Integrity & Prizing",
+      "result": "skipped",
+      "note": "Prize program (Foil Plated Legends draft); no new named promo"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/organizedplay/testing-start-of-game-rules",
+      "locale": "en-us",
+      "date": "2026-10-15",
+      "title": "Testing Start of Game Rules",
+      "result": "skipped",
+      "note": "rules"
+    },
+    {
+      "url": "https://playriftbound.com/fr-fr/news/organizedplay/testing-start-of-game-rules",
+      "locale": "fr-fr",
+      "date": "2026-10-15",
+      "title": "Testing Start of Game Rules",
+      "result": "skipped",
+      "note": "rules"
+    },
+    {
+      "url": "https://playriftbound.com/ko-kr/news/organizedplay/testing-start-of-game-rules",
+      "locale": "ko-kr",
+      "date": "2026-10-15",
+      "title": "Testing Start of Game Rules",
+      "result": "skipped",
+      "note": "rules"
+    },
+    {
+      "url": "https://playriftbound.com/zh-cn/news/organizedplay/testing-start-of-game-rules",
+      "locale": "zh-cn",
+      "date": "2026-10-15",
+      "title": "Testing Start of Game Rules",
+      "result": "skipped",
+      "note": "rules"
+    },
+    {
+      "url": "https://playriftbound.com/zh-tw/news/organizedplay/testing-start-of-game-rules",
+      "locale": "zh-tw",
+      "date": "2026-10-15",
+      "title": "Testing Start of Game Rules",
+      "result": "skipped",
+      "note": "rules"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/october-2026-tournament-rules-changelog",
+      "locale": "en-us",
+      "date": "2026-10-09",
+      "title": "October 2026 Tournament Rules Changelog",
+      "result": "skipped",
+      "note": "rules"
+    },
+    {
+      "url": "https://playriftbound.com/fr-fr/news/announcements/october-2026-tournament-rules-changelog",
+      "locale": "fr-fr",
+      "date": "2026-10-09",
+      "title": "October 2026 Tournament Rules Changelog",
+      "result": "skipped",
+      "note": "rules"
+    },
+    {
+      "url": "https://playriftbound.com/ko-kr/news/announcements/october-2026-tournament-rules-changelog",
+      "locale": "ko-kr",
+      "date": "2026-10-09",
+      "title": "October 2026 Tournament Rules Changelog",
+      "result": "skipped",
+      "note": "rules"
+    },
+    {
+      "url": "https://playriftbound.com/zh-cn/news/announcements/october-2026-tournament-rules-changelog",
+      "locale": "zh-cn",
+      "date": "2026-10-09",
+      "title": "October 2026 Tournament Rules Changelog",
+      "result": "skipped",
+      "note": "rules"
+    },
+    {
+      "url": "https://playriftbound.com/zh-tw/news/announcements/october-2026-tournament-rules-changelog",
+      "locale": "zh-tw",
+      "date": "2026-10-09",
+      "title": "October 2026 Tournament Rules Changelog",
+      "result": "skipped",
+      "note": "rules"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/radiance-errata-updates",
+      "locale": "en-us",
+      "date": "2026-10-09",
+      "title": "Radiance Errata Updates",
+      "result": "skipped",
+      "note": "errata"
+    },
+    {
+      "url": "https://playriftbound.com/fr-fr/news/announcements/radiance-errata-updates",
+      "locale": "fr-fr",
+      "date": "2026-10-09",
+      "title": "Radiance Errata Updates",
+      "result": "skipped",
+      "note": "errata"
+    },
+    {
+      "url": "https://playriftbound.com/ko-kr/news/announcements/radiance-errata-updates",
+      "locale": "ko-kr",
+      "date": "2026-10-09",
+      "title": "Radiance Errata Updates",
+      "result": "skipped",
+      "note": "errata"
+    },
+    {
+      "url": "https://playriftbound.com/zh-cn/news/announcements/radiance-errata-updates",
+      "locale": "zh-cn",
+      "date": "2026-10-09",
+      "title": "Radiance Errata Updates",
+      "result": "skipped",
+      "note": "errata"
+    },
+    {
+      "url": "https://playriftbound.com/zh-tw/news/announcements/radiance-errata-updates",
+      "locale": "zh-tw",
+      "date": "2026-10-09",
+      "title": "Radiance Errata Updates",
+      "result": "skipped",
+      "note": "errata"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/core-rules-radiance-patch-notes-effective-october-16-2026",
+      "locale": "en-us",
+      "date": "2026-10-09",
+      "title": "Core Rules: Radiance Patch Notes",
+      "result": "skipped",
+      "note": "rules"
+    },
+    {
+      "url": "https://playriftbound.com/fr-fr/news/announcements/core-rules-radiance-patch-notes-effective-october-16-2026",
+      "locale": "fr-fr",
+      "date": "2026-10-09",
+      "title": "Core Rules: Radiance Patch Notes",
+      "result": "skipped",
+      "note": "rules"
+    },
+    {
+      "url": "https://playriftbound.com/ko-kr/news/announcements/core-rules-radiance-patch-notes-effective-october-16-2026",
+      "locale": "ko-kr",
+      "date": "2026-10-09",
+      "title": "Core Rules: Radiance Patch Notes",
+      "result": "skipped",
+      "note": "rules"
+    },
+    {
+      "url": "https://playriftbound.com/zh-cn/news/announcements/core-rules-radiance-patch-notes-effective-october-16-2026",
+      "locale": "zh-cn",
+      "date": "2026-10-09",
+      "title": "Core Rules: Radiance Patch Notes",
+      "result": "skipped",
+      "note": "rules"
+    },
+    {
+      "url": "https://playriftbound.com/zh-tw/news/announcements/core-rules-radiance-patch-notes-effective-october-16-2026",
+      "locale": "zh-tw",
+      "date": "2026-10-09",
+      "title": "Core Rules: Radiance Patch Notes",
+      "result": "skipped",
+      "note": "rules"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/organizedplay/los-angeles-top-decks",
+      "locale": "en-us",
+      "date": "2026-09-30",
+      "title": "Los Angeles' Top Decks",
+      "result": "skipped",
+      "note": "deck lists"
+    },
+    {
+      "url": "https://playriftbound.com/ko-kr/news/announcements/the-radiance-overview",
+      "locale": "ko-kr",
+      "date": "2026-09-25",
+      "title": "The Radiance Overview",
+      "result": "skipped",
+      "note": "set overview; Radiance products already listed"
+    },
+    {
+      "url": "https://playriftbound.com/zh-cn/news/announcements/the-radiance-overview",
+      "locale": "zh-cn",
+      "date": "2026-09-25",
+      "title": "The Radiance Overview",
+      "result": "skipped",
+      "note": "set overview; Radiance products already listed"
+    },
+    {
+      "url": "https://playriftbound.com/zh-tw/news/announcements/the-radiance-overview",
+      "locale": "zh-tw",
+      "date": "2026-09-25",
+      "title": "The Radiance Overview",
+      "result": "skipped",
+      "note": "set overview; Radiance products already listed"
+    },
+    {
+      "url": "https://playriftbound.com/zh-cn/news/organizedplay/riftbound-premier-play-early-2027-events",
+      "locale": "zh-cn",
+      "date": "2026-09-23",
+      "title": "Riftbound Premier Play: Early 2027 Events",
+      "result": "skipped",
+      "note": "event schedule; only generic Metal Legend prizes"
+    },
+    {
+      "url": "https://playriftbound.com/zh-tw/news/organizedplay/riftbound-premier-play-early-2027-events",
+      "locale": "zh-tw",
+      "date": "2026-09-23",
+      "title": "Riftbound Premier Play: Early 2027 Events",
+      "result": "skipped",
+      "note": "event schedule; only generic Metal Legend prizes"
+    },
+    {
+      "url": "https://playriftbound.com/zh-tw/news/announcements/radiance-preview-season",
+      "locale": "zh-tw",
+      "date": "2026-09-18",
+      "title": "Radiance Preview Season",
+      "result": "skipped",
+      "note": "gameplay preview"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=n-53EjaNrdU",
+      "locale": "all",
+      "date": "2026-10-21",
+      "title": "Riftbound x K/DA Couture Collection",
+      "result": "skipped",
+      "note": "YouTube-only post"
+    },
+    {
+      "url": "https://youtu.be/c3CqvmA2uuA",
+      "locale": "all",
+      "date": "2026-10-09",
+      "title": "A festival of brilliance begins in Radiance!",
+      "result": "skipped",
+      "note": "YouTube-only post"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=tZ9JALmlzJY",
+      "locale": "all",
+      "date": "2026-09-28",
+      "title": "The boys are back. Find them in Radiance!",
+      "result": "skipped",
+      "note": "YouTube-only post"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=rGkvxY7RvgI",
+      "locale": "all",
+      "date": "2026-09-25",
+      "title": "Radiance developer diary",
+      "result": "skipped",
+      "note": "YouTube-only post"
+    }
+  ],
+  "inbox": []
+}
