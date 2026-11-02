@@ -100,7 +100,8 @@ section.alt{background:linear-gradient(180deg,transparent,rgba(255,255,255,.015)
 .nav-toggle-float:hover{background:rgba(227,193,126,.14);border-color:var(--gold);transform:translateY(-1px);}
 .nav-toggle-float svg{flex:none;}
 .to-top{
-  position:fixed;right:18px;bottom:18px;z-index:97;
+  /* sits left of Squarespace's EN language picker in the bottom-right corner */
+  position:fixed;right:140px;bottom:18px;z-index:97;
   display:flex;align-items:center;gap:8px;
   font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
   color:var(--gold-bright);background:rgba(13,17,27,.92);backdrop-filter:blur(8px);
