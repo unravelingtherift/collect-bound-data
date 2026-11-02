@@ -39,13 +39,27 @@
       msg + ' <a href="" style="color:#e3c17e;">Refresh to try again.</a></p>';
   }
 
+  // Try jsDelivr first; if it fails (it sometimes does right after an update),
+  // load the same version straight from GitHub, then jsDelivr's copy of main.
+  function get(url) {
+    return fetch(url, { cache: 'no-cache' }).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.text();
+    });
+  }
+  function load(v) {
+    return get('https://cdn.jsdelivr.net/gh/' + REPO + '@' + v + '/' + FILE)
+      .catch(function () { return get('https://raw.githubusercontent.com/' + REPO + '/' + v + '/' + FILE); })
+      .catch(function () {
+        if (isPreview) throw new Error('preview not found');
+        version = 'main';
+        return get('https://cdn.jsdelivr.net/gh/' + REPO + '@main/' + FILE);
+      });
+  }
+
   var version = ref;
   resolve()
-    .then(function (v) {
-      version = v;
-      return fetch('https://cdn.jsdelivr.net/gh/' + REPO + '@' + version + '/' + FILE, { cache: 'no-cache' });
-    })
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function (v) { version = v; return load(v); })
     .then(function (html) {
       // Load the handbook's own images from the same version, so newly added
       // pictures show right away (and in previews before the update is merged).
