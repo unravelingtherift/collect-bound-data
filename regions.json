@@ -1,0 +1,324 @@
+{
+ "updated": "2026-11-02",
+ "note": "Region write-ups are original summaries based on the League of Legends universe (Riot Universe + wiki). Card links come from the card data automatically; 'places' lists battlefield cards that are named after a place in that region. Add a battlefield name to a region's 'places' to link it.",
+ "regions": [
+  {
+   "id": "demacia",
+   "name": "Demacia",
+   "tag": "Demacia",
+   "color": "#7fa7e6",
+   "where": "The far west edge of Valoran",
+   "tagline": "The kingdom of justice, honor and duty",
+   "blurb": "A walled, proud kingdom of soldiers and ideals. Demacians value law, duty and loyalty above almost everything, and for generations they treated magic as a danger to be locked away.",
+   "facts": [
+    "Demacia's army is famous for its armored cavalry and its sworn Dauntless Vanguard.",
+    "For a long time, mages were hunted here by the Mageseekers. The kingdom is only now learning to live with magic.",
+    "Garen and Lux Crownguard are siblings from one of Demacia's great noble houses."
+   ],
+   "clues": [
+    "A walled western kingdom that feared magic for generations",
+    "Home of the Crownguard family and the Dauntless Vanguard"
+   ],
+   "book": "Realms of Runeterra short story: \"The Weight of Expectations\"",
+   "places": [
+    "The Grand Plaza"
+   ]
+  },
+  {
+   "id": "noxus",
+   "name": "Noxus",
+   "tag": "Noxus",
+   "color": "#d4505a",
+   "where": "The heart of Valoran, east of Demacia",
+   "tagline": "The empire that rewards strength",
+   "blurb": "A huge, hungry empire that swallows its neighbors. Noxus looks brutal, but it truly believes that anyone with talent can rise, whatever their birth. Strength earns respect, and failure is rarely forgiven.",
+   "facts": [
+    "The Noxian army is split into legions, and the Trifarian Legion is one of its most feared.",
+    "Noxus is ruled by a Grand General, and the title can be won by merit rather than blood.",
+    "Darius, Draven, Swain and Ambessa Medarda all call the empire home."
+   ],
+   "clues": [
+    "An expansionist empire where anyone strong enough can rise",
+    "Home of the Trifarian Legion and its Grand General"
+   ],
+   "book": "Realms of Runeterra short story: \"As Stone\"",
+   "places": [
+    "Trifarian War Camp",
+    "Reckoner's Arena"
+   ]
+  },
+  {
+   "id": "freljord",
+   "name": "Freljord",
+   "tag": "Freljord",
+   "color": "#8fd8f0",
+   "where": "The frozen north of Valoran",
+   "tagline": "A land of ice, tribes and old spirits",
+   "blurb": "A brutal frozen realm where survival is a daily fight. Rival tribes raid one another, ancient spirits watch from the storms, and legends such as Ashe, Sejuani and Lissandra grew up here.",
+   "facts": [
+    "The Freljord is the only place where True Ice can be found.",
+    "Three great tribes, the Avarosans, the Winter's Claw and the Frostguard, have long fought over the land.",
+    "Ornn the forge-god and the storm-spirit Volibear both belong to its legends."
+   ],
+   "clues": [
+    "Frozen northern lands ruled by warring tribes and True Ice",
+    "Home of Ashe, Sejuani, Lissandra and the forge-god Ornn"
+   ],
+   "book": "Realms of Runeterra short story: \"A Good Day\"",
+   "places": [
+    "Ornn's Forge",
+    "Frozen Fortress"
+   ]
+  },
+  {
+   "id": "piltover",
+   "name": "Piltover",
+   "tag": "Piltover",
+   "color": "#e0b050",
+   "where": "Valoran's eastern coast, high above Zaun",
+   "tagline": "The city of progress",
+   "blurb": "A gleaming coastal city-state of inventors, merchants and artists. Piltover grew rich on trade and on hextech, the blend of magic and machinery that has changed how people live and fight.",
+   "facts": [
+    "Hextech was developed here by inventors working with gemstones called Hextech crystals.",
+    "Piltover is run by a Council of its most powerful figures.",
+    "Jayce, Caitlyn, Vi and Heimerdinger have all worked for Piltover at one time or another."
+   ],
+   "clues": [
+    "A glittering city-state that built hextech",
+    "Its Council rules the city of progress, high above a toxic undercity"
+   ],
+   "book": "Realms of Runeterra short story: \"The Jubilee Job\" (Piltover & Zaun chapter)",
+   "places": [
+    "Piltovan Forge",
+    "The Academy"
+   ]
+  },
+  {
+   "id": "zaun",
+   "name": "Zaun",
+   "tag": "Zaun",
+   "color": "#6ee0a0",
+   "where": "The valley beneath Piltover",
+   "tagline": "The undercity that never sleeps",
+   "blurb": "A smoky, chemical-lit maze built in the deep valley beneath Piltover. Zaun is rough and crowded, but it is also inventive and fiercely loyal, and its chem-barons control much of what flows through it.",
+   "facts": [
+    "Zaun sits in a deep valley, with smog and chemical runoff drifting through its streets.",
+    "Shimmer, a glowing and dangerous chemical, comes from Zaun's underworld.",
+    "Jinx, Ekko, Viktor, Singed and Blitzcrank are among its best known people."
+   ],
+   "clues": [
+    "A smoky undercity below a shining city, ruled by chem-barons",
+    "The valley home of Jinx, Ekko and Viktor"
+   ],
+   "book": "Realms of Runeterra short story: \"The Jubilee Job\" (Piltover & Zaun chapter)",
+   "places": [
+    "Zaun Warrens",
+    "Back-Alley Bar"
+   ]
+  },
+  {
+   "id": "ionia",
+   "name": "Ionia",
+   "tag": "Ionia",
+   "color": "#f08ac0",
+   "where": "An island chain off Valoran's eastern shore",
+   "tagline": "A magical archipelago in search of balance",
+   "blurb": "A chain of lush, spiritual islands where magic and nature are closely linked. Ionia prizes balance and harmony, but it has been scarred by invasion, and its people are still learning how to protect it.",
+   "facts": [
+    "Ionia has a close link to the Spirit Realm, and spirits often wander into the mortal world.",
+    "The Kinkou order, the Navori Conclave and monasteries like Hirana are all Ionian.",
+    "Ahri, Yasuo, Irelia, Lee Sin, Master Yi and Zed were all shaped by life on these islands."
+   ],
+   "clues": [
+    "A spiritual island chain home to Ahri, Yasuo and Lee Sin",
+    "Noxus once invaded these islands, so they value harmony and balance"
+   ],
+   "book": "Realms of Runeterra short story: \"Orchid's Bloom\"",
+   "places": [
+    "Monastery of Hirana",
+    "Grove of the God-Willow",
+    "Navori Fighting Pit",
+    "Kinkou Temple",
+    "Ruined Monastery"
+   ]
+  },
+  {
+   "id": "bilgewater",
+   "name": "Bilgewater",
+   "tag": "Bilgewater",
+   "color": "#e8825a",
+   "where": "The Serpent Isles, southeast of Valoran",
+   "tagline": "Pirates, gangs and the open sea",
+   "blurb": "A lawless harbor town on the Serpent Isles, where sailors, smugglers and monster hunters trade away their problems. Almost anything has a price, and almost everyone owes someone.",
+   "facts": [
+    "Bilgewater lies in the Serpent Isles, where sea monsters rise from the waters.",
+    "Its people honor a sea-goddess, Nagakabouros.",
+    "Miss Fortune and Gangplank are pirates who still shape the city."
+   ],
+   "clues": [
+    "A pirate port city on the Serpent Isles",
+    "The harbor where Miss Fortune and Gangplank fight for power"
+   ],
+   "book": "Realms of Runeterra short story: \"All Kindred Eve\"",
+   "places": [
+    "Reaver's Row",
+    "Ripper's Bay"
+   ]
+  },
+  {
+   "id": "shadow",
+   "name": "Shadow Isles",
+   "tag": "Shadow Isles",
+   "color": "#5fd0a8",
+   "where": "A cursed archipelago in the western sea",
+   "tagline": "Where the Black Mist drowns the living",
+   "blurb": "The Shadow Isles were once the Blessed Isles, a gleaming haven. A catastrophe called the Ruination twisted them, and the Black Mist now drags the dead to rise as wraiths and keeps the living trapped.",
+   "facts": [
+    "The Black Mist spreads from the Isles and can tear souls from those who die near it.",
+    "Ships that sail near the Isles sometimes never return.",
+    "Viego, Thresh, Hecarim, Kalista and Mordekaiser are all tied to the Mist."
+   ],
+   "clues": [
+    "A cursed island chain hidden behind the Black Mist",
+    "Once the Blessed Isles, it became a place the dead cannot leave"
+   ],
+   "book": "Realms of Runeterra short story: \"The Daring Darling\"",
+   "places": []
+  },
+  {
+   "id": "targon",
+   "name": "Mount Targon",
+   "tag": "Mount Targon",
+   "color": "#b59cf0",
+   "where": "A great peak in the south, west of Shurima",
+   "tagline": "A mountain that touches the heavens",
+   "blurb": "The tallest mountain in Runeterra, rising so high that its peak seems to brush the stars. A few climbers reach the summit and are touched by celestial power. Most never come back.",
+   "facts": [
+    "Climbers who reach the top may be chosen as Aspects, hosts of cosmic beings.",
+    "The mountain hosts the Solari and Lunari, orders devoted to the Sun and the Moon.",
+    "Leona, Diana, Soraka, Taric and Pantheon are all linked to Targon."
+   ],
+   "clues": [
+    "The tallest mountain in the world, where climbers may be touched by the stars",
+    "Home of the Solari and the Lunari"
+   ],
+   "book": "Realms of Runeterra: Mount Targon chapter",
+   "places": [
+    "Targon's Peak",
+    "Aspirant's Climb",
+    "Startipped Peak"
+   ]
+  },
+  {
+   "id": "shurima",
+   "name": "Shurima",
+   "tag": "Shurima",
+   "color": "#f2c14e",
+   "where": "The great southern desert",
+   "tagline": "The sun-scorched empire that rose again",
+   "blurb": "A vast desert that once ruled a golden empire. Ruins and buried cities sit under the dunes, and the ancient Ascended are walking the land again, trying to bring the old empire back.",
+   "facts": [
+    "The old empire was ruled by Ascended beings, who gained power from the Sun Disc.",
+    "Azir, Nasus, Renekton and Sivir all trace their stories to Shurima.",
+    "Shurima's deserts hide Void creatures such as Rek'Sai, who burrow beneath the sands."
+   ],
+   "clues": [
+    "A desert empire ruled by Ascended beings and the Sun Disc",
+    "Azir, Nasus and Renekton walk its sands"
+   ],
+   "book": "Realms of Runeterra short story: \"Water and Shade To You\"",
+   "places": [
+    "Emperor's Dais",
+    "Sandswept Tomb",
+    "Protective Sands"
+   ]
+  },
+  {
+   "id": "ixtal",
+   "name": "Ixtal",
+   "tag": "Ixtal",
+   "color": "#4ed96b",
+   "where": "The jungles of eastern Shurima",
+   "tagline": "The hidden land of elemental magic",
+   "blurb": "A secretive jungle nation that has kept outsiders away for centuries. Ixtal's people practice elemental magic, and their hidden cities are among the most carefully guarded places in the world.",
+   "facts": [
+    "Ixtal's people weave the elements into everyday life and into their wars.",
+    "Its famed hidden city is called Ixaocan.",
+    "Qiyana, Neeko and Zyra are linked to this jungle."
+   ],
+   "clues": [
+    "A secretive jungle nation that practices elemental magic",
+    "The home of Qiyana and the hidden city of Ixaocan"
+   ],
+   "book": "Realms of Runeterra: Ixtal chapter",
+   "places": []
+  },
+  {
+   "id": "icathia",
+   "name": "Icathia",
+   "tag": "Icathia",
+   "color": "#a35ad8",
+   "where": "A ruined land by Shurima's southern coast",
+   "tagline": "A kingdom swallowed by the Void",
+   "blurb": "Once a kingdom that rebelled against Shurima, Icathia was torn apart when a rupture to the Void opened beneath it. What remains is a wasteland still crawling with corrupted creatures.",
+   "facts": [
+    "Icathia's ruin is the reason many Runeterrans fear the Void.",
+    "Malzahar's story is tied to Icathia's ruins.",
+    "Many of the Void creatures seen in Runeterra first poured out of the Icathian rupture."
+   ],
+   "clues": [
+    "A rebel kingdom destroyed by a Void rupture",
+    "A corrupted wasteland near Shurima"
+   ],
+   "book": "Realms of Runeterra: Void section",
+   "places": []
+  },
+  {
+   "id": "bandle",
+   "name": "Bandle City",
+   "tag": "Bandle City",
+   "color": "#f07fd0",
+   "where": "A hidden realm, reached through gateways",
+   "tagline": "The magical home of the yordles",
+   "blurb": "A tiny, timeless city tucked away from the mortal world. Yordles live and play here among strange magic and whimsy, and they rarely let outsiders in. It is reachable only through special gateways.",
+   "facts": [
+    "Yordles are small, furry beings who love invention, mischief and tea.",
+    "The great Bandle Tree sits at the heart of the city.",
+    "Teemo, Tristana, Lulu and Veigar are among its famous residents."
+   ],
+   "clues": [
+    "A hidden magical city of yordles, reached through gateways",
+    "Home of the Bandle Tree and the Bandle Scouts"
+   ],
+   "book": "Realms of Runeterra: Bandle City section",
+   "places": [
+    "Bandle Tree",
+    "Bandle Scouts' Academy",
+    "The Dreaming Tree",
+    "Forge of the Fluft"
+   ]
+  },
+  {
+   "id": "void",
+   "name": "The Void",
+   "tag": "The Void",
+   "color": "#8f5be8",
+   "where": "Beyond the world, through rifts",
+   "tagline": "A hunger that eats everything",
+   "blurb": "A realm of nothing, beyond the world we know. It hungers for everything that exists, and it sends its twisted creatures through rifts to feed. It is not so much a place as a force.",
+   "facts": [
+    "The Void has no sun, no sky and no ground, only an endless hunger.",
+    "Void creatures such as Kog'Maw and Rek'Sai have crossed into Runeterra, and Kai'Sa wears Void armor.",
+    "Rifts to the Void have opened in places like Icathia and Shurima."
+   ],
+   "clues": [
+    "A realm of nothingness that tries to devour the world",
+    "Source of Kog'Maw and Rek'Sai, and of the Void armor Kai'Sa wears"
+   ],
+   "book": "Realms of Runeterra: Void section",
+   "places": [
+    "Void Gate"
+   ]
+  }
+ ]
+}
