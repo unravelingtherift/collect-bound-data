@@ -21,7 +21,8 @@
    ],
    "book": "Realms of Runeterra short story: \"The Weight of Expectations\"",
    "places": [
-    "The Grand Plaza"
+    "The Grand Plaza",
+    "Durand Memorial"
    ]
   },
   {
@@ -44,7 +45,11 @@
    "book": "Realms of Runeterra short story: \"As Stone\"",
    "places": [
     "Trifarian War Camp",
-    "Reckoner's Arena"
+    "Reckoner's Arena",
+    "Ravenbloom Conservatory",
+    "Black Rose Sanctum",
+    "Altar of Blood",
+    "Black Flame Altar"
    ]
   },
   {
@@ -67,7 +72,8 @@
    "book": "Realms of Runeterra short story: \"A Good Day\"",
    "places": [
     "Ornn's Forge",
-    "Frozen Fortress"
+    "Frozen Fortress",
+    "Rakelstake"
    ]
   },
   {
@@ -113,7 +119,10 @@
    "book": "Realms of Runeterra short story: \"The Jubilee Job\" (Piltover & Zaun chapter)",
    "places": [
     "Zaun Warrens",
-    "Back-Alley Bar"
+    "Back-Alley Bar",
+    "Firelights' Hideout",
+    "Dusk Rose Lab",
+    "Black Market"
    ]
   },
   {
@@ -139,7 +148,9 @@
     "Grove of the God-Willow",
     "Navori Fighting Pit",
     "Kinkou Temple",
-    "Ruined Monastery"
+    "Ruined Monastery",
+    "Heisho, Shell of the World",
+    "Shadow Temple"
    ]
   },
   {
@@ -183,7 +194,12 @@
     "Once the Blessed Isles, it became a place the dead cannot leave"
    ],
    "book": "Realms of Runeterra short story: \"The Daring Darling\"",
-   "places": []
+   "places": [
+    "Vilemaw's Lair",
+    "Vaults of Helia",
+    "Hallowed Tomb",
+    "Threshold of the Gray"
+   ]
   },
   {
    "id": "targon",
@@ -206,7 +222,9 @@
    "places": [
     "Targon's Peak",
     "Aspirant's Climb",
-    "Startipped Peak"
+    "Startipped Peak",
+    "Star Spring",
+    "Cosmic Vista"
    ]
   },
   {
@@ -230,7 +248,9 @@
    "places": [
     "Emperor's Dais",
     "Sandswept Tomb",
-    "Protective Sands"
+    "Protective Sands",
+    "Valley of Idols",
+    "Risen Altar"
    ]
   },
   {
@@ -295,7 +315,8 @@
     "Bandle Tree",
     "Bandle Scouts' Academy",
     "The Dreaming Tree",
-    "Forge of the Fluft"
+    "Forge of the Fluft",
+    "The Papertree"
    ]
   },
   {
@@ -318,6 +339,29 @@
    "book": "Realms of Runeterra: Void section",
    "places": [
     "Void Gate"
+   ]
+  },
+  {
+   "id": "seas",
+   "name": "The Seas",
+   "tag": "The Seas",
+   "color": "#4fa3d1",
+   "where": "The open oceans that wrap around Runeterra's continents",
+   "tagline": "Storms, sea monsters and sunken secrets",
+   "blurb": "The oceans of Runeterra are not empty water. Sailors cross them between continents, pirates hunt on them, and some of the oldest secrets in the world lie far beneath the waves.",
+   "facts": [
+    "Nami belongs to the Marai, a Vastayan tribe that lives in the sea.",
+    "Bilgewater's ships sail these waters, where storms and sea monsters are part of every voyage.",
+    "Some temples and ruins lie sunken beneath the waves, far from any shore."
+   ],
+   "clues": [
+    "Open water between the continents, home to storms, pirates and sea monsters.",
+    "The sea where Nami's Marai tribe lives beneath the waves."
+   ],
+   "book": "",
+   "places": [
+    "Marai Spire",
+    "Sunken Temple"
    ]
   }
  ]
