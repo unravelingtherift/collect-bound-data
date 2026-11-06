@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Collection-Bound</title>
+<meta name="description" content="Track your Riftbound cards, promos and sealed product across English, Chinese, Korean and French printings.">
+<meta name="theme-color" content="#0e111e">
+<meta name="robots" content="noindex">
+
+<!-- installable app bits -->
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Collection-Bound">
+
+<script>
+  /* App mode flag. The tracker can check window.CB_APP to:
+   *   - drop the Squarespace header offset (there's no Squarespace header in the app)
+   *   - open membership / store / affiliate links in the phone's browser
+   */
+  window.CB_APP = {
+    isApp: true,
+    site: 'https://www.unravelingtherift.com',
+    membershipUrl: 'https://www.unravelingtherift.com/membership-page'
+  };
+</script>
+
+<style>
+  html, body { margin: 0; background: #0e111e; min-height: 100%; }
+  body {
+    /* keep content clear of the notch and the home bar */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+  /* The tracker uses CSS offset variables to sit under Squarespace's header.
+     The app has no Squarespace header, so once the tracker is pasted in,
+     set those offset variables to 0px here. */
+
+  #cb-app-placeholder {
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 18px; color: #bdb6a4; font-family: Georgia, serif; text-align: center; padding: 24px;
+  }
+  #cb-app-placeholder img { width: min(340px, 82vw); height: auto; }
+</style>
+</head>
+<body>
+
+<!-- =====================================================================
+     TRACKER GOES HERE
+     Paste everything from the tracker page's Settings → Advanced →
+     Code Injection between these two markers (the <style>, the
+     #collection-bound markup and the <script> tags), then delete the
+     placeholder div below.
+     ===================================================================== -->
+<!-- CB-TRACKER-START -->
+<div id="cb-app-placeholder">
+  <img src="/icons/icon-512.png" alt="Collection-Bound">
+  <div>App shell is live. Tracker code drops in here next.</div>
+</div>
+<!-- CB-TRACKER-END -->
+
+<script>
+  // Offline support + "Add to Home Screen"
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    });
+  }
+
+  // Links that leave the app (membership, Riot stores, TCGplayer / CardTrader / eBay)
+  // open in the phone's browser instead of replacing the app screen.
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    let url;
+    try { url = new URL(a.href, location.href); } catch (_) { return; }
+    if (url.origin !== location.origin && /^https?:$/.test(url.protocol)) {
+      a.target = '_blank';
+      a.rel = 'noopener';
+    }
+  }, true);
+</script>
+</body>
+</html>

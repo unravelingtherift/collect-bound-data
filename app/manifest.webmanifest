@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "Collection-Bound",
+  "short_name": "Collection-Bound",
+  "description": "Track your Riftbound cards, promos and sealed product across English, Chinese, Korean and French printings. By Unraveling the Rift.",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0e111e",
+  "theme_color": "#0e111e",
+  "lang": "en",
+  "categories": ["entertainment", "games", "utilities"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

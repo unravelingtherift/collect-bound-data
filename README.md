@@ -21,3 +21,4 @@ Riftbound and League of Legends are trademarks of Riot Games; card text and imag
 | `handbook/`, `handbook-images/` | Starter Handbook |
 | `codex/` | Lore Codex |
 | `branding/` | Logos |
+| `app/` | Collection-Bound as an installable app (app.unravelingtherift.com, Google Play, App Store) |

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0e111e">
+<title>Collection-Bound · offline</title>
+<style>
+  html,body{margin:0;height:100%;background:#0e111e;color:#e9e2cf;font-family:Georgia,serif}
+  .wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;text-align:center;box-sizing:border-box}
+  img{width:min(320px,80vw);height:auto;margin-bottom:28px}
+  h1{font-size:1.3rem;color:#d4af5f;margin:0 0 10px;letter-spacing:.04em}
+  p{max-width:340px;line-height:1.5;margin:0 0 22px;color:#bdb6a4}
+  button{background:#d4af5f;color:#0e111e;border:0;border-radius:6px;padding:12px 22px;font-size:1rem;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img src="/icons/icon-512.png" alt="Collection-Bound">
+  <h1>You're offline</h1>
+  <p>Collection-Bound needs a connection the first time it opens. Once it's loaded, set lists and card images you've already browsed stay on this device.</p>
+  <button onclick="location.reload()">Try again</button>
+</div>
+</body>
+</html>
