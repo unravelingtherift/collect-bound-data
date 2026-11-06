@@ -13,7 +13,7 @@ The live Starter Handbook on unravelingtherift.com loads from this folder.
 
 1. A weekly scheduled task reads Riot's news on playriftbound.com. If a new post affects the handbook, it edits the handbook on a new branch and opens a pull request with a plain-English summary and a preview link.
 2. Open the preview link to see the change on the real page (a gold bar at the bottom marks it as a preview).
-3. Merge the pull request to publish, or close it to discard. The loader asks GitHub for the exact latest version on every visit, so a merged change shows up on the next page load.
+3. Merge the pull request to publish, or close it to discard. A merged change shows on the live page within a few minutes, after the "Refresh handbook on CDN" workflow clears the CDN copy. Each browser also keeps its own copy of the handbook so return visits open instantly; if the fresh copy is slow to arrive, that visitor sees the update on their next visit.
 
 ## Previewing any branch
 
