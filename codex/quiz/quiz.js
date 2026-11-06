@@ -89,6 +89,7 @@ function buildMusic(d){
 
 /* ---------- membership pieces ---------- */
 function ctaHTML(){
+  if(window.UTRQ_NOMEMBER) return '';
   return '<div class="utrq-cta"><b>Enjoying the lore?</b> Patreon backers get sneak peeks at what’s coming next. '
    +'<b>Collecting?</b> The tracker is free to start, with paid tiers if you want promos and regional variants.'
    +'<div class="utrq-row"><a class="utrq-btn" href="'+LINKS.patreon+'" target="_blank" rel="noopener">Join on Patreon</a>'
@@ -161,6 +162,7 @@ function mount(){
     b.addEventListener('click',function(){ openQ(b.getAttribute('data-utrq-open'),b); });
   });
   document.querySelectorAll('[data-utrq="banner"]').forEach(function(m){
+    if(window.UTRQ_NOMEMBER) return;
     if(m.__utrq||document.getElementById('urtr-cta')) return; m.__utrq=1; m.className=(m.className?m.className+' ':'')+'utrq-bwrap';
     if(!document.getElementById('utrq-fonts')){var l=document.createElement('link');l.id='utrq-fonts';l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Spectral:wght@400;600&display=swap';document.head.appendChild(l);}
     m.innerHTML='<div id="urtr-cta"><div><p class="urtr-cta-title">Collecting Riftbound?</p><p class="urtr-cta-text">Track what you own in the Collection-Bound tracker. A free account saves up to 75 items, and Collector Club and VIP add your whole collection and the price tools.</p></div><div class="urtr-cta-btns"><a class="urtr-btn urtr-btn-gold" href="'+LINKS.tracker+'">Make a free account</a><a class="urtr-btn urtr-btn-ghost" href="'+LINKS.member+'">See memberships</a></div></div>';
@@ -169,7 +171,7 @@ function mount(){
 
 /* ---------- timed popup (once every few days, only after real time on the page) ---------- */
 function popup(){
-  if(window.UTRQ_POPUP===false) return;
+  if(window.UTRQ_POPUP===false||window.UTRQ_NOMEMBER) return;
   var KEY='utrq-pop-v1', now=Date.now();
   try{ var t=+localStorage.getItem(KEY)||0; if(now-t<3*864e5) return; }catch(e){}
   var secs=0, shown=false, pop=el('div','utrq-pop');
