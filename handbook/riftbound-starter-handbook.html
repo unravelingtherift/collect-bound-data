@@ -245,14 +245,6 @@ section.alt{background:linear-gradient(180deg,transparent,rgba(255,255,255,.015)
 .member-strip p{margin:0;color:var(--text-dim);font-size:.92rem;max-width:640px;}
 .member-strip b{color:var(--gold-bright);font-family:var(--serif);font-size:1rem;display:block;margin-bottom:2px;}
 .member-strip .btn{white-space:nowrap;}
-.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.tier{display:flex;flex-direction:column;gap:10px;}
-.tier.featured{border-color:var(--gold-dim);box-shadow:0 10px 30px -12px rgba(227,193,126,.45);}
-.tier-name{font-family:var(--serif);color:var(--gold-bright);font-size:1.15rem;margin:0;}
-.tier-price{font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);}
-.tier p{margin:0;color:var(--text-dim);font-size:.9rem;}
-.member-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px;}
-@media (max-width:900px){.tier-grid{grid-template-columns:1fr;}}
 .hero-jump-label{
   font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
   color:var(--text-faint);margin-top:34px;margin-bottom:12px;
@@ -951,7 +943,7 @@ footer .fbrand{font-family:var(--serif);color:var(--gold);font-size:1.1rem;margi
         <a href="#rarity" class="btn btn-gold">Start with Rarity ↓</a>
         <a href="#path" class="btn btn-ghost">See the Path to Worlds</a>
         <a href="/riftbound-play-simulator" class="btn btn-ghost btn-sim">▶ Try the Play Simulator</a>
-        <a href="#membership" class="btn btn-ghost btn-member">★ Track your collection</a>
+        <a href="/membership" class="btn btn-ghost btn-member">★ Track your collection</a>
       </div>
       <div class="hero-jump-label">Or jump straight to a section:</div>
       <div class="hero-jump" id="heroJump"></div>
@@ -1517,39 +1509,6 @@ footer .fbrand{font-family:var(--serif);color:var(--gold);font-size:1.1rem;margi
       <p>Because official French cards are restricted to the Origins set, the French scene has developed its own distinct habits.</p>
     </div>
     <div class="grid g3" id="quirkGrid"></div>
-  </div>
-</section>
-
-<!-- MEMBERSHIP -->
-<section id="membership" class="alt">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">018 · Collection-Bound</div>
-      <h2>Track your collection</h2>
-      <p>Collection-Bound is our Riftbound collection tracker. Mark what you own and what you still need across every set, promo and sealed product, in English, Chinese, Korean and French. Start free, or pick a membership for more tracker tools.</p>
-    </div>
-    <div class="tier-grid">
-      <div class="panel tier">
-        <h3 class="tier-name">Free</h3>
-        <div class="tier-price">$0</div>
-        <p>Make an account and start tracking your cards and collectibles.</p>
-      </div>
-      <div class="panel tier featured">
-        <h3 class="tier-name">Collector Club</h3>
-        <div class="tier-price">$5 / month</div>
-        <p>Extra Collection-Bound features on top of Free. The Membership page has the full list.</p>
-      </div>
-      <div class="panel tier">
-        <h3 class="tier-name">VIP</h3>
-        <div class="tier-price">$15 / month</div>
-        <p>Everything in Collector Club, plus live card price lookup.</p>
-      </div>
-    </div>
-    <div class="member-actions">
-      <a href="/membership" class="btn btn-gold">See what each tier includes</a>
-      <a href="/collection-bound/tracker" class="btn btn-ghost btn-member">Open Collection-Bound</a>
-    </div>
-    <div class="note-box">Memberships only unlock Collection-Bound tracker features. This handbook stays free for everyone.</div>
   </div>
 </section>
 
@@ -2150,7 +2109,7 @@ RIFT.sections = [
   ["anatomy","Anatomy"],["rarity","Rarity"],["showcase","Showcase"],["domains","Domains"],
   ["rules","Rules"],["errata","Errata"],["sets","Sets"],["glossary","Glossary"],["types","Types"],
   ["packs","Packs"],["values","Value"],["rotation","Rotation"],["orgplay","Org Play"],
-  ["path","Path to Worlds"],["regions","Regions"],["printdiff","Print Diff"],["quirks","Quirks"],["membership","Membership"]
+  ["path","Path to Worlds"],["regions","Regions"],["printdiff","Print Diff"],["quirks","Quirks"]
 ];
 </script>
 
