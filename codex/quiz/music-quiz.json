@@ -1,0 +1,11 @@
+{"title":"Music quiz","intro":"K/DA, True Damage and HEARTSTEEL. How well do you know the music?","questions":[
+{"q":"Which group's debut single was POP/STARS?","a":["K/DA","True Damage","HEARTSTEEL","Pentakill"],"c":0,"note":"POP/STARS is the K/DA debut single from 2018."},
+{"q":"Which group performs the song GIANTS?","a":["K/DA","True Damage","HEARTSTEEL","Pentakill"],"c":1,"note":"GIANTS is a True Damage song."},
+{"q":"Which of these champions is a member of K/DA?","a":["Ahri","Yasuo","Ezreal","Senna"],"c":0,"note":"Ahri sings with K/DA, alongside Akali, Evelynn and Kai'Sa."},
+{"q":"Which champion is part of True Damage?","a":["Qiyana","Ahri","Kai'Sa","Evelynn"],"c":0,"note":"Qiyana is in True Damage with Akali, Ekko, Senna and Yasuo."},
+{"q":"Which champion is in HEARTSTEEL?","a":["Ezreal","Akali","Qiyana","Ahri"],"c":0,"note":"Ezreal is one of the members of HEARTSTEEL."},
+{"q":"Which champion appears in both K/DA and True Damage?","a":["Akali","Ahri","Yasuo","Seraphine"],"c":0,"note":"Akali is the one champion who shows up in both groups."},
+{"q":"Which champion joined K/DA as a member with the ALL OUT release?","a":["Seraphine","Senna","Qiyana","Ekko"],"c":0,"note":"Seraphine was introduced as a K/DA member with ALL OUT."},
+{"q":"Which of these is a K/DA song?","a":["THE BADDEST","GIANTS","PARANOIA","STARWALKIN'"],"c":0,"note":"THE BADDEST is K/DA. GIANTS is True Damage and PARANOIA is HEARTSTEEL."},
+{"q":"Which group performs PARANOIA?","a":["HEARTSTEEL","K/DA","True Damage","Pentakill"],"c":0,"note":"PARANOIA is a HEARTSTEEL song."}
+]}
