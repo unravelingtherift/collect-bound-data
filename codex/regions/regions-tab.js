@@ -454,20 +454,24 @@ $('#utrr-surprise').addEventListener('click',function(){
  var g=$('#utrr-reg-'+r.id); if(g){ g.classList.remove('utrr-ping'); void g.getBoundingClientRect(); g.classList.add('utrr-ping'); }
 });
 var quiz={on:false,i:0,score:0,order:[],clue:'',lock:false};
+/* Return visitors lean toward questions they haven't seen, but older ones still come back now and then. */
+var qseen={}; try{ qseen=JSON.parse(localStorage.getItem('utrr-qseen-v1')||'{}')||{}; }catch(e){ qseen={}; }
+function saveQSeen(){ try{ var k=Object.keys(qseen); if(k.length>400){ k.sort(function(x,y){return qseen[x]-qseen[y];}).slice(0,k.length-400).forEach(function(x){delete qseen[x];}); } localStorage.setItem('utrr-qseen-v1',JSON.stringify(qseen)); }catch(e){} }
+function freshFirst(list,seenFn){ var a=list.map(function(x){return {x:x,t:seenFn(x),r:Math.random()};}).sort(function(p,q){return p.t-q.t||p.r-q.r;}); var n=Math.max(1,a.length); return a.map(function(o,i){ o.k=i/n+Math.random()*.7; return o; }).sort(function(p,q){return p.k-q.k;}).map(function(o){return o.x;}); }
 var ROUNDS=6;
 function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
 $('#utrr-quizbtn').addEventListener('click',function(){ if(quiz.on) endQuiz(true); else startQuiz(); });
 $('#utrr-qquit').addEventListener('click',function(){ endQuiz(true); });
 $('#utrr-qskip').addEventListener('click',function(){ if(quiz.lock) return; nextRound(); });
 function startQuiz(){
- quiz.on=true; quiz.i=0; quiz.score=0; quiz.order=shuffle(REGIONS.map(function(r){return r.id;})).slice(0,ROUNDS);
+ quiz.on=true; quiz.i=0; quiz.score=0; quiz.order=freshFirst(REGIONS.map(function(r){return r.id;}),function(id){return qseen[id]||0;}).slice(0,ROUNDS);
  clearTimeout(hoverT); hideTip(); $$('.utrr-reg').forEach(function(g){ g.classList.remove('utrr-on','utrr-pin'); });
  root.classList.add('utrr-quizmode'); $('#utrr-quizbtn').textContent='Stop quiz'; $('#utrr-quiz').hidden=false; $('#utrr-qresult').hidden=true; $('#utrr-qplay').hidden=false;
  showRound();
 }
 function showRound(){
  var id=quiz.order[quiz.i], r=REG[id]; quiz.lock=false;
- quiz.clue=r.clues[Math.floor(Math.random()*r.clues.length)];
+ var ci=freshFirst(r.clues.map(function(_,k){return k;}),function(k){return qseen[id+':'+k]||0;})[0]; quiz.clue=r.clues[ci]; qseen[id]=Date.now(); qseen[id+':'+ci]=Date.now(); saveQSeen();
  $('#utrr-qn').textContent='Question '+(quiz.i+1)+' of '+quiz.order.length;
  $('#utrr-qs').textContent='Score '+quiz.score; hideTip();
  $('#utrr-qclue').textContent=quiz.clue;

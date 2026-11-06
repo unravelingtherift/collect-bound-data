@@ -56,35 +56,108 @@ function shuf(a){a=a.slice(); for(var i=a.length-1;i>0;i--){var j=Math.floor(Mat
 function jget(u){return fetch(u).then(function(r){ if(!r.ok) throw new Error(u); return r.json(); });}
 
 /* ---------- question builders ---------- */
-function buildLore(champs){
-  var base=function(r){return String(r||'').split(' (')[0];};
-  var stdC=champs.filter(function(c){return STD.indexOf(c.region)>-1;});
-  var qs=[], used={};
-  function take(list,n,make){
-    var pool=shuf(list).filter(function(c){return !used[c.id];}), k=0;
-    for(var i=0;i<pool.length&&k<n;i++){var q=make(pool[i]); if(q){used[pool[i].id]=1; qs.push(q); k++;}}
+/* Return visitors lean toward questions they have not seen, but older ones still come back now and then. */
+function seenGet(mode){ try{ return JSON.parse(localStorage.getItem('utrq-seen-'+mode)||'{}')||{}; }catch(e){ return {}; } }
+function seenSave(mode,m){ try{ var k=Object.keys(m); if(k.length>1500){ k.sort(function(x,y){return m[x]-m[y];}).slice(0,k.length-1500).forEach(function(x){delete m[x];}); } localStorage.setItem('utrq-seen-'+mode,JSON.stringify(m)); }catch(e){} }
+function lean(list,seen){
+  var a=list.map(function(q){return {q:q,t:seen[q.id]||0,r:Math.random()};}).sort(function(p,q){return p.t-q.t||p.r-q.r;});
+  var n=Math.max(1,a.length); a.forEach(function(o,i){ o.k=i/n+Math.random()*.7; });
+  return a.sort(function(p,q){return p.k-q.k;}).map(function(o){return o.q;});
+}
+/* groups = {type:[questions]}: pick n, rotating through the types so a quiz always mixes them. */
+function pickMixed(groups,n,mode){
+  var seen=seenGet(mode), types=shuf(Object.keys(groups)), order={};
+  types.forEach(function(t){ order[t]=lean(groups[t],seen); });
+  var out=[], guard=0;
+  while(out.length<n && guard++<500){
+    var progressed=false;
+    for(var i=0;i<types.length&&out.length<n;i++){ var q=order[types[i]].shift(); if(q){ out.push(q); progressed=true; } }
+    if(!progressed) break;
   }
-  take(stdC,4,function(c){
-    var wrong=shuf(STD.filter(function(r){return r!==c.region;})).slice(0,3), opts=shuf([c.region].concat(wrong));
-    return {q:'Which region is <b>'+esc(c.name)+'</b> from?',a:opts,c:opts.indexOf(c.region),note:esc(c.name)+', '+esc(c.title)+', is from '+esc(c.region)+'.',img:c.img};
+  var now=Date.now(); out.forEach(function(q){ seen[q.id]=now; }); seenSave(mode,seen);
+  return shuf(out);
+}
+function opts4(right,pool,n){ var w=shuf(pool.filter(function(x){return x!==right;})).slice(0,(n||4)-1), o=shuf([right].concat(w)); return {o:o,c:o.indexOf(right)}; }
+function nameMask(text,name){ var nm=name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); return text.replace(new RegExp(nm,'gi'),'this Legend'); }
+
+function buildLore(champs){
+  var G={region:[],title:[],clue:[],from:[],story:[]};
+  var names=champs.map(function(c){return c.name;});
+  champs.forEach(function(c){
+    var std=STD.indexOf(c.region)>-1, o;
+    if(std){
+      o=opts4(c.region,STD);
+      G.region.push({id:'region:'+c.id,q:'Which region is <b>'+esc(c.name)+'</b> from?',a:o.o,c:o.c,note:esc(c.name)+', '+esc(c.title||'')+', is from '+esc(c.region)+'.',img:c.img});
+      var same=champs.filter(function(x){return x.region===c.region;}).map(function(x){return x.name;});
+      var other=champs.filter(function(x){return x.region!==c.region&&STD.indexOf(x.region)>-1;}).map(function(x){return x.name;});
+      o=opts4(c.name,other.concat([c.name]));
+      G.from.push({id:'from:'+c.id,q:'Which of these Legends is from <b>'+esc(c.region)+'</b>?',a:o.o,c:o.c,note:esc(c.name)+' is from '+esc(c.region)+'.',img:c.img});
+    }
+    if(c.title){
+      o=opts4(c.name,names);
+      G.title.push({id:'title:'+c.id,q:'Which Legend is known as <b>“'+esc(c.title)+'”</b>?',a:o.o,c:o.c,note:esc(c.name)+' is '+esc(c.title)+'.',img:c.img});
+    }
+    if(c.cliffnote){
+      o=opts4(c.name,names);
+      G.clue.push({id:'clue:'+c.id,q:'Who is this? <i>'+esc(nameMask(c.cliffnote,c.name))+'</i>',a:o.o,c:o.c,note:'That is '+esc(c.name)+(c.title?', '+esc(c.title):'')+'.',img:c.img});
+    }
+    if(c.lore){
+      var first=String(c.lore).split(/(?<=[.!?])\s+/)[0]||'';
+      if(first.length>40&&first.length<260){
+        o=opts4(c.name,names);
+        G.story.push({id:'story:'+c.id,q:'Whose story starts like this? <i>'+esc(nameMask(first,c.name))+'</i>',a:o.o,c:o.c,note:'That is '+esc(c.name)+(c.title?', '+esc(c.title):'')+'.',img:c.img});
+      }
+    }
   });
-  take(champs.filter(function(c){return c.title;}),3,function(c){
-    var wrong=shuf(champs.filter(function(x){return x.id!==c.id;})).slice(0,3).map(function(x){return x.name;}), opts=shuf([c.name].concat(wrong));
-    return {q:'Which Legend is known as <b>“'+esc(c.title)+'”</b>?',a:opts,c:opts.indexOf(c.name),note:esc(c.name)+' is '+esc(c.title)+'.',img:c.img};
+  Object.keys(G).forEach(function(k){ if(!G[k].length) delete G[k]; });
+  return pickMixed(G,10,'lore');
+}
+
+/* The Music quiz is built from the live Music tab data, so new bands, members, songs and cards
+   show up as questions on their own. If that data can't be read it falls back to music-quiz.json. */
+function readBands(js){
+  var a=js.indexOf('var BANDS = ['); if(a<0) throw new Error('no bands');
+  var b=js.indexOf('\n  ];',a); if(b<0) throw new Error('no end');
+  var code=js.slice(a,b+5)+'\nreturn BANDS;';
+  return (new Function('RIOT','RQ','WIKI','JD',code))('','','','');
+}
+function buildMusicFromBands(bands){
+  var G={band:[],role:[],song:[],year:[],domain:[],card:[],cost:[]};
+  var DOMS=['Fury','Calm','Mind','Body','Chaos','Order'];
+  var allMembers=[], cardsSeen={}, songs=[], years={};
+  bands.forEach(function(b){ (b.members||[]).forEach(function(m){ allMembers.push(m.name); }); (b.videos||[]).forEach(function(v){ songs.push({t:v.title,y:String(v.year),b:b.name}); years[v.year]=1; }); });
+  var bandNames=bands.map(function(b){return b.name;}), yearList=Object.keys(years), o;
+  bands.forEach(function(b){
+    var mine=(b.members||[]);
+    mine.forEach(function(m){
+      var inBands=bands.filter(function(x){return (x.members||[]).some(function(y){return y.name===m.name;});});
+      if(inBands.length===1){ o=opts4(b.name,bandNames,Math.min(4,bandNames.length)); G.band.push({id:'band:'+m.name,q:'Which group is <b>'+esc(m.name)+'</b> in?',a:o.o,c:o.c,note:esc(m.name)+' is in '+esc(b.name)+'.'}); }
+      var sameRole=mine.filter(function(y){return y.role===m.role;}).length;
+      if(m.role&&sameRole===1&&mine.length>2){ o=opts4(m.name,allMembers.filter(function(n,i,a){return a.indexOf(n)===i;})); G.role.push({id:'role:'+b.name+':'+m.name,q:'In <b>'+esc(b.name)+'</b>, who is the <b>'+esc(String(m.role).toLowerCase())+'</b>?',a:o.o,c:o.c,note:esc(m.name)+' is the '+esc(String(m.role).toLowerCase())+' in '+esc(b.name)+'.'}); }
+      if(m.card&&!cardsSeen[m.card]){
+        cardsSeen[m.card]=1;
+        if(m.dom&&DOMS.indexOf(m.dom)>-1){ o=opts4(m.dom,DOMS); G.domain.push({id:'domain:'+m.card,q:'Which domain is <b>'+esc(m.card)+'</b> in Riftbound?',a:o.o,c:o.c,note:esc(m.card)+' is a '+esc(m.dom)+' card.'}); }
+        if(m.text&&m.text.length>25){ o=opts4(m.name,allMembers.filter(function(n,i,a){return a.indexOf(n)===i;})); G.card.push({id:'card:'+m.card,q:'Which member’s card says: <i>“'+esc(m.text.replace(new RegExp(m.name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'),'this member'))+'”</i>',a:o.o,c:o.c,note:'That is '+esc(m.card)+'.'}); }
+        if(typeof m.en==='number'){ var nums=['1','2','3','4','5','6','7']; o=opts4(String(m.en),nums); G.cost.push({id:'cost:'+m.card,q:'What is the Energy cost of <b>'+esc(m.card)+'</b>?',a:o.o,c:o.c,note:esc(m.card)+' costs '+m.en+' Energy.'}); }
+      }
+    });
   });
-  take(champs.filter(function(c){return c.cliffnote;}),3,function(c){
-    var cn=c.cliffnote, nm=c.name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-    cn=cn.replace(new RegExp(nm,'gi'),'this Legend');
-    var wrong=shuf(champs.filter(function(x){return x.id!==c.id;})).slice(0,3).map(function(x){return x.name;}), opts=shuf([c.name].concat(wrong));
-    return {q:'Who is this? <i>'+esc(cn)+'</i>',a:opts,c:opts.indexOf(c.name),note:'That is '+esc(c.name)+', '+esc(c.title)+'.',img:c.img};
+  songs.forEach(function(sg){
+    o=opts4(sg.b,bandNames,Math.min(4,bandNames.length)); G.song.push({id:'song:'+sg.t,q:'Which group released <b>'+esc(sg.t)+'</b>?',a:o.o,c:o.c,note:esc(sg.t)+' is a '+esc(sg.b)+' song ('+esc(sg.y)+').'});
+    if(yearList.length>=3){ var yo=opts4(sg.y,yearList); G.year.push({id:'year:'+sg.t,q:'What year did <b>'+esc(sg.b)+'</b> put out <b>'+esc(sg.t)+'</b>?',a:yo.o,c:yo.c,note:esc(sg.t)+' came out in '+esc(sg.y)+'.'}); }
   });
-  return shuf(qs);
+  Object.keys(G).forEach(function(k){ if(!G[k].length) delete G[k]; });
+  return G;
 }
 function buildMusic(d){
-  return shuf(d.questions).map(function(x){
-    var right=x.a[x.c], opts=shuf(x.a);
-    return {q:esc(x.q),a:opts,c:opts.indexOf(right),note:esc(x.note||'')};
-  });
+  /* fallback bank (music-quiz.json): shuffled, with the same "lean toward unseen" rule */
+  var qs=d.questions.map(function(x,i){ var right=x.a[x.c], opts=shuf(x.a); return {id:'bank:'+i,q:esc(x.q),a:opts,c:opts.indexOf(right),note:esc(x.note||'')}; });
+  return pickMixed({bank:qs},10,'music');
+}
+function loadMusic(){
+  return fetch(RAW+'codex/music/music-tab.js').then(function(r){ if(!r.ok) throw new Error('music'); return r.text(); })
+    .then(function(js){ var G=buildMusicFromBands(readBands(js)); var total=0; Object.keys(G).forEach(function(k){total+=G[k].length;}); if(total<12) throw new Error('thin'); return pickMixed(G,10,'music'); })
+    .catch(function(){ return jget(RAW+'codex/quiz/music-quiz.json').then(buildMusic); });
 }
 
 /* ---------- membership pieces ---------- */
@@ -109,7 +182,7 @@ function ensureOv(){
 function closeQ(){ ov.classList.remove('utrq-on'); document.body.style.overflow=state&&state.prevOv||''; if(state&&state.opener) try{state.opener.focus();}catch(e){} }
 function load(mode){
   if(cache[mode]) return Promise.resolve(cache[mode]);
-  var p=mode==='lore'?jget(RAW+'codex/champs.json').then(buildLore):jget(RAW+'codex/quiz/music-quiz.json').then(buildMusic);
+  var p=mode==='lore'?jget(RAW+'codex/champs.json').then(buildLore):loadMusic();
   return p;
 }
 function openQ(mode,opener){
