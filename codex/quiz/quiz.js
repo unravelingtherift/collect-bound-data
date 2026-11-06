@@ -46,6 +46,17 @@ var css='\
 #urtr-cta a.urtr-btn-ghost:hover{border-color:#F3D488;color:#F3D488}\
 .utrq-bwrap{padding:0 16px;margin:34px 0}\
 @media (max-width:760px){#urtr-cta{flex-direction:column;align-items:stretch;padding:22px 20px}#urtr-cta .urtr-cta-btns{flex-direction:column}}\
+\
+.utrq-fw{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;border-radius:18px}\
+.utrq-dancer{display:flex;align-items:flex-end;justify-content:center;gap:14px;margin:10px 0 4px;min-height:120px}\
+.utrq-dancer img{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:50% 20%;border:3px solid #e9c46a;box-shadow:0 0 22px rgba(233,196,106,.6);animation:utrq-dance .8s ease-in-out infinite;transform-origin:50% 100%;background:#241d3a}\
+.utrq-dancer img:nth-child(2){animation-delay:.2s}.utrq-dancer img:nth-child(3){animation-delay:.4s}\
+.utrq-eq{display:flex;align-items:flex-end;gap:6px;height:90px}\
+.utrq-eq i{display:block;width:12px;border-radius:4px;background:linear-gradient(#e9c46a,#c05cff);animation:utrq-eq .7s ease-in-out infinite}\
+.utrq-eq i:nth-child(2){animation-delay:.1s}.utrq-eq i:nth-child(3){animation-delay:.25s}.utrq-eq i:nth-child(4){animation-delay:.05s}.utrq-eq i:nth-child(5){animation-delay:.3s}.utrq-eq i:nth-child(6){animation-delay:.15s}.utrq-eq i:nth-child(7){animation-delay:.35s}\
+@keyframes utrq-dance{0%,100%{transform:translateY(0) rotate(-7deg)}25%{transform:translateY(-16px) rotate(0)}50%{transform:translateY(0) rotate(7deg)}75%{transform:translateY(-16px) rotate(0)}}\
+@keyframes utrq-eq{0%,100%{height:14px}50%{height:84px}}\
+@media(prefers-reduced-motion:reduce){.utrq-dancer img,.utrq-eq i{animation:none}.utrq-eq i{height:50px}}\
 @media(max-width:520px){.utrq-box{padding:22px 16px 18px}.utrq-pop{bottom:76px}}\
 @media(prefers-reduced-motion:reduce){.utrq-bar i,.utrq-pop{transition:none}}';
 var st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
@@ -160,6 +171,26 @@ function loadMusic(){
     .catch(function(){ return jget(RAW+'codex/quiz/music-quiz.json').then(buildMusic); });
 }
 
+
+/* ---------- perfect score celebration ---------- */
+function fireworks(canvas){
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var dpr=Math.min(window.devicePixelRatio||1,2), W=canvas.clientWidth, H=canvas.clientHeight; canvas.width=W*dpr; canvas.height=H*dpr;
+  var g=canvas.getContext('2d'); g.scale(dpr,dpr);
+  var cols=['#e9c46a','#fff3d1','#5bbfae','#c05cff','#ff6b9d','#7fd8ff'], parts=[], t0=performance.now(), last=t0, next=0;
+  function burst(x,y){ var c=cols[Math.floor(Math.random()*cols.length)], n=46; for(var i=0;i<n;i++){ var a=Math.PI*2*i/n+Math.random()*.2, v=1.6+Math.random()*2.6; parts.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:1,c:Math.random()<.25?'#fff':c}); } }
+  function frame(now){
+    var dt=Math.min(32,now-last)/16.7; last=now; var el=now-t0;
+    if(el>=next&&el<3600){ burst(W*(.15+Math.random()*.7),H*(.12+Math.random()*.4)); next+=520; }
+    g.clearRect(0,0,W,H);
+    parts=parts.filter(function(p){return p.l>0;});
+    parts.forEach(function(p){ p.x+=p.vx*dt; p.y+=p.vy*dt; p.vy+=.045*dt; p.vx*=.985; p.l-=.012*dt; g.globalAlpha=Math.max(0,p.l); g.fillStyle=p.c; g.beginPath(); g.arc(p.x,p.y,2.2,0,6.283); g.fill(); });
+    g.globalAlpha=1;
+    if(el<5200||parts.length) requestAnimationFrame(frame); else g.clearRect(0,0,W,H);
+  }
+  requestAnimationFrame(frame);
+}
+
 /* ---------- membership pieces ---------- */
 function ctaHTML(){
   if(window.UTRQ_NOMEMBER) return '';
@@ -219,13 +250,19 @@ function answer(idx){
   box.querySelector('.utrq-row').appendChild(nb); nb.focus({preventScroll:true});
 }
 function showEnd(){
-  var s=state, n=s.qs.length, r=s.score/n, msg;
-  msg= r>=.9?'You really know your stuff.' : r>=.7?'Strong run.' : r>=.4?'Decent start. Plenty left to learn.' : 'Rough one. The codex is a good place to start.';
-  box.innerHTML='<button class="utrq-x" aria-label="Close">&times;</button><div class="utrq-eyebrow">'+s.meta.t+'</div><div class="utrq-score">'+s.score+' / '+n+'</div><p class="utrq-q">'+msg+'</p>'
+  var s=state, n=s.qs.length, r=s.score/n, perfect=s.score===n, msg;
+  msg= perfect?'Perfect score. Not a single miss.' : r>=.9?'You really know your stuff.' : r>=.7?'Strong run.' : r>=.4?'Decent start. Plenty left to learn.' : 'Rough one. The codex is a good place to start.';
+  var dance='';
+  if(perfect){
+    if(s.mode==='lore'){ var imgs=shuf(s.qs.filter(function(q){return q.img;}).map(function(q){return q.img;})).slice(0,3); dance='<div class="utrq-dancer" aria-hidden="true">'+imgs.map(function(u){return '<img alt="" src="'+esc(u)+'">';}).join('')+'</div>'; }
+    else dance='<div class="utrq-dancer" aria-hidden="true"><div class="utrq-eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>';
+  }
+  box.innerHTML='<button class="utrq-x" aria-label="Close">&times;</button>'+(perfect?'<canvas class="utrq-fw" aria-hidden="true"></canvas>':'')+'<div class="utrq-eyebrow">'+s.meta.t+'</div><div class="utrq-score">'+s.score+' / '+n+'</div><p class="utrq-q">'+msg+'</p>'+dance
    +'<div class="utrq-row"><button type="button" class="utrq-btn" data-again>Play again</button><button type="button" class="utrq-btn utrq-ghost" data-close>Close</button></div>'+ctaHTML();
   box.querySelector('.utrq-x').onclick=closeQ; box.querySelector('[data-close]').onclick=closeQ;
   box.querySelector('[data-again]').onclick=function(){ openQ(s.mode,s.opener); };
   box.scrollTop=0;
+  if(perfect){ var cv=box.querySelector('.utrq-fw'); cv.style.height=box.scrollHeight+'px'; fireworks(cv); }
 }
 
 /* ---------- mounting ---------- */
