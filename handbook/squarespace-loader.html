@@ -5,103 +5,123 @@
   It loads the real handbook from the collect-bound-data GitHub repo, so content
   updates happen in GitHub and this snippet never needs to change.
 
+  Speed: the browser keeps a copy of the handbook, so return visits show it right away.
+  A fresh copy is always fetched too; if it arrives quickly it's shown, otherwise it's
+  saved for the next visit. Merged updates reach the live page within a few minutes
+  (the "Refresh handbook on CDN" workflow clears the CDN copy after each merge).
+
   Preview a proposed update: add ?preview=BRANCH-NAME to the page address,
   e.g. /starter-handbook?preview=handbook-update-2026-10-19
 -->
-<div id="rift-handbook-root">
-  <p style="text-align:center;padding:220px 20px 120px;font-family:system-ui,sans-serif;color:#a8adc0;">Loading the Starter Handbook…</p>
-</div>
+<div id="rift-handbook-root" style="min-height:100vh;background:#291B43;"></div>
 <script>
 (function () {
   var REPO = 'unravelingtherift/collect-bound-data';
   var FILE = 'handbook/riftbound-starter-handbook.html';
+  var CACHE_KEY = 'utr-starter-handbook-v1';
+  var WAIT_FOR_FRESH = 500; // ms to wait for a fresh copy before showing the saved one
   var root = document.getElementById('rift-handbook-root');
   if (!root || root.dataset.loaded) return;
   root.dataset.loaded = '1';
 
   var asked = new URLSearchParams(location.search).get('preview');
   var isPreview = !!(asked && /^[A-Za-z0-9._\/-]{1,100}$/.test(asked));
-  var ref = isPreview ? asked : 'main';
 
-  // Ask GitHub for the exact latest version (commit) of the branch, then load that
-  // exact version from jsDelivr. An exact version can never be served stale, so a
-  // merged update shows up right away. If GitHub can't be reached, fall back to the branch.
-  function resolve() {
-    return fetch('https://api.github.com/repos/' + REPO + '/commits/' + encodeURIComponent(ref),
-                 { headers: { Accept: 'application/vnd.github.sha' }, cache: 'no-store' })
-      .then(function (r) { return r.ok ? r.text() : ref; })
-      .then(function (t) { t = (t || '').trim(); return /^[0-9a-f]{40}$/.test(t) ? t : ref; })
-      .catch(function () { return ref; });
-  }
+  function readCache() { try { return localStorage.getItem(CACHE_KEY); } catch (e) { return null; } }
+  function writeCache(html) { try { localStorage.setItem(CACHE_KEY, html); } catch (e) {} }
 
-  function fail(msg) {
-    root.innerHTML = '<p style="text-align:center;padding:220px 20px 120px;font-family:system-ui,sans-serif;color:#a8adc0;">' +
-      msg + ' <a href="" style="color:#e3c17e;">Refresh to try again.</a></p>';
-  }
-
-  // Try jsDelivr first; if it fails (it sometimes does right after an update),
-  // load the same version straight from GitHub, then jsDelivr's copy of main.
   function get(url) {
     return fetch(url, { cache: 'no-cache' }).then(function (r) {
       if (!r.ok) throw new Error(r.status);
       return r.text();
+    }).then(function (t) {
+      if (t.indexOf('window.RIFT') === -1) throw new Error('not the handbook');
+      return t;
     });
   }
-  function load(v) {
-    return get('https://cdn.jsdelivr.net/gh/' + REPO + '@' + v + '/' + FILE)
-      .catch(function () { return get('https://raw.githubusercontent.com/' + REPO + '/' + v + '/' + FILE); })
-      .catch(function () {
-        if (isPreview) throw new Error('preview not found');
-        version = 'main';
-        return get('https://cdn.jsdelivr.net/gh/' + REPO + '@main/' + FILE);
+
+  // Live page: load main from jsDelivr, falling back to GitHub directly.
+  function loadMain() {
+    return get('https://cdn.jsdelivr.net/gh/' + REPO + '@main/' + FILE)
+      .catch(function () { return get('https://raw.githubusercontent.com/' + REPO + '/main/' + FILE); });
+  }
+
+  // Preview: load the exact latest commit of the branch so a preview is never stale.
+  function loadPreview(branch) {
+    return fetch('https://api.github.com/repos/' + REPO + '/commits/' + encodeURIComponent(branch),
+                 { headers: { Accept: 'application/vnd.github.sha' }, cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.text() : branch; })
+      .then(function (t) { t = (t || '').trim(); return /^[0-9a-f]{40}$/.test(t) ? t : branch; })
+      .catch(function () { return branch; })
+      .then(function (v) {
+        return get('https://cdn.jsdelivr.net/gh/' + REPO + '@' + v + '/' + FILE)
+          .catch(function () { return get('https://raw.githubusercontent.com/' + REPO + '/' + v + '/' + FILE); })
+          .then(function (html) {
+            // Show the branch's own images (including new ones not merged yet)
+            return html.split('collect-bound-data@main/').join('collect-bound-data@' + v + '/');
+          });
       });
   }
 
-  var version = ref;
-  resolve()
-    .then(function (v) { version = v; return load(v); })
-    .then(function (html) {
-      // Load the handbook's own images from the same version, so newly added
-      // pictures show right away (and in previews before the update is merged).
-      html = html.split('collect-bound-data@main/').join('collect-bound-data@' + version + '/');
-      var doc = new DOMParser().parseFromString(html, 'text/html');
+  var shown = false;
+  function render(html) {
+    if (shown) return;
+    shown = true;
+    var doc = new DOMParser().parseFromString(html, 'text/html');
 
-      // Fonts and styles from the handbook's <head>
-      doc.head.querySelectorAll('link[rel="stylesheet"], link[rel="preconnect"], style').forEach(function (n) {
-        document.head.appendChild(document.importNode(n, true));
-      });
-
-      // Page content
-      root.innerHTML = '';
-      Array.prototype.forEach.call(doc.body.childNodes, function (n) {
-        root.appendChild(document.importNode(n, true));
-      });
-
-      // Scripts copied this way don't run, so re-create each one (in order) to run it
-      root.querySelectorAll('script').forEach(function (old) {
-        var s = document.createElement('script');
-        Array.prototype.forEach.call(old.attributes, function (a) { s.setAttribute(a.name, a.value); });
-        s.textContent = old.textContent;
-        old.parentNode.replaceChild(s, old);
-      });
-
-      if (isPreview) {
-        var bar = document.createElement('div');
-        bar.textContent = 'Preview of a proposed handbook update (' + ref + '). Visitors don’t see this version.';
-        bar.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:2000;padding:10px 16px;text-align:center;' +
-          'font:600 13px system-ui,sans-serif;color:#1a1406;background:#e3c17e;box-shadow:0 -6px 20px rgba(0,0,0,.4);';
-        document.body.appendChild(bar);
-      }
-
-      // Honor a #section link that arrived before the content did
-      if (location.hash.length > 1) {
-        var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
-        if (target) setTimeout(function () { target.scrollIntoView(); }, 50);
-      }
-    })
-    .catch(function () {
-      fail(isPreview ? 'That preview couldn’t be found — the update may already have been merged or closed.'
-                     : 'The handbook couldn’t load right now.');
+    // Fonts and styles from the handbook's <head>
+    doc.head.querySelectorAll('link[rel="stylesheet"], link[rel="preconnect"], style').forEach(function (n) {
+      document.head.appendChild(document.importNode(n, true));
     });
+
+    // Page content
+    root.innerHTML = '';
+    root.removeAttribute('style');
+    Array.prototype.forEach.call(doc.body.childNodes, function (n) {
+      root.appendChild(document.importNode(n, true));
+    });
+
+    // Scripts copied this way don't run, so re-create each one (in order) to run it
+    root.querySelectorAll('script').forEach(function (old) {
+      var s = document.createElement('script');
+      Array.prototype.forEach.call(old.attributes, function (a) { s.setAttribute(a.name, a.value); });
+      s.textContent = old.textContent;
+      old.parentNode.replaceChild(s, old);
+    });
+
+    if (isPreview) {
+      var bar = document.createElement('div');
+      bar.textContent = 'Preview of a proposed handbook update (' + asked + '). Visitors don’t see this version.';
+      bar.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:2000;padding:10px 16px;text-align:center;' +
+        'font:600 13px system-ui,sans-serif;color:#1a1406;background:#e3c17e;box-shadow:0 -6px 20px rgba(0,0,0,.4);';
+      document.body.appendChild(bar);
+    }
+
+    // Honor a #section link that arrived before the content did
+    if (location.hash.length > 1) {
+      var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (target) setTimeout(function () { target.scrollIntoView(); }, 50);
+    }
+  }
+
+  function fail(msg) {
+    if (shown) return;
+    root.innerHTML = '<p style="text-align:center;padding:220px 20px 120px;font-family:system-ui,sans-serif;color:#a8adc0;">' +
+      msg + ' <a href="" style="color:#e3c17e;">Refresh to try again.</a></p>';
+  }
+
+  if (isPreview) {
+    loadPreview(asked).then(render).catch(function () {
+      fail('That preview couldn’t be found — the update may already have been merged or closed.');
+    });
+    return;
+  }
+
+  var cached = readCache();
+  var fresh = loadMain();
+  fresh.then(function (html) { writeCache(html); render(html); })
+       .catch(function () { if (!cached) fail('The handbook couldn’t load right now.'); });
+  // Returning visitor: if the fresh copy is slow, show the saved copy instead of waiting.
+  if (cached) setTimeout(function () { render(cached); }, WAIT_FOR_FRESH);
 })();
 </script>
