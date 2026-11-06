@@ -519,6 +519,19 @@ section.alt{background:linear-gradient(180deg,transparent,rgba(255,255,255,.015)
 .compare-item{border:1px solid var(--panel-border);background:var(--panel);border-radius:var(--radius-sm);padding:18px;}
 .compare-item b{display:block;color:var(--text);font-size:.92rem;margin-bottom:8px;}
 .compare-item p{margin:0;color:var(--text-dim);font-size:.86rem;}
+.compare{align-items:start;}
+.compare-item .cmp-img{display:block;width:100%;aspect-ratio:16/10;object-fit:contain;border-radius:8px;border:1px solid var(--panel-border);margin-bottom:8px;background:#fff;}
+.compare-item .cmp-cap{display:block;font-family:var(--mono);font-size:.68rem;color:var(--text-faint);margin-bottom:12px;}
+.kr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:18px;}
+.kr-grid .panel h4{margin:0 0 8px;font-family:var(--serif);color:var(--gold-bright);font-size:1.05rem;}
+.kr-grid .panel p,.kr-grid .panel li{color:var(--text-dim);font-size:.9rem;}
+.kr-grid .panel ul{margin:0;padding-left:18px;}
+.kr-grid .panel li{margin-bottom:6px;}
+.kr-tag{display:inline-block;font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;margin-bottom:10px;border:1px solid var(--panel-border);color:var(--text-faint);}
+.kr-tag.official{border-color:var(--gold-dim);color:var(--gold-bright);}
+.kr-ahri{display:flex;gap:14px;align-items:flex-start;}
+.kr-ahri img{width:110px;flex:none;border-radius:6px;border:1px solid var(--panel-border);cursor:zoom-in;}
+@media (max-width:760px){.kr-grid{grid-template-columns:1fr;}.kr-ahri{flex-direction:column;}.kr-ahri img{width:140px;}}
 
 /* ---------- PACKS ---------- */
 .pack-tabs{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;}
@@ -1465,12 +1478,13 @@ footer .fbrand{font-family:var(--serif);color:var(--gold);font-size:1.1rem;margi
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">015 · Around the world</div>
-      <h2>China &amp; France spotlight</h2>
-      <p>China and France both do their own thing. The tournaments are set up differently, the prize walls look nothing alike, and the metas have drifted apart.</p>
+      <h2>China, France &amp; Korea spotlight</h2>
+      <p>China, France and Korea all do their own thing. The tournaments are set up differently, the prize walls look nothing alike, and Korea even has its own cards and its own card pool.</p>
     </div>
     <div class="region-tabs">
       <div class="region-tab active" data-region="china">China Events</div>
       <div class="region-tab" data-region="france">France Events</div>
+      <div class="region-tab" data-region="korea">Korea</div>
     </div>
 
     <div class="region-panel active" id="region-china">
@@ -1484,6 +1498,52 @@ footer .fbrand{font-family:var(--serif);color:var(--gold);font-size:1.1rem;margi
     <div class="region-panel" id="region-france">
       <div class="region-banner"><img src="https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/riftbound-france-events-banner.webp" alt="Riftbound France events banner"></div>
       <div id="franceEvents"></div>
+    </div>
+
+    <div class="region-panel" id="region-korea">
+      <div class="kr-grid">
+        <div class="panel">
+          <span class="kr-tag official">From Riot</span>
+          <h4>How Korea launched</h4>
+          <ul>
+            <li>Origins hit Korean shelves on September 18, 2026, with launch events at Gen.G GGX and Yongsan IPark Dopamine Station.</li>
+            <li>Launch products: Origins boosters, five-card Origins boosters, Champion Decks (Jinx, Lee Sin, Viktor) and Proving Grounds.</li>
+            <li>Besides local game stores, PC bangs are a big way to buy and play. Some sell packs, some have full play areas.</li>
+            <li>Nexus Nights run weekly, and a Korean touring series starts in December 2026 and runs through 2027.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <span class="kr-tag official">From Riot</span>
+          <h4>Korean Standard</h4>
+          <p style="margin:0 0 8px;">Korean events default to a temporary “Korean Standard” format that only uses sets already out in Korean. It started with Origins, adds Spiritforged in December 2026, and grows with each release (seven Korean sets are planned for 2027). The global ban list still applies, and stores can choose global Standard instead.</p>
+          <p style="margin:0;">The goal is for Korea to match the global release schedule by the start of 2028.</p>
+        </div>
+        <div class="panel">
+          <span class="kr-tag official">From Riot</span>
+          <h4>Korea-only cards</h4>
+          <div class="kr-ahri">
+            <img src="https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/nine-tailed-fox-ahri-korean.webp" alt="Ahri, Nine-Tailed Fox Korean Overnumber" onclick="openLightbox(this.src, this.alt)">
+            <ul>
+              <li><b>Ahri, Nine-Tailed Fox</b> Overnumber, only in Korean Origins boosters (alongside the regular Ahri Overnumber). Art by Korean art director Allen Song, a nod to Dynasty Ahri.</li>
+              <li><b>Yasuo, Remorseful</b> launch promo with new art by Korean artist Kim Star, only at select Korean Origins launch events.</li>
+              <li><b>Jinx, Demolitionist</b> launch promo: the original art with a special launch stamp, from Korean launch events.</li>
+            </ul>
+          </div>
+          <p style="margin:10px 0 0;">Riot says it doesn’t plan to put Korean-only cards in boosters often.</p>
+        </div>
+        <div class="panel">
+          <span class="kr-tag">Reported by collectors &amp; retailers</span>
+          <h4>How the cards feel</h4>
+          <ul>
+            <li>Korean cards are printed in Korea.</li>
+            <li>Collectors say they’re thicker than English cards, with darker, richer ink and fewer edge or cutting problems.</li>
+            <li>Riot hasn’t published anything about Korean card stock, so treat this as early hands-on feedback.</li>
+          </ul>
+          <h4 style="margin-top:14px;">T1 products in Korea</h4>
+          <p style="margin:0;">The T1 Signature Edition (₩500,000) and Player Bundle (₩100,000) were sold in Korea through T1’s own store and KREAM instead of Riot’s merch store. Those channels are usually closed to buyers outside Korea.</p>
+        </div>
+      </div>
+      <span style="font-family:var(--mono);font-size:.72rem;color:var(--text-faint);">Sources: Riot’s <a class="src-link" href="https://playriftbound.com/en-us/news/announcements/koreas-rift-opens-on-september-18/" target="_blank" rel="noopener">Korea’s Rift Opens on September 18</a> · collector reports on <a class="src-link" href="https://www.reddit.com/r/riftboundtcg/comments/1vu9low/korean_riftbound_cards_are_becoming_available/" target="_blank" rel="noopener">r/riftboundtcg</a> · T1 pricing via <a class="src-link" href="https://evoretro.ca/blogs/news/riftbound-t1-regional-price-comparison-guide" target="_blank" rel="noopener">Evo Retro</a>. Korean release dates are in the Rotation section.</span>
     </div>
   </div>
 </section>
@@ -2019,7 +2079,7 @@ RIFT.france = [
 RIFT.printDiff = {
   "Visual & Foil Treatment":[
     {t:"Foiling Contrast", d:"Chinese promos show significantly higher contrast and saturation — a brighter, heavier rainbow shine. English foils are subtler, giving a more muted, prestigious gold finish. English cards use a detailed cross-stitch/grid-stitch foil with a wider palette; Chinese promos lean toward a tighter, uniform parallel-crosshair layout."},
-    {t:"UI Layout Differences", d:"Certain early promos from the Chinese \u201cProject K\u201d development phase use an older interface look and stylized design blocks, completely different from standardized English launch layouts."}
+    {t:"UI Layout Differences", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/project-k-trial-deck.webp", cap:"Pictured: Chinese Project K trial decks and packaging.", d:"Certain early promos from the Chinese \u201cProject K\u201d development phase use an older interface look and stylized design blocks, completely different from standardized English launch layouts."}
   ],
   "Physical Properties & Stock":[
     {t:"Thickness", d:"English promos are printed on noticeably thicker card stock than their Chinese counterparts."},
@@ -2027,7 +2087,7 @@ RIFT.printDiff = {
   ],
   "Distribution & Exclusivity":[
     {t:"Event Exclusives", d:"Major flagship promos (like the commemorative 2025 Ahri) were offered across both regions, but acquisition varied — some characters were Western Regional Qualifier prizes in English, yet mere monthly participation rewards at Chinese City Challenges."},
-    {t:"Promotional Bundles", d:"The Chinese set has exclusive regional products: Silver Pack promotions, localized Pre-Rift champion exclusives (like the Jace promo), and Lunar New Year gift bundles with unique alternate arts (like the Irelia Lunar promo)."}
+    {t:"Promotional Bundles", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/lunar-new-year-booster-spring-festival.webp", cap:"Pictured: the Chinese Lunar New Year (Spring Festival) gift box.", d:"The Chinese set has exclusive regional products: Silver Pack promotions, localized Pre-Rift champion exclusives (like the Jace promo), and Lunar New Year gift bundles with unique alternate arts (like the Irelia Lunar promo)."}
   ]
 };
 RIFT.printDiffNote = "Per the game's updated tournament legality rules, mixed-language decks (combining English and Chinese promo cards) are fully legal in official global play, provided the cards are kept fully sleeved.";
@@ -2451,7 +2511,7 @@ const pd = document.getElementById('printDiffGrid');
 Object.entries(RIFT.printDiff).forEach(([cat,items])=>{
   pd.appendChild(el('div','compare-cat',cat));
   items.forEach(it=>{
-    pd.appendChild(el('div','compare-item', `<b>${it.t}</b><p>${it.d}</p>`));
+    pd.appendChild(el('div','compare-item', `${it.img?`<img class="cmp-img" loading="lazy" src="${it.img}" alt="${it.alt||it.t}">${it.cap?`<span class="cmp-cap">${it.cap}</span>`:''}`:''}<b>${it.t}</b><p>${it.d}</p>`));
   });
 });
 pd.insertAdjacentHTML('afterend', `<div class="note-box" style="margin-top:20px;">${RIFT.printDiffNote}</div>`);
