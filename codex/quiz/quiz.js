@@ -91,7 +91,7 @@ function pickMixed(groups,n,mode){
 function opts4(right,pool,n){ var w=shuf(pool.filter(function(x){return x!==right;})).slice(0,(n||4)-1), o=shuf([right].concat(w)); return {o:o,c:o.indexOf(right)}; }
 function nameMask(text,name){ var nm=name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); return text.replace(new RegExp(nm,'gi'),'this Legend'); }
 
-function buildLore(champs){
+function buildLore(champs,regionsData,musicG){
   var G={region:[],title:[],clue:[],from:[],story:[]};
   var names=champs.map(function(c){return c.name;});
   champs.forEach(function(c){
@@ -120,7 +120,15 @@ function buildLore(champs){
       }
     }
   });
-  Object.keys(G).forEach(function(k){ if(!G[k].length) delete G[k]; });
+  /* Regions: every region clue becomes a question */
+  var regs=(regionsData&&(regionsData.regions||regionsData))||[];
+  if(regs.length){
+    var rnames=regs.map(function(r){return r.name;}); G.rclue=[];
+    regs.forEach(function(r){ (r.clues||[]).forEach(function(cl,k){ var o=opts4(r.name,rnames); G.rclue.push({id:'rclue:'+r.id+':'+k,q:'Which region does this describe? <i>'+esc(cl)+'</i>',a:o.o,c:o.c,note:'That is '+esc(r.name)+'.'}); }); });
+  }
+  /* Music and card questions: the Lore quiz covers everything */
+  if(musicG){ G.music=[]; G.cards=[]; Object.keys(musicG).forEach(function(k){ (MUSIC_ONLY.indexOf(k)>-1?G.music:G.cards).push.apply(MUSIC_ONLY.indexOf(k)>-1?G.music:G.cards,musicG[k]); }); }
+  Object.keys(G).forEach(function(k){ if(!G[k]||!G[k].length) delete G[k]; });
   return pickMixed(G,10,'lore');
 }
 
@@ -133,7 +141,7 @@ function readBands(js){
   return (new Function('RIOT','RQ','WIKI','JD',code))('','','','');
 }
 function buildMusicFromBands(bands){
-  var G={band:[],role:[],song:[],year:[],domain:[],card:[],cost:[]};
+  var G={band:[],role:[],song:[],year:[],debut:[],genre:[],domain:[],card:[],cost:[]};
   var DOMS=['Fury','Calm','Mind','Body','Chaos','Order'];
   var allMembers=[], cardsSeen={}, songs=[], years={};
   bands.forEach(function(b){ (b.members||[]).forEach(function(m){ allMembers.push(m.name); }); (b.videos||[]).forEach(function(v){ songs.push({t:v.title,y:String(v.year),b:b.name}); years[v.year]=1; }); });
@@ -153,6 +161,11 @@ function buildMusicFromBands(bands){
       }
     });
   });
+  var debuts={},genres=[];
+  bands.forEach(function(b){ (b.chips||[]).forEach(function(c){ var t=String(c[0]||''); var m=t.match(/^Debut\s*·\s*(\d{4})/); if(m) debuts[b.name]=m[1]; m=t.match(/^Genre\s*·\s*(.+)$/); if(m) genres.push({b:b.name,g:m[1]}); }); });
+  var dyears=Object.keys(debuts).map(function(k){return debuts[k];}).filter(function(v,i,a){return a.indexOf(v)===i;});
+  Object.keys(debuts).forEach(function(bn){ if(dyears.length>=3){ var dd=opts4(debuts[bn],dyears.concat(['2016','2021'])); G.debut.push({id:'debut:'+bn,q:'In what year did <b>'+esc(bn)+'</b> debut?',a:dd.o,c:dd.c,note:esc(bn)+' debuted in '+esc(debuts[bn])+'.'}); } });
+  if(genres.length>=3) genres.forEach(function(x){ var gg=opts4(x.g,genres.map(function(y){return y.g;})); G.genre.push({id:'genre:'+x.b,q:'Which genre is <b>'+esc(x.b)+'</b> known for?',a:gg.o,c:gg.c,note:esc(x.b)+': '+esc(x.g)+'.'}); });
   songs.forEach(function(sg){
     o=opts4(sg.b,bandNames,Math.min(4,bandNames.length)); G.song.push({id:'song:'+sg.t,q:'Which group released <b>'+esc(sg.t)+'</b>?',a:o.o,c:o.c,note:esc(sg.t)+' is a '+esc(sg.b)+' song ('+esc(sg.y)+').'});
     if(yearList.length>=3){ var yo=opts4(sg.y,yearList); G.year.push({id:'year:'+sg.t,q:'What year did <b>'+esc(sg.b)+'</b> put out <b>'+esc(sg.t)+'</b>?',a:yo.o,c:yo.c,note:esc(sg.t)+' came out in '+esc(sg.y)+'.'}); }
@@ -165,12 +178,21 @@ function buildMusic(d){
   var qs=d.questions.map(function(x,i){ var right=x.a[x.c], opts=shuf(x.a); return {id:'bank:'+i,q:esc(x.q),a:opts,c:opts.indexOf(right),note:esc(x.note||'')}; });
   return pickMixed({bank:qs},10,'music');
 }
-function loadMusic(){
+function loadBandGroups(){
   return fetch(RAW+'codex/music/music-tab.js').then(function(r){ if(!r.ok) throw new Error('music'); return r.text(); })
-    .then(function(js){ var G=buildMusicFromBands(readBands(js)); var total=0; Object.keys(G).forEach(function(k){total+=G[k].length;}); if(total<12) throw new Error('thin'); return pickMixed(G,10,'music'); })
-    .catch(function(){ return jget(RAW+'codex/quiz/music-quiz.json').then(buildMusic); });
+    .then(function(js){ return buildMusicFromBands(readBands(js)); });
 }
-
+var MUSIC_ONLY=['band','role','song','year','debut','genre'];
+function loadMusic(){
+  return loadBandGroups().then(function(G){
+    var M={}, total=0; MUSIC_ONLY.forEach(function(k){ if(G[k]&&G[k].length){ M[k]=G[k]; total+=G[k].length; } });
+    if(total<12) throw new Error('thin'); return pickMixed(M,10,'music');
+  }).catch(function(){ return jget(RAW+'codex/quiz/music-quiz.json').then(buildMusic); });
+}
+function loadLore(){
+  return Promise.all([jget(RAW+'codex/champs.json'),jget(RAW+'codex/regions/regions.json').catch(function(){return null;}),loadBandGroups().catch(function(){return null;})])
+    .then(function(r){ return buildLore(r[0],r[1],r[2]); });
+}
 
 /* ---------- perfect score celebration ---------- */
 function fireworks(canvas){
@@ -213,12 +235,12 @@ function ensureOv(){
 function closeQ(){ ov.classList.remove('utrq-on'); document.body.style.overflow=state&&state.prevOv||''; if(state&&state.opener) try{state.opener.focus();}catch(e){} }
 function load(mode){
   if(cache[mode]) return Promise.resolve(cache[mode]);
-  var p=mode==='lore'?jget(RAW+'codex/champs.json').then(buildLore):loadMusic();
+  var p=mode==='lore'?loadLore():loadMusic();
   return p;
 }
 function openQ(mode,opener){
   ensureOv();
-  var meta=mode==='lore'?{t:'Lore quiz',i:'Ten questions on Legends, their titles and where they come from.'}:{t:'Music quiz',i:'K/DA, True Damage and HEARTSTEEL.'};
+  var meta=mode==='lore'?{t:'Lore quiz',i:'Legends, regions, music and cards.'}:{t:'Music quiz',i:'K/DA, True Damage and HEARTSTEEL.'};
   state={mode:mode,i:0,score:0,qs:null,opener:opener,prevOv:document.body.style.overflow};
   document.body.style.overflow='hidden';
   box.innerHTML='<button class="utrq-x" aria-label="Close">&times;</button><div class="utrq-eyebrow">'+meta.t+'</div><h3 class="utrq-h">Loading questions…</h3>';
