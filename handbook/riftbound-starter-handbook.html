@@ -527,6 +527,23 @@ section.alt{background:linear-gradient(180deg,transparent,rgba(255,255,255,.015)
 .kr-grid .panel p,.kr-grid .panel li{color:var(--text-dim);font-size:.9rem;}
 .kr-grid .panel ul{margin:0;padding-left:18px;}
 .kr-grid .panel li{margin-bottom:6px;}
+.pack-strip{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:6px;margin:4px 0 14px;}
+.pk{position:relative;border-radius:8px;border:1px solid var(--panel-border);background:var(--panel);padding:10px 4px 8px;text-align:center;min-height:86px;display:flex;flex-direction:column;align-items:center;gap:6px;}
+.pk .n{font-family:var(--mono);font-size:.62rem;color:var(--text-faint);}
+.pk .r{font-family:var(--mono);font-size:.6rem;letter-spacing:.04em;text-transform:uppercase;color:var(--text-dim);line-height:1.25;}
+.pk i{display:block;width:16px;height:16px;border-radius:50%;}
+.pk.c i{background:#cfd6dd;} .pk.u i{background:#3fc1b7;} .pk.ra i{background:#d0479a;}
+.pk.mix i{background:conic-gradient(#cfd6dd 0 33%,#3fc1b7 0 66%,#d0479a 0);} .pk.hi i{background:conic-gradient(#d0479a 0 33%,#f0902f 0 66%,#e8c24a 0);}
+.pk.tk i{background:conic-gradient(#8f8aa3 0 66%,#e8c24a 0);}
+.pk.new{border-color:var(--gold);background:linear-gradient(180deg,rgba(227,193,126,.22),rgba(227,193,126,.06));box-shadow:0 0 0 1px rgba(227,193,126,.35),0 8px 22px -10px rgba(227,193,126,.6);}
+.pk.new i{background:linear-gradient(135deg,#e3c17e 50%,#9d9cae 50%);border-radius:4px;transform:rotate(45deg);width:13px;height:13px;}
+.pk.new .r{color:var(--gold-bright);}
+.pk .badge{position:absolute;top:-8px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.56rem;letter-spacing:.08em;background:var(--gold);color:#1a1406;border-radius:999px;padding:1px 7px;font-weight:700;}
+.slot-key{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 22px;margin:0;padding:0;list-style:none;}
+.slot-key li{font-size:.86rem;color:var(--text-dim);}
+.slot-key b{color:var(--text);font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;margin-right:6px;}
+@media (max-width:900px){.pack-strip{grid-template-columns:repeat(7,minmax(0,1fr));row-gap:14px;}}
+@media (max-width:600px){.pack-strip{grid-template-columns:repeat(4,minmax(0,1fr));}.pk .r{font-size:.56rem;letter-spacing:0;}.slot-key{grid-template-columns:1fr;}}
 .kr-tag{display:inline-block;font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;margin-bottom:10px;border:1px solid var(--panel-border);color:var(--text-faint);}
 .kr-tag.official{border-color:var(--gold-dim);color:var(--gold-bright);}
 .kr-ahri{display:flex;gap:14px;align-items:flex-start;}
@@ -1429,6 +1446,23 @@ footer .fbrand{font-family:var(--serif);color:var(--gold);font-size:1.1rem;margi
     </div>
     <div class="note-box">Reported pacing is a new Korean set roughly every 6 to 8 weeks. Korea uses a temporary “Korean Standard” format whose legal card pool grows with each Korean set release. Riot Games Korea has also announced a quarterly prize-pool program of about ₩10 million across 2026 and 2027, local Nexus Nights from launch, and a dedicated Korean competitive tour starting in December 2026. <span style="font-family:var(--mono);font-size:.72rem;color:var(--text-faint);">Source: Riot’s <a class="src-link" href="https://playriftbound.com/en-us/news/announcements/koreas-rift-opens-on-september-18/" target="_blank" rel="noopener">Korean launch</a> announcement. Dates beyond Spiritforged are not yet confirmed.</span></div>
 
+    <h3 style="color:var(--text-dim);font-size:.85rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;margin:40px 0 6px;">Booster changes in 2027 (starting with Legacy)</h3>
+    <p style="color:var(--text-faint);font-size:.84rem;margin:0 0 14px;">From Legacy (Set 6, January 29, 2027) on, every booster trades one Common for a slot that’s always a Legend or a Battlefield, at roughly 50/50. Packs stay at 14 cards.</p>
+    <div class="panel" id="legacyPack">
+      <div class="pack-strip" aria-label="Legacy booster, slot by slot"><div class="pk c"><span class="n">01</span><i></i><span class="r">Common</span></div><div class="pk c"><span class="n">02</span><i></i><span class="r">Common</span></div><div class="pk c"><span class="n">03</span><i></i><span class="r">Common</span></div><div class="pk c"><span class="n">04</span><i></i><span class="r">Common</span></div><div class="pk c"><span class="n">05</span><i></i><span class="r">Common</span></div><div class="pk c"><span class="n">06</span><i></i><span class="r">Common</span></div><div class="pk u"><span class="n">07</span><i></i><span class="r">Uncommon</span></div><div class="pk u"><span class="n">08</span><i></i><span class="r">Uncommon</span></div><div class="pk u"><span class="n">09</span><i></i><span class="r">Uncommon</span></div><div class="pk new"><span class="badge">NEW</span><span class="n">10</span><i></i><span class="r">Legend or Battle&shy;field</span></div><div class="pk mix"><span class="n">11</span><i></i><span class="r">Foil or Rare</span></div><div class="pk ra"><span class="n">12</span><i></i><span class="r">Rare</span></div><div class="pk hi"><span class="n">13</span><i></i><span class="r">Rare+</span></div><div class="pk tk"><span class="n">14</span><i></i><span class="r">Token / Rune</span></div></div>
+      <ul class="slot-key">
+        <li><b>01–06</b>Commons (6 now, down from 7)</li>
+        <li><b>07–09</b>Uncommons</li>
+        <li><b>10</b>New slot: an Uncommon Battlefield or a Rare Legend</li>
+        <li><b>11</b>A foil Common, a foil Uncommon, or a Rare</li>
+        <li><b>12</b>Rare</li>
+        <li><b>13</b>A Rare, an Epic, or a Showcase card (Alt Art or Overnumbered)</li>
+        <li><b>14</b>A Token, a Rune, or a Showcase Alt Art</li>
+      </ul>
+      <div class="note-box">Showcase Legends and Battlefields don’t come from the new slot. Riot says they still show up in the Overnumber slot, same as before.</div>
+      <span style="display:block;margin-top:10px;font-family:var(--mono);font-size:.72rem;color:var(--text-faint);">Source: Riot’s <a class="src-link" href="https://playriftbound.com/en-us/news/announcements/products-and-sets-into-2027/" target="_blank" rel="noopener">Products and Sets into 2027</a> (the new slot, 6 Commons, Showcase note). Slot-by-slot breakdown via <a class="src-link" href="https://x.com/RiftboundReport" target="_blank" rel="noopener">The Riftbound Report</a>.</span>
+    </div>
+
     <h3 style="color:var(--text-dim);font-size:.85rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;margin:40px 0 6px;">Organized play changes in 2027</h3>
     <p style="color:var(--text-faint);font-size:.84rem;margin:0 0 14px;">Riot is renaming and expanding the competitive ladder for 2027. Names elsewhere in this handbook reflect the current season.</p>
     <div class="grid g2" id="op2027">
@@ -1610,7 +1644,7 @@ footer .fbrand{font-family:var(--serif);color:var(--gold);font-size:1.1rem;margi
 })();
 window.RIFT = {};
 RIFT.rarity = [
-  {img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/common.png", name:"Common", tier:"Booster: 7 / 14 slots", text:"The basic card. Plenty of them to acquire without difficulty."},
+  {img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/common.png", name:"Common", tier:"Booster: 7 / 14 slots<br>6 / 14 from Legacy", text:"The basic card. Plenty of them to acquire without difficulty."},
   {img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/uncommon.png", name:"Uncommon", tier:"Booster: 3 / 14 slots", text:"Complex and narrower in their use."},
   {img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/rare.png", name:"Rare", tier:"Booster: 2 / 14 slots", text:"Powerful cards. All Champion Legends and Champion Units are rares."},
   {img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/epic.png", name:"Epic", tier:"~1 in every 4 packs", text:"Highest functional rarity. When Epics appear, they replace a rare in that pack's rare slot."},
