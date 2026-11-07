@@ -1,0 +1,158 @@
+{
+ "_about": "Riftbound ban list for Collection-Bound's 'Tournament play' line. Cards are matched by SET-number so every language and printing of a card shares its status; promos match by card name. Update this file when Riot posts a ban update; the tracker picks it up automatically.",
+ "updated": "2026-09-18",
+ "formats": [
+  "Standard",
+  "2v2"
+ ],
+ "sources": [
+  "https://playriftbound.com/en-us/news/announcements/september-ban-list-updates-effective-september-18-2026/",
+  "https://playriftbound.com/en-us/news/announcements/july-ban-list-updates/",
+  "https://riftbound.leagueoflegends.com/en-us/news/announcements/announcing-riftbounds-first-bans/"
+ ],
+ "banned": [
+  {
+   "name": "Called Shot",
+   "cards": [
+    "SFD-122"
+   ],
+   "formats": [
+    "Standard",
+    "2v2"
+   ],
+   "since": "2026-03-31"
+  },
+  {
+   "name": "Draven, Vanquisher",
+   "cards": [
+    "SFD-20",
+    "SFD-20a"
+   ],
+   "formats": [
+    "Standard",
+    "2v2"
+   ],
+   "since": "2026-03-31"
+  },
+  {
+   "name": "Fight or Flight",
+   "cards": [
+    "OGN-168"
+   ],
+   "formats": [
+    "Standard",
+    "2v2"
+   ],
+   "since": "2026-03-31"
+  },
+  {
+   "name": "Scrapheap",
+   "cards": [
+    "OGN-182"
+   ],
+   "formats": [
+    "Standard",
+    "2v2"
+   ],
+   "since": "2026-03-31"
+  },
+  {
+   "name": "The Dreaming Tree",
+   "cards": [
+    "OGN-292"
+   ],
+   "formats": [
+    "Standard",
+    "2v2"
+   ],
+   "since": "2026-03-31"
+  },
+  {
+   "name": "Obelisk of Power",
+   "cards": [
+    "OGN-284"
+   ],
+   "formats": [
+    "Standard",
+    "2v2"
+   ],
+   "since": "2026-03-31"
+  },
+  {
+   "name": "Reaver's Row",
+   "cards": [
+    "OGN-285"
+   ],
+   "formats": [
+    "Standard",
+    "2v2"
+   ],
+   "since": "2026-03-31"
+  },
+  {
+   "name": "Stealthy Pursuer",
+   "cards": [
+    "OGN-177"
+   ],
+   "formats": [
+    "Standard",
+    "2v2"
+   ],
+   "since": "2026-07-24"
+  },
+  {
+   "name": "The Arena's Greatest",
+   "cards": [
+    "OGN-290"
+   ],
+   "formats": [
+    "Standard",
+    "2v2"
+   ],
+   "since": "2026-07-24"
+  },
+  {
+   "name": "Aspirant's Climb",
+   "cards": [
+    "OGN-276"
+   ],
+   "formats": [
+    "Standard",
+    "2v2"
+   ],
+   "since": "2026-07-24"
+  },
+  {
+   "name": "Master Yi, Wuju Bladesman",
+   "cards": [
+    "OGS-19"
+   ],
+   "formats": [
+    "2v2"
+   ],
+   "since": "2026-07-24"
+  },
+  {
+   "name": "Ekko, Recurrent",
+   "cards": [
+    "OGN-110"
+   ],
+   "formats": [
+    "Standard",
+    "2v2"
+   ],
+   "since": "2026-09-18"
+  },
+  {
+   "name": "Stacked Deck",
+   "cards": [
+    "OGN-183"
+   ],
+   "formats": [
+    "Standard",
+    "2v2"
+   ],
+   "since": "2026-09-18"
+  }
+ ]
+}
