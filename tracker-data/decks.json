@@ -1,0 +1,3186 @@
+{
+ "note": "Cards in each pre-constructed product. s/c = set and collector number when the source gives them; otherwise matched by name. q = copies.",
+ "decks": [
+  {
+   "id": "ogn-jinx",
+   "product": "Origins Champion Deck: Jinx",
+   "set": "OGN",
+   "kind": "champion",
+   "name": "Jinx",
+   "source": "Piltover Archive official list (System account)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Loose Cannon",
+     "s": "OGN",
+     "c": "251"
+    }
+   ],
+   "champion": [
+    {
+     "q": 1,
+     "n": "Jinx, Demolitionist",
+     "s": "OGN",
+     "c": "030"
+    }
+   ],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Zaun Warrens",
+     "s": "OGN",
+     "c": "298"
+    },
+    {
+     "q": 1,
+     "n": "Targon's Peak",
+     "s": "OGN",
+     "c": "289"
+    },
+    {
+     "q": 1,
+     "n": "Reaver's Row",
+     "s": "OGN",
+     "c": "285"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Fury Rune",
+     "s": "OGN",
+     "c": "007"
+    },
+    {
+     "q": 6,
+     "n": "Chaos Rune",
+     "s": "OGN",
+     "c": "166"
+    }
+   ],
+   "main": [
+    {
+     "q": 3,
+     "n": "Gust",
+     "s": "OGN",
+     "c": "169"
+    },
+    {
+     "q": 3,
+     "n": "Chemtech Enforcer",
+     "s": "OGN",
+     "c": "003"
+    },
+    {
+     "q": 3,
+     "n": "Fight or Flight",
+     "s": "OGN",
+     "c": "168"
+    },
+    {
+     "q": 3,
+     "n": "Scrapheap",
+     "s": "OGN",
+     "c": "182"
+    },
+    {
+     "q": 3,
+     "n": "Traveling Merchant",
+     "s": "OGN",
+     "c": "185"
+    },
+    {
+     "q": 2,
+     "n": "Get Excited!",
+     "s": "OGN",
+     "c": "008"
+    },
+    {
+     "q": 1,
+     "n": "Vi, Destructive",
+     "s": "OGN",
+     "c": "036"
+    },
+    {
+     "q": 3,
+     "n": "Flame Chompers",
+     "s": "OGN",
+     "c": "006"
+    },
+    {
+     "q": 2,
+     "n": "Cemetery Attendant",
+     "s": "OGN",
+     "c": "165"
+    },
+    {
+     "q": 2,
+     "n": "Void Seeker",
+     "s": "OGN",
+     "c": "024"
+    },
+    {
+     "q": 3,
+     "n": "Raging Soul",
+     "s": "OGN",
+     "c": "019"
+    },
+    {
+     "q": 2,
+     "n": "Fading Memories",
+     "s": "OGN",
+     "c": "180"
+    },
+    {
+     "q": 2,
+     "n": "Blazing Scorcher",
+     "s": "OGN",
+     "c": "001"
+    },
+    {
+     "q": 2,
+     "n": "Undercover Agent",
+     "s": "OGN",
+     "c": "178"
+    },
+    {
+     "q": 3,
+     "n": "Brazen Buccaneer",
+     "s": "OGN",
+     "c": "002"
+    },
+    {
+     "q": 1,
+     "n": "Magma Wurm",
+     "s": "OGN",
+     "c": "011"
+    },
+    {
+     "q": 1,
+     "n": "Rhasa the Sunderer",
+     "s": "OGN",
+     "c": "195"
+    }
+   ]
+  },
+  {
+   "id": "ogn-viktor",
+   "product": "Origins Champion Deck: Viktor",
+   "set": "OGN",
+   "kind": "champion",
+   "name": "Viktor",
+   "source": "Piltover Archive official list (System account)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Herald of the Arcane",
+     "s": "OGN",
+     "c": "265"
+    }
+   ],
+   "champion": [
+    {
+     "q": 1,
+     "n": "Viktor, Innovator",
+     "s": "OGN",
+     "c": "117"
+    }
+   ],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Altar to Unity",
+     "s": "OGN",
+     "c": "275"
+    },
+    {
+     "q": 1,
+     "n": "The Grand Plaza",
+     "s": "OGN",
+     "c": "293"
+    },
+    {
+     "q": 1,
+     "n": "Trifarian War Camp",
+     "s": "OGN",
+     "c": "294"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Order Rune",
+     "s": "OGN",
+     "c": "214"
+    },
+    {
+     "q": 6,
+     "n": "Mind Rune",
+     "s": "OGN",
+     "c": "089"
+    }
+   ],
+   "main": [
+    {
+     "q": 2,
+     "n": "Orb of Regret",
+     "s": "OGN",
+     "c": "090"
+    },
+    {
+     "q": 2,
+     "n": "Stupefy",
+     "s": "OGN",
+     "c": "095"
+    },
+    {
+     "q": 2,
+     "n": "Mushroom Pouch",
+     "s": "OGN",
+     "c": "101"
+    },
+    {
+     "q": 3,
+     "n": "Ravenbloom Student",
+     "s": "OGN",
+     "c": "103"
+    },
+    {
+     "q": 3,
+     "n": "Soaring Scout",
+     "s": "OGN",
+     "c": "216"
+    },
+    {
+     "q": 3,
+     "n": "Cull the Weak",
+     "s": "OGN",
+     "c": "209"
+    },
+    {
+     "q": 2,
+     "n": "Hidden Blade",
+     "s": "OGN",
+     "c": "213"
+    },
+    {
+     "q": 2,
+     "n": "Smoke Screen",
+     "s": "OGN",
+     "c": "093"
+    },
+    {
+     "q": 2,
+     "n": "Back to Back",
+     "s": "OGN",
+     "c": "206"
+    },
+    {
+     "q": 3,
+     "n": "Eager Apprentice",
+     "s": "OGN",
+     "c": "084"
+    },
+    {
+     "q": 3,
+     "n": "Noxian Drummer",
+     "s": "OGN",
+     "c": "222"
+    },
+    {
+     "q": 2,
+     "n": "Sprite Call",
+     "s": "OGN",
+     "c": "094"
+    },
+    {
+     "q": 1,
+     "n": "Heimerdinger, Inventor",
+     "s": "OGN",
+     "c": "111"
+    },
+    {
+     "q": 2,
+     "n": "Consult the Past",
+     "s": "OGN",
+     "c": "083"
+    },
+    {
+     "q": 3,
+     "n": "Cruel Patron",
+     "s": "OGN",
+     "c": "208"
+    },
+    {
+     "q": 2,
+     "n": "Jeweled Colossus",
+     "s": "OGN",
+     "c": "086"
+    },
+    {
+     "q": 1,
+     "n": "Wraith of Echoes",
+     "s": "OGN",
+     "c": "118"
+    },
+    {
+     "q": 1,
+     "n": "Grand Strategem",
+     "s": "OGN",
+     "c": "233"
+    }
+   ]
+  },
+  {
+   "id": "ogn-leesin",
+   "product": "Origins Champion Deck: Lee Sin",
+   "set": "OGN",
+   "kind": "champion",
+   "name": "Lee Sin",
+   "source": "Piltover Archive official list (System account)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Blind Monk",
+     "s": "OGN",
+     "c": "257"
+    }
+   ],
+   "champion": [
+    {
+     "q": 1,
+     "n": "Lee Sin, Centered",
+     "s": "OGN",
+     "c": "151"
+    }
+   ],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Grove of the God-Willow",
+     "s": "OGN",
+     "c": "280"
+    },
+    {
+     "q": 1,
+     "n": "Targon's Peak",
+     "s": "OGN",
+     "c": "289"
+    },
+    {
+     "q": 1,
+     "n": "Monastery of Hirana",
+     "s": "OGN",
+     "c": "282"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Calm Rune",
+     "s": "OGN",
+     "c": "042"
+    },
+    {
+     "q": 6,
+     "n": "Body Rune",
+     "s": "OGN",
+     "c": "126"
+    }
+   ],
+   "main": [
+    {
+     "q": 2,
+     "n": "Charm",
+     "s": "OGN",
+     "c": "043"
+    },
+    {
+     "q": 3,
+     "n": "Discipline",
+     "s": "OGN",
+     "c": "058"
+    },
+    {
+     "q": 1,
+     "n": "Mask of Foresight",
+     "s": "OGN",
+     "c": "060"
+    },
+    {
+     "q": 3,
+     "n": "Pit Rookie",
+     "s": "OGN",
+     "c": "136"
+    },
+    {
+     "q": 3,
+     "n": "Stalwart Poro",
+     "s": "OGN",
+     "c": "052"
+    },
+    {
+     "q": 3,
+     "n": "Challenge",
+     "s": "OGN",
+     "c": "128"
+    },
+    {
+     "q": 3,
+     "n": "First Mate",
+     "s": "OGN",
+     "c": "132"
+    },
+    {
+     "q": 1,
+     "n": "Mistfall",
+     "s": "OGN",
+     "c": "152"
+    },
+    {
+     "q": 2,
+     "n": "Pakaa Cub",
+     "s": "OGN",
+     "c": "135"
+    },
+    {
+     "q": 2,
+     "n": "Stand United",
+     "s": "OGN",
+     "c": "053"
+    },
+    {
+     "q": 3,
+     "n": "Wielder of Water",
+     "s": "OGN",
+     "c": "055"
+    },
+    {
+     "q": 3,
+     "n": "Wildclaw Shaman",
+     "s": "OGN",
+     "c": "147"
+    },
+    {
+     "q": 3,
+     "n": "Wizened Elder",
+     "s": "OGN",
+     "c": "065"
+    },
+    {
+     "q": 2,
+     "n": "Bilgewater Bully",
+     "s": "OGN",
+     "c": "125"
+    },
+    {
+     "q": 1,
+     "n": "Udyr, Wildman",
+     "s": "OGN",
+     "c": "157"
+    },
+    {
+     "q": 2,
+     "n": "Stormclaw Ursine",
+     "s": "OGN",
+     "c": "137"
+    },
+    {
+     "q": 2,
+     "n": "Mountain Drake",
+     "s": "OGN",
+     "c": "142"
+    }
+   ]
+  },
+  {
+   "id": "sfd-rumble",
+   "product": "Spiritforged Champion Deck: Rumble",
+   "set": "SFD",
+   "kind": "champion",
+   "name": "Rumble",
+   "source": "Piltover Archive official list (System account)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Mechanized Menace",
+     "s": "SFD",
+     "c": "181"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Minefield",
+     "s": "SFD",
+     "c": "212"
+    },
+    {
+     "q": 1,
+     "n": "Ravenbloom Conservatory",
+     "s": "SFD",
+     "c": "215"
+    },
+    {
+     "q": 1,
+     "n": "Treasure Hoard",
+     "s": "SFD",
+     "c": "220"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Fury Rune",
+     "s": "OGN",
+     "c": "007"
+    },
+    {
+     "q": 6,
+     "n": "Mind Rune",
+     "s": "OGN",
+     "c": "089"
+    }
+   ],
+   "main": [
+    {
+     "q": 2,
+     "n": "Rumble, Hotheaded",
+     "s": "SFD",
+     "c": "026"
+    },
+    {
+     "q": 1,
+     "n": "Rumble, Scrapper",
+     "s": "SFD",
+     "c": "089"
+    },
+    {
+     "q": 2,
+     "n": "Stupefy",
+     "s": "OGN",
+     "c": "095"
+    },
+    {
+     "q": 1,
+     "n": "Danger Zone",
+     "s": "SFD",
+     "c": "182"
+    },
+    {
+     "q": 3,
+     "n": "Forecaster",
+     "s": "SFD",
+     "c": "065"
+    },
+    {
+     "q": 2,
+     "n": "Frigid Touch",
+     "s": "SFD",
+     "c": "066"
+    },
+    {
+     "q": 3,
+     "n": "Gem Jammer",
+     "s": "SFD",
+     "c": "007"
+    },
+    {
+     "q": 3,
+     "n": "Plundering Poro",
+     "s": "SFD",
+     "c": "069"
+    },
+    {
+     "q": 1,
+     "n": "Long Sword",
+     "s": "SFD",
+     "c": "022"
+    },
+    {
+     "q": 3,
+     "n": "Bubble Bot",
+     "s": "SFD",
+     "c": "062"
+    },
+    {
+     "q": 3,
+     "n": "Dangerous Duo",
+     "s": "OGN",
+     "c": "016"
+    },
+    {
+     "q": 2,
+     "n": "Wages of Pain",
+     "s": "SFD",
+     "c": "070"
+    },
+    {
+     "q": 3,
+     "n": "Void Seeker",
+     "s": "OGN",
+     "c": "024"
+    },
+    {
+     "q": 1,
+     "n": "Assembly Rig",
+     "s": "SFD",
+     "c": "019"
+    },
+    {
+     "q": 2,
+     "n": "Consult the Past",
+     "s": "OGN",
+     "c": "083"
+    },
+    {
+     "q": 3,
+     "n": "Production Surge",
+     "s": "SFD",
+     "c": "076"
+    },
+    {
+     "q": 2,
+     "n": "Ferrous Forerunner",
+     "s": "SFD",
+     "c": "021"
+    },
+    {
+     "q": 1,
+     "n": "Singularity",
+     "s": "OGN",
+     "c": "105"
+    },
+    {
+     "q": 2,
+     "n": "Breakneck Mech",
+     "s": "SFD",
+     "c": "071"
+    }
+   ]
+  },
+  {
+   "id": "sfd-fiora",
+   "product": "Spiritforged Champion Deck: Fiora",
+   "set": "SFD",
+   "kind": "champion",
+   "name": "Fiora",
+   "source": "Piltover Archive official list (System account)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Grand Duelist",
+     "s": "SFD",
+     "c": "205"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Sunken Temple",
+     "s": "SFD",
+     "c": "218"
+    },
+    {
+     "q": 1,
+     "n": "Ornn's Forge",
+     "s": "SFD",
+     "c": "213"
+    },
+    {
+     "q": 1,
+     "n": "Veiled Temple",
+     "s": "SFD",
+     "c": "221"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Order Rune",
+     "s": "OGN",
+     "c": "214"
+    },
+    {
+     "q": 6,
+     "n": "Body Rune",
+     "s": "OGN",
+     "c": "126"
+    }
+   ],
+   "main": [
+    {
+     "q": 2,
+     "n": "Fiora, Peerless",
+     "s": "SFD",
+     "c": "110"
+    },
+    {
+     "q": 1,
+     "n": "Fiora, Worthy",
+     "s": "SFD",
+     "c": "180"
+    },
+    {
+     "q": 3,
+     "n": "Warmog's Armor",
+     "s": "SFD",
+     "c": "108"
+    },
+    {
+     "q": 2,
+     "n": "Punch First",
+     "s": "SFD",
+     "c": "097"
+    },
+    {
+     "q": 3,
+     "n": "Doran's Blade",
+     "s": "SFD",
+     "c": "095"
+    },
+    {
+     "q": 2,
+     "n": "Pit Rookie",
+     "s": "OGN",
+     "c": "136"
+    },
+    {
+     "q": 2,
+     "n": "Unsung Hero",
+     "s": "SFD",
+     "c": "167"
+    },
+    {
+     "q": 2,
+     "n": "Veteran Poro",
+     "s": "SFD",
+     "c": "099"
+    },
+    {
+     "q": 1,
+     "n": "Sacred Shears",
+     "s": "SFD",
+     "c": "172"
+    },
+    {
+     "q": 2,
+     "n": "Show of Strength",
+     "s": "SFD",
+     "c": "106"
+    },
+    {
+     "q": 1,
+     "n": "Riposte",
+     "s": "SFD",
+     "c": "206"
+    },
+    {
+     "q": 2,
+     "n": "Lucian, Merciless",
+     "s": "SFD",
+     "c": "113"
+    },
+    {
+     "q": 3,
+     "n": "Strike Down",
+     "s": "SFD",
+     "c": "107"
+    },
+    {
+     "q": 3,
+     "n": "B.F. Sword",
+     "s": "SFD",
+     "c": "161"
+    },
+    {
+     "q": 2,
+     "n": "Laurent Duelist",
+     "s": "SFD",
+     "c": "156"
+    },
+    {
+     "q": 2,
+     "n": "Royal Guard",
+     "s": "SFD",
+     "c": "157"
+    },
+    {
+     "q": 2,
+     "n": "Dauntless Vanguard",
+     "s": "SFD",
+     "c": "093"
+    },
+    {
+     "q": 2,
+     "n": "Vengeance",
+     "s": "OGN",
+     "c": "229"
+    },
+    {
+     "q": 1,
+     "n": "Yone, Blademaster",
+     "s": "SFD",
+     "c": "116"
+    },
+    {
+     "q": 2,
+     "n": "Jaull-Fish",
+     "s": "SFD",
+     "c": "103"
+    }
+   ]
+  },
+  {
+   "id": "unl-vi",
+   "product": "Unleashed Champion Deck: Vi",
+   "set": "UNL",
+   "kind": "champion",
+   "name": "Vi",
+   "source": "Piltover Archive official list (System account)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Piltover Enforcer",
+     "s": "UNL",
+     "c": "187"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Trapping Grounds",
+     "s": "UNL",
+     "c": "217"
+    },
+    {
+     "q": 1,
+     "n": "Star Spring",
+     "s": "UNL",
+     "c": "215"
+    },
+    {
+     "q": 1,
+     "n": "Valley of Idols",
+     "s": "UNL",
+     "c": "218"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Fury Rune",
+     "s": "OGN",
+     "c": "007"
+    },
+    {
+     "q": 6,
+     "n": "Order Rune",
+     "s": "OGN",
+     "c": "214"
+    }
+   ],
+   "main": [
+    {
+     "q": 2,
+     "n": "Vi, Peacekeeper",
+     "s": "UNL",
+     "c": "176"
+    },
+    {
+     "q": 2,
+     "n": "Serrated Dirk",
+     "s": "SFD",
+     "c": "009"
+    },
+    {
+     "q": 2,
+     "n": "Vault Breaker",
+     "s": "UNL",
+     "c": "010"
+    },
+    {
+     "q": 2,
+     "n": "Carrion Dredger",
+     "s": "UNL",
+     "c": "153"
+    },
+    {
+     "q": 2,
+     "n": "Divining Shells",
+     "s": "UNL",
+     "c": "161"
+    },
+    {
+     "q": 3,
+     "n": "Inferna",
+     "s": "UNL",
+     "c": "002"
+    },
+    {
+     "q": 1,
+     "n": "Tactical Retreat",
+     "s": "UNL",
+     "c": "175"
+    },
+    {
+     "q": 1,
+     "n": "Upstage Comedy",
+     "s": "UNL",
+     "c": "009"
+    },
+    {
+     "q": 1,
+     "n": "Soul Harvest",
+     "s": "UNL",
+     "c": "159"
+    },
+    {
+     "q": 1,
+     "n": "Vi, Destructive",
+     "s": "OGN",
+     "c": "036"
+    },
+    {
+     "q": 2,
+     "n": "Crimson Pigeons",
+     "s": "UNL",
+     "c": "154"
+    },
+    {
+     "q": 1,
+     "n": "Hextech Gauntlets",
+     "s": "UNL",
+     "c": "188"
+    },
+    {
+     "q": 2,
+     "n": "Loyal Poro",
+     "s": "UNL",
+     "c": "156"
+    },
+    {
+     "q": 2,
+     "n": "Sharkling",
+     "s": "UNL",
+     "c": "006"
+    },
+    {
+     "q": 2,
+     "n": "Right of Conquest",
+     "s": "UNL",
+     "c": "015"
+    },
+    {
+     "q": 2,
+     "n": "Mageseeker Investigator",
+     "s": "UNL",
+     "c": "163"
+    },
+    {
+     "q": 2,
+     "n": "Square Up",
+     "s": "UNL",
+     "c": "017"
+    },
+    {
+     "q": 1,
+     "n": "Vi, Hotheaded",
+     "s": "UNL",
+     "c": "030"
+    },
+    {
+     "q": 1,
+     "n": "Rengar, Unseen",
+     "s": "UNL",
+     "c": "024"
+    },
+    {
+     "q": 1,
+     "n": "Arena Kingpin",
+     "s": "UNL",
+     "c": "001"
+    },
+    {
+     "q": 1,
+     "n": "Xerath, Freed",
+     "s": "UNL",
+     "c": "026"
+    },
+    {
+     "q": 2,
+     "n": "Lord Broadmane",
+     "s": "UNL",
+     "c": "012"
+    },
+    {
+     "q": 2,
+     "n": "Towering Pairofant",
+     "s": "UNL",
+     "c": "008"
+    },
+    {
+     "q": 2,
+     "n": "Yeti Brawler",
+     "s": "UNL",
+     "c": "018"
+    }
+   ]
+  },
+  {
+   "id": "unl-vex",
+   "product": "Unleashed Champion Deck: Vex",
+   "set": "UNL",
+   "kind": "champion",
+   "name": "Vex",
+   "source": "Piltover Archive official list (System account)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Gloomist",
+     "s": "UNL",
+     "c": "193"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Amateur Recital",
+     "s": "UNL",
+     "c": "207"
+    },
+    {
+     "q": 1,
+     "n": "Gardens of Becoming",
+     "s": "UNL",
+     "c": "213"
+    },
+    {
+     "q": 1,
+     "n": "Ripper's Bay",
+     "s": "UNL",
+     "c": "214"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Calm Rune",
+     "s": "OGN",
+     "c": "042"
+    },
+    {
+     "q": 6,
+     "n": "Chaos Rune",
+     "s": "OGN",
+     "c": "166"
+    }
+   ],
+   "main": [
+    {
+     "q": 2,
+     "n": "Vex, Mocking",
+     "s": "UNL",
+     "c": "055"
+    },
+    {
+     "q": 2,
+     "n": "Combat Experience",
+     "s": "UNL",
+     "c": "031"
+    },
+    {
+     "q": 1,
+     "n": "Scryer's Bloom",
+     "s": "UNL",
+     "c": "136"
+    },
+    {
+     "q": 2,
+     "n": "Soul Sword",
+     "s": "UNL",
+     "c": "039"
+    },
+    {
+     "q": 2,
+     "n": "Existential Dread",
+     "s": "UNL",
+     "c": "134"
+    },
+    {
+     "q": 1,
+     "n": "Evelynn, Entrancing",
+     "s": "UNL",
+     "c": "141"
+    },
+    {
+     "q": 2,
+     "n": "Mister Root",
+     "s": "UNL",
+     "c": "127"
+    },
+    {
+     "q": 2,
+     "n": "Mutated Mouser",
+     "s": "UNL",
+     "c": "036"
+    },
+    {
+     "q": 3,
+     "n": "Wuju Apprentice",
+     "s": "UNL",
+     "c": "040"
+    },
+    {
+     "q": 2,
+     "n": "Skyward Strike",
+     "s": "UNL",
+     "c": "038"
+    },
+    {
+     "q": 2,
+     "n": "Allay, Eager Admirer",
+     "s": "UNL",
+     "c": "041"
+    },
+    {
+     "q": 3,
+     "n": "Back Off",
+     "s": "UNL",
+     "c": "042"
+    },
+    {
+     "q": 1,
+     "n": "Enthusiastic Promoter",
+     "s": "UNL",
+     "c": "043"
+    },
+    {
+     "q": 1,
+     "n": "Nami, Headstrong",
+     "s": "UNL",
+     "c": "052"
+    },
+    {
+     "q": 1,
+     "n": "Shadow",
+     "s": "UNL",
+     "c": "194"
+    },
+    {
+     "q": 2,
+     "n": "Trevor Snoozebottom",
+     "s": "UNL",
+     "c": "048"
+    },
+    {
+     "q": 2,
+     "n": "Mosstomper",
+     "s": "UNL",
+     "c": "047"
+    },
+    {
+     "q": 1,
+     "n": "Vex, Apathetic",
+     "s": "UNL",
+     "c": "150"
+    },
+    {
+     "q": 2,
+     "n": "Blast Cone",
+     "s": "UNL",
+     "c": "133"
+    },
+    {
+     "q": 2,
+     "n": "Herald of Spring",
+     "s": "UNL",
+     "c": "034"
+    },
+    {
+     "q": 1,
+     "n": "Vex, Cheerless",
+     "s": "SFD",
+     "c": "146"
+    },
+    {
+     "q": 1,
+     "n": "Megatusk",
+     "s": "UNL",
+     "c": "126"
+    },
+    {
+     "q": 1,
+     "n": "Monch",
+     "s": "UNL",
+     "c": "035"
+    },
+    {
+     "q": 1,
+     "n": "Iascylla",
+     "s": "UNL",
+     "c": "050"
+    }
+   ]
+  },
+  {
+   "id": "sfd-pr-jax",
+   "product": "Spiritforged Pre-Rift",
+   "set": "SFD",
+   "kind": "prerift",
+   "name": "Jax",
+   "source": "Piltover Archive official list (System account)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Grandmaster at Arms",
+     "s": "SFD",
+     "c": "193"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Ornn's Forge",
+     "s": "SFD",
+     "c": "213"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Calm Rune",
+     "s": "OGN",
+     "c": "042"
+    },
+    {
+     "q": 6,
+     "n": "Body Rune",
+     "s": "OGN",
+     "c": "126"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Jax, Unmatched",
+     "s": "SFD",
+     "c": "054"
+    },
+    {
+     "q": 1,
+     "n": "Doran's Shield",
+     "s": "SFD",
+     "c": "033"
+    },
+    {
+     "q": 1,
+     "n": "Apprentice Smith",
+     "s": "SFD",
+     "c": "041"
+    },
+    {
+     "q": 1,
+     "n": "Brutalizer",
+     "s": "SFD",
+     "c": "042"
+    },
+    {
+     "q": 1,
+     "n": "Doran's Blade",
+     "s": "SFD",
+     "c": "095"
+    },
+    {
+     "q": 1,
+     "n": "Hexdrinker",
+     "s": "SFD",
+     "c": "102"
+    },
+    {
+     "q": 1,
+     "n": "Sea Monkey",
+     "s": "SFD",
+     "c": "098"
+    },
+    {
+     "q": 1,
+     "n": "Thwonk!",
+     "s": "SFD",
+     "c": "040"
+    },
+    {
+     "q": 1,
+     "n": "Strike Down",
+     "s": "SFD",
+     "c": "107"
+    },
+    {
+     "q": 1,
+     "n": "Navori Scout",
+     "s": "SFD",
+     "c": "037"
+    },
+    {
+     "q": 1,
+     "n": "Dauntless Vanguard",
+     "s": "SFD",
+     "c": "093"
+    },
+    {
+     "q": 1,
+     "n": "Combat Chef",
+     "s": "SFD",
+     "c": "092"
+    },
+    {
+     "q": 1,
+     "n": "Guardian of the Passage",
+     "s": "SFD",
+     "c": "035"
+    }
+   ]
+  },
+  {
+   "id": "sfd-pr-irelia",
+   "product": "Spiritforged Pre-Rift",
+   "set": "SFD",
+   "kind": "prerift",
+   "name": "Irelia",
+   "source": "Piltover Archive official list (System account)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Blade Dancer",
+     "s": "SFD",
+     "c": "195"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Treasure Hoard",
+     "s": "SFD",
+     "c": "220"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Calm Rune",
+     "s": "OGN",
+     "c": "042"
+    },
+    {
+     "q": 6,
+     "n": "Chaos Rune",
+     "s": "OGN",
+     "c": "166"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Irelia, Graceful",
+     "s": "SFD",
+     "c": "141"
+    },
+    {
+     "q": 1,
+     "n": "Doran's Ring",
+     "s": "SFD",
+     "c": "124"
+    },
+    {
+     "q": 1,
+     "n": "Feral Strength",
+     "s": "SFD",
+     "c": "034"
+    },
+    {
+     "q": 1,
+     "n": "Lonely Poro",
+     "s": "SFD",
+     "c": "036"
+    },
+    {
+     "q": 1,
+     "n": "Treasure Hunter",
+     "s": "SFD",
+     "c": "130"
+    },
+    {
+     "q": 1,
+     "n": "Not So Fast",
+     "s": "SFD",
+     "c": "045"
+    },
+    {
+     "q": 1,
+     "n": "Boots of Swiftness",
+     "s": "SFD",
+     "c": "133"
+    },
+    {
+     "q": 1,
+     "n": "Ribbon Dancer",
+     "s": "SFD",
+     "c": "038"
+    },
+    {
+     "q": 1,
+     "n": "Royal Entourage",
+     "s": "SFD",
+     "c": "039"
+    },
+    {
+     "q": 1,
+     "n": "Fae Porter",
+     "s": "SFD",
+     "c": "125"
+    },
+    {
+     "q": 1,
+     "n": "Harpoon Squad",
+     "s": "SFD",
+     "c": "137"
+    },
+    {
+     "q": 1,
+     "n": "Stellacorn Herder",
+     "s": "SFD",
+     "c": "048"
+    },
+    {
+     "q": 1,
+     "n": "Master Bingwen",
+     "s": "SFD",
+     "c": "127"
+    }
+   ]
+  },
+  {
+   "id": "sfd-pr-ezreal",
+   "product": "Spiritforged Pre-Rift",
+   "set": "SFD",
+   "kind": "prerift",
+   "name": "Ezreal",
+   "source": "Piltover Archive official list (System account)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Prodigal Explorer",
+     "s": "SFD",
+     "c": "199"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Ravenbloom Conservatory",
+     "s": "SFD",
+     "c": "215"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Mind Rune",
+     "s": "OGN",
+     "c": "089"
+    },
+    {
+     "q": 6,
+     "n": "Chaos Rune",
+     "s": "OGN",
+     "c": "166"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Ezreal, Dashing",
+     "s": "SFD",
+     "c": "082"
+    },
+    {
+     "q": 1,
+     "n": "Called Shot",
+     "s": "SFD",
+     "c": "122"
+    },
+    {
+     "q": 1,
+     "n": "Doran's Ring",
+     "s": "SFD",
+     "c": "124"
+    },
+    {
+     "q": 1,
+     "n": "Frigid Touch",
+     "s": "SFD",
+     "c": "066"
+    },
+    {
+     "q": 1,
+     "n": "Plundering Poro",
+     "s": "SFD",
+     "c": "069"
+    },
+    {
+     "q": 1,
+     "n": "Temptation",
+     "s": "SFD",
+     "c": "129"
+    },
+    {
+     "q": 1,
+     "n": "Windsinger",
+     "s": "SFD",
+     "c": "138"
+    },
+    {
+     "q": 1,
+     "n": "Frostcoat Cub",
+     "s": "SFD",
+     "c": "067"
+    },
+    {
+     "q": 1,
+     "n": "Loyal Pup",
+     "s": "SFD",
+     "c": "126"
+    },
+    {
+     "q": 1,
+     "n": "Temporal Portal",
+     "s": "SFD",
+     "c": "078"
+    },
+    {
+     "q": 1,
+     "n": "Wages of Pain",
+     "s": "SFD",
+     "c": "070"
+    },
+    {
+     "q": 1,
+     "n": "Rocket Barrage",
+     "s": "SFD",
+     "c": "077"
+    },
+    {
+     "q": 1,
+     "n": "Beast Below",
+     "s": "SFD",
+     "c": "132"
+    }
+   ]
+  },
+  {
+   "id": "ven-sd-shen",
+   "product": "Vendetta Zed vs Shen Showdown Decks",
+   "set": "VEN",
+   "kind": "showdown",
+   "name": "Shen",
+   "source": "Riot, \"The Vendetta Overview\" (playriftbound.com)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Eye of Twilight"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Kinkou Temple"
+    },
+    {
+     "q": 1,
+     "n": "Grove of the God-Willow"
+    },
+    {
+     "q": 1,
+     "n": "Threshold of the Gray"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Order Rune"
+    },
+    {
+     "q": 6,
+     "n": "Calm Rune"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Shen, Leader of the Kinkou Order"
+    },
+    {
+     "q": 2,
+     "n": "Shen, Scourge of Shadows"
+    },
+    {
+     "q": 1,
+     "n": "Shen, Kinkou"
+    },
+    {
+     "q": 1,
+     "n": "Shadow Dash"
+    },
+    {
+     "q": 1,
+     "n": "Steel Paws"
+    },
+    {
+     "q": 1,
+     "n": "Kennen, Keeper of Balance"
+    },
+    {
+     "q": 2,
+     "n": "Sacred Protector"
+    },
+    {
+     "q": 1,
+     "n": "Resonating Strike"
+    },
+    {
+     "q": 1,
+     "n": "Ki Barrier"
+    },
+    {
+     "q": 2,
+     "n": "Discipline"
+    },
+    {
+     "q": 2,
+     "n": "Noxian Emissary"
+    },
+    {
+     "q": 2,
+     "n": "Pakaa Protector"
+    },
+    {
+     "q": 1,
+     "n": "Lacerate"
+    },
+    {
+     "q": 3,
+     "n": "Mournful Witness"
+    },
+    {
+     "q": 3,
+     "n": "Disciple of Shen"
+    },
+    {
+     "q": 2,
+     "n": "Hand Hammer"
+    },
+    {
+     "q": 1,
+     "n": "Twilight Shroud"
+    },
+    {
+     "q": 2,
+     "n": "Soulspinner"
+    },
+    {
+     "q": 2,
+     "n": "Keeper of Law"
+    },
+    {
+     "q": 2,
+     "n": "Field Musicians"
+    },
+    {
+     "q": 2,
+     "n": "Charm"
+    },
+    {
+     "q": 2,
+     "n": "Serene Ascetic"
+    },
+    {
+     "q": 2,
+     "n": "Loyal Poro"
+    },
+    {
+     "q": 1,
+     "n": "Dragon Form"
+    }
+   ]
+  },
+  {
+   "id": "ven-sd-zed",
+   "product": "Vendetta Zed vs Shen Showdown Decks",
+   "set": "VEN",
+   "kind": "showdown",
+   "name": "Zed",
+   "source": "Riot, \"The Vendetta Overview\" (playriftbound.com)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Master of Shadows"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Zaun Warrens"
+    },
+    {
+     "q": 1,
+     "n": "Shadow Temple"
+    },
+    {
+     "q": 1,
+     "n": "Threshold of the Gray"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Chaos Rune"
+    },
+    {
+     "q": 6,
+     "n": "Fury Rune"
+    }
+   ],
+   "main": [
+    {
+     "q": 2,
+     "n": "Zed, Without a Sound"
+    },
+    {
+     "q": 1,
+     "n": "Zed, From the Shadows"
+    },
+    {
+     "q": 1,
+     "n": "Mel, Defiant Soul"
+    },
+    {
+     "q": 1,
+     "n": "Morgana, Vindictive"
+    },
+    {
+     "q": 1,
+     "n": "Death Mark"
+    },
+    {
+     "q": 1,
+     "n": "Twilight Reveler"
+    },
+    {
+     "q": 2,
+     "n": "Twilight Step"
+    },
+    {
+     "q": 2,
+     "n": "Perfect Execution"
+    },
+    {
+     "q": 1,
+     "n": "Wind and Ghosts"
+    },
+    {
+     "q": 2,
+     "n": "Gust Monk"
+    },
+    {
+     "q": 2,
+     "n": "Shadow Fiend"
+    },
+    {
+     "q": 3,
+     "n": "Shadow Assassin"
+    },
+    {
+     "q": 1,
+     "n": "Ravenbloom Prefect"
+    },
+    {
+     "q": 2,
+     "n": "Traveling Merchant"
+    },
+    {
+     "q": 3,
+     "n": "Shadow Order Disciple"
+    },
+    {
+     "q": 3,
+     "n": "Punching Poro"
+    },
+    {
+     "q": 3,
+     "n": "Ruthless Strike"
+    },
+    {
+     "q": 3,
+     "n": "Shadowblade Lurker"
+    },
+    {
+     "q": 3,
+     "n": "Blade Twirler"
+    },
+    {
+     "q": 3,
+     "n": "Kinkou Lifeblade"
+    }
+   ],
+   "note": "Riot lists \"3 Shadowcloaked Assassin\"; the printed card is Shadowblade Lurker (VEN-096)."
+  },
+  {
+   "id": "rad-sd-evelynn",
+   "product": "Radiance Evelynn vs Seraphine Showdown Decks",
+   "set": "RAD",
+   "kind": "showdown",
+   "name": "Evelynn",
+   "source": "riftbound.zone, citing Riot's \"The Radiance Overview\"",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Agony's Embrace",
+     "s": "RAD",
+     "c": "153"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Bandle Scouts' Academy",
+     "s": "RAD",
+     "c": "157"
+    },
+    {
+     "q": 1,
+     "n": "Rakelstake",
+     "s": "RAD",
+     "c": "165"
+    },
+    {
+     "q": 1,
+     "n": "Bandle Tree",
+     "s": "OGN",
+     "c": "278"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Body Rune",
+     "s": "OGN",
+     "c": "126"
+    },
+    {
+     "q": 6,
+     "n": "Chaos Rune",
+     "s": "OGN",
+     "c": "166"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Evelynn, Consuming",
+     "s": "RAD",
+     "c": "090"
+    },
+    {
+     "q": 1,
+     "n": "Evelynn, In Control",
+     "s": "RAD",
+     "c": "109"
+    },
+    {
+     "q": 2,
+     "n": "Evelynn, Entrancing",
+     "s": "UNL",
+     "c": "141"
+    },
+    {
+     "q": 1,
+     "n": "K'Sante, Courageous",
+     "s": "RAD",
+     "c": "086"
+    },
+    {
+     "q": 2,
+     "n": "Gutter Guardian",
+     "s": "RAD",
+     "c": "103"
+    },
+    {
+     "q": 2,
+     "n": "Elnuk Herd",
+     "s": "RAD",
+     "c": "081"
+    },
+    {
+     "q": 2,
+     "n": "Reckless Innovator",
+     "s": "RAD",
+     "c": "105"
+    },
+    {
+     "q": 1,
+     "n": "Pitiless Stalker",
+     "s": "RAD",
+     "c": "104"
+    },
+    {
+     "q": 3,
+     "n": "Sneaky Zeebles",
+     "s": "RAD",
+     "c": "076"
+    },
+    {
+     "q": 3,
+     "n": "Siren of the Shallows",
+     "s": "RAD",
+     "c": "097"
+    },
+    {
+     "q": 2,
+     "n": "Momentary Companion",
+     "s": "RAD",
+     "c": "095"
+    },
+    {
+     "q": 2,
+     "n": "Suave Negotiator",
+     "s": "RAD",
+     "c": "099"
+    },
+    {
+     "q": 2,
+     "n": "Pakaa Cub",
+     "s": "OGN",
+     "c": "135"
+    },
+    {
+     "q": 2,
+     "n": "Wrath of the Freljord",
+     "s": "RAD",
+     "c": "077"
+    },
+    {
+     "q": 2,
+     "n": "Black Market Broker",
+     "s": "SFD",
+     "c": "121"
+    },
+    {
+     "q": 1,
+     "n": "Last Caress",
+     "s": "RAD",
+     "c": "154"
+    },
+    {
+     "q": 1,
+     "n": "Demon Shade",
+     "s": "RAD",
+     "c": "102"
+    },
+    {
+     "q": 2,
+     "n": "Wind and Ghosts",
+     "s": "VEN",
+     "c": "106"
+    },
+    {
+     "q": 2,
+     "n": "Hold 'Em",
+     "s": "RAD",
+     "c": "070"
+    },
+    {
+     "q": 2,
+     "n": "The Waters' Wage",
+     "s": "RAD",
+     "c": "100"
+    },
+    {
+     "q": 2,
+     "n": "Siren's Song",
+     "s": "RAD",
+     "c": "098"
+    },
+    {
+     "q": 1,
+     "n": "Bushwhack Trap",
+     "s": "RAD",
+     "c": "108"
+    },
+    {
+     "q": 1,
+     "n": "The Good Stuff",
+     "s": "RAD",
+     "c": "106"
+    }
+   ]
+  },
+  {
+   "id": "rad-sd-seraphine",
+   "product": "Radiance Evelynn vs Seraphine Showdown Decks",
+   "set": "RAD",
+   "kind": "showdown",
+   "name": "Seraphine",
+   "source": "riftbound.zone, citing Riot's \"The Radiance Overview\"",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Starry-Eyed Songstress",
+     "s": "RAD",
+     "c": "151"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Black Rose Sanctum",
+     "s": "RAD",
+     "c": "159"
+    },
+    {
+     "q": 1,
+     "n": "Ruined Monastery",
+     "s": "RAD",
+     "c": "166"
+    },
+    {
+     "q": 1,
+     "n": "Valley of Idols",
+     "s": "UNL",
+     "c": "218"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Mind Rune",
+     "s": "OGN",
+     "c": "089"
+    },
+    {
+     "q": 6,
+     "n": "Order Rune",
+     "s": "OGN",
+     "c": "214"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Seraphine, Not Alone",
+     "s": "RAD",
+     "c": "138"
+    },
+    {
+     "q": 2,
+     "n": "Seraphine, Inspiring",
+     "s": "RAD",
+     "c": "065"
+    },
+    {
+     "q": 1,
+     "n": "Heimerdinger, Academy Instructor",
+     "s": "RAD",
+     "c": "132"
+    },
+    {
+     "q": 2,
+     "n": "Piltovan Guidebot",
+     "s": "RAD",
+     "c": "057"
+    },
+    {
+     "q": 1,
+     "n": "Dune Devourer",
+     "s": "RAD",
+     "c": "125"
+    },
+    {
+     "q": 1,
+     "n": "The Empyrean",
+     "s": "RAD",
+     "c": "060"
+    },
+    {
+     "q": 2,
+     "n": "Steadfast Outrider",
+     "s": "RAD",
+     "c": "128"
+    },
+    {
+     "q": 3,
+     "n": "Strigian Oracle",
+     "s": "RAD",
+     "c": "053"
+    },
+    {
+     "q": 2,
+     "n": "Hunting Dog",
+     "s": "RAD",
+     "c": "119"
+    },
+    {
+     "q": 2,
+     "n": "Industrious Mechsmith",
+     "s": "RAD",
+     "c": "049"
+    },
+    {
+     "q": 1,
+     "n": "Herald of the Emperor",
+     "s": "RAD",
+     "c": "118"
+    },
+    {
+     "q": 1,
+     "n": "Party Crasher",
+     "s": "RAD",
+     "c": "122"
+    },
+    {
+     "q": 2,
+     "n": "Faithful Manufactor",
+     "s": "OGN",
+     "c": "211"
+    },
+    {
+     "q": 2,
+     "n": "Meticulous Restorationist",
+     "s": "RAD",
+     "c": "120"
+    },
+    {
+     "q": 1,
+     "n": "Encore",
+     "s": "RAD",
+     "c": "152"
+    },
+    {
+     "q": 2,
+     "n": "Raucous Anthem",
+     "s": "RAD",
+     "c": "134"
+    },
+    {
+     "q": 2,
+     "n": "Rousing Display",
+     "s": "RAD",
+     "c": "127"
+    },
+    {
+     "q": 2,
+     "n": "Supernova",
+     "s": "RAD",
+     "c": "059"
+    },
+    {
+     "q": 1,
+     "n": "Burn Away",
+     "s": "RAD",
+     "c": "124"
+    },
+    {
+     "q": 2,
+     "n": "High Note",
+     "s": "RAD",
+     "c": "048"
+    },
+    {
+     "q": 2,
+     "n": "Fanfare",
+     "s": "RAD",
+     "c": "047"
+    },
+    {
+     "q": 1,
+     "n": "For Demacia!",
+     "s": "RAD",
+     "c": "117"
+    },
+    {
+     "q": 1,
+     "n": "Moonlight Affliction",
+     "s": "UNL",
+     "c": "066"
+    },
+    {
+     "q": 3,
+     "n": "Concert Poster",
+     "s": "RAD",
+     "c": "116"
+    }
+   ]
+  },
+  {
+   "id": "rad-pr-riven",
+   "product": "Radiance Pre-Rift",
+   "set": "RAD",
+   "kind": "prerift",
+   "name": "Riven",
+   "source": "Piltover Archive official list (System account)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "The Exile",
+     "s": "RAD",
+     "c": "149"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Hunters' Circle",
+     "s": "RAD",
+     "c": "163"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Calm Rune",
+     "s": "OGN",
+     "c": "042"
+    },
+    {
+     "q": 6,
+     "n": "Chaos Rune",
+     "s": "OGN",
+     "c": "166"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Riven, Broken Blade",
+     "s": "RAD",
+     "c": "043"
+    },
+    {
+     "q": 1,
+     "n": "Consult the Heavens",
+     "s": "RAD",
+     "c": "025"
+    },
+    {
+     "q": 1,
+     "n": "Hunker Down",
+     "s": "RAD",
+     "c": "034"
+    },
+    {
+     "q": 1,
+     "n": "Ki Burst",
+     "s": "RAD",
+     "c": "028"
+    },
+    {
+     "q": 1,
+     "n": "Life from Stone",
+     "s": "RAD",
+     "c": "029"
+    },
+    {
+     "q": 1,
+     "n": "Entrenched Boar",
+     "s": "RAD",
+     "c": "026"
+    },
+    {
+     "q": 1,
+     "n": "Siren of the Shallows",
+     "s": "RAD",
+     "c": "097"
+    },
+    {
+     "q": 1,
+     "n": "Invigorating Bloom",
+     "s": "RAD",
+     "c": "035"
+    },
+    {
+     "q": 1,
+     "n": "Iridescent Avian",
+     "s": "RAD",
+     "c": "027"
+    },
+    {
+     "q": 1,
+     "n": "Reckless Innovator",
+     "s": "RAD",
+     "c": "105"
+    },
+    {
+     "q": 1,
+     "n": "Disposal Expert",
+     "s": "RAD",
+     "c": "093"
+    },
+    {
+     "q": 1,
+     "n": "Stoic Ferryman",
+     "s": "RAD",
+     "c": "031"
+    },
+    {
+     "q": 1,
+     "n": "Pitiless Stalker",
+     "s": "RAD",
+     "c": "104"
+    }
+   ]
+  },
+  {
+   "id": "rad-pr-ekko",
+   "product": "Radiance Pre-Rift",
+   "set": "RAD",
+   "kind": "prerift",
+   "name": "Ekko",
+   "source": "Piltover Archive official list (System account)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Boy Who Shattered Time",
+     "s": "RAD",
+     "c": "139"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Firelights' Hideout",
+     "s": "RAD",
+     "c": "162"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Fury Rune",
+     "s": "OGN",
+     "c": "007"
+    },
+    {
+     "q": 6,
+     "n": "Mind Rune",
+     "s": "OGN",
+     "c": "089"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Ekko, Ingenious",
+     "s": "RAD",
+     "c": "061"
+    },
+    {
+     "q": 1,
+     "n": "Banner of Conquest",
+     "s": "RAD",
+     "c": "002"
+    },
+    {
+     "q": 1,
+     "n": "Forbidden Technique",
+     "s": "RAD",
+     "c": "010"
+    },
+    {
+     "q": 1,
+     "n": "Lingering Animus",
+     "s": "RAD",
+     "c": "005"
+    },
+    {
+     "q": 1,
+     "n": "Parallel Convergence",
+     "s": "RAD",
+     "c": "051"
+    },
+    {
+     "q": 1,
+     "n": "Bilgewater Tracker",
+     "s": "RAD",
+     "c": "003"
+    },
+    {
+     "q": 1,
+     "n": "War Scout",
+     "s": "RAD",
+     "c": "008"
+    },
+    {
+     "q": 1,
+     "n": "Industrious Mechsmith",
+     "s": "RAD",
+     "c": "049"
+    },
+    {
+     "q": 1,
+     "n": "Riptide Mage",
+     "s": "RAD",
+     "c": "058"
+    },
+    {
+     "q": 1,
+     "n": "Scorched Earth",
+     "s": "RAD",
+     "c": "006"
+    },
+    {
+     "q": 1,
+     "n": "Mysterious Chronomancer",
+     "s": "RAD",
+     "c": "050"
+    },
+    {
+     "q": 1,
+     "n": "Antagonistic Apparatus",
+     "s": "RAD",
+     "c": "009"
+    },
+    {
+     "q": 1,
+     "n": "The Empyrean",
+     "s": "RAD",
+     "c": "060"
+    }
+   ]
+  },
+  {
+   "id": "rad-pr-orianna",
+   "product": "Radiance Pre-Rift",
+   "set": "RAD",
+   "kind": "prerift",
+   "name": "Orianna",
+   "source": "Piltover Archive official list (System account)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Lady of Clockwork",
+     "s": "RAD",
+     "c": "145"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Hunters' Circle",
+     "s": "RAD",
+     "c": "163"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Calm Rune",
+     "s": "OGN",
+     "c": "042"
+    },
+    {
+     "q": 6,
+     "n": "Mind Rune",
+     "s": "OGN",
+     "c": "089"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Orianna, Exquisite",
+     "s": "RAD",
+     "c": "042"
+    },
+    {
+     "q": 1,
+     "n": "Consult the Heavens",
+     "s": "RAD",
+     "c": "025"
+    },
+    {
+     "q": 1,
+     "n": "Resource Extractor",
+     "s": "RAD",
+     "c": "052"
+    },
+    {
+     "q": 1,
+     "n": "Command: Attack",
+     "s": "RAD",
+     "c": "033"
+    },
+    {
+     "q": 1,
+     "n": "Blossoming Dreamroot",
+     "s": "RAD",
+     "c": "024"
+    },
+    {
+     "q": 1,
+     "n": "Strigian Oracle",
+     "s": "RAD",
+     "c": "053"
+    },
+    {
+     "q": 1,
+     "n": "Invigorating Bloom",
+     "s": "RAD",
+     "c": "035"
+    },
+    {
+     "q": 1,
+     "n": "Trinket Peddler",
+     "s": "RAD",
+     "c": "054"
+    },
+    {
+     "q": 1,
+     "n": "Improvised Projectile",
+     "s": "RAD",
+     "c": "056"
+    },
+    {
+     "q": 1,
+     "n": "Watchful Curator",
+     "s": "RAD",
+     "c": "037"
+    },
+    {
+     "q": 1,
+     "n": "Industrious Mechsmith",
+     "s": "RAD",
+     "c": "049"
+    },
+    {
+     "q": 1,
+     "n": "Stoic Ferryman",
+     "s": "RAD",
+     "c": "031"
+    },
+    {
+     "q": 1,
+     "n": "Sanctum Conservator",
+     "s": "RAD",
+     "c": "030"
+    }
+   ]
+  },
+  {
+   "id": "rad-pr-seraphine",
+   "product": "Radiance Pre-Rift",
+   "set": "RAD",
+   "kind": "prerift",
+   "name": "Seraphine",
+   "source": "Piltover Archive official list (System account)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Starry-Eyed Songstress",
+     "s": "RAD",
+     "c": "151"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Black Rose Sanctum",
+     "s": "RAD",
+     "c": "159"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Mind Rune",
+     "s": "OGN",
+     "c": "089"
+    },
+    {
+     "q": 6,
+     "n": "Order Rune",
+     "s": "OGN",
+     "c": "214"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Seraphine, Inspiring",
+     "s": "RAD",
+     "c": "065"
+    },
+    {
+     "q": 1,
+     "n": "Concert Poster",
+     "s": "RAD",
+     "c": "116"
+    },
+    {
+     "q": 1,
+     "n": "Meticulous Restorationist",
+     "s": "RAD",
+     "c": "120"
+    },
+    {
+     "q": 1,
+     "n": "Strigian Oracle",
+     "s": "RAD",
+     "c": "053"
+    },
+    {
+     "q": 1,
+     "n": "Fanfare",
+     "s": "RAD",
+     "c": "047"
+    },
+    {
+     "q": 1,
+     "n": "High Note",
+     "s": "RAD",
+     "c": "048"
+    },
+    {
+     "q": 1,
+     "n": "Industrious Mechsmith",
+     "s": "RAD",
+     "c": "049"
+    },
+    {
+     "q": 1,
+     "n": "Piltovan Guidebot",
+     "s": "RAD",
+     "c": "057"
+    },
+    {
+     "q": 1,
+     "n": "Herald of the Emperor",
+     "s": "RAD",
+     "c": "118"
+    },
+    {
+     "q": 1,
+     "n": "Rousing Display",
+     "s": "RAD",
+     "c": "127"
+    },
+    {
+     "q": 1,
+     "n": "Dune Devourer",
+     "s": "RAD",
+     "c": "125"
+    },
+    {
+     "q": 1,
+     "n": "Party Crasher",
+     "s": "RAD",
+     "c": "122"
+    },
+    {
+     "q": 1,
+     "n": "Supernova",
+     "s": "RAD",
+     "c": "059"
+    }
+   ]
+  },
+  {
+   "id": "rad-pr-jarvan",
+   "product": "Radiance Pre-Rift",
+   "set": "RAD",
+   "kind": "prerift",
+   "name": "Jarvan IV",
+   "source": "Piltover Archive official list (System account)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Exemplar of Demacia",
+     "s": "RAD",
+     "c": "155"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Hunters' Circle",
+     "s": "RAD",
+     "c": "163"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Body Rune",
+     "s": "OGN",
+     "c": "126"
+    },
+    {
+     "q": 6,
+     "n": "Order Rune",
+     "s": "OGN",
+     "c": "214"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Jarvan IV, Royal Heir",
+     "s": "RAD",
+     "c": "133"
+    },
+    {
+     "q": 1,
+     "n": "Concert Poster",
+     "s": "RAD",
+     "c": "116"
+    },
+    {
+     "q": 1,
+     "n": "Pillaged Armory",
+     "s": "RAD",
+     "c": "073"
+    },
+    {
+     "q": 1,
+     "n": "Overloaded Traveler",
+     "s": "RAD",
+     "c": "072"
+    },
+    {
+     "q": 1,
+     "n": "Trifarian Captain",
+     "s": "RAD",
+     "c": "129"
+    },
+    {
+     "q": 1,
+     "n": "Protector's Shield",
+     "s": "RAD",
+     "c": "123"
+    },
+    {
+     "q": 1,
+     "n": "For Demacia!",
+     "s": "RAD",
+     "c": "117"
+    },
+    {
+     "q": 1,
+     "n": "Hold 'Em",
+     "s": "RAD",
+     "c": "070"
+    },
+    {
+     "q": 1,
+     "n": "One-Two Punch",
+     "s": "RAD",
+     "c": "121"
+    },
+    {
+     "q": 1,
+     "n": "Steadfast Outrider",
+     "s": "RAD",
+     "c": "128"
+    },
+    {
+     "q": 1,
+     "n": "Skystrike Squadron",
+     "s": "RAD",
+     "c": "075"
+    },
+    {
+     "q": 1,
+     "n": "Armored Tusker",
+     "s": "RAD",
+     "c": "078"
+    },
+    {
+     "q": 1,
+     "n": "Bloodscent Swarm",
+     "s": "RAD",
+     "c": "080"
+    }
+   ]
+  },
+  {
+   "id": "rad-pr-ziggs",
+   "product": "Radiance Pre-Rift",
+   "set": "RAD",
+   "kind": "prerift",
+   "name": "Ziggs",
+   "source": "riftbound.zone, \"Radiance Pre-Rift Kits: All Nine Seeded Decklists\" (names; each card is 1 copy)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Hexplosives Expert"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Rakelstake"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Fury Rune",
+     "s": "OGN",
+     "c": "007"
+    },
+    {
+     "q": 6,
+     "n": "Chaos Rune",
+     "s": "OGN",
+     "c": "166"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Ziggs, Explosive"
+    },
+    {
+     "q": 1,
+     "n": "Amateur Demolitionist"
+    },
+    {
+     "q": 1,
+     "n": "Disposal Expert"
+    },
+    {
+     "q": 1,
+     "n": "Explosimian"
+    },
+    {
+     "q": 1,
+     "n": "Lingering Animus"
+    },
+    {
+     "q": 1,
+     "n": "Reckless Innovator"
+    },
+    {
+     "q": 1,
+     "n": "Runeblade Anvil"
+    },
+    {
+     "q": 1,
+     "n": "Satchel Charge"
+    },
+    {
+     "q": 1,
+     "n": "Scorched Earth"
+    },
+    {
+     "q": 1,
+     "n": "Shimmering Swimmer"
+    },
+    {
+     "q": 1,
+     "n": "Siren of the Shallows"
+    },
+    {
+     "q": 1,
+     "n": "Suave Negotiator"
+    },
+    {
+     "q": 1,
+     "n": "The Good Stuff"
+    }
+   ]
+  },
+  {
+   "id": "rad-pr-mordekaiser",
+   "product": "Radiance Pre-Rift",
+   "set": "RAD",
+   "kind": "prerift",
+   "name": "Mordekaiser",
+   "source": "riftbound.zone, \"Radiance Pre-Rift Kits: All Nine Seeded Decklists\" (names; each card is 1 copy)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Iron Revenant"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Ruined Monastery"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Fury Rune",
+     "s": "OGN",
+     "c": "007"
+    },
+    {
+     "q": 6,
+     "n": "Order Rune",
+     "s": "OGN",
+     "c": "214"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Mordekaiser, Twice Slain"
+    },
+    {
+     "q": 1,
+     "n": "Dune Devourer"
+    },
+    {
+     "q": 1,
+     "n": "Herald of the Emperor"
+    },
+    {
+     "q": 1,
+     "n": "Mournful Spirit"
+    },
+    {
+     "q": 1,
+     "n": "Hunting Dog"
+    },
+    {
+     "q": 1,
+     "n": "Meticulous Restorationist"
+    },
+    {
+     "q": 1,
+     "n": "Shimmering Swimmer"
+    },
+    {
+     "q": 1,
+     "n": "Lingering Animus"
+    },
+    {
+     "q": 1,
+     "n": "Scorched Earth"
+    },
+    {
+     "q": 1,
+     "n": "Rally for War"
+    },
+    {
+     "q": 1,
+     "n": "Burn Away"
+    },
+    {
+     "q": 1,
+     "n": "Banner of Conquest"
+    },
+    {
+     "q": 1,
+     "n": "Concert Poster"
+    }
+   ]
+  },
+  {
+   "id": "rad-pr-ksante",
+   "product": "Radiance Pre-Rift",
+   "set": "RAD",
+   "kind": "prerift",
+   "name": "K'Sante",
+   "source": "riftbound.zone, \"Radiance Pre-Rift Kits: All Nine Seeded Decklists\" (names; each card is 1 copy)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Pride of Nazumah"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Durand Memorial"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Calm Rune",
+     "s": "OGN",
+     "c": "042"
+    },
+    {
+     "q": 6,
+     "n": "Body Rune",
+     "s": "OGN",
+     "c": "126"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "K'Sante, Courageous"
+    },
+    {
+     "q": 1,
+     "n": "Wrath of the Freljord"
+    },
+    {
+     "q": 1,
+     "n": "Elnuk Herd"
+    },
+    {
+     "q": 1,
+     "n": "Armored Tusker"
+    },
+    {
+     "q": 1,
+     "n": "Stalwart Goatherd"
+    },
+    {
+     "q": 1,
+     "n": "Overloaded Traveler"
+    },
+    {
+     "q": 1,
+     "n": "Stoic Ferryman"
+    },
+    {
+     "q": 1,
+     "n": "Hold 'Em"
+    },
+    {
+     "q": 1,
+     "n": "Battle Preparations"
+    },
+    {
+     "q": 1,
+     "n": "Consult the Heavens"
+    },
+    {
+     "q": 1,
+     "n": "Blossoming Dreamroot"
+    },
+    {
+     "q": 1,
+     "n": "Nazuman Ntofo"
+    },
+    {
+     "q": 1,
+     "n": "Pillaged Armory"
+    }
+   ]
+  },
+  {
+   "id": "rad-pr-evelynn",
+   "product": "Radiance Pre-Rift",
+   "set": "RAD",
+   "kind": "prerift",
+   "name": "Evelynn",
+   "source": "riftbound.zone, \"Radiance Pre-Rift Kits: All Nine Seeded Decklists\" (names; each card is 1 copy)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Agony's Embrace"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Bandle Scouts' Academy"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Body Rune",
+     "s": "OGN",
+     "c": "126"
+    },
+    {
+     "q": 6,
+     "n": "Chaos Rune",
+     "s": "OGN",
+     "c": "166"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Evelynn, In Control"
+    },
+    {
+     "q": 1,
+     "n": "Wrath of the Freljord"
+    },
+    {
+     "q": 1,
+     "n": "Elnuk Herd"
+    },
+    {
+     "q": 1,
+     "n": "Sneaky Zeebles"
+    },
+    {
+     "q": 1,
+     "n": "Momentary Companion"
+    },
+    {
+     "q": 1,
+     "n": "Suave Negotiator"
+    },
+    {
+     "q": 1,
+     "n": "Reckless Innovator"
+    },
+    {
+     "q": 1,
+     "n": "Gutter Guardian"
+    },
+    {
+     "q": 1,
+     "n": "Siren of the Shallows"
+    },
+    {
+     "q": 1,
+     "n": "Demon Shade"
+    },
+    {
+     "q": 1,
+     "n": "Siren's Song"
+    },
+    {
+     "q": 1,
+     "n": "The Waters' Wage"
+    },
+    {
+     "q": 1,
+     "n": "Hold 'Em"
+    }
+   ]
+  }
+ ]
+}
