@@ -1,7 +1,19 @@
 {
   "_about": "Riot posts already reviewed for the Starter Handbook. The weekly update task only considers posts published after checked_through or not listed below, and adds every post it reviews here (including ones it decided not to use).",
-  "checked_through": "2026-11-02",
+  "checked_through": "2026-11-09",
   "posts": [
+    {
+      "url": "https://playriftbound.com/en-us/news/organizedplay/riftbound-world-showcase",
+      "published": "2026-11-05",
+      "result": "added",
+      "note": "World Showcase moved to Jan 22-23 2027; three-deck format, Legacy legal early, $100k prizing, stream (Path to Worlds > World Championship Showcase stages + roadmap table row)"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/product-drawing-faq/",
+      "published": "2026-11-06",
+      "result": "added",
+      "note": "Same URL re-published as the T1 Player Bundle and Worlds 2026 Drawing FAQ; dates/prices/contents already in handbook, so only the source link label in the drawings note was updated"
+    },
     {
       "url": "https://playriftbound.com/en-us/news/organizedplay/all-eyes-on-rc-europe",
       "published": "2026-10-27",
