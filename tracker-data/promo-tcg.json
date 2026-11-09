@@ -1,5 +1,5 @@
 {
- "note": "English promos linked to their TCGplayer listing (the 'Matched automatically' tab of Promo price matching.xlsx). Used for the Rising/Cooling badges. Add the 6 'Needs your pick' promos here once chosen.",
+ "note": "English promos linked to their TCGplayer listing: the 'Matched automatically' tab of Promo price matching.xlsx plus Jessica's 6 picks (Nov 9 2026). Used for the Rising/Cooling badges.",
  "links": {
   "item-12": 659765,
   "item-47": 662884,
@@ -90,6 +90,12 @@
   "item-589": 694622,
   "item-668": 705529,
   "item-672": 696824,
-  "item-673": 696824
+  "item-673": 696824,
+  "item-45": 662881,
+  "item-46": 662882,
+  "item-55": 662886,
+  "item-80": 678051,
+  "item-83": 678052,
+  "item-677": 708201
  }
 }
