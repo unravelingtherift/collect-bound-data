@@ -3180,6 +3180,530 @@
      "n": "Hold 'Em"
     }
    ]
+  },
+  {
+   "id": "ogs-pg-annie",
+   "product": "Proving Grounds",
+   "set": "OGS",
+   "kind": "starter",
+   "name": "Annie",
+   "source": "RiftMana \"Riftbound Proving Grounds Decklists\" (sent by Jessica)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Dark Child - Starter",
+     "s": "OGS",
+     "c": "017"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Void Gate",
+     "s": "OGN",
+     "c": "296"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Chaos Rune",
+     "s": "OGN",
+     "c": "166"
+    },
+    {
+     "q": 6,
+     "n": "Fury Rune",
+     "s": "OGN",
+     "c": "007"
+    }
+   ],
+   "main": [
+    {
+     "q": 3,
+     "n": "Traveling Merchant",
+     "s": "OGN",
+     "c": "185"
+    },
+    {
+     "q": 3,
+     "n": "Mystic Poro",
+     "s": "OGN",
+     "c": "171"
+    },
+    {
+     "q": 2,
+     "n": "Pouty Poro",
+     "s": "OGN",
+     "c": "013"
+    },
+    {
+     "q": 3,
+     "n": "Sneaky Deckhand",
+     "s": "OGN",
+     "c": "176"
+    },
+    {
+     "q": 2,
+     "n": "Annie, Stubborn",
+     "s": "OGS",
+     "c": "010"
+    },
+    {
+     "q": 2,
+     "n": "Annie, Fiery",
+     "s": "OGS",
+     "c": "001"
+    },
+    {
+     "q": 3,
+     "n": "Maddened Marauder",
+     "s": "OGN",
+     "c": "191"
+    },
+    {
+     "q": 3,
+     "n": "Sai Scout",
+     "s": "OGN",
+     "c": "174"
+    },
+    {
+     "q": 2,
+     "n": "Tibbers",
+     "s": "OGS",
+     "c": "018"
+    },
+    {
+     "q": 3,
+     "n": "Gust",
+     "s": "OGN",
+     "c": "169"
+    },
+    {
+     "q": 2,
+     "n": "Flash",
+     "s": "OGS",
+     "c": "011"
+    },
+    {
+     "q": 3,
+     "n": "Incinerate",
+     "s": "OGS",
+     "c": "003"
+    },
+    {
+     "q": 3,
+     "n": "Morbid Return",
+     "s": "OGN",
+     "c": "170"
+    },
+    {
+     "q": 3,
+     "n": "Disintegrate",
+     "s": "OGN",
+     "c": "005"
+    },
+    {
+     "q": 3,
+     "n": "Firestorm",
+     "s": "OGS",
+     "c": "002"
+    }
+   ]
+  },
+  {
+   "id": "ogs-pg-garen",
+   "product": "Proving Grounds",
+   "set": "OGS",
+   "kind": "starter",
+   "name": "Garen",
+   "source": "RiftMana \"Riftbound Proving Grounds Decklists\" (sent by Jessica)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Might of Demacia - Starter",
+     "s": "OGS",
+     "c": "023"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Trifarian War Camp",
+     "s": "OGN",
+     "c": "294"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Body Rune",
+     "s": "OGN",
+     "c": "126"
+    },
+    {
+     "q": 6,
+     "n": "Order Rune",
+     "s": "OGN",
+     "c": "214"
+    }
+   ],
+   "main": [
+    {
+     "q": 3,
+     "n": "Daring Poro",
+     "s": "OGN",
+     "c": "210"
+    },
+    {
+     "q": 3,
+     "n": "Noxian Drummer",
+     "s": "OGN",
+     "c": "222"
+    },
+    {
+     "q": 3,
+     "n": "Faithful Manufactor",
+     "s": "OGN",
+     "c": "211"
+    },
+    {
+     "q": 3,
+     "n": "First Mate",
+     "s": "OGN",
+     "c": "132"
+    },
+    {
+     "q": 3,
+     "n": "Crackshot Corsair",
+     "s": "OGN",
+     "c": "130"
+    },
+    {
+     "q": 3,
+     "n": "Vanguard Sergeant",
+     "s": "OGN",
+     "c": "219"
+    },
+    {
+     "q": 2,
+     "n": "Petty Officer",
+     "s": "OGN",
+     "c": "215"
+    },
+    {
+     "q": 2,
+     "n": "Dune Drake",
+     "s": "OGN",
+     "c": "131"
+    },
+    {
+     "q": 3,
+     "n": "Vanguard Attendant",
+     "s": "OGS",
+     "c": "016"
+    },
+    {
+     "q": 2,
+     "n": "Garen, Commander",
+     "s": "OGS",
+     "c": "013"
+    },
+    {
+     "q": 2,
+     "n": "Garen, Rugged",
+     "s": "OGS",
+     "c": "007"
+    },
+    {
+     "q": 3,
+     "n": "Confront",
+     "s": "OGN",
+     "c": "129"
+    },
+    {
+     "q": 3,
+     "n": "Back to Back",
+     "s": "OGN",
+     "c": "206"
+    },
+    {
+     "q": 2,
+     "n": "Decisive Strike",
+     "s": "OGS",
+     "c": "024"
+    },
+    {
+     "q": 3,
+     "n": "Recruit the Vanguard",
+     "s": "OGS",
+     "c": "015"
+    }
+   ]
+  },
+  {
+   "id": "ogs-pg-lux",
+   "product": "Proving Grounds",
+   "set": "OGS",
+   "kind": "starter",
+   "name": "Lux",
+   "source": "RiftMana \"Riftbound Proving Grounds Decklists\" (sent by Jessica)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Lady of Luminosity - Starter",
+     "s": "OGS",
+     "c": "021"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Startipped Peak",
+     "s": "OGN",
+     "c": "288"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Order Rune",
+     "s": "OGN",
+     "c": "214"
+    },
+    {
+     "q": 6,
+     "n": "Mind Rune",
+     "s": "OGN",
+     "c": "089"
+    }
+   ],
+   "main": [
+    {
+     "q": 3,
+     "n": "Daring Poro",
+     "s": "OGN",
+     "c": "210"
+    },
+    {
+     "q": 3,
+     "n": "Ravenbloom Student",
+     "s": "OGN",
+     "c": "103"
+    },
+    {
+     "q": 2,
+     "n": "Eager Apprentice",
+     "s": "OGN",
+     "c": "084"
+    },
+    {
+     "q": 3,
+     "n": "Lecturing Yordle",
+     "s": "OGN",
+     "c": "087"
+    },
+    {
+     "q": 2,
+     "n": "Lux, Crownguard",
+     "s": "OGS",
+     "c": "014"
+    },
+    {
+     "q": 3,
+     "n": "Vanguard Sergeant",
+     "s": "OGN",
+     "c": "219"
+    },
+    {
+     "q": 3,
+     "n": "Vanguard Attendant",
+     "s": "OGS",
+     "c": "016"
+    },
+    {
+     "q": 2,
+     "n": "Lux, Illuminated",
+     "s": "OGS",
+     "c": "006"
+    },
+    {
+     "q": 2,
+     "n": "Mega-Mech",
+     "s": "OGN",
+     "c": "088"
+    },
+    {
+     "q": 3,
+     "n": "Stupefy",
+     "s": "OGN",
+     "c": "095"
+    },
+    {
+     "q": 3,
+     "n": "Back to Back",
+     "s": "OGN",
+     "c": "206"
+    },
+    {
+     "q": 3,
+     "n": "Falling Comet",
+     "s": "OGN",
+     "c": "085"
+    },
+    {
+     "q": 3,
+     "n": "Blast of Power",
+     "s": "OGS",
+     "c": "012"
+    },
+    {
+     "q": 3,
+     "n": "Singularity",
+     "s": "OGN",
+     "c": "105"
+    },
+    {
+     "q": 2,
+     "n": "Final Spark",
+     "s": "OGS",
+     "c": "022"
+    }
+   ]
+  },
+  {
+   "id": "ogs-pg-masteryi",
+   "product": "Proving Grounds",
+   "set": "OGS",
+   "kind": "starter",
+   "name": "Master Yi",
+   "source": "RiftMana \"Riftbound Proving Grounds Decklists\" (sent by Jessica)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Wuju Bladesman - Starter",
+     "s": "OGS",
+     "c": "019"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Fortified Position",
+     "s": "OGN",
+     "c": "279"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Calm Rune",
+     "s": "OGN",
+     "c": "042"
+    },
+    {
+     "q": 6,
+     "n": "Body Rune",
+     "s": "OGN",
+     "c": "126"
+    }
+   ],
+   "main": [
+    {
+     "q": 3,
+     "n": "En Garde",
+     "s": "OGN",
+     "c": "046"
+    },
+    {
+     "q": 3,
+     "n": "Mobilize",
+     "s": "OGN",
+     "c": "134"
+    },
+    {
+     "q": 2,
+     "n": "Confront",
+     "s": "OGN",
+     "c": "129"
+    },
+    {
+     "q": 3,
+     "n": "Cannon Barrage",
+     "s": "OGN",
+     "c": "127"
+    },
+    {
+     "q": 3,
+     "n": "Meditation",
+     "s": "OGN",
+     "c": "048"
+    },
+    {
+     "q": 2,
+     "n": "Highlander",
+     "s": "OGS",
+     "c": "020"
+    },
+    {
+     "q": 3,
+     "n": "Gentlemen's Duel",
+     "s": "OGS",
+     "c": "008"
+    },
+    {
+     "q": 3,
+     "n": "Stalwart Poro",
+     "s": "OGN",
+     "c": "052"
+    },
+    {
+     "q": 3,
+     "n": "Wielder of Water",
+     "s": "OGN",
+     "c": "055"
+    },
+    {
+     "q": 2,
+     "n": "Yi, Meditative",
+     "s": "OGS",
+     "c": "004"
+    },
+    {
+     "q": 3,
+     "n": "Playful Phantom",
+     "s": "OGN",
+     "c": "049"
+    },
+    {
+     "q": 3,
+     "n": "Zephyr Sage",
+     "s": "OGS",
+     "c": "005"
+    },
+    {
+     "q": 2,
+     "n": "Yi, Honed",
+     "s": "OGS",
+     "c": "009"
+    },
+    {
+     "q": 3,
+     "n": "Stormclaw Ursine",
+     "s": "OGN",
+     "c": "137"
+    },
+    {
+     "q": 2,
+     "n": "Mountain Drake",
+     "s": "OGN",
+     "c": "142"
+    }
+   ]
   }
  ]
 }
