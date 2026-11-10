@@ -7,7 +7,7 @@
    "set": "OGN",
    "kind": "champion",
    "name": "Jinx",
-   "source": "Piltover Archive official list (System account)",
+   "source": "Riot's official list, as posted on Piltover Archive",
    "legend": [
     {
      "q": 1,
@@ -169,7 +169,7 @@
    "set": "OGN",
    "kind": "champion",
    "name": "Viktor",
-   "source": "Piltover Archive official list (System account)",
+   "source": "Riot's official list, as posted on Piltover Archive",
    "legend": [
     {
      "q": 1,
@@ -337,7 +337,7 @@
    "set": "OGN",
    "kind": "champion",
    "name": "Lee Sin",
-   "source": "Piltover Archive official list (System account)",
+   "source": "Riot's official list, as posted on Piltover Archive",
    "legend": [
     {
      "q": 1,
@@ -499,7 +499,7 @@
    "set": "SFD",
    "kind": "champion",
    "name": "Rumble",
-   "source": "Piltover Archive official list (System account)",
+   "source": "Riot's official list, as posted on Piltover Archive",
    "legend": [
     {
      "q": 1,
@@ -666,7 +666,7 @@
    "set": "SFD",
    "kind": "champion",
    "name": "Fiora",
-   "source": "Piltover Archive official list (System account)",
+   "source": "Riot's official list, as posted on Piltover Archive",
    "legend": [
     {
      "q": 1,
@@ -839,7 +839,7 @@
    "set": "UNL",
    "kind": "champion",
    "name": "Vi",
-   "source": "Piltover Archive official list (System account)",
+   "source": "Riot's official list, as posted on Piltover Archive",
    "legend": [
     {
      "q": 1,
@@ -1036,7 +1036,7 @@
    "set": "UNL",
    "kind": "champion",
    "name": "Vex",
-   "source": "Piltover Archive official list (System account)",
+   "source": "Riot's official list, as posted on Piltover Archive",
    "legend": [
     {
      "q": 1,
@@ -1233,7 +1233,7 @@
    "set": "SFD",
    "kind": "prerift",
    "name": "Jax",
-   "source": "Piltover Archive official list (System account)",
+   "source": "Riot's official list, as posted on Piltover Archive",
    "legend": [
     {
      "q": 1,
@@ -1352,7 +1352,7 @@
    "set": "SFD",
    "kind": "prerift",
    "name": "Irelia",
-   "source": "Piltover Archive official list (System account)",
+   "source": "Riot's official list, as posted on Piltover Archive",
    "legend": [
     {
      "q": 1,
@@ -1471,7 +1471,7 @@
    "set": "SFD",
    "kind": "prerift",
    "name": "Ezreal",
-   "source": "Piltover Archive official list (System account)",
+   "source": "Riot's official list, as posted on Piltover Archive",
    "legend": [
     {
      "q": 1,
@@ -2237,7 +2237,7 @@
    "set": "RAD",
    "kind": "prerift",
    "name": "Riven",
-   "source": "Piltover Archive official list (System account)",
+   "source": "Riot's official list, as posted on Piltover Archive",
    "legend": [
     {
      "q": 1,
@@ -2356,7 +2356,7 @@
    "set": "RAD",
    "kind": "prerift",
    "name": "Ekko",
-   "source": "Piltover Archive official list (System account)",
+   "source": "Riot's official list, as posted on Piltover Archive",
    "legend": [
     {
      "q": 1,
@@ -2475,7 +2475,7 @@
    "set": "RAD",
    "kind": "prerift",
    "name": "Orianna",
-   "source": "Piltover Archive official list (System account)",
+   "source": "Riot's official list, as posted on Piltover Archive",
    "legend": [
     {
      "q": 1,
@@ -2594,7 +2594,7 @@
    "set": "RAD",
    "kind": "prerift",
    "name": "Seraphine",
-   "source": "Piltover Archive official list (System account)",
+   "source": "Riot's official list, as posted on Piltover Archive",
    "legend": [
     {
      "q": 1,
@@ -2713,7 +2713,7 @@
    "set": "RAD",
    "kind": "prerift",
    "name": "Jarvan IV",
-   "source": "Piltover Archive official list (System account)",
+   "source": "Riot's official list, as posted on Piltover Archive",
    "legend": [
     {
      "q": 1,
