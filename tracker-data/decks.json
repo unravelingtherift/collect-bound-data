@@ -3704,6 +3704,1077 @@
      "c": "142"
     }
    ]
+  },
+  {
+   "id": "ven-pr-shen",
+   "product": "Vendetta Pre-Rift",
+   "set": "VEN",
+   "kind": "prerift",
+   "name": "Shen",
+   "source": "Riot's official list, as posted on Piltover Archive (screenshots from Jessica)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Eye of Twilight",
+     "s": "VEN",
+     "c": "147"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Kinkou Temple",
+     "s": "VEN",
+     "c": "159"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Calm Rune",
+     "s": "OGN",
+     "c": "042"
+    },
+    {
+     "q": 6,
+     "n": "Order Rune",
+     "s": "OGN",
+     "c": "214"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Shen, Scourge of Shadows",
+     "s": "VEN",
+     "c": "042"
+    },
+    {
+     "q": 1,
+     "n": "Disciple of Shen",
+     "s": "VEN",
+     "c": "117"
+    },
+    {
+     "q": 1,
+     "n": "Hand Hammer",
+     "s": "VEN",
+     "c": "027"
+    },
+    {
+     "q": 1,
+     "n": "Mournful Witness",
+     "s": "VEN",
+     "c": "028"
+    },
+    {
+     "q": 1,
+     "n": "Ki Barrier",
+     "s": "VEN",
+     "c": "126"
+    },
+    {
+     "q": 1,
+     "n": "Resonating Strike",
+     "s": "VEN",
+     "c": "034"
+    },
+    {
+     "q": 1,
+     "n": "Affectionate Poro",
+     "s": "VEN",
+     "c": "024"
+    },
+    {
+     "q": 1,
+     "n": "Frostcoat Mother",
+     "s": "VEN",
+     "c": "032"
+    },
+    {
+     "q": 1,
+     "n": "Soulspinner",
+     "s": "VEN",
+     "c": "123"
+    },
+    {
+     "q": 1,
+     "n": "Sacred Protector",
+     "s": "VEN",
+     "c": "129"
+    },
+    {
+     "q": 1,
+     "n": "Esteemed Hierophant",
+     "s": "VEN",
+     "c": "025"
+    },
+    {
+     "q": 1,
+     "n": "Keeper of Law",
+     "s": "VEN",
+     "c": "119"
+    },
+    {
+     "q": 1,
+     "n": "Horns of the Dragon",
+     "s": "VEN",
+     "c": "118"
+    }
+   ]
+  },
+  {
+   "id": "ven-pr-jayce",
+   "product": "Vendetta Pre-Rift",
+   "set": "VEN",
+   "kind": "prerift",
+   "name": "Jayce",
+   "source": "Riot's official list, as posted on Piltover Archive (screenshots from Jessica)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Defender of Tomorrow",
+     "s": "VEN",
+     "c": "149"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Piltovan Forge",
+     "s": "VEN",
+     "c": "161"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Mind Rune",
+     "s": "OGN",
+     "c": "089"
+    },
+    {
+     "q": 6,
+     "n": "Body Rune",
+     "s": "OGN",
+     "c": "126"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Jayce, Hammer in Hand",
+     "s": "VEN",
+     "c": "088"
+    },
+    {
+     "q": 1,
+     "n": "Patched Porobot",
+     "s": "VEN",
+     "c": "058"
+    },
+    {
+     "q": 1,
+     "n": "Apprentice Mage",
+     "s": "VEN",
+     "c": "047"
+    },
+    {
+     "q": 1,
+     "n": "Jagged Cutlass",
+     "s": "VEN",
+     "c": "073"
+    },
+    {
+     "q": 1,
+     "n": "Platewyrm Egg",
+     "s": "VEN",
+     "c": "075"
+    },
+    {
+     "q": 1,
+     "n": "Questionable Tome",
+     "s": "VEN",
+     "c": "054"
+    },
+    {
+     "q": 1,
+     "n": "Repair Specialist",
+     "s": "VEN",
+     "c": "076"
+    },
+    {
+     "q": 1,
+     "n": "Shock Blast",
+     "s": "VEN",
+     "c": "059"
+    },
+    {
+     "q": 1,
+     "n": "Iterative Design",
+     "s": "VEN",
+     "c": "051"
+    },
+    {
+     "q": 1,
+     "n": "Profiteer",
+     "s": "VEN",
+     "c": "082"
+    },
+    {
+     "q": 1,
+     "n": "Tools of Empire",
+     "s": "VEN",
+     "c": "077"
+    },
+    {
+     "q": 1,
+     "n": "Sky Cruiser",
+     "s": "VEN",
+     "c": "060"
+    },
+    {
+     "q": 1,
+     "n": "Cloud Drake",
+     "s": "VEN",
+     "c": "048"
+    }
+   ]
+  },
+  {
+   "id": "ven-pr-zed",
+   "product": "Vendetta Pre-Rift",
+   "set": "VEN",
+   "kind": "prerift",
+   "name": "Zed",
+   "source": "Riot's official list, as posted on Piltover Archive (screenshots from Jessica)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Master of Shadows",
+     "s": "VEN",
+     "c": "143"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Shadow Temple",
+     "s": "VEN",
+     "c": "165"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Fury Rune",
+     "s": "OGN",
+     "c": "007"
+    },
+    {
+     "q": 6,
+     "n": "Chaos Rune",
+     "s": "OGN",
+     "c": "166"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Zed, Without a Sound",
+     "s": "VEN",
+     "c": "112"
+    },
+    {
+     "q": 1,
+     "n": "Consuming Curse",
+     "s": "VEN",
+     "c": "010"
+    },
+    {
+     "q": 1,
+     "n": "Punching Poro",
+     "s": "VEN",
+     "c": "007"
+    },
+    {
+     "q": 1,
+     "n": "Shadow Order Disciple",
+     "s": "VEN",
+     "c": "095"
+    },
+    {
+     "q": 1,
+     "n": "Twilight Step",
+     "s": "VEN",
+     "c": "105"
+    },
+    {
+     "q": 1,
+     "n": "Dune Surfer",
+     "s": "VEN",
+     "c": "004"
+    },
+    {
+     "q": 1,
+     "n": "Mask Mother",
+     "s": "VEN",
+     "c": "094"
+    },
+    {
+     "q": 1,
+     "n": "Ruthless Strike",
+     "s": "VEN",
+     "c": "008"
+    },
+    {
+     "q": 1,
+     "n": "Up from the Deep",
+     "s": "VEN",
+     "c": "100"
+    },
+    {
+     "q": 1,
+     "n": "Perfect Execution",
+     "s": "VEN",
+     "c": "012"
+    },
+    {
+     "q": 1,
+     "n": "Shadows of the Past",
+     "s": "VEN",
+     "c": "103"
+    },
+    {
+     "q": 1,
+     "n": "Blade Twirler",
+     "s": "VEN",
+     "c": "002"
+    },
+    {
+     "q": 1,
+     "n": "Shadowblade Lurker",
+     "s": "VEN",
+     "c": "096"
+    }
+   ]
+  },
+  {
+   "id": "ven-pr-mel",
+   "product": "Vendetta Pre-Rift",
+   "set": "VEN",
+   "kind": "prerift",
+   "name": "Mel",
+   "source": "Riot's official list, as posted on Piltover Archive (screenshots from Jessica)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Soul's Reflection",
+     "s": "VEN",
+     "c": "151"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Risen Altar",
+     "s": "VEN",
+     "c": "163"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Mind Rune",
+     "s": "OGN",
+     "c": "089"
+    },
+    {
+     "q": 6,
+     "n": "Chaos Rune",
+     "s": "OGN",
+     "c": "166"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Mel, Defiant Soul",
+     "s": "VEN",
+     "c": "110"
+    },
+    {
+     "q": 1,
+     "n": "Dredge Up",
+     "s": "VEN",
+     "c": "049"
+    },
+    {
+     "q": 1,
+     "n": "Otterpus",
+     "s": "VEN",
+     "c": "053"
+    },
+    {
+     "q": 1,
+     "n": "Shadow Order Disciple",
+     "s": "VEN",
+     "c": "095"
+    },
+    {
+     "q": 1,
+     "n": "Apprentice Mage",
+     "s": "VEN",
+     "c": "047"
+    },
+    {
+     "q": 1,
+     "n": "Questionable Tome",
+     "s": "VEN",
+     "c": "054"
+    },
+    {
+     "q": 1,
+     "n": "Covert Informant",
+     "s": "VEN",
+     "c": "057"
+    },
+    {
+     "q": 1,
+     "n": "Shock Blast",
+     "s": "VEN",
+     "c": "059"
+    },
+    {
+     "q": 1,
+     "n": "Wind and Ghosts",
+     "s": "VEN",
+     "c": "106"
+    },
+    {
+     "q": 1,
+     "n": "Iterative Design",
+     "s": "VEN",
+     "c": "051"
+    },
+    {
+     "q": 1,
+     "n": "Kinkou Lifeblade",
+     "s": "VEN",
+     "c": "093"
+    },
+    {
+     "q": 1,
+     "n": "Tail-Cloaked Matriarch",
+     "s": "VEN",
+     "c": "104"
+    },
+    {
+     "q": 1,
+     "n": "Cloud Drake",
+     "s": "VEN",
+     "c": "048"
+    }
+   ]
+  },
+  {
+   "id": "ven-pr-renekton",
+   "product": "Vendetta Pre-Rift",
+   "set": "VEN",
+   "kind": "prerift",
+   "name": "Renekton",
+   "source": "Riot's official list, as posted on Piltover Archive (screenshots from Jessica)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Butcher of the Sands",
+     "s": "VEN",
+     "c": "141"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Protective Sands",
+     "s": "VEN",
+     "c": "162"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Fury Rune",
+     "s": "OGN",
+     "c": "007"
+    },
+    {
+     "q": 6,
+     "n": "Body Rune",
+     "s": "OGN",
+     "c": "126"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Renekton, Rage Fueled",
+     "s": "VEN",
+     "c": "019"
+    },
+    {
+     "q": 1,
+     "n": "Forsaken Baccai",
+     "s": "VEN",
+     "c": "005"
+    },
+    {
+     "q": 1,
+     "n": "Guttural Roar",
+     "s": "VEN",
+     "c": "072"
+    },
+    {
+     "q": 1,
+     "n": "Legion Marauder",
+     "s": "VEN",
+     "c": "074"
+    },
+    {
+     "q": 1,
+     "n": "Rampage",
+     "s": "VEN",
+     "c": "083"
+    },
+    {
+     "q": 1,
+     "n": "Ruthless Strike",
+     "s": "VEN",
+     "c": "008"
+    },
+    {
+     "q": 1,
+     "n": "Baccai Reaper",
+     "s": "VEN",
+     "c": "009"
+    },
+    {
+     "q": 1,
+     "n": "Brutal Hunter",
+     "s": "VEN",
+     "c": "070"
+    },
+    {
+     "q": 1,
+     "n": "Perfect Execution",
+     "s": "VEN",
+     "c": "012"
+    },
+    {
+     "q": 1,
+     "n": "Baccai Witherclaw",
+     "s": "VEN",
+     "c": "078"
+    },
+    {
+     "q": 1,
+     "n": "Oasis Raider",
+     "s": "VEN",
+     "c": "006"
+    },
+    {
+     "q": 1,
+     "n": "Baccai Sandspinner",
+     "s": "VEN",
+     "c": "001"
+    },
+    {
+     "q": 1,
+     "n": "Fretful Feline",
+     "s": "VEN",
+     "c": "071"
+    }
+   ]
+  },
+  {
+   "id": "ven-pr-nasus",
+   "product": "Vendetta Pre-Rift",
+   "set": "VEN",
+   "kind": "prerift",
+   "name": "Nasus",
+   "source": "Riot's official list, as posted on Piltover Archive (screenshots from Jessica)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Curator of the Sands",
+     "s": "VEN",
+     "c": "145"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Mystic Vortex",
+     "s": "VEN",
+     "c": "160"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Calm Rune",
+     "s": "OGN",
+     "c": "042"
+    },
+    {
+     "q": 6,
+     "n": "Mind Rune",
+     "s": "OGN",
+     "c": "089"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Nasus, Guardian of Knowledge",
+     "s": "VEN",
+     "c": "063"
+    },
+    {
+     "q": 1,
+     "n": "Dredge Up",
+     "s": "VEN",
+     "c": "049"
+    },
+    {
+     "q": 1,
+     "n": "Ol' Poro",
+     "s": "VEN",
+     "c": "029"
+    },
+    {
+     "q": 1,
+     "n": "Otterpus",
+     "s": "VEN",
+     "c": "053"
+    },
+    {
+     "q": 1,
+     "n": "Apprentice Mage",
+     "s": "VEN",
+     "c": "047"
+    },
+    {
+     "q": 1,
+     "n": "Frostcoat Mother",
+     "s": "VEN",
+     "c": "032"
+    },
+    {
+     "q": 1,
+     "n": "Serene Ascetic",
+     "s": "VEN",
+     "c": "030"
+    },
+    {
+     "q": 1,
+     "n": "Covert Informant",
+     "s": "VEN",
+     "c": "057"
+    },
+    {
+     "q": 1,
+     "n": "Grumpy Rockbear",
+     "s": "VEN",
+     "c": "050"
+    },
+    {
+     "q": 1,
+     "n": "Iterative Design",
+     "s": "VEN",
+     "c": "051"
+    },
+    {
+     "q": 1,
+     "n": "Tomb-Raider Barbara",
+     "s": "VEN",
+     "c": "037"
+    },
+    {
+     "q": 1,
+     "n": "Esteemed Hierophant",
+     "s": "VEN",
+     "c": "025"
+    },
+    {
+     "q": 1,
+     "n": "Sandstone Chimera",
+     "s": "VEN",
+     "c": "036"
+    }
+   ]
+  },
+  {
+   "id": "ven-pr-akali",
+   "product": "Vendetta Pre-Rift",
+   "set": "VEN",
+   "kind": "prerift",
+   "name": "Akali",
+   "source": "Riot's official list, as posted on Piltover Archive (screenshots from Jessica)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Rogue Assassin",
+     "s": "VEN",
+     "c": "139"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Threshold of the Gray",
+     "s": "VEN",
+     "c": "166"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Fury Rune",
+     "s": "OGN",
+     "c": "007"
+    },
+    {
+     "q": 6,
+     "n": "Calm Rune",
+     "s": "OGN",
+     "c": "042"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Akali, Silent",
+     "s": "VEN",
+     "c": "038"
+    },
+    {
+     "q": 1,
+     "n": "Twilight Shroud",
+     "s": "VEN",
+     "c": "031"
+    },
+    {
+     "q": 1,
+     "n": "Mournful Witness",
+     "s": "VEN",
+     "c": "028"
+    },
+    {
+     "q": 1,
+     "n": "Affectionate Poro",
+     "s": "VEN",
+     "c": "024"
+    },
+    {
+     "q": 1,
+     "n": "Dune Surfer",
+     "s": "VEN",
+     "c": "004"
+    },
+    {
+     "q": 1,
+     "n": "Pendulum Blade",
+     "s": "VEN",
+     "c": "011"
+    },
+    {
+     "q": 1,
+     "n": "Ruthless Strike",
+     "s": "VEN",
+     "c": "008"
+    },
+    {
+     "q": 1,
+     "n": "Baccai Reaper",
+     "s": "VEN",
+     "c": "009"
+    },
+    {
+     "q": 1,
+     "n": "Perfect Execution",
+     "s": "VEN",
+     "c": "012"
+    },
+    {
+     "q": 1,
+     "n": "Blade Twirler",
+     "s": "VEN",
+     "c": "002"
+    },
+    {
+     "q": 1,
+     "n": "Field Musicians",
+     "s": "VEN",
+     "c": "026"
+    },
+    {
+     "q": 1,
+     "n": "Pakaa Protector",
+     "s": "VEN",
+     "c": "033"
+    },
+    {
+     "q": 1,
+     "n": "Baccai Sandspinner",
+     "s": "VEN",
+     "c": "001"
+    }
+   ]
+  },
+  {
+   "id": "ven-pr-kennen",
+   "product": "Vendetta Pre-Rift",
+   "set": "VEN",
+   "kind": "prerift",
+   "name": "Kennen",
+   "source": "Riot's official list, as posted on Piltover Archive (screenshots from Jessica)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Heart of the Tempest",
+     "s": "VEN",
+     "c": "155"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Shadow Temple",
+     "s": "VEN",
+     "c": "165"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Order Rune",
+     "s": "OGN",
+     "c": "214"
+    },
+    {
+     "q": 6,
+     "n": "Chaos Rune",
+     "s": "OGN",
+     "c": "166"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Kennen, Keeper of Balance",
+     "s": "VEN",
+     "c": "135"
+    },
+    {
+     "q": 1,
+     "n": "Gust Monk",
+     "s": "VEN",
+     "c": "101"
+    },
+    {
+     "q": 1,
+     "n": "Lacerate",
+     "s": "VEN",
+     "c": "127"
+    },
+    {
+     "q": 1,
+     "n": "Twilight Step",
+     "s": "VEN",
+     "c": "105"
+    },
+    {
+     "q": 1,
+     "n": "Dragon Form",
+     "s": "VEN",
+     "c": "116"
+    },
+    {
+     "q": 1,
+     "n": "Solari Sunhawk",
+     "s": "VEN",
+     "c": "122"
+    },
+    {
+     "q": 1,
+     "n": "Tornado Warrior",
+     "s": "VEN",
+     "c": "099"
+    },
+    {
+     "q": 1,
+     "n": "Up from the Deep",
+     "s": "VEN",
+     "c": "100"
+    },
+    {
+     "q": 1,
+     "n": "Kinkou Lifeblade",
+     "s": "VEN",
+     "c": "093"
+    },
+    {
+     "q": 1,
+     "n": "Masa, Crashing Thunder",
+     "s": "VEN",
+     "c": "120"
+    },
+    {
+     "q": 1,
+     "n": "Tail-Cloaked Matriarch",
+     "s": "VEN",
+     "c": "104"
+    },
+    {
+     "q": 1,
+     "n": "Reluctant Leader",
+     "s": "VEN",
+     "c": "121"
+    },
+    {
+     "q": 1,
+     "n": "Stargazer",
+     "s": "VEN",
+     "c": "098"
+    }
+   ]
+  },
+  {
+   "id": "ven-pr-ambessa",
+   "product": "Vendetta Pre-Rift",
+   "set": "VEN",
+   "kind": "prerift",
+   "name": "Ambessa",
+   "source": "Riot's official list, as posted on Piltover Archive (screenshots from Jessica)",
+   "legend": [
+    {
+     "q": 1,
+     "n": "Matriarch of War",
+     "s": "VEN",
+     "c": "153"
+    }
+   ],
+   "champion": [],
+   "battlefields": [
+    {
+     "q": 1,
+     "n": "Risen Altar",
+     "s": "VEN",
+     "c": "163"
+    }
+   ],
+   "runes": [
+    {
+     "q": 6,
+     "n": "Body Rune",
+     "s": "OGN",
+     "c": "126"
+    },
+    {
+     "q": 6,
+     "n": "Order Rune",
+     "s": "OGN",
+     "c": "214"
+    }
+   ],
+   "main": [
+    {
+     "q": 1,
+     "n": "Ambessa, The Wolf",
+     "s": "VEN",
+     "c": "084"
+    },
+    {
+     "q": 1,
+     "n": "Guttural Roar",
+     "s": "VEN",
+     "c": "072"
+    },
+    {
+     "q": 1,
+     "n": "Legion Marauder",
+     "s": "VEN",
+     "c": "074"
+    },
+    {
+     "q": 1,
+     "n": "Noxian Emissary",
+     "s": "VEN",
+     "c": "128"
+    },
+    {
+     "q": 1,
+     "n": "Lacerate",
+     "s": "VEN",
+     "c": "127"
+    },
+    {
+     "q": 1,
+     "n": "Solari Sunhawk",
+     "s": "VEN",
+     "c": "122"
+    },
+    {
+     "q": 1,
+     "n": "Soulspinner",
+     "s": "VEN",
+     "c": "123"
+    },
+    {
+     "q": 1,
+     "n": "Brutal Hunter",
+     "s": "VEN",
+     "c": "070"
+    },
+    {
+     "q": 1,
+     "n": "Baccai Witherclaw",
+     "s": "VEN",
+     "c": "078"
+    },
+    {
+     "q": 1,
+     "n": "Profiteer",
+     "s": "VEN",
+     "c": "082"
+    },
+    {
+     "q": 1,
+     "n": "Keeper of Law",
+     "s": "VEN",
+     "c": "119"
+    },
+    {
+     "q": 1,
+     "n": "Fretful Feline",
+     "s": "VEN",
+     "c": "071"
+    },
+    {
+     "q": 1,
+     "n": "Horns of the Dragon",
+     "s": "VEN",
+     "c": "118"
+    }
+   ]
   }
  ]
 }
