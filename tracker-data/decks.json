@@ -1590,7 +1590,7 @@
    "set": "VEN",
    "kind": "showdown",
    "name": "Shen",
-   "source": "Riot, \"The Vendetta Overview\" (playriftbound.com)",
+   "source": "Riot, \"The Vendetta Overview\" (playriftbound.com); confirmed by Jessica",
    "legend": [
     {
      "q": 1,
@@ -1727,7 +1727,7 @@
    "set": "VEN",
    "kind": "showdown",
    "name": "Zed",
-   "source": "Riot, \"The Vendetta Overview\" (playriftbound.com)",
+   "source": "Riot, \"The Vendetta Overview\" (playriftbound.com); confirmed by Jessica",
    "legend": [
     {
      "q": 1,
@@ -1840,8 +1840,7 @@
      "q": 3,
      "n": "Kinkou Lifeblade"
     }
-   ],
-   "note": "Riot lists \"3 Shadowcloaked Assassin\"; the printed card is Shadowblade Lurker (VEN-096)."
+   ]
   },
   {
    "id": "rad-sd-evelynn",
