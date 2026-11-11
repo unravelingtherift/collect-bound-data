@@ -2,7 +2,7 @@ name: Find larger promo pictures on eBay
 
 # Run by hand (Actions -> this workflow -> Run workflow). Searches eBay for each
 # promo in tracker-data/need-larger-pictures.json and saves the listing photos
-# as a downloadable artifact for review. It never changes the tracker.
+# on the "ebay-candidates" branch for review. It never changes the tracker.
 on:
   push:
     branches: [ebay-picture-finder]
@@ -11,6 +11,9 @@ on:
       limit:
         description: 'Only the first N promos (blank = all)'
         required: false
+
+permissions:
+  contents: write
 
 jobs:
   find:
@@ -21,10 +24,14 @@ jobs:
         env:
           EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
-          LIMIT: ${{ github.event.inputs.limit || (github.event_name == 'push' && '6') || '' }}
+          LIMIT: ${{ github.event.inputs.limit }}
         run: python3 tools/ebay_pictures.py
-      - uses: actions/upload-artifact@v4
-        with:
-          name: ebay-candidates
-          path: ebay-candidates/
-          retention-days: 14
+      - name: Save results on the ebay-candidates branch
+        run: |
+          mv ebay-candidates /tmp/ec
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          git checkout --orphan ebay-candidates-tmp
+          git rm -rq --cached . && find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r /tmp/ec ./ebay-candidates
+          git add ebay-candidates && git commit -qm "eBay picture candidates ($(date -u +%F))"
+          git push -f origin ebay-candidates-tmp:ebay-candidates
