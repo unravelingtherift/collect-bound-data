@@ -1,0 +1,42 @@
+name: Apply Supabase SQL
+
+# Runs the SQL files in sql/pending/ against the Collection-Bound database
+# after a pull request is merged into main. Each file runs once: it is
+# recorded in the applied_sql table and skipped on later runs. A file that
+# errors is rolled back completely and the run shows a red X.
+on:
+  push:
+    branches: [main]
+    paths: ['sql/pending/**']
+  workflow_dispatch:
+
+concurrency: apply-sql
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run new SQL files
+        env:
+          DB: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          if [ -z "$DB" ]; then
+            echo "SUPABASE_DB_URL secret is not set yet, nothing was run." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          psql "$DB" -v ON_ERROR_STOP=1 -q -c "create table if not exists public.applied_sql (file text primary key, applied_at timestamptz not null default now()); alter table public.applied_sql enable row level security;"
+          echo "## SQL run results" >> "$GITHUB_STEP_SUMMARY"
+          ran=0
+          for f in $(ls sql/pending/*.sql 2>/dev/null | sort); do
+            name=$(basename "$f")
+            done_already=$(psql "$DB" -tAc "select 1 from public.applied_sql where file = '$name'")
+            if [ "$done_already" = "1" ]; then echo "- $name: already run, skipped" >> "$GITHUB_STEP_SUMMARY"; continue; fi
+            echo "Running $name"
+            out=$(psql "$DB" -v ON_ERROR_STOP=1 -1 -q -t -A -f "$f" 2>&1) || { echo "- **$name: FAILED, nothing in it was saved**" >> "$GITHUB_STEP_SUMMARY"; echo '```' >> "$GITHUB_STEP_SUMMARY"; echo "$out" | tail -20 >> "$GITHUB_STEP_SUMMARY"; echo '```' >> "$GITHUB_STEP_SUMMARY"; echo "$out"; exit 1; }
+            psql "$DB" -v ON_ERROR_STOP=1 -q -c "insert into public.applied_sql(file) values ('$name')"
+            rows=$(printf '%s\n' "$out" | grep -c . || true)
+            echo "- $name: done ($rows rows returned)" >> "$GITHUB_STEP_SUMMARY"
+            ran=$((ran+1))
+          done
+          echo "" >> "$GITHUB_STEP_SUMMARY"; echo "$ran new file(s) run." >> "$GITHUB_STEP_SUMMARY"
