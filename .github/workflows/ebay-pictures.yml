@@ -4,6 +4,8 @@ name: Find larger promo pictures on eBay
 # promo in tracker-data/need-larger-pictures.json and saves the listing photos
 # as a downloadable artifact for review. It never changes the tracker.
 on:
+  push:
+    branches: [ebay-picture-finder]
   workflow_dispatch:
     inputs:
       limit:
@@ -19,7 +21,7 @@ jobs:
         env:
           EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
-          LIMIT: ${{ github.event.inputs.limit }}
+          LIMIT: ${{ github.event.inputs.limit || (github.event_name == 'push' && '6') || '' }}
         run: python3 tools/ebay_pictures.py
       - uses: actions/upload-artifact@v4
         with:
