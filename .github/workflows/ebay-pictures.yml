@@ -1,0 +1,28 @@
+name: Find larger promo pictures on eBay
+
+# Run by hand (Actions -> this workflow -> Run workflow). Searches eBay for each
+# promo in tracker-data/need-larger-pictures.json and saves the listing photos
+# as a downloadable artifact for review. It never changes the tracker.
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 'Only the first N promos (blank = all)'
+        required: false
+
+jobs:
+  find:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Search eBay
+        env:
+          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+          LIMIT: ${{ github.event.inputs.limit }}
+        run: python3 tools/ebay_pictures.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ebay-candidates
+          path: ebay-candidates/
+          retention-days: 14
