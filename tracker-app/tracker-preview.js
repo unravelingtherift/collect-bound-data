@@ -6393,3 +6393,14 @@ if(!MEMBERSHIP_ENABLED){
     }catch(e){}
   });
 })();
+
+/* Note about picture quality, shown under the tabs. */
+(function(){
+  var first = document.querySelector('#collectBoundApp .growth-note');
+  if(!first || document.getElementById('imgQualityNote')) return;
+  var n = first.cloneNode(true);
+  n.id = 'imgQualityNote';
+  n.querySelector('.growth-note-icon').innerHTML = '&#128247;';
+  n.querySelector('.growth-note-text').textContent = 'About the pictures: Riot Games does not supply pictures of promos and collectibles. We find them through careful research across the web and the collector community, so some may be lower quality or photos of the real item. We replace them with sharper ones whenever we find them.';
+  first.parentNode.insertBefore(n, first.nextSibling);
+})();
