@@ -30,6 +30,6 @@ jobs:
         run: |
           for d in supabase/functions/*/; do
             name=$(basename "$d")
-            supabase functions deploy "$name" --project-ref jnxgkasdbzobwzyxiumg --no-verify-jwt
+            supabase functions deploy "$name" --project-ref jnxgkasdbzobwzyxiumg --no-verify-jwt --yes
             echo "- Deployed **$name**" >> "$GITHUB_STEP_SUMMARY"
           done
