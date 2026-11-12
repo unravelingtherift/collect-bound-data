@@ -1,5 +1,5 @@
 {
- "note": "English promos linked to their TCGplayer listing: the 'Matched automatically' tab of Promo price matching.xlsx plus Jessica's 6 picks (Nov 9 2026). Used for the Rising/Cooling badges. Plus listings matched by picture for larger-pictures batch 2 (Nov 10 2026), each checked by eye. Nov 12 2026: 10 more added from CardTrader's TCGplayer ids, each checked by name, version and number.",
+ "note": "English promos linked to their TCGplayer listing: the 'Matched automatically' tab of Promo price matching.xlsx plus Jessica's 6 picks (Nov 9 2026). Used for the Rising/Cooling badges. Plus listings matched by picture for larger-pictures batch 2 (Nov 10 2026), each checked by eye. Nov 12 2026: 10 more added from CardTrader's TCGplayer ids, each checked by name, version and number. item-10660 (Teemo GG EZ, English) added Nov 12.",
  "links": {
   "item-12": 659765,
   "item-47": 662884,
@@ -161,6 +161,7 @@
   "item-10343": 726827,
   "item-10210": 696693,
   "item-10214": 696697,
-  "item-299": 672088
+  "item-299": 672088,
+  "item-10660": 662898
  }
 }
