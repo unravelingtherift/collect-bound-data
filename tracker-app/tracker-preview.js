@@ -1961,7 +1961,11 @@ function sortItems(items){
 // Project K trial-deck SAMPLE cards were added later (rows 10600+) but belong with the
 // Macau event cards, so they sort straight after Gale Swordsman [Macau] (row 16).
 function promoSortRow(i){
-  if(/\[Project K Trial Deck\]/.test(i.name)) return 16 + (i.row - 10599) / 1000;
+  if(/\[Project K Trial Deck\]/.test(i.name)){
+    // English trial-deck cards come first, then the Chinese SAMPLE ones.
+    if(i.language === 'English') return 16 + (i.row - 10669) / 100000;
+    return 16 + (i.row - 10599) / 1000;
+  }
   return i.row;
 }
 
