@@ -96,3 +96,9 @@ from (values
 where not exists (select 1 from promo_items p where p.id = v.id);
 update promo_items set data = data || '{"img":"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/immortal-madness-project-k-trial-deck-sample-ch-item-10601.webp"}'::jsonb where id = 'item-10601';
 update promo_items set data = data || '{"img":"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/gale-swordsman-project-k-trial-deck-sample-ch-item-10603.webp"}'::jsonb where id = 'item-10603';
+
+-- Sharper Rengar Prize Wall metal picture, and the Korea launch coin + Teemo ID card.
+update promo_items set data = data || '{"img":"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/rengar-pridestalker-metal-prize-wall-en-item-10215-xl.webp"}'::jsonb where id = 'item-10215';
+insert into promo_items (id, r, data)
+select 'item-10644', 10644, $j${"r": 10644, "id": "item-10644", "cat": "COLLECTIBLE", "nm": "Riftbound Coin + Teemo ID Card (Korea Launch)", "la": "Korean", "ev": "Korea", "se": "OGN", "ty": "Coin", "cn": "N/A", "ra": "Rare", "do": "N/A", "tg": "Coin\nTeemo\nKorea Launch", "fo": false, "tn": false, "me": false, "nn": false, "bm": false, "pw": false, "pt": "Clear plastic bag", "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/korea-launch-coin-teemo-card-kr-item-10644.webp", "ii": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/korea-launch-coin-front-back-kr-item-10644.webp", "inf": "Gold Riftbound coin handed out at Korea launch events in September 2026, together with a Korean Teemo ID card. The extra photo shows the front and back of the coin."}$j$::jsonb || jsonb_build_object('st', coalesce((select data->>'st' from promo_items where upper(data->>'st')='NEED' limit 1),'NEED'))
+where not exists (select 1 from promo_items where id = 'item-10644');
