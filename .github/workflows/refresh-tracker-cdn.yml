@@ -1,0 +1,23 @@
+# When the tracker files change on main, tell jsDelivr to drop its cached copy
+# so the live page shows the new version within minutes instead of up to 12 hours.
+name: Refresh tracker on CDN
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tracker-app/**'
+      - 'branding/**'
+  workflow_dispatch:
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Purge jsDelivr cache
+        run: |
+          B="https://purge.jsdelivr.net/gh/${{ github.repository }}@main/tracker-app"
+          sleep 60
+          for f in tracker.css tracker.js tracker-preview.js; do curl -fsS "$B/$f"; echo; done
+          sleep 120
+          for f in tracker.css tracker.js tracker-preview.js; do curl -fsS "$B/$f"; echo; done
