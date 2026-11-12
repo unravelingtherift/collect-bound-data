@@ -6401,6 +6401,6 @@ if(!MEMBERSHIP_ENABLED){
   var n = first.cloneNode(true);
   n.id = 'imgQualityNote';
   n.querySelector('.growth-note-icon').innerHTML = '&#128247;';
-  n.querySelector('.growth-note-text').textContent = 'About the pictures: Riot Games does not supply pictures of promos and collectibles. We find them through careful research of publicly available pictures online and from the collector community, so some may be lower quality or photos of the real item. We replace them with sharper ones whenever we find them. Pictures are shown only to help you identify items. Card art and game content belong to Riot Games and their artists. If you own a picture and would like credit or want it removed, please contact us and we will sort it out quickly.';
+  n.querySelector('.growth-note-text').textContent = 'About the pictures: Riot Games does not supply pictures of promos and collectibles. We find them through careful research of publicly available pictures online and from the collector community, so some may be lower quality or photos of the real item. We replace them with sharper ones whenever we find them. Pictures are shown only to help you identify items. Card art and game content belong to Riot Games and their artists.';
   first.parentNode.insertBefore(n, first.nextSibling);
 })();
