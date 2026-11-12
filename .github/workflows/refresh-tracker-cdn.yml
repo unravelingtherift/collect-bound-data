@@ -2,6 +2,8 @@
 # so the live page shows the new version within minutes instead of up to 12 hours.
 name: Refresh tracker on CDN
 
+permissions: {}
+
 on:
   push:
     branches: [main]
