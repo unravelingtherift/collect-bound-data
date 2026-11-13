@@ -4545,6 +4545,7 @@ function openMembershipPortal(){
   const url = PORTAL_LINK + (currentUser && currentUser.email ? `?prefilled_email=${encodeURIComponent(currentUser.email)}` : '');
   window.open(url, '_blank', 'noopener');
   closeMembershipChooser();
+  watchTierChange(600);
 }
 
 function openMembershipChooser(pickedTier){
@@ -4587,6 +4588,7 @@ function startCheckout(tier){
             + (currentUser.email ? `&prefilled_email=${encodeURIComponent(currentUser.email)}` : '');
   window.open(url, '_blank', 'noopener');
   closeMembershipChooser();
+  watchTierChange(600);
   setSyncStatus('Finish checkout in the new tab — your tier updates when you come back.');
 }
 
@@ -4621,7 +4623,19 @@ async function refreshTierFromCloud(){
     }
   }catch(e){ console.error('tier refresh failed', e); }
 }
-window.addEventListener('focus', refreshTierFromCloud);
+window.addEventListener('focus', ()=>{ refreshTierFromCloud(); watchTierChange(60); });
+// Stripe tells us about a payment a moment after it happens, and the old check ran only once when the tab came back,
+// so a slow moment meant a slow upgrade. Keep checking every 2 seconds until the new tier shows up.
+let tierWatchTimer = null;
+function watchTierChange(seconds){
+  if(!sb || !currentUser || typeof refreshTierFromCloud !== 'function') return;
+  clearInterval(tierWatchTimer);
+  const start = currentUserTier, until = Date.now() + seconds * 1000;
+  tierWatchTimer = setInterval(async ()=>{
+    await refreshTierFromCloud();
+    if(currentUserTier !== start || Date.now() > until || document.hidden && Date.now() > until) clearInterval(tierWatchTimer);
+  }, 2000);
+}
 
 // Links from the membership page land here with a hash:
 //   #join-club / #join-vip  -> open the chooser with that tier highlighted
