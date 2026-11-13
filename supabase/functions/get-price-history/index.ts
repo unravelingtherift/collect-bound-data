@@ -347,10 +347,10 @@ async function binderValue(body: any, tier: string) {
 let trendCache: { at: number; data: any } | null = null;
 async function trends() {
   if (trendCache && Date.now() - trendCache.at < 60 * 60 * 1000) return trendCache.data;
-  // Everything on TCGplayer that moved 15%+ in 7 days: cards, promos and sealed products.
+  // Everything on TCGplayer that moved 5%+ in 7 days: cards, promos and sealed products.
   const r = await fetch(`${SUPABASE_URL}/rest/v1/rpc/price_trends`, {
     method: 'POST', headers: { ...DB, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ p_days: 7, p_min_pct: 15 }),
+    body: JSON.stringify({ p_days: 7, p_min_pct: 5 }),
   });
   if (!r.ok) throw new Error(`price_trends ${r.status}`);
   const rows = await r.json();
