@@ -1323,6 +1323,9 @@
   .trend-pill{ display:inline-block; margin-left:6px; padding:1px 7px; border-radius:999px; font:600 10.5px/16px var(--sans, inherit); vertical-align:middle; white-space:nowrap; }
   .trend-pill.hot{ background:rgba(255,120,60,.16); color:#ffb085; border:1px solid rgba(255,120,60,.5); }
   .trend-pill.cold{ background:rgba(110,180,255,.14); color:#a9d3ff; border:1px solid rgba(110,180,255,.45); }
+  .trend-pill.trend-overlay{ position:absolute; left:50%; bottom:7px; transform:translateX(-50%); margin:0; z-index:3; font-size:10px; padding:1px 6px; backdrop-filter:blur(3px); }
+  .trend-pill.trend-overlay.hot{ background:rgba(40,16,6,.82); }
+  .trend-pill.trend-overlay.cold{ background:rgba(8,20,40,.82); }
   .intl-rows{ display:grid; grid-template-columns:repeat(auto-fit, minmax(170px,1fr)); gap:6px 14px; margin:6px 0; }
   .intl-row{ display:flex; align-items:center; gap:8px; font-size:13px; }
   .intl-row b{ margin-left:auto; }

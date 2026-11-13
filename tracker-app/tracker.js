@@ -939,6 +939,9 @@ function trendOf(card){
   if(!hits.length) return null;
   return hits.sort((a,b) => Math.abs(b.pct) - Math.abs(a.pct))[0];
 }
+function trendOverlayHtml(pillHtml){
+  return pillHtml ? pillHtml.replace('class="trend-pill ','class="trend-pill trend-overlay ') : '';
+}
 function trendBadgeHtml(card){
   return trendPillHtml(trendOf(card));
 }
@@ -1931,6 +1934,7 @@ function cardHtml(item){
       ${img}
       ${stampBoxHtml(item.id, true)}
       ${wishHeartHtml('promo:' + item.id)}
+      ${trendOverlayHtml(promoTrendBadgeHtml(item))}
       <div class="br-badges">${langFlagHtml(item.language, item.flagMix)}${item.foil ? `<span class="foil-badge">FOIL</span>` : ''}</div>
       ${metalBadgesHtml(item)}
       ${specialBadgesHtml(item)}
@@ -1939,7 +1943,7 @@ function cardHtml(item){
       </div>${qtyBubbleHtml(getQty(item.id))}${locked ? '' : gradeBubbleHtml(promoGradeLabels(item.id))}
     </div>
     <div class="card-body">
-      <div class="card-title">${escapeHtml(item.name)}${promoTrendBadgeHtml(item)}${promoReturnBadge(item)}</div>
+      <div class="card-title">${escapeHtml(item.name)}${promoReturnBadge(item)}</div>
       <div class="card-meta">${locked ? (item.set ? escapeHtml(item.set) : '') : (itemEvents(item).length > 2 ? `${escapeHtml(item.set || '')}${eventColumnsHtml(item, ' / ', true)}` : `${escapeHtml(itemEvents(item).join(' / '))}${item.set? ' &middot; '+escapeHtml(item.set):''}`)}</div>
       <div class="chip-row">
         ${item.category? `<span class="pip">${escapeHtml(item.category)}</span>`:''}
@@ -2906,6 +2910,7 @@ function cardTileHtml(card){
     <div class="img-wrap${isTokenCard(card) ? ' wm-light' : ''}">
       ${img}
       ${wishHeartHtml('card:' + card.id)}
+      ${trendOverlayHtml(trendBadgeHtml(card))}
       <div class="br-badges">${langFlagHtml(card.language)}${foilOnly ? `<span class="foil-badge">FOIL</span>` : ''}</div>
       ${isBannedEverywhere(card) ? `<span class="banned-badge">BANNED</span>` : ''}
       <div class="check-seal" onclick="event.stopPropagation(); quickToggleCard('${card.id}')" title="${owned ? 'Mark as not owned' : 'Mark as owned (Details for Foil)'}">
@@ -2913,7 +2918,7 @@ function cardTileHtml(card){
       </div>${qtyBubbleHtml(getCardQty(card.id,'Normal') + getCardQty(card.id,'Foil'))}${gradeBubbleHtml(cardGradeLabels(card.id))}
     </div>
     <div class="card-body">
-      <div class="card-title">${escapeHtml(cardDisplayName(card))}${overnumberBadgeHtml(card)}${trendBadgeHtml(card)}${cardReturnBadge(card)}</div>
+      <div class="card-title">${escapeHtml(cardDisplayName(card))}${overnumberBadgeHtml(card)}${cardReturnBadge(card)}</div>
       <div class="card-meta">${escapeHtml(card.setCode||'')}</div>
       <div class="chip-row">
         ${card.type? `<span class="pip">${escapeHtml(card.type)}</span>`:''}
@@ -5951,13 +5956,14 @@ function productCardHtml(p){
       ${productImageHtml(p)}
       ${productStatusBadge(p)}
       ${wishHeartHtml('prod:' + p.id)}
+      ${trendOverlayHtml(productTrendBadgeHtml(p))}
       <div class="br-badges">${langFlagHtml(p.language)}</div>
       ${released ? `<div class="check-seal" onclick="event.stopPropagation(); toggleProductOwned('${p.id}')" title="Toggle owned">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>
       </div>${qtyBubbleHtml(getProductQty(p.id))}` : ''}
     </div>
     <div class="card-body">
-      <div class="card-title">${escapeHtml(p.name)}${productTrendBadgeHtml(p)}${productReturnBadge(p)}</div>
+      <div class="card-title">${escapeHtml(p.name)}${productReturnBadge(p)}</div>
       <div class="card-meta">${escapeHtml(p.set || '')}${PRODUCT_SET_NAMES[p.set] ? ' &middot; '+escapeHtml(PRODUCT_SET_NAMES[p.set]) : ''}</div>
       <div class="chip-row">
         ${p.type ? `<span class="pip">${escapeHtml(p.type)}</span>` : ''}
