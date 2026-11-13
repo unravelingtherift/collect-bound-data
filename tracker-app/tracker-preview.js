@@ -1372,7 +1372,7 @@ function refreshBinderValue(){
 }
 function binderValueRequest(){
   const club = isPaidTier();
-  const cards = [], products = [];
+  const cards = [], products = [], ebay = [];
   CARDS.filter(cardEffectiveOwned).forEach(c=>{
     if(!club && c.language !== 'English') return;
     c.printings.forEach(pr=>{
@@ -1384,13 +1384,15 @@ function binderValueRequest(){
   });
   if(typeof PRODUCTS !== 'undefined') PRODUCTS.filter(productOwned).forEach(p=>{
     if(p.tp) products.push({ k: p.id, tp: p.tp, qty: Math.max(1, getProductQty(p.id)) });
+    else if(!p.language || p.language === 'English') ebay.push({ k: p.id, kind:'prod', id: p.id, qty: Math.max(1, getProductQty(p.id)) });
   });
   // Promos & collectibles that have a TCGplayer listing (tracker-data/promo-tcg.json).
   if(PROMO_TCG) getOwnedPromos().forEach(i=>{
     const tp = PROMO_TCG[i.id];
     if(tp && (club || i.language === 'English')) products.push({ k: 'promo:' + i.id, tp, qty: Math.max(1, getQty(i.id)) });
+    else if(!tp && isVipTier() && i.language === 'English' && ebay.length < 80) ebay.push({ k: 'promo:' + i.id, kind:'promo', id: i.id, qty: Math.max(1, getQty(i.id)) });
   });
-  return { cards, products };
+  return { cards, products, ebay };
 }
 const NOTE_HTML = ' <br><span style="opacity:.85">We only count items with a real, checked price from a trusted shop. If we can&#39;t find a trusted price (like for many promos, statues and plushes), we don&#39;t guess. It shows as &quot;not priced&quot; instead. Nobody can type in their own prices, so your total is always honest.</span>';
 async function loadBinderValue(){
@@ -1401,7 +1403,7 @@ async function loadBinderValue(){
   if(panel && panel.style.display === 'none') return;
   const req = binderValueRequest();
   const ownedCount = getOwnedCards().length + getOwnedPromos().length + getOwnedProducts().length;
-  if(!req.cards.length && !req.products.length){
+  if(!req.cards.length && !req.products.length && !req.ebay.length){
     box.innerHTML = ownedCount ? `<div class="bv-box"><div class="bv-label">Binder value</div><div class="bv-meta">Nothing here has a price source yet.</div></div>` : '';
     return;
   }
@@ -1464,7 +1466,7 @@ function binderValueHtml(res, req, ownedCount){
         <div class="bv-meta">${n} item${n===1?'':'s'} with both a price and what you paid. Add what you paid in any item's Details.</div></div>`;
     }
   }
-  const want = req.cards.length + req.products.length;
+  const want = req.cards.length + req.products.length + (req.ebay ? req.ebay.length : 0);
   const promoCount = getOwnedPromos().length;
   const upgrade = (tier, text) => `<a href="#" class="bv-tease" onclick="event.preventDefault(); openMembershipChooser('${tier}');">${text}</a>`;
   const day = res.day ? new Date(res.day+'T12:00:00').toLocaleDateString('en-US', { month:'short', day:'numeric' }) : '';
@@ -1504,7 +1506,7 @@ function binderValueHtml(res, req, ownedCount){
       <div><span>Products</span><span>${escapeHtml(money(prodVal))}</span></div>
       ${promoCount ? `<div><span>Promos &amp; Collectibles</span><span>${promoPriced ? escapeHtml(money(promoVal)) + ` <small>(${promoPriced} of ${promoCount} priced)</small>` : 'not priced yet'}</span></div>` : ''}
     </div>${perf}
-    <div class="bv-meta">${priced} of ${want} cards, products &amp; promos priced${day ? ' &middot; '+escapeHtml(day) : ''}. Near Mint. English uses TCGplayer market price; French &amp; Chinese use the lowest CardTrader listing. Tiers use each item's single-copy price.${NOTE_HTML}</div>
+    <div class="bv-meta">${priced} of ${want} cards, products &amp; promos priced${day ? ' &middot; '+escapeHtml(day) : ''}. Near Mint. English uses TCGplayer market price; French &amp; Chinese use the lowest CardTrader listing.${lines.some(l=>l.source==='ebay') ? ' Items with no TCGplayer price use the lowest eBay asking price, which runs a bit above what they sell for.' : ''} Tiers use each item's single-copy price.${NOTE_HTML}</div>
     ${!isVipTier() ? upgrade('tier2', 'See your value over time and your most valuable cards with VIP &rarr;') : ''}</div>`;
   if(!isVipTier()) return `<div class="bv-box bv-wide">${left}<div class="bv-col">${tierHtml}</div></div>`;
   // One chart per language, side by side. English = TCGplayer market price (cards, products, promos);
