@@ -1390,7 +1390,7 @@ function binderValueRequest(){
   if(PROMO_TCG) getOwnedPromos().forEach(i=>{
     const tp = PROMO_TCG[i.id];
     if(tp && (club || i.language === 'English')) products.push({ k: 'promo:' + i.id, tp, qty: Math.max(1, getQty(i.id)) });
-    else if(!tp && isVipTier() && i.language === 'English' && ebay.length < 80) ebay.push({ k: 'promo:' + i.id, kind:'promo', id: i.id, qty: Math.max(1, getQty(i.id)) });
+    else if(!tp && isVipTier() && ebay.length < 80) ebay.push({ k: 'promo:' + i.id, kind:'promo', id: i.id, qty: Math.max(1, getQty(i.id)) });
   });
   return { cards, products, ebay };
 }
@@ -6107,7 +6107,7 @@ const ebayPriceCache = new Map();
 async function fillEbayPrice(kind, item){
   const box = document.getElementById('cbEbay'); if(!box || !sb) return;
   if(kind === 'promo' && !isVipTier()) return;
-  if(item.language && item.language !== 'English') return;
+  if(kind === 'prod' && item.language && item.language !== 'English') return;
   const key = kind + ':' + item.id;
   let res = ebayPriceCache.get(key);
   if(!res){

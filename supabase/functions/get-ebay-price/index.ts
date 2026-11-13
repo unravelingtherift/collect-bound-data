@@ -83,10 +83,24 @@ function searchName(name: string): string {
   return String(name || '').replace(/\[[^\]]*\]|\([^)]*\)/g, ' ').replace(/\s+-\s+/g, ' ').replace(/\s+/g, ' ').trim();
 }
 const STOP = new Set(['the', 'of', 'and', 'a', 'an', 'in', 'to', 'for']);
-const tokens = (s: string) => s.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter((w) => w && !STOP.has(w));
+const fold = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const tokens = (s: string) => fold(s).replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter((w) => w && !STOP.has(w));
+// Words that don't tell two versions of a card apart (how we label promos, not how sellers do).
+const GENERIC = new Set(['promo', 'exclusive', 'event', 'events', 'release', 'launch', 'korea', 'korean', 'france', 'french', 'china', 'chinese', 'english', 'set', 'card', 'version', 'prize', 'collection']);
+// Words in the item name's (...) and [...] that tell this version from the regular card, e.g. "GG EZ".
+function distinguishing(name: string): string[] {
+  const bits = [...String(name || '').matchAll(/\[([^\]]*)\]|\(([^)]*)\)/g)].map((m) => m[1] || m[2] || '');
+  const out = new Set<string>();
+  for (const b of bits) {
+    if (/[^\x00-\x7f]/.test(b)) continue; // local-language names are skipped
+    for (const w of tokens(b)) if (w.length > 1 && !GENERIC.has(w)) out.add(w);
+  }
+  return [...out];
+}
+const LANG_WORDS: Record<string, string[]> = { Korean: ['korean', 'korea', 'kr'], French: ['french', 'france', 'fr'], Chinese: ['chinese', 'china', 'cn', 'simplified'] };
 const BAD = /\b(lot|lots|bundle of|proxy|proxies|custom|reprint|replica|fake|digital|code only|empty|box only|read desc)\b/i;
 
-async function ebaySearch(query: string, sealed: boolean) {
+async function ebaySearch(query: string, sealed: boolean, must: string[] = [], anyOf: string[] = []) {
   const tok = await ebayToken();
   if (!tok) return { error: true };
   const filter = ['buyingOptions:{FIXED_PRICE}', 'priceCurrency:USD', 'deliveryCountry:US'];
@@ -101,7 +115,8 @@ async function ebaySearch(query: string, sealed: boolean) {
     const t = String(it.title || '');
     if (BAD.test(t)) continue;
     const have = new Set(tokens(t));
-    if (!need.every((w) => have.has(w))) continue;
+    if (!need.every((w) => have.has(w)) || !must.every((w) => have.has(w))) continue;
+    if (anyOf.length && !anyOf.some((w) => have.has(w))) continue;
     const v = parseFloat(it.price?.value);
     if (it.price?.currency === 'USD' && v > 0) prices.push(v);
   }
@@ -114,7 +129,7 @@ async function ebaySearch(query: string, sealed: boolean) {
 
 // One item: cached answer if fresh, otherwise a live eBay search (and cache it). Returns null when nothing usable.
 async function lookup(kind: string, id: string, allowFetch = true): Promise<Record<string, unknown> | null> {
-  const cacheId = `${kind}:${id}`;
+  const cacheId = `${kind}:${id}:v2`;
   const c = await fetch(`${SUPABASE_URL}/rest/v1/ebay_price_cache?id=eq.${encodeURIComponent(cacheId)}&select=data,at`, { headers: DB });
   if (c.ok) {
     const row = (await c.json())?.[0];
@@ -124,10 +139,21 @@ async function lookup(kind: string, id: string, allowFetch = true): Promise<Reco
   const t = await fetch(`${SUPABASE_URL}/rest/v1/${kind === 'promo' ? 'promo_items' : 'product_items'}?id=eq.${encodeURIComponent(id)}&select=data`, { headers: DB });
   const item = t.ok ? (await t.json())?.[0]?.data : null;
   if (!item) return { none: true };
-  if (item.nb || (item.la && item.la !== 'English')) return { none: true };
+  if (item.nb || (kind === 'prod' && item.la && item.la !== 'English')) return { none: true };
   const query = String(item.eq || searchName(item.nm));
   if (!query) return { none: true };
-  const res: Record<string, unknown> = await ebaySearch(query, kind === 'prod');
+  // Promo cards share a name with the regular card, so a listing only counts when its title also has the
+  // promo's distinguishing words. No distinguishing words (and no custom search "eq") = can't verify = no price.
+  let must: string[] = [];
+  if (kind === 'promo' && !item.eq && String(item.ty || 'Card') === 'Card') {
+    must = distinguishing(item.nm);
+    // Alternate-art / promo numbers like 076b are printed on the card and sellers often repeat them.
+    if (!must.length && /^\d+[a-z]$/i.test(String(item.cn || ''))) must = [String(item.cn).toLowerCase()];
+    if (!must.length) return { none: true };
+  }
+  const anyOf = kind === 'promo' && item.la && item.la !== 'English' ? (LANG_WORDS[item.la] || []) : [];
+  if (kind === 'promo' && item.la && item.la !== 'English' && !anyOf.length) return { none: true };
+  const res: Record<string, unknown> = await ebaySearch(query + (anyOf.length ? ' ' + anyOf[0] : ''), kind === 'prod', must, anyOf);
   if (res.error) return null; // eBay hiccup: nothing is cached, nothing is shown
   const data = { ...res, query, at: new Date().toISOString() };
   await fetch(`${SUPABASE_URL}/rest/v1/ebay_price_cache`, {
