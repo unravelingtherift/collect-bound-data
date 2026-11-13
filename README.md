@@ -15,7 +15,7 @@ Riftbound and League of Legends are trademarks of Riot Games; card text and imag
 | Path | What it is |
 | --- | --- |
 | `ogn.json`, `ogs.json`, `sfd.json`, `unl.json`, `ven.json` | Card lists per set |
-| `products.json` | Sealed Riftbound products, per language |
+| (products are served from the database) | Sealed Riftbound products, per language |
 | `cardtext.json` | Card text and regional image sources |
 | `market-tools/` | Market comparison and landed-cost module for the tracker |
 | `handbook/`, `handbook-images/` | Starter Handbook |
