@@ -2133,6 +2133,10 @@
   .merge-list{ display:flex; flex-direction:column; gap:8px; margin:10px 0 4px; }
   .merge-row{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:space-between; border-top:1px dashed rgba(201,164,76,.25); padding-top:8px; }
   .merge-btns{ display:flex; gap:6px; }
+  .merge-who{ display:flex; align-items:center; gap:10px; min-width:0; flex:1 1 180px; }
+  .merge-thumb{ width:48px; height:67px; object-fit:contain; border-radius:5px; background:#fff; flex:0 0 auto; }
+  .merge-name{ display:flex; flex-direction:column; min-width:0; }
+  .merge-name small{ opacity:.7; font-size:.78em; margin-top:2px; }
   .ev-cols{ margin-top:3px; }
   .ev-grp{ margin-top:2px; }
   .ev-pfx{ display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:.06em; color:var(--gold); border:1px solid var(--gold-dim); border-radius:8px; padding:0 6px; margin-bottom:2px; }
@@ -2215,3 +2219,9 @@
   }
 }
 
+
+.lang-flag-split{ position:relative; }
+.lang-flag-split .lf-half{ position:absolute; top:0; bottom:0; width:100%; display:block; }
+.lang-flag-split .lf-left{ clip-path:polygon(0 0,50% 0,50% 100%,0 100%); }
+.lang-flag-split .lf-right{ clip-path:polygon(50% 0,100% 0,100% 100%,50% 100%); }
+.lang-flag-split .lf-half svg{ width:100%; height:100%; display:block; }
