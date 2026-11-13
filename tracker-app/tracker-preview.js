@@ -894,7 +894,7 @@ function closeUnlZhNotice(show){
    products) whose market price moved 15%+ over 7 days ($1 and up). Price
    momentum, not sales counts. Promos use tracker-data/promo-tcg.json to know
    their TCGplayer listing; products use their own TCGplayer id (tp). */
-let TRENDS = null, TRENDS_BY_ID = null, PROMO_TCG = null;
+let TRENDS = null, TRENDS_BY_ID = null, PROMO_TCG = null, CT_TRENDS = null;
 function loadTrends(){
   if(!MEMBERSHIP_ENABLED || typeof sb === 'undefined' || !sb) return;
   const links = fetch(ghUrl('tracker-data/promo-tcg.json')).then(r => r.ok ? r.json() : null).catch(() => null);
@@ -907,6 +907,7 @@ function loadTrends(){
     const byId = new Map();
     (r.data.items || []).forEach(x => byId.set(String(x.p), { dir: x.d === 'up' ? 'up' : 'down', pct: x.pct }));
     TRENDS_BY_ID = byId;
+    CT_TRENDS = new Map((r.data.ct || []).map(x => [x.k, { dir: x.d === 'up' ? 'up' : 'down', pct: x.pct, src:'CardTrader lowest listing' }]));
     const l = await links;
     PROMO_TCG = (l && l.links) || {};
     if(typeof renderSetAll === 'function') renderSetAll();
@@ -918,8 +919,8 @@ function loadTrends(){
 function trendPillHtml(t){
   if(!t) return '';
   return t.dir === 'up'
-    ? `<span class="trend-pill hot" title="Price up ${t.pct}% in the last 7 days (TCGplayer market)">&#128293; Rising</span>`
-    : `<span class="trend-pill cold" title="Price down ${Math.abs(t.pct)}% in the last 7 days (TCGplayer market)">&#10052;&#65039; Cooling</span>`;
+    ? `<span class="trend-pill hot" title="Price up ${t.pct}% in the last 7 days (${t.src || 'TCGplayer market'})">&#128293; Rising</span>`
+    : `<span class="trend-pill cold" title="Price down ${Math.abs(t.pct)}% in the last 7 days (${t.src || 'TCGplayer market'})">&#10052;&#65039; Cooling</span>`;
 }
 // Promos & Collectibles (English promos linked to a TCGplayer listing)
 function promoTrendBadgeHtml(item){
@@ -933,7 +934,13 @@ function productTrendBadgeHtml(p){
   return trendPillHtml(TRENDS_BY_ID.get(String(p.tp)));
 }
 function trendOf(card){
-  if(!TRENDS || card.language !== 'English') return null;
+  if(card.language !== 'English'){
+    if(!CT_TRENDS || !CT_TRENDS.size) return null;
+    const b = card.language + '|' + String(card.setCode||'').toUpperCase() + '|' + String(card.collectorNum||'').toLowerCase().replace(/^0+(?=\d)/,'') + '|';
+    const h = ['normal','foil'].map(p => CT_TRENDS.get(b + p)).filter(Boolean);
+    return h.length ? h.sort((x,y) => Math.abs(y.pct) - Math.abs(x.pct))[0] : null;
+  }
+  if(!TRENDS) return null;
   const base = card.setCode + '|' + String(card.collectorNum||'').toLowerCase().replace(/^0+(?=\d)/,'') + '|';
   const hits = card.printings.map(pr => TRENDS.get(base + pr.toLowerCase())).filter(Boolean);
   if(!hits.length) return null;
