@@ -192,6 +192,7 @@ async function loadItems(forceFresh){
     metal: r.me,
     nexusNight: r.nn,
     foil: r.fo,
+    flagMix: r.lf || '',
     bestOfMetal: r.bm,
     prizeWall: r.pw,
     serialMax: (r.sx|0) > 0 ? (r.sx|0) : 0, // serialized item: members list each numbered card they own
@@ -381,7 +382,7 @@ function maybeShowMergeNotice(){
       <div class="patch-notice-tag">Binder update</div>
       <h3 id="mergeTitle">Do you own two of these?</h3>
       <p>We found ${items.length === 1 ? 'a promo' : 'promos'} that had been listed more than once (for example once per event), and you had marked more than one copy. ${items.length === 1 ? 'It is' : 'They are'} now one entry, counted as <b>1 copy</b>. If you really own two, tap <b>I have 2</b>.</p>
-      <div class="merge-list">${items.map(i => `<div class="merge-row"><span>${escapeHtml(i.name)}</span>
+      <div class="merge-list">${items.map(i => `<div class="merge-row"><span class="merge-who">${i.img ? `<img class="merge-thumb" src="${escapeHtml(i.img)}" alt="" loading="lazy">` : ''}<span class="merge-name">${escapeHtml(i.name)}<small>${escapeHtml([i.language, i.set, i.collectorNum && i.collectorNum !== 'N/A' ? '#' + i.collectorNum : ''].filter(Boolean).join(' · '))}</small></span></span>
         <span class="merge-btns"><button type="button" class="pn-secondary" onclick="answerMerge('${i.id}',1)">Just 1</button><button type="button" class="pn-primary" onclick="answerMerge('${i.id}',2)">I have 2</button></span></div>`).join('')}</div>
     </div>`;
   (document.getElementById('collectBoundApp') || document.body).appendChild(box);
@@ -1927,7 +1928,7 @@ function cardHtml(item){
       ${img}
       ${stampBoxHtml(item.id, true)}
       ${wishHeartHtml('promo:' + item.id)}
-      <div class="br-badges">${langFlagHtml(item.language)}${item.foil ? `<span class="foil-badge">FOIL</span>` : ''}</div>
+      <div class="br-badges">${langFlagHtml(item.language, item.flagMix)}${item.foil ? `<span class="foil-badge">FOIL</span>` : ''}</div>
       ${metalBadgesHtml(item)}
       ${specialBadgesHtml(item)}
       <div class="check-seal" onclick="event.stopPropagation(); toggleOwned('${item.id}')" title="Toggle owned">
@@ -2182,7 +2183,7 @@ function openPromoModal(id){
     <h2>${escapeHtml(item.name)}${promoTrendBadgeHtml(item)}</h2>
     <div class="modal-sub">${escapeHtml(item.category)} &middot; ${escapeHtml(item.itemType)} &middot; <span class="status-chip ${status}" style="position:static;display:inline-block;">${status}</span></div>
     <div class="modal-imgs-row">
-      <div class="modal-imgs">${imgs.map(u=>`<div class="modal-img-wrap"><div class="br-badges">${langFlagHtml(item.language)}${item.foil ? `<span class="foil-badge">FOIL</span>` : ''}</div>${metalBadgesHtml(item)}${specialBadgesHtml(item)}<img src="${escapeHtml(u)}" alt="${escapeHtml(item.name)}" draggable="false" oncontextmenu="return false" onerror="this.parentElement.style.display='none'"/>${stampBoxHtml(item.id, false)}</div>`).join('')}</div>
+      <div class="modal-imgs">${imgs.map(u=>`<div class="modal-img-wrap"><div class="br-badges">${langFlagHtml(item.language, item.flagMix)}${item.foil ? `<span class="foil-badge">FOIL</span>` : ''}</div>${metalBadgesHtml(item)}${specialBadgesHtml(item)}<img src="${escapeHtml(u)}" alt="${escapeHtml(item.name)}" draggable="false" oncontextmenu="return false" onerror="this.parentElement.style.display='none'"/>${stampBoxHtml(item.id, false)}</div>`).join('')}</div>
       ${isRetired ? `<div class="retired-label">Retired</div>` : ''}
     </div>
     <div class="modal-grid">
@@ -2287,7 +2288,7 @@ async function fillHistory(kind, obj){
 function openPromoTeaser(item){
   currentModalId = item.id;
   currentModalKind = 'promo';
-  const img = item.img ? `<div class="modal-img-wrap"><div class="br-badges">${langFlagHtml(item.language)}${item.foil ? `<span class="foil-badge">FOIL</span>` : ''}</div><img src="${escapeHtml(item.img)}" alt="${escapeHtml(item.name)}" draggable="false" oncontextmenu="return false" onerror="this.parentElement.style.display='none'"/></div>` : '';
+  const img = item.img ? `<div class="modal-img-wrap"><div class="br-badges">${langFlagHtml(item.language, item.flagMix)}${item.foil ? `<span class="foil-badge">FOIL</span>` : ''}</div><img src="${escapeHtml(item.img)}" alt="${escapeHtml(item.name)}" draggable="false" oncontextmenu="return false" onerror="this.parentElement.style.display='none'"/></div>` : '';
   const packagingHtml = item.packagingImg
     ? `<div class="pkg-thumb"><img src="${escapeHtml(item.packagingImg)}" alt="Packaging" draggable="false" oncontextmenu="return false" onerror="this.parentElement.style.display='none'"/></div>`
     : `${escapeHtml(item.packagingText)||'&mdash;'}`;
@@ -4797,9 +4798,14 @@ function cardLanguageSiblings(card){
   return out;
 }
 
-function langFlagHtml(language){
+function langFlagHtml(language, mix){
   const code = LANG_FLAG[String(language || '').trim()];
   if(!code || !FLAG_SVGS[code]) return '';
+  const second = mix && LANG_FLAG[String(mix).trim()];
+  if(second && FLAG_SVGS[second] && second !== code){
+    const label = `${language} event, ${mix} card`;
+    return `<span class="lang-flag lang-flag-split" title="${escapeHtml(label)}" aria-label="${escapeHtml(label)}" role="img"><span class="lf-half lf-left">${FLAG_SVGS[code]}</span><span class="lf-half lf-right">${FLAG_SVGS[second]}</span></span>`;
+  }
   const label = `${language} edition`;
   return `<span class="lang-flag" title="${escapeHtml(label)}" aria-label="${escapeHtml(label)}" role="img">${FLAG_SVGS[code]}</span>`;
 }

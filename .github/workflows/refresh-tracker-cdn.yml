@@ -10,12 +10,16 @@ on:
     paths:
       - 'tracker-app/**'
       - 'branding/**'
+      - 'promo-images/**'
   workflow_dispatch:
 
 jobs:
   purge:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Purge jsDelivr cache
         run: |
           B="https://purge.jsdelivr.net/gh/${{ github.repository }}@main/tracker-app"
@@ -23,3 +27,10 @@ jobs:
           for f in tracker.css tracker.js tracker-preview.js; do curl -fsS "$B/$f"; echo; done
           sleep 120
           for f in tracker.css tracker.js tracker-preview.js; do curl -fsS "$B/$f"; echo; done
+      - name: Purge changed pictures
+        if: github.event_name == 'push'
+        run: |
+          B="https://purge.jsdelivr.net/gh/${{ github.repository }}@main"
+          files=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- promo-images branding 2>/dev/null | head -400)
+          for f in $files; do curl -fsS "$B/$f" >/dev/null || true; done
+          echo "Purged $(echo "$files" | wc -w) pictures" >> "$GITHUB_STEP_SUMMARY"
