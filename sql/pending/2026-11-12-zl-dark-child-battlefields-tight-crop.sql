@@ -1,0 +1,6 @@
+-- Crop the extra white margin off Dark Child (Starter, Foil) and the four Chinese S3 Regional Open stamped battlefields so they fill the tile like the other cards.
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/dark-child-starter-foil-item-337-tight.webp') where id = 'item-337';
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/the-academy-stamped-s3-regional-open-battlefield-ch-item-10188-tight.webp') where id = 'item-10188';
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/star-spring-stamped-s3-regional-open-battlefield-ch-item-10189-tight.webp') where id = 'item-10189';
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/frozen-fortress-stamped-s3-regional-open-battlefie-ch-item-10190-tight.webp') where id = 'item-10190';
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/garden-of-becoming-stamped-s3-regional-open-battle-ch-item-10191-tight.webp') where id = 'item-10191';
