@@ -79,7 +79,8 @@ async function promoSession(){
 async function fetchPromoPage(offset, token){
   for(let attempt=0; attempt<4; attempt++){
     const res = await fetch(`${promoApiUrl()}?offset=${offset}`, {
-      headers: { 'Authorization': `Bearer ${token || SUPABASE_ANON_KEY}`, 'apikey': SUPABASE_ANON_KEY }
+      headers: { 'Authorization': `Bearer ${token || SUPABASE_ANON_KEY}`, 'apikey': SUPABASE_ANON_KEY },
+      cache: 'no-store'
     });
     if(res.ok) return res.json();
     if(res.status === 429){

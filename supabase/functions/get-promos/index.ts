@@ -175,7 +175,7 @@ Deno.serve(async (req: Request) => {
       { data, total: isFinite(total) ? total : rows.length, offset, full: member },
       200,
       // The answer depends on who's asking, so browsers and caches must not share it.
-      { 'Cache-Control': 'private, max-age=300', Vary: 'Authorization' },
+      { 'Cache-Control': 'private, no-cache', Vary: 'Authorization' },
     );
   } catch (err) {
     console.error('get-promos error:', (err as Error).message);
