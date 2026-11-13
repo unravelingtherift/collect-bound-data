@@ -107,7 +107,7 @@ async function fetchAllPromos(token){
 // Browser cache so repeat visits show promos instantly. One copy per account
 // ('anon' for visitors), so a member's full copy is never shown to someone else
 // on the same browser; it's cleared on log out.
-const PROMO_CACHE_KEY = 'cb_promos_cache_v4'; // v4: free visitors only get Nexus Night events
+const PROMO_CACHE_KEY = 'cb_promos_cache_v5'; // v5: everyone's saved copy is dropped so new pictures show without any manual clearing
 const PROMO_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // an older copy still shows instantly; a fresh one is fetched right behind it
 function cbPromoCacheKey(userId){ return PROMO_CACHE_KEY + ':' + (userId || 'anon'); }
 function cbReadPromoCache(userId){
