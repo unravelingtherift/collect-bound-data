@@ -1,0 +1,1 @@
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/consult-the-past-nexus-night-ch-item-97-v3.webp') where id='item-97';
