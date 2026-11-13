@@ -85,7 +85,7 @@
     eras:[
       {y:'2018',t:'POP/STARS',p:`K/DA hit the stage at the Worlds 2018 finals in South Korea as an AR performance, then the Fortiche-animated music video dropped and did a hundred million views in about a month. Ahri, Akali, Evelynn and Kai'Sa were sung by Miyeon and Soyeon of (G)I-DLE, Madison Beer and Jaira Burns.`},
       {y:'2020',t:'THE BADDEST, MORE & ALL OUT',p:`Two years later the girls came back louder. THE BADDEST teed things up, MORE brought Seraphine into the fold with Lexie Liu on the track, and the ALL OUT EP landed in November with a TWICE collab on I'LL SHOW YOU and a whole new wardrobe.`},
-      {y:'2026',t:'FIRESTARTER',p:`Six years of silence, then FIRESTARTER on October 19 with Fortiche back behind the animation. Miyeon and Soyeon return as Ahri and Akali, while Sophie Powers takes Evelynn and Mimi Webb takes Kai'Sa. A four-track EP follows on October 30, and K/DA plays the Worlds 2026 Opening Ceremony at Barclays Center on November 14.`},
+      {y:'2026',t:'FIRESTARTER',p:`Six years of silence, then FIRESTARTER on October 19 with Fortiche back behind the animation. Miyeon and Soyeon return as Ahri and Akali, while Sophie Powers takes Evelynn and Mimi Webb takes Kai'Sa. A four-track EP follows on October 21, and K/DA plays the Worlds 2026 Opening Ceremony at Barclays Center on November 14.`},
       {y:'Radiance',t:'All five, finally',p:`Ahri and Kai'Sa have been in Riftbound since Origins and Akali showed up in Vendetta. Evelynn and Seraphine debut in Radiance, each with her own Legend, so this is the first set where you can finish the whole group in one binder page.`}
     ],
     videos:[
