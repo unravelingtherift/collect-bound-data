@@ -1,0 +1,11 @@
+-- T1 2025 Worlds Champion Signature Edition: Chinese and Korean pictures (cropped on white).
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/ambessa-the-wolf-t1-signature-ch-item-10369.webp') where id='item-10369';
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/ambessa-the-wolf-t1-signature-kr-item-10370.webp') where id='item-10370';
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/xin-zhao-vigilant-t1-signature-ch-item-10372.webp') where id='item-10372';
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/xin-zhao-vigilant-t1-signature-kr-item-10373.webp') where id='item-10373';
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/galio-indefatigable-t1-signature-ch-item-10375.webp') where id='item-10375';
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/galio-indefatigable-t1-signature-kr-item-10376.webp') where id='item-10376';
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/miss-fortune-buccaneer-t1-signature-ch-item-10378.webp') where id='item-10378';
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/miss-fortune-buccaneer-t1-signature-kr-item-10379.webp') where id='item-10379';
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/seraphine-not-alone-t1-signature-ch-item-10381.webp') where id='item-10381';
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/seraphine-not-alone-t1-signature-kr-item-10382.webp') where id='item-10382';
