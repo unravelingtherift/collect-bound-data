@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Check the access token is set
         id: tok
         env:
@@ -28,8 +30,15 @@ jobs:
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
         run: |
-          for d in supabase/functions/*/; do
-            name=$(basename "$d")
+          # A merged change deploys only the functions it touched (so unrelated live functions are left alone).
+          # Running it by hand (workflow_dispatch) deploys every function in the folder.
+          if [ "${{ github.event_name }}" = "push" ] && [ -n "${{ github.event.before }}" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
+            names=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- supabase/functions | cut -d/ -f3 | sort -u)
+          else
+            names=$(ls supabase/functions)
+          fi
+          for name in $names; do
+            [ -d "supabase/functions/$name" ] || continue
             supabase functions deploy "$name" --project-ref jnxgkasdbzobwzyxiumg --no-verify-jwt --yes
             echo "- Deployed **$name**" >> "$GITHUB_STEP_SUMMARY"
           done

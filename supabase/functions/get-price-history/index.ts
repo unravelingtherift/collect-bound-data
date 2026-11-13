@@ -434,8 +434,19 @@ async function movers(body: any) {
   };
 }
 
+
+// Only unravelingtherift.com (and Squarespace's own preview sites) may call this function.
+const ALLOWED_ORIGINS = [
+  /^https:\/\/(www\.)?unravelingtherift\.com$/,
+  /^https:\/\/[a-z0-9-]+\.squarespace\.com$/,
+];
+const originAllowed = (o: string | null) => !!o && ALLOWED_ORIGINS.some((r) => r.test(o));
+
 // @ts-ignore Deno global
 Deno.serve(async (req: Request) => {
+  if (!originAllowed(req.headers.get('Origin'))) {
+    return new Response(JSON.stringify({ error: 'forbidden' }), { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+  }
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
   try {
     const tier = await callerTier(req);
