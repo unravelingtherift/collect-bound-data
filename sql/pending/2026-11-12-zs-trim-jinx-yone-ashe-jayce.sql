@@ -1,0 +1,5 @@
+-- Jinx Demolitionist (Korea), Yone Blademaster (English), Ashe Focused (Chinese), Jayce Man of Progress (Chinese): trim the white edge and corners.
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/jinx-demolitionist-korea-launch-kr-item-10662-trim.webp') where id = 'item-10662';
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/yone-blademaster-en-item-10663-trim.webp') where id = 'item-10663';
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/ashe-focused-prerelease-ch-item-10664-trim.webp') where id = 'item-10664';
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/jayce-man-of-progress-ch-item-10666-trim.webp') where id = 'item-10666';
