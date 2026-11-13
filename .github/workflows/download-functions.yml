@@ -1,0 +1,36 @@
+# Run by hand (Actions -> this workflow -> Run workflow). Copies the functions that are
+# deployed on Supabase but missing from this repo into supabase/functions/ on a branch
+# called "functions-snapshot", so they can be reviewed and locked down in a pull request.
+# It never changes the live functions.
+name: Copy Supabase functions into the repo
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      - name: Download the missing functions
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: |
+          REF=jnxgkasdbzobwzyxiumg
+          supabase functions list --project-ref $REF -o json > /tmp/fns.json
+          for name in $(jq -r '.[].slug' /tmp/fns.json); do
+            if [ -d "supabase/functions/$name" ]; then echo "- $name already in the repo" >> "$GITHUB_STEP_SUMMARY"; continue; fi
+            supabase functions download "$name" --project-ref $REF --use-api
+            echo "- Copied **$name**" >> "$GITHUB_STEP_SUMMARY"
+          done
+      - name: Save on the functions-snapshot branch
+        run: |
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          git checkout -b functions-snapshot
+          git add supabase/functions
+          git diff --cached --quiet && { echo "Nothing new to copy." >> "$GITHUB_STEP_SUMMARY"; exit 0; }
+          git commit -qm "Copy deployed Supabase functions into the repo"
+          git push -f origin functions-snapshot

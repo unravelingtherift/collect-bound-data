@@ -5753,19 +5753,10 @@ async function fetchAllProducts(){
   return [first, ...rest].flatMap(p => p.data);
 }
 
-// Product list published on GitHub (products.json), served through jsDelivr.
-async function fetchProductsFromGithub(){
-  const res = await fetch(ghUrl('products.json'));
-  if(!res.ok) throw new Error(`GitHub HTTP ${res.status}`);
-  return res.json();
-}
-
 async function loadProducts(){
   PRODUCT_LOAD_ERROR = false;
   try{
-    // Products load from products.json on GitHub. (A get-products server
-    // function was planned but never deployed, so it isn't called.)
-    const raw = await fetchProductsFromGithub();
+    const raw = await fetchAllProducts();
     return raw.map(p=>({
       id:p.id, row:p.r, name:p.nm, set:p.se, type:p.ty, tags:p.tg || '', pl:p.pl || null,
       language:p.la, img:p.img || '', st:p.st || 'ok', imagePending:!!p.ip, tp:p.tp || null, tn:p.tn || ''
