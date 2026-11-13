@@ -2213,6 +2213,7 @@ function openPromoModal(id){
       ${item.infoImg ? `<a href="${escapeHtml(item.infoImg)}" target="_blank" rel="noopener">Additional photo &#8599;</a>` : ''}
     </div>
     ${marketplaceLinksHtml(item)}
+    <div id="cbEbay"></div>
     <div class="cb-history" id="cbHistory"></div>
     ${cardValueSectionHtml()}
   `;
@@ -2220,6 +2221,7 @@ function openPromoModal(id){
   updateModalNavButtons();
   hydrateOwnerPhotos(document.getElementById('modalBody'));
   fillHistory('promo', item);
+  fillEbayPrice('promo', item);
 }
 /* ---------- History & Origin ----------
    Lore from the Lore Codex (codex/champs.json, linked to cards through
@@ -2338,6 +2340,7 @@ function openPromoTeaser(item){
   updateModalNavButtons();
   hydrateOwnerPhotos(document.getElementById('modalBody'));
   fillHistory('promo', item);
+  fillEbayPrice('promo', item);
 }
 
 
@@ -3279,7 +3282,21 @@ const TABS = [
   { btn: 'tabMoversBtn', panel: 'moversPanel', onShow: () => renderMoversPanel() },
   { btn: 'tabBinderBtn', panel: 'binderPanel', onShow: () => renderBinder() }
 ];
+let lastTabBtn = 'tabPromoBtn';
+const TAB_RESET = { tabPromoBtn:'resetBtn', tabSetBtn:'setResetBtn', tabProductBtn:'productResetBtn' };
+// Leaving a tab clears its search and filters, so coming back never lands on an empty "No items match your filters" view.
+function clearTabFilters(btnId){
+  try{
+    if(TAB_RESET[btnId]){ const b = document.getElementById(TAB_RESET[btnId]); if(b) b.click(); }
+    else if(btnId === 'tabBinderBtn'){
+      Object.assign(binderState, { search:'', kind:'', lang:'', special:'' });
+      const i = document.getElementById('binderSearchInput'); if(i) i.value = '';
+    }
+  }catch(e){ console.warn('[Collection-Bound] filter reset failed', e); }
+}
 function switchTab(activeBtnId){
+  if(lastTabBtn && lastTabBtn !== activeBtnId) clearTabFilters(lastTabBtn);
+  lastTabBtn = activeBtnId;
   TABS.forEach(t=>{
     const isActive = t.btn === activeBtnId;
     document.getElementById(t.btn).classList.toggle('active', isActive);
@@ -6073,9 +6090,37 @@ function openProductModal(id){
       <a href="#" onclick="toggleProductOwned('${p.id}');return false;">${owned ? 'Mark as not owned' : 'Mark as owned'}</a>
     </div>` : ''}
     <div class="modal-actions"><a href="#" onclick="toggleWish('prod:${p.id}');reopenCurrentModal();return false;">${wishOn('prod:' + p.id) ? '&#9829; On your wishlist' : '&#9825; Add to wishlist'}</a></div>
+    <div id="cbEbay"></div>
   `;
   document.getElementById('modalBackdrop').classList.add('open');
   updateModalNavButtons();
+  fillEbayPrice('prod', p);
+}
+
+/* ---------- eBay asking price (get-ebay-price) ----------
+   Every sealed product (everyone) and every promo (VIP) is looked up from its own name, so
+   new items get it automatically. Lowest current eBay asking price, English items only.
+   Nothing shows when eBay has fewer than 3 matching listings. */
+const ebayPriceCache = new Map();
+async function fillEbayPrice(kind, item){
+  const box = document.getElementById('cbEbay'); if(!box || !sb) return;
+  if(kind === 'promo' && !isVipTier()) return;
+  if(item.language && item.language !== 'English') return;
+  const key = kind + ':' + item.id;
+  let res = ebayPriceCache.get(key);
+  if(!res){
+    try{
+      const r = await sb.functions.invoke('get-ebay-price', { body:{ kind, id:item.id } });
+      res = (!r.error && r.data) || { none:true };
+    }catch(e){ res = { none:true }; }
+    ebayPriceCache.set(key, res);
+  }
+  const el = document.getElementById('cbEbay');
+  if(!el || currentModalId !== item.id || !(res.low > 0)) return;
+  const url = ebayLink('https://www.ebay.com/sch/i.html?_nkw=' + encodeURIComponent(res.query || item.name) + '&_sop=15&LH_BIN=1');
+  el.innerHTML = `<div class="cbp-k">eBay asking price</div>
+    <div class="cbp-meta"><b>${escapeHtml(displayMoney(res.low))}</b> lowest of ${res.count} matching eBay listings${kind === 'prod' ? ' (new)' : ''}, before shipping. Asking prices, not sold prices.
+    <a href="${escapeHtml(url)}" target="_blank" rel="noopener sponsored">See them on eBay &#8599;</a></div>`;
 }
 
 /* ---------- Disclaimer ---------- */
