@@ -345,6 +345,41 @@ async function binderValue(body: any, tier: string) {
 // (TCGplayer market price, cards $1 and up). Used for the tracker's 🔥 / ❄️ badges.
 // Price momentum only: TCGCSV has no sales counts, so this isn't sales volume.
 let trendCache: { at: number; data: any } | null = null;
+async function ctTrends() {
+  const dayRow = async (q: string) => (await (await fetch(`${SUPABASE_URL}/rest/v1/ct_price_history?${q}&select=day&limit=1`, { headers: DB })).json())?.[0]?.day || null;
+  const latest = await dayRow('order=day.desc');
+  if (!latest) return [];
+  const want = new Date(new Date(latest + 'T12:00:00Z').getTime() - 7 * 86400000).toISOString().slice(0, 10);
+  let base = await dayRow(`day=lte.${want}&order=day.desc`);
+  if (!base) base = await dayRow('order=day.asc');
+  if (!base || base === latest) return [];
+  const cols = 'blueprint_id,language,foil,low_cents';
+  const langs = 'language=in.(fr,zh-cn,kr)';
+  const [nowRows, baseRows] = await Promise.all([
+    fetchAll(`${SUPABASE_URL}/rest/v1/ct_price_history?day=eq.${latest}&${langs}&select=${cols}`),
+    fetchAll(`${SUPABASE_URL}/rest/v1/ct_price_history?day=eq.${base}&${langs}&select=${cols}`),
+  ]);
+  const sets = Object.keys(GROUPS).map((x) => x.toLowerCase()).join(',');
+  const bps = await fetchAll(`${SUPABASE_URL}/rest/v1/ct_blueprints?expansion_code=in.(${sets})&select=blueprint_id,expansion_code,collector_number`);
+  const keyOf = new Map<number, string>(); const seen = new Map<string, number>();
+  for (const b of bps) {
+    const k = `${String(b.expansion_code).toUpperCase()}|${normNumber(String(b.collector_number || ''))}`;
+    seen.set(k, (seen.get(k) || 0) + 1); keyOf.set(b.blueprint_id, k);
+  }
+  const before = new Map<string, number>();
+  for (const x of baseRows) if (x.low_cents != null) before.set(`${x.blueprint_id}|${x.language}|${x.foil}`, x.low_cents);
+  const LANG: Record<string, string> = { fr: 'French', 'zh-cn': 'Chinese', kr: 'Korean' };
+  const out: { k: string; d: string; pct: number }[] = [];
+  for (const x of nowRows) {
+    const b = before.get(`${x.blueprint_id}|${x.language}|${x.foil}`);
+    const k = keyOf.get(x.blueprint_id);
+    if (!k || seen.get(k) !== 1 || x.low_cents == null || b == null || b < 100 || x.low_cents < 100) continue;
+    const pct = (x.low_cents - b) / b * 100;
+    if (Math.abs(pct) < 10) continue;
+    out.push({ k: `${LANG[x.language]}|${k}|${x.foil ? 'foil' : 'normal'}`, d: pct > 0 ? 'up' : 'down', pct: Math.round(pct * 10) / 10 });
+  }
+  return out;
+}
 async function trends() {
   if (trendCache && Date.now() - trendCache.at < 60 * 60 * 1000) return trendCache.data;
   // Everything on TCGplayer that moved 5%+ in 7 days: cards, promos and sealed products.
@@ -366,11 +401,16 @@ async function trends() {
     const cur = byId.get(Number(x.product_id));
     if (!cur || Math.abs(pct) > Math.abs(cur.pct)) byId.set(Number(x.product_id), { p: Number(x.product_id), d: x.direction, pct });
   }
+  // French, Chinese and Korean cards: CardTrader lowest listing now vs about 7 days ago.
+  // Lowest listings are jumpier than TCGplayer market prices, so this needs a 10% move and $1+ on both days.
+  let ct: { k: string; d: string; pct: number }[] = [];
+  try { ct = await ctTrends(); } catch (e) { console.warn('ctTrends failed', e); }
   const data = {
     status: 'ok', days: 7, base_day: rows[0]?.base_day ?? null, latest_day: rows[0]?.latest_day ?? null,
     rising: pick('up'),
     cooling: pick('down'),
     items: [...byId.values()],
+    ct,
   };
   trendCache = { at: Date.now(), data };
   return data;
