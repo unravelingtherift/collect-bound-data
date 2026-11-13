@@ -42,15 +42,19 @@ tok = token(); print('eBay token OK')
 os.makedirs('ebay-candidates', exist_ok=True)
 index = {}
 for it in items:
-    q = words(it)
-    try: res = search(tok, q)
-    except Exception as e: print('search failed', it['id'], e); continue
-    out = []
+    qs = it.get('qs') or [words(it)]
+    q = ' | '.join(qs)
+    res = []
+    for qq in qs:
+        try: res += search(tok, qq)[:5]
+        except Exception as e: print('search failed', it['id'], e)
+    out = []; seen = set()
     for r in res:
         u = (r.get('image') or {}).get('imageUrl')
-        if not u: continue
+        if not u or u in seen: continue
+        seen.add(u)
         out.append({'title': r.get('title'), 'url': big(u), 'listing': r.get('itemWebUrl'), 'price': (r.get('price') or {}).get('value')})
-        if len(out) == 4: break
+        if len(out) == 8: break
     d = f"ebay-candidates/{it['id']}"; os.makedirs(d, exist_ok=True)
     for k, c in enumerate(out):
         try:

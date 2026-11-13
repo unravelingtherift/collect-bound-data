@@ -8,7 +8,11 @@
   "event": "",
   "nn": "",
   "cat": "COLLECTIBLE",
-  "px": ""
+  "px": "",
+  "qs": [
+   "riftbound set 4 dual card brick swain irelia",
+   "riftbound chinese card brick swain irelia"
+  ]
  },
  {
   "id": "item-10768",
@@ -19,7 +23,11 @@
   "event": "",
   "nn": "",
   "cat": "COLLECTIBLE",
-  "px": ""
+  "px": "",
+  "qs": [
+   "riftbound set 4 dual card brick renekton nasus",
+   "riftbound chinese card brick renekton nasus"
+  ]
  },
  {
   "id": "item-10769",
@@ -30,7 +38,11 @@
   "event": "",
   "nn": "",
   "cat": "COLLECTIBLE",
-  "px": ""
+  "px": "",
+  "qs": [
+   "riftbound set 4 dual card brick riven draven",
+   "riftbound chinese card brick riven draven"
+  ]
  },
  {
   "id": "item-10770",
@@ -41,7 +53,11 @@
   "event": "",
   "nn": "",
   "cat": "COLLECTIBLE",
-  "px": ""
+  "px": "",
+  "qs": [
+   "riftbound set 4 dual card brick rengar khazix",
+   "riftbound chinese card brick rengar kha'zix"
+  ]
  },
  {
   "id": "item-10771",
@@ -52,7 +68,11 @@
   "event": "",
   "nn": "",
   "cat": "COLLECTIBLE",
-  "px": ""
+  "px": "",
+  "qs": [
+   "riftbound ascension wolf of the north sleeves",
+   "riftbound chinese ascension art card sleeves gold"
+  ]
  },
  {
   "id": "item-10772",
@@ -63,7 +83,11 @@
   "event": "",
   "nn": "",
   "cat": "COLLECTIBLE",
-  "px": ""
+  "px": "",
+  "qs": [
+   "riftbound ascension wolf of the north binder",
+   "riftbound chinese ascension binder gold"
+  ]
  },
  {
   "id": "item-10773",
@@ -74,7 +98,11 @@
   "event": "",
   "nn": "",
   "cat": "COLLECTIBLE",
-  "px": ""
+  "px": "",
+  "qs": [
+   "riftbound ascension wolf of the north deck box",
+   "riftbound chinese ascension deck box gold"
+  ]
  },
  {
   "id": "item-10774",
@@ -85,7 +113,11 @@
   "event": "",
   "nn": "",
   "cat": "COLLECTIBLE",
-  "px": ""
+  "px": "",
+  "qs": [
+   "riftbound ascension wolf of the north playmat",
+   "riftbound chinese ascension playmat gold"
+  ]
  },
  {
   "id": "item-10775",
@@ -96,7 +128,11 @@
   "event": "",
   "nn": "",
   "cat": "COLLECTIBLE",
-  "px": ""
+  "px": "",
+  "qs": [
+   "riftbound ascension star guardian sleeves",
+   "riftbound chinese ascension art card sleeves purple"
+  ]
  },
  {
   "id": "item-10776",
@@ -107,7 +143,11 @@
   "event": "",
   "nn": "",
   "cat": "COLLECTIBLE",
-  "px": ""
+  "px": "",
+  "qs": [
+   "riftbound ascension star guardian binder",
+   "riftbound chinese ascension binder purple"
+  ]
  },
  {
   "id": "item-10777",
@@ -118,7 +158,11 @@
   "event": "",
   "nn": "",
   "cat": "COLLECTIBLE",
-  "px": ""
+  "px": "",
+  "qs": [
+   "riftbound ascension star guardian deck box",
+   "riftbound chinese ascension deck box purple"
+  ]
  },
  {
   "id": "item-10778",
@@ -129,6 +173,10 @@
   "event": "",
   "nn": "",
   "cat": "COLLECTIBLE",
-  "px": ""
+  "px": "",
+  "qs": [
+   "riftbound ascension star guardian playmat",
+   "riftbound chinese ascension playmat purple"
+  ]
  }
 ]
