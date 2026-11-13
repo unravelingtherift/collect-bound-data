@@ -1453,6 +1453,8 @@ function binderValueHtml(res, req, ownedCount){
   const ownedLangs = new Set([...getOwnedCards().map(c=>c.language), ...getOwnedPromos().map(i=>i.language), ...getOwnedProducts().map(p=>p.language || 'English')]);
   const langRows = BV_LANGS.filter(l => ownedLangs.has(l) || byLang[l].v > 0).map(l =>
     `<div><span>${langFlagHtml(l)} ${escapeHtml(l)}</span><span>${byLang[l].v ? escapeHtml(money(byLang[l].v)) : '<small>not priced yet</small>'}</span></div>`).join('');
+  const unpricedLangs = BV_LANGS.filter(l => l !== 'English' && ownedLangs.has(l) && !byLang[l].v);
+  const langNote = unpricedLangs.length ? `<div class="bv-meta" style="margin-top:6px;">${unpricedLangs.join(' and ')} items show "not priced yet" because TCGplayer doesn't list them and no verified ${unpricedLangs.join('/')} price source exists. Only verified prices are counted, so nothing is estimated for them. They are not worth $0, they are just left out of the total.</div>` : '';
   // Your performance: what you paid vs what those items are worth now.
   let perf = '';
   const pe = paidEntries();
@@ -1501,7 +1503,7 @@ function binderValueHtml(res, req, ownedCount){
     <div class="bv-tierbar">${tierAgg.filter(t=>t.v>0).map(t=>`<span class="tier-${t.k}" style="flex:${Math.max(t.v, total*0.02)}" title="${t.label}: ${escapeHtml(money(t.v))}"></span>`).join('')}</div>
     <div class="bv-tiers">${tierAgg.map(t=>`<div class="bv-tier"><i class="tier-${t.k}"></i><div><b>${t.label}</b> <span class="bv-tr">${t.range}</span><div class="bv-tr">${t.n} item${t.n===1?'':'s'} &middot; ${escapeHtml(money(t.v))}</div></div></div>`).join('')}</div>`;
   const left = `<div class="bv-col">${head}${change}
-    ${langRows ? `<div class="bv-label" style="margin-top:10px;">By language</div><div class="bv-rows bv-lang-rows">${langRows}</div><div class="bv-label" style="margin-top:10px;">By tab</div>` : ''}
+    ${langRows ? `<div class="bv-label" style="margin-top:10px;">By language</div><div class="bv-rows bv-lang-rows">${langRows}</div>${langNote}<div class="bv-label" style="margin-top:10px;">By tab</div>` : ''}
     <div class="bv-rows">
       <div><span>Card Sets</span><span>${escapeHtml(money(cardsVal))}</span></div>
       <div><span>Products</span><span>${escapeHtml(money(prodVal))}</span></div>
