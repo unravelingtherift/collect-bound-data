@@ -112,11 +112,56 @@ async function ebaySearch(query: string, sealed: boolean) {
   return { low: sane[0], median, count: prices.length, currency: 'USD' };
 }
 
+// One item: cached answer if fresh, otherwise a live eBay search (and cache it). Returns null when nothing usable.
+async function lookup(kind: string, id: string, allowFetch = true): Promise<Record<string, unknown> | null> {
+  const cacheId = `${kind}:${id}`;
+  const c = await fetch(`${SUPABASE_URL}/rest/v1/ebay_price_cache?id=eq.${encodeURIComponent(cacheId)}&select=data,at`, { headers: DB });
+  if (c.ok) {
+    const row = (await c.json())?.[0];
+    if (row && Date.now() - new Date(row.at).getTime() < CACHE_MS) return row.data;
+  }
+  if (!allowFetch) return null;
+  const t = await fetch(`${SUPABASE_URL}/rest/v1/${kind === 'promo' ? 'promo_items' : 'product_items'}?id=eq.${encodeURIComponent(id)}&select=data`, { headers: DB });
+  const item = t.ok ? (await t.json())?.[0]?.data : null;
+  if (!item) return { none: true };
+  if (item.nb || (item.la && item.la !== 'English')) return { none: true };
+  const query = String(item.eq || searchName(item.nm));
+  if (!query) return { none: true };
+  const res: Record<string, unknown> = await ebaySearch(query, kind === 'prod');
+  if (res.error) return null; // eBay hiccup: nothing is cached, nothing is shown
+  const data = { ...res, query, at: new Date().toISOString() };
+  await fetch(`${SUPABASE_URL}/rest/v1/ebay_price_cache`, {
+    method: 'POST', headers: { ...DB, 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates' },
+    body: JSON.stringify({ id: cacheId, data, at: new Date().toISOString() }),
+  });
+  return data;
+}
+
 // @ts-ignore Deno global
 Deno.serve(async (req: Request) => {
   const origin = req.headers.get('Origin');
   if (req.method === 'OPTIONS') return new Response('ok', { headers: headers(origin) });
   const out = (b: unknown, s = 200) => new Response(JSON.stringify(b), { status: s, headers: headers(origin) });
+
+  // Internal batch call from get-price-history (binder value), proven by the service key. No browser can send it.
+  if (SERVICE_KEY && req.headers.get('Authorization') === `Bearer ${SERVICE_KEY}`) {
+    if (!EBAY_APP_ID || !EBAY_CERT_ID) return out({ prices: {} });
+    let b: { items?: { kind: string; id: string }[] } = {};
+    try { b = await req.json(); } catch (_e) { return out({ prices: {} }); }
+    const list = (b.items || []).filter((x) => (x.kind === 'promo' || x.kind === 'prod') && /^[a-z0-9-]{1,60}$/i.test(String(x.id))).slice(0, 80);
+    const prices: Record<string, { low: number; count: number }> = {};
+    let fetched = 0;
+    for (let i = 0; i < list.length; i += 4) {
+      await Promise.all(list.slice(i, i + 4).map(async (x) => {
+        const key = `${x.kind}:${x.id}`;
+        let d = await lookup(x.kind, x.id, false);
+        if (!d && fetched < 24) { fetched++; d = await lookup(x.kind, x.id, true); }
+        if (d && (d as { low?: number }).low) prices[key] = { low: (d as { low: number }).low, count: (d as { count: number }).count };
+      }));
+    }
+    return out({ prices });
+  }
+
   if (!originAllowed(origin)) return out({ error: 'forbidden' }, 403);
   const ip = (req.headers.get('x-forwarded-for') || '').split(',')[0].trim() || 'unknown';
   if (limited(ip)) return out({ error: 'slow down' }, 429);
@@ -128,27 +173,5 @@ Deno.serve(async (req: Request) => {
   const id = String(body.id || '');
   if (!kind || !/^[a-z0-9-]{1,60}$/i.test(id)) return out({ error: 'bad request' }, 400);
   if (kind === 'promo' && !(await isVip(req))) return out({ error: 'vip only' }, 403);
-
-  const cacheId = `${kind}:${id}`;
-  const c = await fetch(`${SUPABASE_URL}/rest/v1/ebay_price_cache?id=eq.${encodeURIComponent(cacheId)}&select=data,at`, { headers: DB });
-  if (c.ok) {
-    const row = (await c.json())?.[0];
-    if (row && Date.now() - new Date(row.at).getTime() < CACHE_MS) return out(row.data);
-  }
-
-  const t = await fetch(`${SUPABASE_URL}/rest/v1/${kind === 'promo' ? 'promo_items' : 'product_items'}?id=eq.${encodeURIComponent(id)}&select=data`, { headers: DB });
-  const item = t.ok ? (await t.json())?.[0]?.data : null;
-  if (!item) return out({ none: true });
-  if (item.nb || (item.la && item.la !== 'English')) return out({ none: true });
-  const query = String(item.eq || searchName(item.nm));
-  if (!query) return out({ none: true });
-
-  const res: Record<string, unknown> = await ebaySearch(query, kind === 'prod');
-  if (res.error) return out({ none: true }); // eBay hiccup: nothing is cached, nothing is shown
-  const data = { ...res, query, at: new Date().toISOString() };
-  await fetch(`${SUPABASE_URL}/rest/v1/ebay_price_cache`, {
-    method: 'POST', headers: { ...DB, 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates' },
-    body: JSON.stringify({ id: cacheId, data, at: new Date().toISOString() }),
-  });
-  return out(data);
+  return out((await lookup(kind, id)) || { none: true });
 });

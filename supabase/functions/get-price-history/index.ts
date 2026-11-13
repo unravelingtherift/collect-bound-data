@@ -269,6 +269,27 @@ async function binderValue(body: any, tier: string) {
     }
   }
 
+  // 2b) Promos (VIP) and products with no TCGplayer price: lowest eBay asking price (asking, not sold).
+  const ebayWant: any[] = Array.isArray(body.ebay) ? body.ebay.slice(0, 80) : [];
+  if (ebayWant.length) {
+    const list = ebayWant
+      .filter((e) => !items[String(e.k)] && (e.kind === 'prod' || (e.kind === 'promo' && RANK[tier] >= 2)))
+      .map((e) => ({ k: String(e.k), kind: String(e.kind), id: String(e.id), qty: Math.max(1, Number(e.qty) || 1) }));
+    if (list.length) {
+      try {
+        const r = await fetch(`${SUPABASE_URL}/functions/v1/get-ebay-price`, {
+          method: 'POST', headers: { ...DB, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: list.map((e) => ({ kind: e.kind, id: e.id })) }),
+        });
+        const prices = r.ok ? (await r.json())?.prices || {} : {};
+        for (const e of list) {
+          const p = prices[`${e.kind}:${e.id}`];
+          if (p && p.low > 0) items[e.k] = { unit: p.low, qty: e.qty, source: 'ebay' };
+        }
+      } catch (_e) { /* eBay unavailable: those items simply stay unpriced */ }
+    }
+  }
+
   // 3) Value over time from TCGplayer prices: Club gets 8 days (weekly change), VIP up to 90.
   let history: { day: string; value: number }[] = [];
   if (RANK[tier] >= 1 && ids.length) {
