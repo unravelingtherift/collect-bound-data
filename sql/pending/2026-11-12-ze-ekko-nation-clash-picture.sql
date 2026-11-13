@@ -1,0 +1,1 @@
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/ekko-revolutionary-nation-clash-champion-en-v2.webp') where data->>'nm' = 'Ekko - Revolutionary (RC Stuttgart Nation Clash Champion)';
