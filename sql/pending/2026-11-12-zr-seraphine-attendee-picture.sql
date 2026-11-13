@@ -1,0 +1,2 @@
+-- Seraphine - Inspiring (RC Stuttgart Attendee Promo): Jessica's own clean picture.
+update promo_items set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/seraphine-inspiring-rc-stuttgart-attendee-en-mine.webp') where data->>'img' = 'https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/rc-stuttgart-seraphine-inspiring-attendee-en.webp';
