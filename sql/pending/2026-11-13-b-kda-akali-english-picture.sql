@@ -3,3 +3,8 @@ update promo_items
 set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/akali-rogue-assassin-kda-en.webp')
 where data->>'nm' = 'Akali - Rogue Assassin (Riftbound x K/DA: Couture Collection)'
   and data->>'la' = 'English';
+-- English Ahri - Nine-Tailed Fox (K/DA): clearer card picture (KDA 001*/005 EN).
+update promo_items
+set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/ahri-nine-tailed-fox-kda-en.webp')
+where data->>'nm' = 'Ahri - Nine-Tailed Fox (Riftbound x K/DA: Couture Collection)'
+  and data->>'la' = 'English';
