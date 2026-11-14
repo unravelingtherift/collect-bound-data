@@ -1851,13 +1851,15 @@ function populateEventFilter(){
 function isNexusItem(i){ return !!i.nexusNight || itemEventGroups(i).includes('NN - Nexus Nights'); }
 function nexusViewActive(){ return state.special === 'nexusNight' || state.event === 'NN - Nexus Nights' || String(state.event).startsWith('NN::'); }
 
+function promoSearchHay(item){
+  return (promoDetailsLocked()
+    ? [item.name, item.set, item.tags, item.itemType]
+    : [item.name, item.event, item.set, item.tags, item.info, item.itemType, itemDomainText(item)]).join(' ').toLowerCase();
+}
 function matches(item){
   const q = state.search.trim().toLowerCase();
   if(q){
-    const hay = (promoDetailsLocked()
-      ? [item.name, item.set, item.tags, item.itemType]
-      : [item.name, item.event, item.set, item.tags, item.info, item.itemType, itemDomainText(item)]).join(' ').toLowerCase();
-    if(!hay.includes(q)) return false;
+    if(!promoSearchHay(item).includes(q)) return false;
   }
   if(state.status && item.status !== state.status) return false;
   if(state.category && item.category !== state.category) return false;
@@ -2377,7 +2379,7 @@ document.getElementById('modalBackdrop').addEventListener('click', (e)=>{
   if(e.target.id==='modalBackdrop') closeModal();
 });
 
-document.getElementById('searchInput').addEventListener('input', e=>{ state.search=e.target.value; renderResults(); });
+document.getElementById('searchInput').addEventListener('input', e=>{ state.search=e.target.value; renderResults(); crossTabSearch('tabPromoBtn'); });
 document.getElementById('statusFilter').addEventListener('change', e=>{ state.status=e.target.value; renderResults(); });
 document.getElementById('categoryFilter').addEventListener('change', e=>{ state.category=e.target.value; renderResults(); });
 document.getElementById('languageFilter').addEventListener('change', e=>{ state.language=e.target.value; renderResults(); renderStats(); });
@@ -2758,11 +2760,17 @@ function populateSetFilters(){
   [sf,lf,tf,rf,df].forEach(sel=>{ if(sel.dataset.keep) sel.value=sel.dataset.keep; });
 }
 
+// Radiance's five K/DA showcase cards (SP1-SP5) belong to the K/DA Couture Collection, so searching K/DA finds them.
+function cardAliasText(card){
+  return (card.setCode === 'RAD' && /^SP[1-5]$/i.test(String(card.collectorNum||'').trim())) ? 'K/DA Couture Collection kda' : '';
+}
+function cardSearchHay(card){
+  return [card.name, card.tags, card.type, card.rarity, card.domain, cardAliasText(card)].join(' ').toLowerCase();
+}
 function matchesCard(card){
   const q = setState.search.trim().toLowerCase();
   if(q){
-    const hay = [card.name, card.tags, card.type, card.rarity, card.domain].join(' ').toLowerCase();
-    if(!hay.includes(q)) return false;
+    if(!cardSearchHay(card).includes(q)) return false;
   }
   if(setState.set && card.setCode !== setState.set) return false;
   if(setState.language && card.language !== setState.language) return false;
@@ -3127,7 +3135,7 @@ async function markAllSetOwned(){
   if(cappedNote) alert(`Marked ${toMark.length} cards.${cappedNote}`);
 }
 
-document.getElementById('setSearchInput').addEventListener('input', e=>{ setState.search=e.target.value; renderSetResults(); });
+document.getElementById('setSearchInput').addEventListener('input', e=>{ setState.search=e.target.value; renderSetResults(); crossTabSearch('tabSetBtn'); });
 document.getElementById('setSetFilter').addEventListener('change', e=>{ setState.set=e.target.value; renderSetResults(); renderSetStats(); });
 document.getElementById('setLanguageFilter').addEventListener('change', e=>{ setState.language=e.target.value; renderSetResults(); });
 document.getElementById('setTypeFilter').addEventListener('change', e=>{ setState.type=e.target.value; renderSetResults(); });
@@ -3309,6 +3317,35 @@ const TABS = [
   { btn: 'tabBinderBtn', panel: 'binderPanel', onShow: () => renderBinder() }
 ];
 let lastTabBtn = 'tabPromoBtn';
+// Searching looks in every tab. If the tab you are on has nothing for the search, jump to the tab that does
+// (or clear the filters that were hiding the results) and keep the search text.
+let crossSearchTimer = null;
+function crossTabSearch(fromBtn){
+  clearTimeout(crossSearchTimer);
+  crossSearchTimer = setTimeout(()=>{
+    try{
+      const box = { tabPromoBtn:'searchInput', tabSetBtn:'setSearchInput', tabProductBtn:'productSearchInput' }[fromBtn];
+      const q = String((document.getElementById(box)||{}).value||'').trim().toLowerCase();
+      if(q.length < 2) return;
+      const shown = fromBtn === 'tabPromoBtn' ? getFilteredPromoList().length : fromBtn === 'tabSetBtn' ? getFilteredCardList().length : getFilteredProductList().length;
+      if(shown > 0) return;
+      const counts = {
+        tabPromoBtn: ITEMS.filter(i=>promoSearchHay(i).includes(q)).length,
+        tabSetBtn: CARDS.filter(c=>cardSearchHay(c).includes(q)).length,
+        tabProductBtn: PRODUCTS.filter(p=>productSearchHay(p).includes(q)).length
+      };
+      let target = counts[fromBtn] > 0 ? fromBtn : null;
+      if(!target) Object.keys(counts).forEach(k=>{ if(counts[k] > 0 && (!target || counts[k] > counts[target])) target = k; });
+      if(!target) return;
+      const raw = document.getElementById(box).value;
+      if(target !== fromBtn) switchTab(target);
+      const reset = document.getElementById(TAB_RESET[target]); if(reset) reset.click();
+      if(target === 'tabPromoBtn'){ state.search = raw; document.getElementById('searchInput').value = raw; renderResults(); }
+      else if(target === 'tabSetBtn'){ setState.search = raw; document.getElementById('setSearchInput').value = raw; renderSetResults(); }
+      else { productState.search = raw; document.getElementById('productSearchInput').value = raw; renderProductResults(); }
+    }catch(e){ console.warn('[Collection-Bound] cross-tab search failed', e); }
+  }, 600);
+}
 const TAB_RESET = { tabPromoBtn:'resetBtn', tabSetBtn:'setResetBtn', tabProductBtn:'productResetBtn' };
 // Leaving a tab clears its search and filters, so coming back never lands on an empty "No items match your filters" view.
 function clearTabFilters(btnId){
@@ -5909,11 +5946,13 @@ async function markAllProductsOwned(){
 
 /* ---------- Filtering / sorting ---------- */
 
+function productSearchHay(p){
+  return [p.name, p.set, PRODUCT_SET_NAMES[p.set]||'', p.type, p.tags, p.language].join(' ').toLowerCase();
+}
 function productMatches(p){
   const q = productState.search.trim().toLowerCase();
   if(q){
-    const hay = [p.name, p.set, PRODUCT_SET_NAMES[p.set]||'', p.type, p.tags, p.language].join(' ').toLowerCase();
-    if(!hay.includes(q)) return false;
+    if(!productSearchHay(p).includes(q)) return false;
   }
   const s = productState.status;
   // Default view hides TBD (not yet released in that language) entries.
@@ -6196,7 +6235,7 @@ function cbInitProducts(){
   renderMerchDisclaimer();
   populateProductFilters();
   const on = (id, ev, fn) => { const el = document.getElementById(id); if(el) el.addEventListener(ev, fn); };
-  on('productSearchInput','input', e=>{ productState.search = e.target.value; renderProductResults(); });
+  on('productSearchInput','input', e=>{ productState.search = e.target.value; renderProductResults(); crossTabSearch('tabProductBtn'); });
   on('productStatusFilter','change', e=>{ productState.status = e.target.value; renderProductResults(); });
   on('productTypeFilter','change', e=>{ productState.type = e.target.value; renderProductResults(); });
   on('productLanguageFilter','change', e=>{ productState.language = e.target.value; syncCardLangPicker(e.target.value); renderProductStats(); renderProductResults(); });
