@@ -5759,9 +5759,9 @@ let PRODUCT_LOAD_ERROR = false;
 
 const PRODUCT_SET_NAMES = {
   OGN:'Origins', SFD:'Spiritforged', UNL:'Unleashed', VEN:'Vendetta',
-  OGS:'Proving Grounds', RAD:'Radiance', LGC:'Legacy', REC:'The Reckoning'
+  OGS:'Proving Grounds', RAD:'Radiance', LGC:'Legacy', REC:'The Reckoning', FND:'Project K', ARC:'Arcane'
 };
-const PRODUCT_SET_ORDER = ['OGN','OGS','SFD','UNL','VEN','RAD','LGC','REC'];
+const PRODUCT_SET_ORDER = ['FND','OGN','OGS','SFD','UNL','VEN','RAD','LGC','REC','ARC'];
 
 // Official Riot stores for non-TCG merch, shown in the Products disclaimer.
 // Leave a url blank to hide that line until a confirmed link is added.
