@@ -8,3 +8,8 @@ update promo_items
 set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/ahri-nine-tailed-fox-kda-en.webp')
 where data->>'nm' = 'Ahri - Nine-Tailed Fox (Riftbound x K/DA: Couture Collection)'
   and data->>'la' = 'English';
+-- English Kai'Sa - Daughter of the Void (K/DA): clearer card picture (KDA 003*/005 EN).
+update promo_items
+set data = data || jsonb_build_object('img','https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/kaisa-daughter-of-the-void-kda-en.webp')
+where data->>'nm' like 'Kai%Sa - Daughter of the Void (Riftbound x K/DA: Couture Collection)'
+  and data->>'la' = 'English';
