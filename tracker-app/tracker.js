@@ -1979,10 +1979,89 @@ function cardHtml(item){
   </div>`;
 }
 
+// Extra sorts on every tab: card number, 7-day price change, and value (VIP).
+// Values come from the same price source as the binder value (TCGplayer, CardTrader for other languages).
+const VALUE_CACHE = {}; const VALUE_PENDING = {};
+function promoTcgId(item){ return PROMO_TCG && item && PROMO_TCG[item.id] ? String(PROMO_TCG[item.id]) : null; }
+function pctOf(tr){ return tr ? (tr.dir === 'up' ? Math.abs(tr.pct) : -Math.abs(tr.pct)) : null; }
+function promoChange(item){ const pid = promoTcgId(item); return pctOf(pid && TRENDS_BY_ID ? TRENDS_BY_ID.get(pid) : null); }
+function productChange(p){ return pctOf(p && p.tp && TRENDS_BY_ID ? TRENDS_BY_ID.get(String(p.tp)) : null); }
+function cardChange(c){ try{ return pctOf(trendOf(c)); }catch(e){ return null; } }
+function cachedValue(k){ const v = VALUE_CACHE[k]; return v > 0 ? v : null; }
+function promoValue(item){ return cachedValue('promo:' + item.id); }
+function productValue(p){ return cachedValue('prod:' + p.id); }
+function cardValue(c){ let best = null; (c.printings || ['Normal']).forEach(pr => { const v = cachedValue('card:' + c.id + '|' + pr); if(v != null && (best == null || v > best)) best = v; }); return best; }
+function requestValues(tab, list, rerender){
+  if(!isVipTier() || typeof sb === 'undefined' || !sb || VALUE_PENDING[tab]) return;
+  const cards = [], products = [], keys = [];
+  list.forEach(x => {
+    if(tab === 'promo'){ const tp = PROMO_TCG && PROMO_TCG[x.id]; const k = 'promo:' + x.id; if(tp && !(k in VALUE_CACHE)){ products.push({ k, tp, qty:1 }); keys.push(k); } }
+    else if(tab === 'prod'){ const k = 'prod:' + x.id; if(x.tp && !(k in VALUE_CACHE)){ products.push({ k, tp: x.tp, qty:1 }); keys.push(k); } }
+    else (x.printings || ['Normal']).forEach(pr => { const k = 'card:' + x.id + '|' + pr; if(k in VALUE_CACHE || cards.length >= 4000) return;
+      cards.push({ k, set_code: x.setCode, collector_number: x.collectorNum, card_name: x.name, card_language: x.language, printing: pr, qty:1,
+        foil_only: x.printings.length === 1 && x.printings[0] === 'Foil' }); keys.push(k); });
+  });
+  if(!keys.length) return;
+  VALUE_PENDING[tab] = true;
+  sb.functions.invoke(HISTORY_FUNCTION, { body:{ mode:'binder', cards, products, ebay:[], no_history:true } }).then(r => {
+    VALUE_PENDING[tab] = false;
+    if(r.error || !r.data) return;
+    const items = r.data.items || {};
+    keys.forEach(k => { VALUE_CACHE[k] = items[k] ? Number(items[k].unit) || 0 : 0; });
+    rerender();
+  }).catch(e => { VALUE_PENDING[tab] = false; console.warn('[Collection-Bound] values failed', e); });
+}
+// Adds the extra choices to a tab's Sort dropdown (once) and locks the value sorts for non-VIP.
+function updateSortOptions(selectId, st, withNumber){
+  const s = document.getElementById(selectId); if(!s) return;
+  if(!s.dataset.extra){
+    s.dataset.extra = '1';
+    const status = [...s.options].find(o => o.value === 'status');
+    const add = (v, label, before) => { const o = document.createElement('option'); o.value = v; o.textContent = label; s.insertBefore(o, before || null); };
+    if(withNumber) add('number', 'Sort: Card number', status);
+    add('changeDesc', 'Sort: Price change high to low');
+    add('changeAsc', 'Sort: Price change low to high');
+    add('valueAsc', 'Sort: Value low to high');
+    add('valueDesc', 'Sort: Value high to low');
+  }
+  const vip = isVipTier();
+  [...s.options].forEach(o => {
+    if(o.value !== 'valueAsc' && o.value !== 'valueDesc') return;
+    const base = o.value === 'valueAsc' ? 'Sort: Value low to high' : 'Sort: Value high to low';
+    o.disabled = !vip; o.textContent = vip ? base : base + ' (VIP)';
+  });
+  if(!vip && (st.sort === 'valueAsc' || st.sort === 'valueDesc')){ st.sort = 'row'; s.value = 'row'; }
+}
+const EXTRA_SORTS = ['changeDesc','changeAsc','valueAsc','valueDesc'];
+// Sorts by a number with blanks (no price data) last; ties keep the tab's normal order.
+function sortByKey(arr, key, dir, tie){
+  arr.sort((a,b)=>{
+    const ka = key(a), kb = key(b);
+    if(ka == null && kb == null) return tie(a,b);
+    if(ka == null) return 1;
+    if(kb == null) return -1;
+    return (dir * (ka - kb)) || tie(a,b);
+  });
+}
+function applyExtraSort(arr, sort, tab, changeFn, valueFn, tie, rerender){
+  if(sort === 'changeDesc') sortByKey(arr, changeFn, -1, tie);
+  else if(sort === 'changeAsc') sortByKey(arr, changeFn, 1, tie);
+  else { requestValues(tab, arr, rerender); sortByKey(arr, valueFn, sort === 'valueAsc' ? 1 : -1, tie); }
+}
 function sortItems(items){
   const arr = [...items];
   if(state.sort==='name') arr.sort((a,b)=>a.name.localeCompare(b.name));
   else if(state.sort==='status') arr.sort((a,b)=> effectiveStatus(a).localeCompare(effectiveStatus(b)));
+  else if(state.sort==='number'){
+    const has = i => i.collectorNum && i.collectorNum !== 'N/A';
+    arr.sort((a,b)=>{
+      if(has(a) !== has(b)) return has(a) ? -1 : 1;
+      if(!has(a)) return promoSortRow(a)-promoSortRow(b);
+      const so = typeof byReleaseOrder === 'function' ? byReleaseOrder(a.set, b.set) : 0;
+      return so || compareCardNumbers(a.collectorNum, b.collectorNum) || (promoSortRow(a)-promoSortRow(b));
+    });
+  }
+  else if(EXTRA_SORTS.includes(state.sort)) applyExtraSort(arr, state.sort, 'promo', promoChange, promoValue, (a,b)=>promoSortRow(a)-promoSortRow(b), renderResults);
   else arr.sort((a,b)=>promoSortRow(a)-promoSortRow(b));
   return arr;
 }
@@ -2129,7 +2208,8 @@ function renderFlatGrid(items){
   return `<div class="grid ${state.view==='list'?'list-mode':''}">${items.map(cardHtml).join('')}</div>`;
 }
 
-function renderResults(){
+function renderResults(){
+  try{ updateSortOptions('sortSelect', state, true); }catch(e){}
   const container = document.getElementById('results');
   if(state.deck){
     const d = (DECKS || []).find(x => x.id === state.deck);
@@ -2834,6 +2914,7 @@ function compareChecklist(a, b){
 function sortCards(cards){
   const arr = [...cards];
   if(setState.sort === 'name') arr.sort((a,b)=>a.name.localeCompare(b.name));
+  else if(EXTRA_SORTS.includes(setState.sort)) applyExtraSort(arr, setState.sort, 'card', cardChange, cardValue, compareChecklist, renderSetResults);
   else arr.sort(compareChecklist);
   return arr;
 }
@@ -3003,7 +3084,8 @@ function renderSetFlatGrid(cards){
   return `<div class="grid ${setState.view==='list'?'list-mode':''}">${cards.map(cardTileHtml).join('')}</div>`;
 }
 
-function renderSetResults(){
+function renderSetResults(){
+  try{ updateSortOptions('setSortSelect', setState, false); }catch(e){}
   const filtered = getFilteredCardList();
   const container = document.getElementById('setResults');
 
@@ -3018,7 +3100,7 @@ function renderSetResults(){
   }
   // Sections by card type only when the visitor picks "Group by card type".
   const groupedView = (setState.type === '' && setState.sort === 'type');
-  const byNumber = (setState.sort !== 'name');
+  const byNumber = (setState.sort !== 'name' && !EXTRA_SORTS.includes(setState.sort));
   container.innerHTML = errorBanner + (groupedView ? renderSetGroupedGrid(filtered) : byNumber ? renderSetLanguageGrid(filtered) : renderSetFlatGrid(filtered));
 }
 
@@ -5977,6 +6059,7 @@ function sortProducts(list){
     const rank = p => productOwned(p) ? 0 : productReleased(p) ? 1 : p.st === 'tbd' ? 2 : 3;
     arr.sort((a,b)=>rank(a)-rank(b) || a.row-b.row || langIdx(a.language)-langIdx(b.language));
   }
+  else if(EXTRA_SORTS.includes(productState.sort)) applyExtraSort(arr, productState.sort, 'prod', productChange, productValue, (a,b)=>a.row-b.row || langIdx(a.language)-langIdx(b.language), renderProductResults);
   else arr.sort((a,b)=>a.row-b.row || langIdx(a.language)-langIdx(b.language));
   return arr;
 }
@@ -6034,7 +6117,8 @@ function productCardHtml(p){
   </div>`;
 }
 
-function renderProductResults(){
+function renderProductResults(){
+  try{ updateSortOptions('productSortSelect', productState, false); }catch(e){}
   const container = document.getElementById('productResults');
   if(!container) return;
   if(typeof cbUpdateLangBars === 'function') cbUpdateLangBars();

@@ -292,7 +292,7 @@ async function binderValue(body: any, tier: string) {
 
   // 3) Value over time from TCGplayer prices: Club gets 8 days (weekly change), VIP up to 90.
   let history: { day: string; value: number }[] = [];
-  if (RANK[tier] >= 1 && ids.length) {
+  if (!body.no_history && RANK[tier] >= 1 && ids.length) {
     const days = RANK[tier] >= 2 ? Math.min(90, Math.max(7, parseInt(body.days, 10) || 30)) : 8;
     const since = new Date(Date.now() - days * 86400000).toISOString().slice(0, 10);
     const qtyBy = new Map<string, number>();
@@ -311,7 +311,7 @@ async function binderValue(body: any, tier: string) {
   // 4) Value over time for French, Chinese and Korean cards (lowest CardTrader listing per day).
   //    Same windows as English: Club 8 days, VIP up to 90.
   const historyByLang: Record<string, { day: string; value: number }[]> = {};
-  if (RANK[tier] >= 1 && ctNeed.length) {
+  if (!body.no_history && RANK[tier] >= 1 && ctNeed.length) {
     const days = RANK[tier] >= 2 ? Math.min(90, Math.max(7, parseInt(body.days, 10) || 30)) : 8;
     const since = new Date(Date.now() - days * 86400000).toISOString().slice(0, 10);
     const NAME: Record<string, string> = { fr: 'French', 'zh-cn': 'Chinese', kr: 'Korean' };
