@@ -1306,7 +1306,16 @@ async function answerBundle(id, extra){
   const onScroll = () => b.classList.toggle('show', window.scrollY > 700);
   window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
   // lift the Top button while the cookie banner is on screen
-  const cookieCheck = () => { const c = document.querySelector('[class*="cookie-banner"]'); document.body.classList.toggle('cb-cookie-open', !!(c && c.offsetHeight > 0)); };
+  // Find the cookie banner wherever it sits (any visible element near the bottom edge) and lift the Top button above it.
+  const cookieCheck = () => {
+    let lift = 0;
+    document.querySelectorAll('[class*="cookie"]').forEach(el => {
+      const r = el.getBoundingClientRect(), cs = getComputedStyle(el);
+      if(r.height > 20 && r.width > 200 && cs.visibility !== 'hidden' && cs.display !== 'none' && r.bottom >= window.innerHeight - 4 && r.top > window.innerHeight * 0.4) lift = Math.max(lift, window.innerHeight - r.top);
+    });
+    document.body.classList.toggle('cb-cookie-open', lift > 0);
+    b.style.bottom = lift > 0 ? (lift + 16) + 'px' : '';
+  };
   cookieCheck(); setInterval(cookieCheck, 1500);
 })();
 
