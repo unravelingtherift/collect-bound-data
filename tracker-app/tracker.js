@@ -855,6 +855,7 @@ function unlZhAffectedCount(){
   }).length;
 }
 function maybeShowUnlZhNotice(){
+  return; // Turned off Nov 19, 2026 at Jessica's request.
   try{ if(localStorage.getItem(UNL_ZH_NOTICE_KEY)) return; }catch(e){ return; }
   if(Date.now() > Date.UTC(2027, 0, 31)) return;
   if(document.getElementById('unlZhNotice')) return;
@@ -2208,7 +2209,8 @@ function renderFlatGrid(items){
   return `<div class="grid ${state.view==='list'?'list-mode':''}">${items.map(cardHtml).join('')}</div>`;
 }
 
-function renderResults(){
+function renderResults(){
+
   try{ updateSortOptions('sortSelect', state, true); }catch(e){}
   const container = document.getElementById('results');
   if(state.deck){
@@ -3005,11 +3007,24 @@ function cardDisplayName(card){
   return String(card.name || '').trim().replace(/\s+AA$/, '');
 }
 
+// A set card with no real picture shows "Image coming soon" instead of a broken
+// image or a square "no photo" camera placeholder from the picture source.
+function cbNoPic(img){
+  const d = document.createElement('div'); d.className = 'img-fallback';
+  d.innerHTML = '<b>Image coming soon</b><br>' + escapeHtml(img.alt || '');
+  img.replaceWith(d);
+}
+function cbPicLoaded(img){
+  const w = img.naturalWidth, h = img.naturalHeight, r = h ? w / h : 0;
+  if(r > 0.85 && r < 1.18) return cbNoPic(img);   // square = placeholder, real cards are tall (or wide battlefields)
+  if(w > h) img.classList.add('is-landscape');
+}
+
 function cardTileHtml(card){
   const owned = cardEffectiveOwned(card);
   const foilOnly = isFoilOnly(card);
   const img = card.img
-    ? `<img src="${escapeHtml(card.img)}" alt="${escapeHtml(card.name)}" loading="lazy" draggable="false" oncontextmenu="return false" onload="if(this.naturalWidth>this.naturalHeight){this.classList.add('is-landscape');}" onerror="var d=document.createElement('div');d.className='img-fallback';d.textContent=this.alt;this.replaceWith(d);"/>`
+    ? `<img src="${escapeHtml(card.img)}" alt="${escapeHtml(card.name)}" loading="lazy" draggable="false" oncontextmenu="return false" onload="cbPicLoaded(this)" onerror="cbNoPic(this)"/>`
     : `<div class="img-fallback"><b>${card.language==='French' ? 'French picture coming soon' : 'Image coming soon'}</b><br>${escapeHtml(card.name)}</div>`;
 
   return `
@@ -3084,7 +3099,8 @@ function renderSetFlatGrid(cards){
   return `<div class="grid ${setState.view==='list'?'list-mode':''}">${cards.map(cardTileHtml).join('')}</div>`;
 }
 
-function renderSetResults(){
+function renderSetResults(){
+
   try{ updateSortOptions('setSortSelect', setState, false); }catch(e){}
   const filtered = getFilteredCardList();
   const container = document.getElementById('setResults');
@@ -6117,7 +6133,8 @@ function productCardHtml(p){
   </div>`;
 }
 
-function renderProductResults(){
+function renderProductResults(){
+
   try{ updateSortOptions('productSortSelect', productState, false); }catch(e){}
   const container = document.getElementById('productResults');
   if(!container) return;

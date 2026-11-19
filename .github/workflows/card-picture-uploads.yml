@@ -1,0 +1,64 @@
+# When pictures added to add-card-pictures/ are merged into main:
+# cleans them (white corners trimmed, made smaller), saves them on the
+# "card-pictures" branch, and points each card in the tracker at its picture.
+# The run's summary lists every picture and whether its card was found.
+name: Add card pictures
+
+on:
+  push:
+    branches: [main]
+    paths: ['add-card-pictures/**']
+  workflow_dispatch:
+
+concurrency: card-pictures
+
+permissions:
+  contents: write
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Clean the pictures
+        run: |
+          pip install -q pillow
+          if [ "${{ github.event_name }}" = "push" ]; then
+            git diff --name-only --diff-filter=AM "${{ github.event.before }}" "${{ github.sha }}" -- add-card-pictures > /tmp/files.txt || true
+          else
+            ls add-card-pictures/* > /tmp/files.txt
+          fi
+          cat /tmp/files.txt
+          python3 tools/card_uploads.py process /tmp/built $(cat /tmp/files.txt)
+      - name: Save them on the card-pictures branch
+        id: save
+        run: |
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          if git ls-remote --exit-code origin card-pictures >/dev/null; then
+            git fetch -q origin card-pictures && git checkout -q -B card-pictures origin/card-pictures
+          else
+            git checkout -q --orphan card-pictures && git rm -rq --cached . && find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          fi
+          cp /tmp/built/*.webp . 2>/dev/null || true
+          git add -A '*.webp' 2>/dev/null || true
+          git commit -qm "Card pictures ($(date -u +%F))" || true
+          git push -q origin card-pictures
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Point the cards at their pictures
+        env:
+          DB: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          python3 tools/card_uploads.py sql /tmp/built "${{ steps.save.outputs.sha }}"
+          echo "## Card pictures" >> "$GITHUB_STEP_SUMMARY"
+          python3 -c "import json;[print('- **'+b+': name not recognised, skipped.** Use SET-NUMBER-LANGUAGE, like OGN-006-zh.png') for b in json.load(open('/tmp/built/manifest.json'))['bad_names']]" >> "$GITHUB_STEP_SUMMARY"
+          if [ ! -s /tmp/built/update.sql ]; then echo "No pictures to add." >> "$GITHUB_STEP_SUMMARY"; exit 0; fi
+          out=$(psql "$DB" -v ON_ERROR_STOP=1 -q -t -A -f /tmp/built/update.sql)
+          missing=0
+          while IFS='|' read -r name count; do
+            [ -z "$name" ] && continue
+            if [ "$count" = "0" ]; then echo "- **$name: no card with that set, number and language was found.**" >> "$GITHUB_STEP_SUMMARY"; missing=1
+            else echo "- $name: done" >> "$GITHUB_STEP_SUMMARY"; fi
+          done <<< "$out"
+          exit $missing
