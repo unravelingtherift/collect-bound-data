@@ -2722,12 +2722,16 @@ function getCardOwned(id, style){
   return !!(setState.owned[id] && setState.owned[id][style]);
 }
 function getCardQty(id, style){
-  return (setState.qty[id] && setState.qty[id][style]) || 0;
+  const q = (setState.qty[id] && setState.qty[id][style]) || 0;
+  return (!q && getCardOwned(id, style)) ? 1 : q;
 }
 
 async function saveCardOwnership(id){
   const owned = setState.owned[id] || { Normal:false, Foil:false };
-  const qty = setState.qty[id] || { Normal:0, Foil:0 };
+  if(!setState.qty[id]) setState.qty[id] = { Normal:0, Foil:0 };
+  const qty = setState.qty[id];
+  // Owned printing = at least 1 copy; not owned = 0 copies.
+  ['Normal','Foil'].forEach(p => { if(owned[p] && !(qty[p] > 0)) qty[p] = 1; if(!owned[p]) qty[p] = 0; });
   const cond = setState.cond[id] || { Normal:'', Foil:'' };
   try{
     await window.storage.set('card:'+id, JSON.stringify({
@@ -2759,7 +2763,11 @@ async function setCardQty(id, style, next){
   next = Math.max(0, next|0);
   if(!setState.qty[id]) setState.qty[id] = { Normal:0, Foil:0 };
   setState.qty[id][style] = next;
+  if(!setState.owned[id]) setState.owned[id] = { Normal:false, Foil:false };
+  const ownChanged = setState.owned[id][style] !== (next > 0);
+  setState.owned[id][style] = next > 0;
   await saveCardOwnership(id);
+  if(ownChanged){ renderSetAll(); refreshBinderIfVisible(); if(currentModalId===id) openCardModal(id); }
   const el = document.getElementById(`cardQty-${id}-${style}`);
   if(el) el.textContent = next;
   queueCloudSave();
@@ -2768,6 +2776,33 @@ async function setCardQty(id, style, next){
 // Corner checkmark on Card Sets tiles. Not owned: marks the card's standard
 // printing (Normal, or Foil for foil-only cards). Owned: unmarks every
 // printing. Foil/Normal-specific choices still live in the Details window.
+function askPrinting(id){
+  const card = CARDS.find(c=>c.id===id); if(!card) return;
+  const old = document.getElementById('askPrinting'); if(old) old.remove();
+  const box = document.createElement('div');
+  box.id = 'askPrinting'; box.className = 'patch-notice-backdrop';
+  box.onclick = e => { if(e.target === box) box.remove(); };
+  box.innerHTML = `<div class="patch-notice" role="dialog" aria-label="Which printing do you have?">
+    <h3>Which ${escapeHtml(card.name)} do you have?</h3>
+    <div class="pn-actions" style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button type="button" class="pn-primary" onclick="setPrintingChoice('${id}','Normal')">Normal</button>
+      <button type="button" class="pn-primary" onclick="setPrintingChoice('${id}','Foil')">Foil</button>
+      <button type="button" class="pn-primary" onclick="setPrintingChoice('${id}','Both')">Both</button>
+      <button type="button" class="pn-secondary" onclick="document.getElementById('askPrinting').remove()">Cancel</button>
+    </div></div>`;
+  document.body.appendChild(box);
+}
+async function setPrintingChoice(id, which){
+  const box = document.getElementById('askPrinting'); if(box) box.remove();
+  if(!setState.owned[id]) setState.owned[id] = { Normal:false, Foil:false };
+  setState.owned[id].Normal = which === 'Normal' || which === 'Both';
+  setState.owned[id].Foil = which === 'Foil' || which === 'Both';
+  await saveCardOwnership(id);
+  renderSetAll();
+  refreshBinderIfVisible();
+  queueCloudSave();
+  if(state.deck) renderResults();
+}
 async function quickToggleCard(id){
   const card = CARDS.find(c=>c.id===id);
   if(!card) return;
@@ -2777,8 +2812,8 @@ async function quickToggleCard(id){
     setState.owned[id].Foil = false;
   } else {
     if(!canAddMoreItems(true)) return;
-    const base = card.printings.includes('Normal') ? 'Normal' : card.printings[0];
-    setState.owned[id][base] = true;
+    if(card.printings.includes('Normal') && card.printings.includes('Foil')){ askPrinting(id); return; }
+    setState.owned[id][card.printings[0]] = true;
   }
   await saveCardOwnership(id);
   renderSetAll();
@@ -3035,7 +3070,7 @@ function cardTileHtml(card){
       ${trendOverlayHtml(trendBadgeHtml(card))}
       <div class="br-badges">${langFlagHtml(card.language)}${foilOnly ? `<span class="foil-badge">FOIL</span>` : ''}</div>
       ${isBannedEverywhere(card) ? `<span class="banned-badge">BANNED</span>` : ''}
-      <div class="check-seal" onclick="event.stopPropagation(); quickToggleCard('${card.id}')" title="${owned ? 'Mark as not owned' : 'Mark as owned (Details for Foil)'}">
+      <div class="check-seal" onclick="event.stopPropagation(); quickToggleCard('${card.id}')" title="${owned ? 'Mark as not owned' : 'Mark as owned'}">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>
       </div>${qtyBubbleHtml(getCardQty(card.id,'Normal') + getCardQty(card.id,'Foil'))}${gradeBubbleHtml(cardGradeLabels(card.id))}
     </div>
