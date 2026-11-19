@@ -6662,3 +6662,186 @@ if(!MEMBERSHIP_ENABLED){
   n.querySelector('.growth-note-text').textContent = 'About the pictures: Riot Games does not supply pictures of promos and collectibles. We find them through careful research of publicly available pictures online and from the collector community, so some may be lower quality or photos of the real item. We replace them with sharper ones whenever we find them. Pictures are shown only to help you identify items. Card art and game content belong to Riot Games and their artists.';
   first.parentNode.insertBefore(n, first.nextSibling);
 })();
+
+/* ---------- Card scanner (Card Sets tab) ----------
+   Uses the camera and reads the set + number printed at the bottom-left of a
+   card (for example "OGN · 006/298"), then adds that card to the binder in the
+   chosen language and printing. Scanning a card already owned adds a copy. */
+const SCAN_SETS = ['OGN','OGS','SFD','UNL','VEN','RAD','LGC','REC'];
+const scan = { stream:null, worker:null, busy:false, timer:null, last:'', lastAt:0, added:[], style:'Normal', lang:'English' };
+function scanNorm(n){ return String(n).toLowerCase().replace(/^0+(?=\d)/, ''); }
+function scanFindCard(setCode, num, lang){
+  const n = scanNorm(num);
+  return CARDS.find(c => c.setCode === setCode && c.language === lang && scanNorm(c.collectorNum) === n);
+}
+function scanParse(text){
+  const t = String(text).toUpperCase().replace(/[·•■●]/g, ' ');
+  const re = /([A-Z0-9]{3})\s*[-.:,]?\s*([0-9OIL]{1,3})([A*]?)\s*\/\s*[0-9OIL]{2,3}/g;
+  let m;
+  while((m = re.exec(t))){
+    const set = m[1].replace(/0/g,'O').replace(/1/g,'I');
+    const fixSet = SCAN_SETS.find(s => s === set) || SCAN_SETS.find(s => s.replace('O','0') === m[1]);
+    if(!fixSet) continue;
+    const num = m[2].replace(/O/g,'0').replace(/[IL]/g,'1') + m[3].toLowerCase();
+    return { set: fixSet, num };
+  }
+  return null;
+}
+function addScanButton(){
+  if(document.getElementById('scanCardsBtn')) return;
+  const ref = document.getElementById('setMarkAllBtn');
+  if(!ref){ setTimeout(addScanButton, 800); return; }
+  const b = document.createElement('button');
+  b.type = 'button'; b.id = 'scanCardsBtn'; b.className = ref.className;
+  b.textContent = 'Scan cards with camera';
+  b.addEventListener('click', openScanner);
+  ref.parentNode.insertBefore(b, ref);
+}
+function loadTesseract(){
+  if(window.Tesseract) return Promise.resolve();
+  return new Promise((res, rej) => {
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+    s.onload = res; s.onerror = () => rej(new Error('Could not load the scanner.'));
+    document.head.appendChild(s);
+  });
+}
+async function openScanner(){
+  if(document.getElementById('cbScanner')) return;
+  scan.lang = setState.language || 'English';
+  scan.added = [];
+  const langs = (typeof CARD_LANG_ORDER !== 'undefined' ? CARD_LANG_ORDER : ['English','Chinese','Korean','French']);
+  const box = document.createElement('div');
+  box.id = 'cbScanner'; box.className = 'patch-notice-backdrop';
+  box.innerHTML = `<div class="patch-notice cb-scan" role="dialog" aria-label="Scan cards">
+    <h3>Scan cards</h3>
+    <p class="cb-scan-tip">Hold one card at a time so its bottom line (like <b>OGN · 006/298</b>) sits inside the gold box. Good light helps.</p>
+    <div class="cb-scan-opts">
+      <label>Language <select id="scanLang">${langs.map(l => `<option${l===scan.lang?' selected':''}>${l}</option>`).join('')}</select></label>
+      <span class="cb-scan-toggle">${['Normal','Foil'].map(p => `<button type="button" data-p="${p}" class="${p===scan.style?'on':''}" onclick="setScanStyle('${p}')">${p}</button>`).join('')}</span>
+    </div>
+    <div class="cb-scan-cam"><video id="scanVideo" playsinline muted autoplay></video><div class="cb-scan-box"></div></div>
+    <div id="scanStatus" class="cb-scan-status">Starting camera&hellip;</div>
+    <form class="cb-scan-manual" onsubmit="event.preventDefault(); scanManual();">
+      <input id="scanManualIn" placeholder="Or type it, like OGN 6" autocomplete="off">
+      <button type="submit" class="pn-secondary">Add</button>
+    </form>
+    <div id="scanList" class="cb-scan-list"></div>
+    <div class="pn-actions"><button type="button" class="pn-primary" onclick="closeScanner()">Done</button></div>
+  </div>`;
+  document.body.appendChild(box);
+  document.getElementById('scanLang').addEventListener('change', e => { scan.lang = e.target.value; });
+  const status = document.getElementById('scanStatus');
+  try{
+    scan.stream = await navigator.mediaDevices.getUserMedia({ video:{ facingMode:'environment', width:{ ideal:1920 }, height:{ ideal:1080 } }, audio:false });
+    const v = document.getElementById('scanVideo'); v.srcObject = scan.stream; await v.play();
+    status.textContent = 'Loading the reader…';
+    await loadTesseract();
+    scan.worker = scan.worker || await Tesseract.createWorker('eng');
+    await scan.worker.setParameters({ tessedit_char_whitelist:'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/*-·. ', tessedit_pageseg_mode:'7' });
+    status.textContent = 'Ready. Show a card.';
+    scan.timer = setInterval(scanFrame, 700);
+  }catch(e){
+    status.textContent = 'The camera could not start. Allow camera access, or type the card below (like OGN 6).';
+  }
+}
+function setScanStyle(p){
+  scan.style = p;
+  document.querySelectorAll('.cb-scan-toggle button').forEach(b => b.classList.toggle('on', b.dataset.p === p));
+}
+async function scanFrame(){
+  if(scan.busy || !scan.worker) return;
+  const v = document.getElementById('scanVideo'); if(!v || !v.videoWidth) return;
+  scan.busy = true;
+  try{
+    // The gold box: middle 80% of the width, a band 16% tall in the middle.
+    const vw = v.videoWidth, vh = v.videoHeight;
+    const sx = vw * .1, sw = vw * .8, sh = vh * .16, sy = (vh - sh) / 2;
+    const c = document.createElement('canvas');
+    const scale = Math.min(2, 1600 / sw);
+    c.width = sw * scale; c.height = sh * scale;
+    const g = c.getContext('2d');
+    g.filter = 'grayscale(1) contrast(1.6)';
+    g.drawImage(v, sx, sy, sw, sh, 0, 0, c.width, c.height);
+    const { data } = await scan.worker.recognize(c);
+    const hit = scanParse(data.text);
+    if(hit) await scanHit(hit.set, hit.num);
+  }catch(e){}
+  scan.busy = false;
+}
+async function scanHit(set, num){
+  const key = set + ' ' + num;
+  const now = Date.now();
+  if(key === scan.last && now - scan.lastAt < 4000){ scan.lastAt = now; return; }
+  scan.last = key; scan.lastAt = now;
+  const card = scanFindCard(set, num, scan.lang);
+  const status = document.getElementById('scanStatus');
+  if(!card){ if(status) status.textContent = `Read ${key}, but there is no ${scan.lang} card with that number.`; return; }
+  const style = card.printings.includes(scan.style) ? scan.style : card.printings[0];
+  if(!setState.owned[card.id]) setState.owned[card.id] = { Normal:false, Foil:false };
+  if(!setState.qty[card.id]) setState.qty[card.id] = { Normal:0, Foil:0 };
+  const had = !!setState.owned[card.id][style];
+  if(!had && !cardEffectiveOwned(card) && !canAddMoreItems(true)) return;
+  setState.owned[card.id][style] = true;
+  setState.qty[card.id][style] = had ? (setState.qty[card.id][style] || 1) + 1 : 1;
+  await saveCardOwnership(card.id);
+  queueCloudSave();
+  try{ navigator.vibrate && navigator.vibrate(60); }catch(e){}
+  scan.added.unshift({ id:card.id, style, had });
+  if(status) status.textContent = `Added ${card.name} (${style})${had ? ' — now ' + setState.qty[card.id][style] + ' copies' : ''}.`;
+  renderScanList();
+}
+function renderScanList(){
+  const el = document.getElementById('scanList'); if(!el) return;
+  el.innerHTML = scan.added.map((a, i) => {
+    const c = CARDS.find(x => x.id === a.id);
+    return `<div class="cb-scan-row">${c && c.img ? `<img src="${escapeHtml(c.img)}" alt="">` : ''}<span>${escapeHtml(c ? c.name : a.id)} <small>${escapeHtml((c ? c.setCode + ' ' + c.collectorNum + ' · ' : '') + a.style)}</small></span><button type="button" class="pn-secondary" onclick="scanUndo(${i})">Undo</button></div>`;
+  }).join('');
+}
+async function scanUndo(i){
+  const a = scan.added[i]; if(!a) return;
+  const q = setState.qty[a.id] || { Normal:0, Foil:0 };
+  if(a.had) q[a.style] = Math.max(1, (q[a.style] || 1) - 1);
+  else { setState.owned[a.id][a.style] = false; q[a.style] = 0; }
+  setState.qty[a.id] = q;
+  await saveCardOwnership(a.id);
+  queueCloudSave();
+  scan.added.splice(i, 1);
+  scan.last = '';
+  renderScanList();
+}
+function scanManual(){
+  const inp = document.getElementById('scanManualIn');
+  const m = /^\s*([a-z]{3})\s*[-·. ]*\s*0*(\d{1,3}[a-z*]?)\s*$/i.exec(inp.value || '');
+  const status = document.getElementById('scanStatus');
+  if(!m){ status.textContent = 'Type the set and number, like OGN 6 or SFD 233*.'; return; }
+  scan.last = '';
+  scanHit(m[1].toUpperCase(), m[2].toLowerCase());
+  inp.value = '';
+}
+function closeScanner(){
+  clearInterval(scan.timer); scan.timer = null;
+  if(scan.stream){ scan.stream.getTracks().forEach(t => t.stop()); scan.stream = null; }
+  const b = document.getElementById('cbScanner'); if(b) b.remove();
+  if(scan.added.length){ renderSetAll(); refreshBinderIfVisible(); }
+}
+(function injectScanStyles(){
+  const css = `.cb-scan{max-width:520px;width:94vw}
+  .cb-scan-tip{font-size:13px;opacity:.85}
+  .cb-scan-opts{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:8px 0}
+  .cb-scan-opts select{margin-left:6px}
+  .cb-scan-toggle button{padding:6px 14px;border:1px solid #d7a64c;background:transparent;color:inherit;cursor:pointer}
+  .cb-scan-toggle button.on{background:#d7a64c;color:#1a1410;font-weight:700}
+  .cb-scan-cam{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden}
+  .cb-scan-cam video{width:100%;height:100%;object-fit:cover}
+  .cb-scan-box{position:absolute;left:10%;width:80%;top:42%;height:16%;border:3px solid #d7a64c;border-radius:6px;box-shadow:0 0 0 999px rgba(0,0,0,.35)}
+  .cb-scan-status{margin:8px 0;font-weight:600;min-height:1.4em}
+  .cb-scan-manual{display:flex;gap:6px;margin-bottom:8px}
+  .cb-scan-manual input{flex:1;padding:6px}
+  .cb-scan-list{max-height:180px;overflow:auto}
+  .cb-scan-row{display:flex;align-items:center;gap:8px;padding:4px 0;border-top:1px solid rgba(255,255,255,.1)}
+  .cb-scan-row img{width:34px;border-radius:3px}
+  .cb-scan-row span{flex:1}`;
+  const s = document.createElement('style'); s.textContent = css; document.head.appendChild(s);
+})();
+addScanButton();
