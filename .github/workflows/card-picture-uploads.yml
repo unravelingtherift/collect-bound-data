@@ -7,7 +7,7 @@ name: Add card pictures
 on:
   push:
     branches: [main]
-    paths: ['add-card-pictures/**']
+    paths: ['add-card-pictures/**', '.github/workflows/card-picture-uploads.yml', 'tools/card_uploads.py']
   workflow_dispatch:
 
 concurrency: card-pictures
@@ -25,13 +25,10 @@ jobs:
       - name: Clean the pictures
         run: |
           pip install -q pillow
-          if [ "${{ github.event_name }}" = "push" ]; then
-            git diff --name-only --diff-filter=AM "${{ github.event.before }}" "${{ github.sha }}" -- add-card-pictures > /tmp/files.txt || true
-          else
-            ls add-card-pictures/* > /tmp/files.txt
-          fi
+          cp tools/card_uploads.py /tmp/card_uploads.py
+          ls add-card-pictures/* > /tmp/files.txt
           cat /tmp/files.txt
-          python3 tools/card_uploads.py process /tmp/built $(cat /tmp/files.txt)
+          python3 /tmp/card_uploads.py process /tmp/built $(cat /tmp/files.txt)
       - name: Save them on the card-pictures branch
         id: save
         run: |
@@ -50,7 +47,7 @@ jobs:
         env:
           DB: ${{ secrets.SUPABASE_DB_URL }}
         run: |
-          python3 tools/card_uploads.py sql /tmp/built "${{ steps.save.outputs.sha }}"
+          python3 /tmp/card_uploads.py sql /tmp/built "${{ steps.save.outputs.sha }}"
           echo "## Card pictures" >> "$GITHUB_STEP_SUMMARY"
           python3 -c "import json;[print('- **'+b+': name not recognised, skipped.** Use SET-NUMBER-LANGUAGE, like OGN-006-zh.png') for b in json.load(open('/tmp/built/manifest.json'))['bad_names']]" >> "$GITHUB_STEP_SUMMARY"
           if [ ! -s /tmp/built/update.sql ]; then echo "No pictures to add." >> "$GITHUB_STEP_SUMMARY"; exit 0; fi
