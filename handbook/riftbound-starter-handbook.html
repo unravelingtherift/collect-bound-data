@@ -782,6 +782,18 @@ section.alt{background:linear-gradient(180deg,transparent,rgba(255,255,255,.015)
 .errata-sub{color:var(--text-dim);font:600 .78rem var(--mono);text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px;}
 .errata-sub small{color:var(--text-faint);text-transform:none;letter-spacing:0;font-size:inherit;font-weight:400;}
 .errata-sub.split{margin-top:42px;padding-top:26px;border-top:1px solid rgba(227,193,126,.22);}
+.fc-flags{position:absolute;top:8px;right:8px;z-index:2;display:flex;gap:4px;}
+.lang-flag{display:inline-block;width:22px;height:15px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.5);background:#fff;flex:none;}
+.lang-flag svg{display:block;width:100%;height:100%;}
+.lang-flag.dim{opacity:.55;}
+.lang-flag-inline{display:inline-block;vertical-align:-2px;}
+.flag-legend{color:var(--text-dim);font-size:.82rem;margin:18px 0 0;line-height:1.6;}
+.flip-card.multi .flip-back{position:absolute;inset:0;justify-content:flex-start;overflow-y:auto;overscroll-behavior:contain;}
+.lang-block{display:flex;flex-direction:column;gap:6px;padding-top:8px;border-top:1px solid rgba(227,193,126,.16);}
+.lang-block:first-of-type{border-top:0;padding-top:0;}
+.lang-head{display:flex;align-items:center;gap:7px;font:600 .62rem var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--gold-bright);}
+.lang-head small{font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-dim);font-size:.7rem;}
+.ban-region{font-family:var(--mono);font-size:.62rem;color:var(--text-faint);line-height:1.45;}
 .flip-hint{color:var(--text-faint);font-size:.8rem;margin:0 0 16px;}
 .flip-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:8px;}
 @media (max-width:1280px){.flip-grid{grid-template-columns:repeat(4,1fr);}}
@@ -1239,14 +1251,8 @@ footer .fbrand{font-family:var(--serif);color:var(--gold);font-size:1.1rem;margi
       <div class="errata-panel" id="erratapanel-unl"></div>
       <div class="errata-panel" id="erratapanel-ven"></div>
       <div class="errata-panel" id="erratapanel-rad"></div>
-      <h4 class="errata-sub split" id="frenchErrata">French printings <small>(errata pour Riftbound en français · 55 cards · updated August 25, 2026)</small></h4>
-      <p class="flip-hint">Riot fixed the wording on these French cards. If you play French printings, go by the new French text, not what’s printed. Flip a card to see the part of the text that changed (… marks text that stays the same). Each card shows its English name too.</p>
-      <div id="langErrata-fr"></div>
-      <span style="font-family:var(--mono);font-size:.72rem;color:var(--text-faint);display:block;margin-top:10px;">Source: Riot’s <a class="src-link" href="https://playriftbound.com/fr-fr/news/announcements/errata-de-traduction-franaise/" target="_blank" rel="noopener">Errata pour Riftbound en français</a> (full French card text for every card).</span>
-      <h4 class="errata-sub split" id="koreanErrata">Korean printings <small>(리프트바운드 한국어판 정오표 · 21 cards · November 6, 2026)</small></h4>
-      <p class="flip-hint">Riot’s fixes for the Korean edition of Origins and Proving Grounds. Most are small wording fixes (for example a reminder that now says “this unit” instead of “this card”). Flip a card to see what changed.</p>
-      <div id="langErrata-ko"></div>
-      <span style="font-family:var(--mono);font-size:.72rem;color:var(--text-faint);display:block;margin-top:10px;">Source: Riot’s <a class="src-link" href="https://playriftbound.com/ko-kr/news/announcements/errata-nov-2026" target="_blank" rel="noopener">리프트바운드 한국어판 정오표 (2026년 11월 6일)</a>.</span>
+      <p class="flag-legend" id="frenchErrata"><span id="koreanErrata"></span>Flags on each card show which printings the errata covers: <span class="lang-flag-inline" data-flag="en"></span> English · <span class="lang-flag-inline" data-flag="fr"></span> French · <span class="lang-flag-inline" data-flag="ko"></span> Korean. Flip a card to see the wording for each language. French and Korean entries show the part of the text that changed (… marks words that stay the same).</p>
+      <span style="font-family:var(--mono);font-size:.72rem;color:var(--text-faint);display:block;margin-top:10px;">Sources: Riot’s English errata posts (<a class="src-link" href="https://playriftbound.com/en-us/news/announcements/vendetta-errata-updates/" target="_blank" rel="noopener">Vendetta</a>, <a class="src-link" href="https://playriftbound.com/en-us/news/announcements/radiance-errata-updates/" target="_blank" rel="noopener">Radiance</a>), <a class="src-link" href="https://playriftbound.com/fr-fr/news/announcements/errata-de-traduction-franaise/" target="_blank" rel="noopener">Errata pour Riftbound en français</a> (55 cards, updated August 25, 2026) and <a class="src-link" href="https://playriftbound.com/ko-kr/news/announcements/errata-nov-2026" target="_blank" rel="noopener">리프트바운드 한국어판 정오표</a> (21 cards, November 6, 2026).</span>
     </div>
     <div class="eb-block eb-bans" id="bans-list">
       <div class="eb-banner">
@@ -3335,21 +3341,65 @@ document.addEventListener('keydown', (e)=>{
 });
 
 // errata & ban list section — flip cards (same grid + label language as the Types gallery)
+const FLAG_SVG = {
+  en:'<svg viewBox="0 0 19 10" preserveAspectRatio="none"><rect width="19" height="10" fill="#b22234"/><path d="M0 1.15h19M0 2.7h19M0 4.23h19M0 5.77h19M0 7.3h19M0 8.85h19" stroke="#fff" stroke-width=".77"/><rect width="7.6" height="5.4" fill="#3c3b6e"/></svg>',
+  fr:'<svg viewBox="0 0 3 2" preserveAspectRatio="none"><rect width="1" height="2" fill="#0055a4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ef4135"/></svg>',
+  ko:'<svg viewBox="0 0 36 24"><rect width="36" height="24" fill="#fff"/><g transform="translate(18 12) rotate(33.7)"><path d="M-6 0a6 6 0 0 1 12 0a3 3 0 0 1-6 0a3 3 0 0 0-6 0z" fill="#cd2e3a"/><path d="M6 0a6 6 0 0 1-12 0a3 3 0 0 1 6 0a3 3 0 0 0 6 0z" fill="#0047a0"/></g><g stroke="#000" stroke-width="1.3"><path d="M5 4.5l3-2.5M6 5.7l3-2.5M7 6.9l3-2.5"/><path d="M26 17.1l3 2.5M27 15.9l3 2.5M28 14.7l3 2.5"/><path d="M26 6.9l3-2.5M28 4.5l3-2.5"/><path d="M5 19.5l3 2.5M7 17.1l3 2.5"/></g></svg>'
+};
+const LANG_NAME = {en:'English', fr:'French', ko:'Korean'};
+const flagHtml = (l, title, dim) => `<span class="lang-flag${dim ? ' dim' : ''}" title="${title || LANG_NAME[l]}" aria-label="${title || LANG_NAME[l]}">${FLAG_SVG[l]}</span>`;
+document.querySelectorAll('.lang-flag-inline').forEach(el=>{ el.innerHTML = flagHtml(el.dataset.flag); });
+
 function flipCardHtml(o){
   return `<div class="flip-card ${o.cls || ''}" tabindex="0" role="button" aria-label="${o.name} — hover or tap to flip">
     <div class="flip-inner">
       <div class="flip-face flip-front">
-        <div class="fc-thumb">${o.ribbon ? `<span class="fc-ribbon">${o.ribbon}</span>` : ''}${o.img ? `<img src="${o.img}" alt="${o.name}" loading="lazy">` : `<span class="fc-noimg">Picture coming soon</span>`}</div>
+        <div class="fc-thumb">${o.ribbon ? `<span class="fc-ribbon">${o.ribbon}</span>` : ''}${o.flags ? `<span class="fc-flags">${o.flags}</span>` : ''}${o.img ? `<img src="${o.img}" alt="${o.name}" loading="lazy">` : `<span class="fc-noimg">Picture coming soon</span>`}</div>
         <div class="fc-lbl"><span class="fc-name">${o.name}</span><span class="fc-code">${o.code}</span></div>
       </div>
       <div class="flip-face flip-back">${o.back}</div>
     </div>
   </div>`;
 }
-const errataFlip = e => flipCardHtml({name:e.name, code:e.code, img:e.img,
-  back:`<div class="fc-back-title">${e.name}</div><div class="fc-back-code">${e.code}</div><div class="errata-old"><b>Old text</b><p>${e.oldText}</p></div><div class="errata-new"><b>New text</b><p>${e.newText}</p></div>`});
-const bannedFlip = (b, ribbon) => flipCardHtml({cls:'banned', name:b.name, code:b.code, img:b.img, ribbon:ribbon || 'Banned',
-  back:`<div class="fc-back-title">${b.name}</div><div class="fc-back-meta"><span class="banned-type">${b.type}</span><span class="fc-back-code">${b.code}</span></div><div class="banned-date">Effective ${b.date}</div><p class="banned-reason">${b.reason}</p>`});
+
+// Merge French / Korean errata into the same card as the English errata (one card per card, flags show the languages)
+(function mergeLangErrata(){
+  if (!RIFT.langErrata) return;
+  const norm = t => (t || '').toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9']+/g,' ').trim();
+  const setOf = code => { const m = /^([A-Z]{3})/.exec(code || ''); const k = m ? m[1].toLowerCase() : ''; return k === 'ogs' ? 'ogn' : k; };
+  const numOf = code => { const m = /^([A-Z]{3}) 0*(\d+)/.exec(code || ''); return m ? m[1] + ' ' + m[2] : ''; };
+  ['fr','ko'].forEach(lang => {
+    (RIFT.langErrata[lang].groups || []).forEach(g => g.cards.forEach(c => {
+      let key = setOf(c.code);
+      if (!key) key = /Spiritforged/.test(c.code) ? 'sfd' : /Unleashed/.test(c.code) ? 'unl' : 'ogn';
+      const list = RIFT.errataData[key].errata;
+      let e = list.find(x => (c.en && norm(x.name) === norm(c.en)) || (numOf(c.code) && numOf(x.code) === numOf(c.code)));
+      if (!e){
+        e = {name: c.en || c.name, code: c.code, img: c.img, noEnglish: true};
+        list.push(e);
+      }
+      e.langs = e.langs || {};
+      e.langs[lang] = c;
+      if (!e.img && c.img) e.img = c.img;
+    }));
+  });
+})();
+
+const langBlock = (l, localName, oldT, newT, cardName) => `<div class="lang-block"><div class="lang-head">${flagHtml(l)}${LANG_NAME[l]}${localName && localName !== cardName ? ` <small>${localName}</small>` : ''}</div><div class="errata-old"><b>Old text</b><p>${oldT}</p></div><div class="errata-new"><b>New text</b><p>${newT}</p></div></div>`;
+const errataFlip = e => {
+  const langs = (e.noEnglish ? [] : ['en']).concat(Object.keys(e.langs || {}));
+  const blocks = langs.map(l => l === 'en' ? langBlock('en', '', e.oldText, e.newText, e.name) : langBlock(l, e.langs[l].name, e.langs[l].oldText, e.langs[l].newText, e.name)).join('');
+  return flipCardHtml({cls: langs.length > 1 ? 'multi' : '', name:e.name, code:e.code, img:e.img, flags: langs.map(l => flagHtml(l)).join(''),
+    back:`<div class="fc-back-title">${e.name}</div><div class="fc-back-code">${e.code}</div>${blocks}`});
+};
+// Where each ban applies: the global list (English & French regions); Korea uses the March 2026 list once Spiritforged releases there
+const KOREA_BAN_NOTE = 'Korea: no bans from Nov 23, 2026 until the Origins season ends; this ban returns once Spiritforged releases in Korea.';
+const bannedFlip = (b, ribbon) => {
+  const korea = b.date === 'March 31, 2026';
+  const flags = flagHtml('en','Banned in English regions') + flagHtml('fr','Banned in French regions') + (korea ? flagHtml('ko','Korea: returns once Spiritforged releases there', true) : '');
+  return flipCardHtml({cls:'banned', name:b.name, code:b.code, img:b.img, ribbon:ribbon || 'Banned', flags,
+    back:`<div class="fc-back-title">${b.name}</div><div class="fc-back-meta"><span class="banned-type">${b.type}</span><span class="fc-back-code">${b.code}</span></div><div class="banned-date">Effective ${b.date}</div><p class="banned-reason">${b.reason}</p><div class="ban-region">Applies: global ban list (English &amp; French regions)${korea ? '. ' + KOREA_BAN_NOTE : '. Not on Korea’s list.'}</div>`});
+};
 const errataSetKeys = ['ogn','sfd','unl','ven','rad'];
 errataSetKeys.forEach(key=>{
   const s = RIFT.errataData[key];
@@ -3357,7 +3407,7 @@ errataSetKeys.forEach(key=>{
   const ep = document.getElementById('erratapanel-'+key);
   const nE = (s.errata || []).length;
   if (ep) ep.innerHTML = nE
-    ? `<p class="flip-hint">Hover a card to flip it and see the official wording change (tap on a touch screen). Text shown is the exact revision, not a summary.</p>
+    ? `<p class="flip-hint">Hover a card to flip it and see the official wording change (tap on a touch screen). Flags show which language printings each errata covers.</p>
        <div class="flip-grid">${s.errata.map(errataFlip).join('')}</div>`
     : `<div class="errata-empty">No card errata has been issued for this set yet.</div>`;
   if (ep) document.getElementById('erratacount-'+key).textContent = nE || '';
@@ -3366,7 +3416,7 @@ errataSetKeys.forEach(key=>{
   const nB = (s.banned || []).length + (s.bannedExtra ? 1 : 0);
   let bh = '';
   if (nB){
-    bh += `<p class="flip-hint">Hover a card to flip it and see when it was banned and why (tap on a touch screen).</p>`;
+    bh += `<p class="flip-hint">Hover a card to flip it and see when it was banned and why (tap on a touch screen). Flags show where the ban applies.</p>`;
     if ((s.banned || []).length) bh += `<h4 class="errata-sub">Banned from Standard Constructed <small>(${s.banned.length})</small></h4><div class="flip-grid">${s.banned.map(b => bannedFlip(b)).join('')}</div>`;
     if (s.bannedExtra){
       const be = s.bannedExtra;
@@ -3377,12 +3427,6 @@ errataSetKeys.forEach(key=>{
   }
   bp.innerHTML = bh;
   document.getElementById('banscount-'+key).textContent = nB || '';
-});
-['fr','ko'].forEach(lang=>{
-  const box = document.getElementById('langErrata-'+lang);
-  if (!box || !RIFT.langErrata) return;
-  box.innerHTML = RIFT.langErrata[lang].groups.map(g=>`<h5 class="errata-lang-set">${g.set} <small>(${g.cards.length})</small></h5><div class="flip-grid">${g.cards.map(c=>flipCardHtml({name:c.name, code:c.code + (c.en ? ' · ' + c.en : ''), img:c.img,
-    back:`<div class="fc-back-title">${c.name}</div><div class="fc-back-code">${c.en ? c.en + ' · ' : ''}${c.code}</div><div class="errata-old"><b>Old wording</b><p>${c.oldText}</p></div><div class="errata-new"><b>New wording</b><p>${c.newText}</p></div>`})).join('')}</div>`).join('');
 });
 document.querySelectorAll('#errata .eb-tabs').forEach(group=>{
   const kind = group.dataset.group;
