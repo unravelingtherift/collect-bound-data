@@ -4756,13 +4756,15 @@ function applySalePricing(){
 }
 applySalePricing();
 
-// Holiday sale pop-up: shows once per browser after 30 seconds of looking at the
-// tracker, only during the sale and only for people who aren't members yet.
+// Holiday sale pop-up: every visit, after 30 seconds of looking at the tracker,
+// then again after each hour someone stays. Only during the sale and only for
+// people who aren't members yet.
 (function(){
-  const SEEN_KEY = 'cbHolidayPopupSeen2026';
-  let seen = false;
-  try{ seen = localStorage.getItem(SEEN_KEY) === '1'; }catch(e){}
-  if(seen || !saleOn()) return;
+  const LAST_KEY = 'cbHolidayPopupLast2026';
+  const FIRST_AFTER = 30, AGAIN_AFTER = 3600;   // seconds of viewing
+  if(!saleOn()) return;
+  let last = 0;
+  try{ last = Number(sessionStorage.getItem(LAST_KEY)) || 0; }catch(e){}
 
   const css = document.createElement('style');
   css.textContent = `
@@ -4857,6 +4859,8 @@ applySalePricing();
     function close(){
       ov.remove();
       document.removeEventListener('keydown', onKey);
+      popupOpen = false;
+      sinceShown = 0;
     }
     function onKey(e){ if(e.key === 'Escape') close(); }
     document.addEventListener('keydown', onKey);
@@ -4867,18 +4871,22 @@ applySalePricing();
       mcBilling = 'month';
       if(typeof openMembershipChooser === 'function') openMembershipChooser(b.dataset.tier);
     }));
-    try{ localStorage.setItem(SEEN_KEY, '1'); }catch(e){}
+    try{ sessionStorage.setItem(LAST_KEY, String(Date.now())); }catch(e){}
   }
 
   // Count only time the tracker tab is actually open on screen.
-  let viewed = 0;
+  // After a reload in the same visit, carry on the hour from when it last showed.
+  let viewed = 0, popupOpen = false;
+  let sinceShown = last ? Math.floor((Date.now() - last) / 1000) : null;
   const timer = setInterval(()=>{
-    if(document.hidden) return;
+    if(document.hidden || popupOpen) return;
     viewed++;
-    if(viewed < 30) return;
+    if(sinceShown !== null) sinceShown++;
     if(!saleOn()){ clearInterval(timer); return; }
+    const ready = sinceShown === null ? viewed >= FIRST_AFTER : (viewed >= FIRST_AFTER && sinceShown >= AGAIN_AFTER);
+    if(!ready) return;
     if(blocked()) return;            // wait until whatever's open is closed
-    clearInterval(timer);
+    popupOpen = true;
     show();
   }, 1000);
 })();
