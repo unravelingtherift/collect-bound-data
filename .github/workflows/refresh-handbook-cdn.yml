@@ -11,6 +11,9 @@ on:
       - 'handbook-images/**'
   workflow_dispatch: # also lets you run it by hand from the Actions tab
 
+permissions:
+  contents: read
+
 jobs:
   purge:
     runs-on: ubuntu-latest
