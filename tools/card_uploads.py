@@ -6,6 +6,7 @@
 
 File names: SET-NUMBER-LANGUAGE, for example OGN-006-zh.png, OGN-112a-en.jpg,
 SFD-233star-zh.webp ("star" = the * on signature cards).
+Promos: the promo id, for example item-103.jpg.
 """
 import json, os, re, sys
 from PIL import Image, ImageDraw
@@ -16,8 +17,14 @@ NAME = re.compile(r'^([A-Za-z]{2,4})-(\d{1,3}[a-z]?(?:star)?)-([a-z]{2})$', re.I
 REPO = 'unravelingtherift/collect-bound-data'
 
 
+PROMO = re.compile(r'^item-\d+$', re.I)
+
+
 def parse(path):
     stem = os.path.splitext(os.path.basename(path))[0].strip()
+    if PROMO.match(stem):
+        pid = stem.lower()
+        return {'promo': pid, 'out': f"{pid}.webp", 'src': os.path.basename(path)}
     m = NAME.match(stem)
     if not m or m.group(3).lower() not in LANGS:
         return None
@@ -74,6 +81,11 @@ def main():
         for it in man['items']:
             url = f"https://cdn.jsdelivr.net/gh/{REPO}@{sha}/{it['out']}"
             q = lambda s: s.replace("'", "''")
+            if it.get('promo'):
+                lines.append(
+                    f"with u as (update public.promo_items set data = jsonb_set(data, '{{img}}', to_jsonb('{q(url)}'::text)) "
+                    f"where id = '{q(it['promo'])}' returning 1) select '{q(it['src'])}|' || count(*) from u;")
+                continue
             lines.append(
                 f"with u as (update public.cards set img = '{q(url)}' "
                 f"where upper(se) = '{q(it['se'])}' and la = '{q(it['la'])}' "
