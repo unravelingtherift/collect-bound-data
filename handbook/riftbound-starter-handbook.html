@@ -792,6 +792,9 @@ section.alt{background:linear-gradient(180deg,transparent,rgba(255,255,255,.015)
 .flip-face{grid-area:1 / 1;min-width:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--panel-border);background:var(--panel);border-radius:var(--radius-sm);overflow:hidden;}
 .flip-front{display:flex;flex-direction:column;}
 .fc-thumb{position:relative;flex:1 1 auto;aspect-ratio:4 / 5;background:#1a1230;}
+.fc-noimg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;font:600 .72rem var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);}
+.errata-lang-set{font-family:var(--serif);color:var(--text);font-size:.95rem;margin:22px 0 8px;}
+.errata-lang-set small{color:var(--text-faint);font-weight:400;}
 .fc-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;}
 .fc-lbl{padding:10px 12px;border-top:1px solid var(--panel-border);display:flex;flex-direction:column;gap:2px;}
 .fc-name{font-size:.84rem;color:var(--text);line-height:1.25;}
@@ -1229,11 +1232,21 @@ footer .fbrand{font-family:var(--serif);color:var(--gold);font-size:1.1rem;margi
         <div class="errata-tab" data-set="sfd">Spiritforged<span class="eb-count" id="erratacount-sfd"></span></div>
         <div class="errata-tab" data-set="unl">Unleashed<span class="eb-count" id="erratacount-unl"></span></div>
         <div class="errata-tab" data-set="ven">Vendetta<span class="eb-count" id="erratacount-ven"></span></div>
+        <div class="errata-tab" data-set="rad">Radiance<span class="eb-count" id="erratacount-rad"></span></div>
       </div>
       <div class="errata-panel active" id="erratapanel-ogn"></div>
       <div class="errata-panel" id="erratapanel-sfd"></div>
       <div class="errata-panel" id="erratapanel-unl"></div>
       <div class="errata-panel" id="erratapanel-ven"></div>
+      <div class="errata-panel" id="erratapanel-rad"></div>
+      <h4 class="errata-sub split" id="frenchErrata">French printings <small>(errata pour Riftbound en français · 55 cards · updated August 25, 2026)</small></h4>
+      <p class="flip-hint">Riot fixed the wording on these French cards. If you play French printings, go by the new French text, not what’s printed. Flip a card to see the part of the text that changed (… marks text that stays the same). Each card shows its English name too.</p>
+      <div id="langErrata-fr"></div>
+      <span style="font-family:var(--mono);font-size:.72rem;color:var(--text-faint);display:block;margin-top:10px;">Source: Riot’s <a class="src-link" href="https://playriftbound.com/fr-fr/news/announcements/errata-de-traduction-franaise/" target="_blank" rel="noopener">Errata pour Riftbound en français</a> (full French card text for every card).</span>
+      <h4 class="errata-sub split" id="koreanErrata">Korean printings <small>(리프트바운드 한국어판 정오표 · 21 cards · November 6, 2026)</small></h4>
+      <p class="flip-hint">Riot’s fixes for the Korean edition of Origins and Proving Grounds. Most are small wording fixes (for example a reminder that now says “this unit” instead of “this card”). Flip a card to see what changed.</p>
+      <div id="langErrata-ko"></div>
+      <span style="font-family:var(--mono);font-size:.72rem;color:var(--text-faint);display:block;margin-top:10px;">Source: Riot’s <a class="src-link" href="https://playriftbound.com/ko-kr/news/announcements/errata-nov-2026" target="_blank" rel="noopener">리프트바운드 한국어판 정오표 (2026년 11월 6일)</a>.</span>
     </div>
     <div class="eb-block eb-bans" id="bans-list">
       <div class="eb-banner">
@@ -1241,7 +1254,7 @@ footer .fbrand{font-family:var(--serif);color:var(--gold);font-size:1.1rem;margi
         <div>
           <div class="eb-kicker">Part 2 of 2 · by set</div>
           <h3 class="eb-title">Ban List</h3>
-          <p class="eb-lead">Cards you can’t put in a Standard Constructed deck at all, along with when they were banned and why.</p>
+          <p class="eb-lead">Cards you can’t put in a Standard or 2v2 Constructed deck at all, along with when they were banned and why.</p>
         </div>
       </div>
       <div class="region-tabs eb-tabs" data-group="bans">
@@ -1249,11 +1262,20 @@ footer .fbrand{font-family:var(--serif);color:var(--gold);font-size:1.1rem;margi
         <div class="errata-tab" data-set="sfd">Spiritforged<span class="eb-count" id="banscount-sfd"></span></div>
         <div class="errata-tab" data-set="unl">Unleashed<span class="eb-count" id="banscount-unl"></span></div>
         <div class="errata-tab" data-set="ven">Vendetta<span class="eb-count" id="banscount-ven"></span></div>
+        <div class="errata-tab" data-set="rad">Radiance<span class="eb-count" id="banscount-rad"></span></div>
       </div>
       <div class="errata-panel active" id="banspanel-ogn"></div>
       <div class="errata-panel" id="banspanel-sfd"></div>
       <div class="errata-panel" id="banspanel-unl"></div>
       <div class="errata-panel" id="banspanel-ven"></div>
+      <div class="errata-panel" id="banspanel-rad"></div>
+      <div class="note-box" style="margin-top:28px;">
+        <b style="display:block;color:var(--gold-bright);font-family:var(--serif);font-size:.95rem;margin-bottom:8px;">Radiance ban update — effective November 23, 2026</b>
+        <p style="margin:0 0 8px;">Eight cards and two battlefields join the Standard and 2v2 Constructed ban list: Riven, Broken Blade; Zhonya’s Hourglass; Stellacorn Herder; Nocturne, Horrifying; Rhasa the Sunderer; Brynhir Thundersong; Dazzling Aurora; Baited Hook; and the battlefields Emperor’s Dais and Star Spring. From that date you can’t play them at official events, Nexus Nights included.</p>
+        <p style="margin:0 0 8px;">Ban lists are now region by region. Regions that are behind on sets use the latest ban list as of each set’s release there, so these bans don’t affect competitive events in Korea or Traditional Chinese regions until Radiance releases there.</p><p style="margin:0 0 8px;"><b>Korea:</b> from November 23, 2026 until the Origins season ends, there’s no ban list at all in Korea — earlier bans are lifted, and the Origins Korea Major (December 5–6) is played with no bans. Once Spiritforged releases in Korea, Korea uses the March 2026 list: Called Shot, Draven, Vanquisher, Fight or Flight, Scrapheap, The Dreaming Tree, Obelisk of Power and Reaver’s Row. <span style="font-family:var(--mono);font-size:.72rem;color:var(--text-faint);">Source: Riot’s <a class="src-link" href="https://playriftbound.com/ko-kr/news/announcements/kr-ban-list-nov-14" target="_blank" rel="noopener">대한민국 카드 금지 목록 운영 안내</a>.</span></p>
+        <p style="margin:0;">No extra 2v2 bans this time, though Riot says Yasuo is strong in 2v2 and changes are being tested. Starting in 2027, bans will come in set “ban windows”, announced on the Friday two weeks before and two weeks after each Continental.</p>
+        <span style="font-family:var(--mono);font-size:.72rem;color:var(--text-faint);display:block;margin-top:10px;">Source: Riot’s <a class="src-link" href="https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026/" target="_blank" rel="noopener">Radiance Ban List Updates (Effective November 23, 2026)</a>.</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1425,7 +1447,7 @@ footer .fbrand{font-family:var(--serif);color:var(--gold);font-size:1.1rem;margi
       <div class="zoomable"><img src="https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/official-roadmap-2026-dec-2027.webp" style="border-radius:10px;border:1px solid var(--panel-border);display:block;width:100%;" alt="Riftbound official 2026-27 roadmap, December 2026 to Q4 2027"><span class="zoom-hint">🔍 Click to enlarge</span></div>
     </div>
     <div class="table-wrap" style="margin-top:16px;">
-      <table class="yield-table"><thead><tr><th>Date</th><th>What's happening</th></tr></thead><tbody><tr><td>Aug 14–17, 2026</td><td>T1 Signature Edition drawing</td></tr><tr><td>Aug 21–23, 2026</td><td>Regional Qualifier — Barcelona</td></tr><tr><td>Sep 4–6, 2026</td><td>Regional Qualifier — Singapore</td></tr><tr><td>Sep 25–27, 2026</td><td>Regional Qualifier — Los Angeles</td></tr><tr><td>Oct 23, 2026</td><td>Radiance (Set 5) releases</td></tr><tr><td>Nov 6–8, 2026</td><td>Regional Championship — Europe</td></tr><tr><td>Dec 4, 2026</td><td>Gift of the Rift Bundle</td></tr><tr><td>Dec 11–13, 2026</td><td>Regional Championship — North America</td></tr><tr><td>Jan 22–23, 2027</td><td>World Showcase — Shanghai</td></tr><tr><td>Jan 29, 2027</td><td>Legacy (Set 6) releases</td></tr><tr><td>Feb 19, 2027</td><td>Proving Grounds 2nd Edition</td></tr><tr><td>Apr 30, 2027</td><td>The Reckoning (Set 7) releases</td></tr><tr><td>Q3 2027</td><td>Set 8 (not yet named)</td></tr><tr><td>Q4 2027</td><td>Set 9 (not yet named)</td></tr></tbody></table>
+      <table class="yield-table"><thead><tr><th>Date</th><th>What's happening</th></tr></thead><tbody><tr><td>Aug 14–17, 2026</td><td>T1 Signature Edition drawing</td></tr><tr><td>Aug 21–23, 2026</td><td>Regional Qualifier — Barcelona</td></tr><tr><td>Sep 4–6, 2026</td><td>Regional Qualifier — Singapore</td></tr><tr><td>Sep 25–27, 2026</td><td>Regional Qualifier — Los Angeles</td></tr><tr><td>Oct 23, 2026</td><td>Radiance (Set 5) releases</td></tr><tr><td>Nov 6–8, 2026</td><td>Regional Championship — Europe</td></tr><tr><td>Nov 23, 2026</td><td>Radiance ban list takes effect</td></tr><tr><td>Dec 4, 2026</td><td>Gift of the Rift Bundle</td></tr><tr><td>Dec 9–15, 2026</td><td>Convergence Fest at US game stores — Ionic Spark battlefield promo (main event in Las Vegas, Dec 11–13)</td></tr><tr><td>Dec 11–13, 2026</td><td>Regional Championship — North America</td></tr><tr><td>Jan 22–23, 2027</td><td>World Showcase — Shanghai</td></tr><tr><td>Jan 29, 2027</td><td>Legacy (Set 6) releases</td></tr><tr><td>Feb 19, 2027</td><td>Proving Grounds 2nd Edition</td></tr><tr><td>Apr 30, 2027</td><td>The Reckoning (Set 7) releases</td></tr><tr><td>Q3 2027</td><td>Set 8 (not yet named)</td></tr><tr><td>Q4 2027</td><td>Set 9 (not yet named)</td></tr></tbody></table>
     </div>
 
     <h3 style="color:var(--text-dim);font-size:.85rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;margin:40px 0 6px;">French release catch-up</h3>
@@ -1827,7 +1849,13 @@ RIFT.errataData = {
       {name:"The Arena’s Greatest", code:"OGN 290/298", type:"Battlefield", date:"July 24, 2026", reason:"Banned for impacting the structure of competitive play in an unhealthy way — particularly powerful when going first, reinforcing a first-player advantage with too much consistency.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/aspirants-climb.webp"},
       {name:"Aspirant’s Climb", code:"OGN 276/298", type:"Battlefield", date:"July 24, 2026", reason:"Banned for impacting the structure of competitive play in an unhealthy way — the extra point it grants increases round length and makes tournament rounds take longer to execute.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/ekko-recurrent.webp"},
       {name:"Ekko, Recurrent", code:"OGN 110/298", type:"Champion Unit", date:"September 18, 2026", reason:"Banned to curb uninteractive infinite combo loops (such as with Lux) and to prevent overly long turns.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/stacked-deck.webp"},
-      {name:"Stacked Deck", code:"OGN 183/298", type:"Spell", date:"September 18, 2026", reason:"Banned to reduce the consistency and speed of dominant Chaos decks, particularly Kennen strategies — combined with Lightning Rush, it let Kennen churn through the deck too efficiently.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/2v2-constructed-proving-grounds.webp"}
+      {name:"Stacked Deck", code:"OGN 183/298", type:"Spell", date:"September 18, 2026", reason:"Banned to reduce the consistency and speed of dominant Chaos decks, particularly Kennen strategies — combined with Lightning Rush, it let Kennen churn through the deck too efficiently.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/2v2-constructed-proving-grounds.webp"},
+      {name:"Brynhir Thundersong", code:"OGN 026/298", type:"Unit", date:"November 23, 2026", reason:"Banned because it can be played during the opponent’s Beginning Phase to stop them playing cards for their whole turn, and paired with blink effects it became a strong removal tool too.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/ban-brynhir-thundersong-ogn-026.webp"},
+      {name:"Zhonya’s Hourglass", code:"OGN 077/298", type:"Gear", date:"November 23, 2026", reason:"Banned because it keeps strong units safe from removal and, being Hidden, also dodges gear removal. Riot called out how strong it is alongside Astral Heron.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/ban-zhonyas-hourglass-ogn-077.webp"},
+      {name:"Dazzling Aurora", code:"OGN 160/298", type:"Gear", date:"November 23, 2026", reason:"Banned because it pulls out huge threats for free and was turning every energy-ramp deck into the same Aurora deck.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/ban-dazzling-aurora-ogn-160.webp"},
+      {name:"Nocturne, Horrifying", code:"OGN 194/298", type:"Champion Unit", date:"November 23, 2026", reason:"Banned because it’s a free early play that doesn’t cost you a card when it’s found off a reveal, and Riot expects that to get worse as more “look at the top of your deck” cards are printed.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/ban-nocturne-horrifying-ogn-194.webp"},
+      {name:"Rhasa the Sunderer", code:"OGN 195/298", type:"Unit", date:"November 23, 2026", reason:"Banned because it’s a strong payoff for filling your trash that can cost 0 energy and can be brought back. Riot says it wouldn’t print this card today.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/ban-rhasa-the-sunderer-ogn-195.webp"},
+      {name:"Baited Hook", code:"OGN 242/298", type:"Gear", date:"November 23, 2026", reason:"Banned because it cheats out high-cost units for free (it checks Might, not Energy cost). Riot banned it now, ahead of the January World Showcase, because cards in upcoming sets like Legacy would pair badly with it.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/ban-baited-hook-ogn-242.webp"},
     ], bannedExtra:{title:"2v2 Constructed — Proving Grounds", name:"Master Yi, Wuju Bladesman", code:"OGS 019/024", type:"Legend", date:"July 24, 2026", reason:"Banned from the 2v2 constructed format only to preserve competitive balance — balanced in 1v1 play, but his Legend bonus applies defensive stats to both teammate and ally, giving an unhealthy early advantage that led to a massive overrepresentation of Master Yi among top teams.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/arise.webp"} },
   sfd: { errata:[
       {name:"Arise!", code:"SFD 198/221", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/card-arise-sfd-198-221.webp", newText:"Play a 2 [M] Sand Soldier unit token for each Equipment you control. Then do this: Ready up to two of them.", oldText:"Play a 2 [M] Sand Soldier unit token for each Equipment you control. Then ready two of them."},
@@ -1850,7 +1878,9 @@ RIFT.errataData = {
       {name:"Fizz, Trickster", code:"SFD 140/221", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/card-fizz-trickster-sfd-140-221.webp", newText:"When you play me, you may play a spell from your trash with Energy cost no more than [3], ignoring its Energy cost. Then recycle it. (You must still pay its Power cost.)", oldText:"When you play me, you may play a spell from your trash with Energy cost no more than [3], ignoring its Energy cost. Recycle that spell after you play it. (You must still pay its Power cost.)\nUnleashed Cards\n[Announcements](https://playriftbound.com/en-us/news/announcements)7/23/2026"}
     ], banned:[
       {name:"Called Shot", code:"SFD 122/221", type:"Spell", date:"March 31, 2026", reason:"Banned because it let players filter through their deck and get ahead on cards at a pace that was too efficient (for free), fueling “miracle deck” and Chaos/Draven strategies.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/draven-vanquisher.webp"},
-      {name:"Draven, Vanquisher", code:"SFD 020/221", type:"Champion Unit", date:"March 31, 2026", reason:"Banned to curb “miracle decks” and slow down dominant Draven strategies. A Legend ban was avoided to keep Draven playable as a last resort, but the champion's dominant metagame presence and excessive win rate had become a problem.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/death-from-below.webp"}
+      {name:"Draven, Vanquisher", code:"SFD 020/221", type:"Champion Unit", date:"March 31, 2026", reason:"Banned to curb “miracle decks” and slow down dominant Draven strategies. A Legend ban was avoided to keep Draven playable as a last resort, but the champion's dominant metagame presence and excessive win rate had become a problem.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/death-from-below.webp"},
+      {name:"Stellacorn Herder", code:"SFD 048/221", type:"Unit", date:"November 23, 2026", reason:"Banned because it’s an unlimited payoff for movement that replaces itself, and it was covering Calm’s weaknesses too well — a staple in Calm draw decks.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/ban-stellacorn-herder-sfd-048.webp"},
+      {name:"Emperor’s Dais", code:"SFD 207/221", type:"Battlefield", date:"November 23, 2026", reason:"Banned because, paired with Riven, it takes away the risk of conquering — the same reason Reaver’s Row was banned.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/ban-emperors-dais-sfd-207.webp"},
     ] },
   unl: { errata:[
       {name:"Death from Below", code:"UNL 186/219", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/card-death-from-below-unl-186-219.webp", newText:"Kill a unit at a battlefield. Then, if it had 3 [M] or less, do this: You may play this from your trash for [A].", oldText:"Kill a unit at a battlefield. Then, if it had 3 [M] or less, you may play this from your trash for [A]."},
@@ -1861,12 +1891,666 @@ RIFT.errataData = {
       {name:"Rengar, Trophy Hunter", code:"UNL 120/219", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/card-rengar-trophy-hunter-unl-120-219.webp", newText:"[Ambush] (You may play me as a [Reaction] to a battlefield where you have units.)\nI can [Ambush] to a battlefield where there are enemy units, even if you don't have units there.", oldText:"[Ambush] (You may play me as a [Reaction] to a battlefield where you have units.)\nI can be played to a battlefield where there are enemy units (even if you don't have units there).\nSpiritforged Cards\n[Announcements](https://playriftbound.com/en-us/news/announcements)7/23/2026"},
       {name:"Diana, Lunari", code:"UNL 079/219", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/card-diana-lunari-unl-079-219.webp", newText:"When a showdown begins here, you may pay [1] to [Predict], then reveal the top card of your Main Deck. If it's a spell, draw it. (To Predict, look at the top card of your Main Deck. You may recycle it.)", oldText:"When a showdown begins here, you may pay [1]. If you do, [Predict], then reveal the top card of your Main Deck. If it's a spell, draw it. (To Predict, look at the top card of your Main Deck. You may recycle it.)"},
       {name:"Stalking Wolf", code:"UNL 166/219", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/card-stalking-wolf-unl-166-219.webp", newText:"[Ambush] (You may play me as a [Reaction] to a battlefield where you have units.)\nAs an additional cost to play me, kill a Bird, Cat, Dog, or Poro you control. You may [Ambush] me to its battlefield, even if you don't have other units there.", oldText:"[Ambush] (You may play me as a [Reaction] to a battlefield where you have units.)\nAs an additional cost to play me, kill a Bird, Cat, Dog, or Poro you control. You may play me to its battlefield (even if you don't have other units there).\nVendetta Cards\n[Announcements](https://playriftbound.com/en-us/news/announcements)7/23/2026"}
-    ], banned:[] },
+    ], banned:[
+      {name:"Star Spring", code:"UNL 215/219", type:"Battlefield", date:"November 23, 2026", reason:"Banned because, paired with Riven, it takes away the risk of conquering — the same reason Reaver’s Row was banned.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/ban-star-spring-unl-215.webp"},
+    ] },
   ven: { errata:[
       {name:"Astral Heron", code:"VEN 044/166", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/card-astral-heron-ven-044-166.webp", newText:"When you play your first card each turn, if I'm at a battlefield, the next card you play this turn costs [2][A][A] less.", oldText:"When you play your first card each turn, if I'm at a battlefield, your next card costs [2][A][A] less."},
       {name:"Gangplank, Naval", code:"VEN 086/166", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/card-gangplank-naval-ven-086-166.webp", newText:"[Empower] [C][C] ([C][C]: Empower me. Use only if not Empowered.)\n[Empowered][>] If a spell or ability that chooses me would stun me, give me -[M], or return me to hand, give me +3 [M] this turn instead.", oldText:"[Empower] [C][C] ([C][C]: Empower me. Use only if not Empowered.)\n[Empowered][>] If a spell or ability that chooses me would stun me, give me -[M], or return me to hand, give me +3 [M] instead."},
       {name:"Resonating Strike", code:"VEN 034/166", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/card-resonating-strike-ven-034-166.webp", newText:"[Hidden] (Hide now for [A] to react with later for [0].)\n[Reaction] (Play any time, even before spells and abilities resolve.)\nChoose a battlefield you control and a unit you control at a different location. Move that unit to that battlefield and give it +2 [S] this turn.", oldText:"[Hidden] (Hide now for [A] to react with later for [0].)\n[Reaction] (Play on your turn or in showdowns.)\nChoose a battlefield you control and a unit you control at a different location. Move that unit to that battlefield and give it +2 [S] this turn."}
-    ], banned:[] }
+    ], banned:[] },
+  rad: { errata:[
+      {"name": "Forbidden Technique", "code": "RAD 010/167", "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/errata-forbidden-technique-rad-010.webp", "newText": "Ready a unit.\nWhen you play a card with Energy cost [7] or more, you may play this from your trash for [1][C][C]. Then banish this.", "oldText": "Ready a unit.\nWhen you play a card with Energy cost [7] or more, you may play this from your trash for [1][C][C]. Banish this."},
+      {"name": "Elnuk Herd", "code": "RAD 081/167", "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/errata-elnuk-herd-rad-081.webp", "newText": "[Hidden] (Hide now for [A] to react with later for [0].)\nWhen you play me, give a friendly unit +3 [M] this turn, then recycle me if I was played from face down.", "oldText": "[Hidden] (Hide now for [A] to react with later for [0].)\nWhen you play me, give another friendly unit +3 [M] this turn, then recycle me if I was played from face down."},
+      {"name": "Last Caress", "code": "RAD 154/167", "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/errata-last-caress-rad-154.webp", "newText": "[Reaction] (Play any time, even before spells and abilities resolve.)\nThe next unit you play this turn, even from face down, can be played to any battlefield. When you play it, [Buff] it. (Give it a +1 [M] buff if it doesn't have one.)", "oldText": "[Reaction] (Play any time, even before spells and abilities resolve.)\nThe next unit you play this turn (even from face down) can be played to any battlefield. When you play it, [Buff] it. (Give it a +1 [M] buff if it doesn't have one.)"},
+      {"name": "Neeko, Blending In", "code": "RAD 167/167", "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/errata-neeko-blending-in-rad-167.webp", "newText": "(Neutral cards can go in decks of any Domain.)\nIf Neeko is in your deck, choose up to 3 different legends in addition to your starting legend. (Different means none match names.)\nWhen you play me, choose one of those Legends and add it to your Legend Zone while I'm on the board.", "oldText": "(Neutral cards can go in decks of any Domain.)\nIf Neeko is in your deck, choose 3 different legends in addition to your starting legend. (Different means none match names.)\nWhen you play me, choose one of those Legends and add it to your Legend Zone while I'm on the board."},
+    ], banned:[
+      {name:"Riven, Broken Blade", code:"RAD 043/167", type:"Champion Unit", date:"November 23, 2026", reason:"Banned for being overrepresented: 43% of decks at the European Regional Championship, 3 of the Top 4, and a win rate over 60% outside the mirror. Her turn-two play is close to free.", img:"https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/handbook-images/ban-riven-broken-blade-rad-043.webp"},
+    ] }
+};
+
+RIFT.langErrata = {
+ "fr": {
+  "groups": [
+   {
+    "set": "Origines (Origins)",
+    "cards": [
+     {
+      "name": "Recrue Ava",
+      "en": "Ava Achiever",
+      "code": "OGN 107/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogn-fr-107-p.webp",
+      "oldText": "Lorsque j'attaque, vous pouvez payer [C] pour jouer une carte possédant [Caché] ici de votre main en ignorant son coût.",
+      "newText": "Lorsque j'attaque, vous pouvez payer [C] pour jouer une carte avec [Caché] de votre main, en ignorant son coût. Si c'est une unité, jouez-la ici."
+     },
+     {
+      "name": "Leurre létal",
+      "en": "Baited Hook",
+      "code": "OGN 242/298",
+      "img": "",
+      "oldText": "… Parmi ces 5 cartes, vous pouvez jouer une unité en ignorant son coût. Sa puissance ne peut dépasser de plus de 1 celle de l'unité éliminée. …",
+      "newText": "… vous pouvez bannir une unité parmi elles qui possède une puissance jusqu'à 1 de plus que l'unité éliminée et la jouer, en ignorant son coût. …"
+     },
+     {
+      "name": "Fureur aveugle",
+      "en": "Blind Fury",
+      "code": "OGN 025/298",
+      "img": "",
+      "oldText": "… Choisissez-en une et jouez-la, en ignorant son coût.",
+      "newText": "… Choisissez-en une et bannissez-la, puis jouez-la en ignorant son coût."
+     },
+     {
+      "name": "Gardien sablier",
+      "en": "Clockwork Keeper",
+      "code": "OGN 044/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogn-fr-44-p.webp",
+      "oldText": "Quand vous me jouez, vous pouvez payer un coût supplémentaire de [C] pour piocher 1 carte.",
+      "newText": "Vous pouvez payer un coût supplémentaire de [C] pour me jouer.\nLorsque vous me jouez, si vous avez payé le coût supplémentaire, piochez 1 carte."
+     },
+     {
+      "name": "Mutation convergente",
+      "en": "Convergent Mutation",
+      "code": "OGN 108/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogn-fr-108-p.webp",
+      "oldText": "… Augmentez sa puissance jusqu'à ce qu'elle soit égale à celle d'une autre unité alliée.",
+      "newText": "… Ce tour-ci, augmentez sa puissance pour qu'elle soit égale à celle d'une autre unité alliée."
+     },
+     {
+      "name": "Aurore éclatante",
+      "en": "Dazzling Aurora",
+      "code": "OGN 160/298",
+      "img": "",
+      "oldText": "… révélez les cartes du dessus de votre deck principal jusqu'à révéler une unité. Jouez-la en ignorant son coût et recyclez les autres cartes révélées.",
+      "newText": "… jusqu'à révéler une unité et bannissez-la. Jouez-la en ignorant son coût et recyclez le reste."
+     },
+     {
+      "name": "Désintégration",
+      "en": "Disintegrate",
+      "code": "OGN 005/298",
+      "img": "",
+      "oldText": "[Action] (Jouez ceci pendant votre tour ou pendant les confrontations.)\n… Si l'unité est éliminée, piochez 1 carte.",
+      "newText": "Action (Jouez ceci pendant votre tour ou lors des confrontations.)\n… Si l'unité est éliminée, faites ceci : piochez 1 carte."
+     },
+     {
+      "name": "Rage du dragon",
+      "en": "Dragon's Rage",
+      "code": "OGN 258/298",
+      "img": "",
+      "oldText": "… Choisissez ensuite une autre unité ennemie à sa destination. …",
+      "newText": "… Puis faites ceci : choisissez une autre unité ennemie à sa destination. …"
+     },
+     {
+      "name": "Dragon des dunes",
+      "en": "Dune Drake",
+      "code": "OGN 131/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogn-fr-131-p.webp",
+      "oldText": "… octroyez-moi +2 [M] s'il y a une unité ennemie préparée ici.",
+      "newText": "… octroyez-moi +2 [M] ce tour-ci s'il y a une unité ennemie préparée ici."
+     },
+     {
+      "name": "Étoile filante",
+      "en": "Falling Star",
+      "code": "OGN 029/298",
+      "img": "",
+      "oldText": "Faites ceci 2 fois : infligez 3 dégâts à une unité. (Vous pouvez choisir différentes unités.)",
+      "newText": "Infligez 3 dégâts à une unité.\nInfligez 3 dégâts à une unité."
+     },
+     {
+      "name": "Lucioles",
+      "en": "Fox-Fire",
+      "code": "OGN 256/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogn-fr-256-p.webp",
+      "oldText": "… Éliminez des unités sur un champ de bataille dont la puissance combinée atteint un maximum de 4.",
+      "newText": "… Éliminez n'importe quel nombre d'unités sur un champ de bataille dont la puissance combinée atteint un maximum de 4."
+     },
+     {
+      "name": "Highlander",
+      "en": "Highlander",
+      "code": "OGS 020/024",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogs-fr-20-p.webp",
+      "oldText": "… La prochaine fois qu'elle est éliminée pendant ce tour, rappelez-la épuisée à la place.",
+      "newText": "… La prochaine fois qu'elle doit être éliminée ce tour-ci, soignez-la, épuisez-la et rappelez-la à la place."
+     },
+     {
+      "name": "Pluie d'Icathia",
+      "en": "Icathian Rain",
+      "code": "OGN 248/298",
+      "img": "",
+      "oldText": "Répétez ceci 6 fois : infligez 2 dégâts à une unité. (Vous pouvez choisir différentes unités.)",
+      "newText": "Infligez 2 dégâts à une unité.\nInfligez 2 dégâts à une unité.\nInfligez 2 dégâts à une unité.\nInfligez 2 dégâts à une unité.\nInfligez 2 dégâts à une unité.\nInfligez 2 dégâts à une unité."
+     },
+     {
+      "name": "Karma, Canalisatrice",
+      "en": "Karma, Channeler",
+      "code": "OGN 235/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogn-fr-235-p.webp",
+      "oldText": "… Lorsque vous recyclez une carte ou plus, buffez une unité alliée.",
+      "newText": "… Lorsque vous recyclez une carte ou plus dans votre deck principal, buffez une unité alliée."
+     },
+     {
+      "name": "Moine kinkou",
+      "en": "Kinkou Monk",
+      "code": "OGN 141/298",
+      "img": "",
+      "oldText": "Lorsque vous me jouez, octroyez un buff à 2 autres unités alliées. …",
+      "newText": "Lorsque vous me jouez, buffez jusqu'à 2 autres unités alliées. …"
+     },
+     {
+      "name": "Dragon bicéphale",
+      "en": "Mindsplitter",
+      "code": "OGN 192/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogn-fr-192-p.webp",
+      "oldText": "… Il doit révéler sa main. Choisissez une carte de sa main et défaussez-la.",
+      "newText": "… Il révèle sa main. Choisissez une carte de sa main, et il la défausse."
+     },
+     {
+      "name": "Nocturne, Terrifiant",
+      "en": "Nocturne, Horrifying",
+      "code": "OGN 194/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogn-fr-194-p.webp",
+      "oldText": "… Lorsque vous regardez les cartes du dessus de votre deck (sans les piocher) et que vous me voyez, vous pouvez me jouer en payant [A].",
+      "newText": "… Quand vous me regardez ou me révélez du dessus de votre deck, vous pouvez me bannir. Si vous le faites, vous pouvez me jouer pour [A]."
+     },
+     {
+      "name": "Bagages merveilleux",
+      "en": "Pack of Wonders",
+      "code": "OGN 181/298",
+      "img": "",
+      "oldText": "… ou une carte [Caché] alliée dans la main de son propriétaire.",
+      "newText": "… ou une carte face cachée alliée dans la main de son propriétaire."
+     },
+     {
+      "name": "Avenir prometteur",
+      "en": "Promising Future",
+      "code": "OGN 115/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogn-fr-115-p.webp",
+      "oldText": "… en choisit une et recycle les autres. …",
+      "newText": "… en bannit une, puis recycle le reste. …"
+     },
+     {
+      "name": "Tome corvus",
+      "en": "Ravenborn Tome",
+      "code": "OGN 032/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogn-fr-32-p.webp",
+      "oldText": "[E] : le prochain sort que vous jouez inflige 1 dégât bonus. …",
+      "newText": "[E] : le prochain sort que vous jouez ce tour-ci inflige 1 dégât bonus. …"
+     },
+     {
+      "name": "Renfort",
+      "en": "Reinforce",
+      "code": "OGN 062/298",
+      "img": "",
+      "oldText": "… Vous pouvez jouer une unité parmi elles. Son coût en énergie est réduit de [5]. …",
+      "newText": "… Vous pouvez bannir une unité parmi elles, puis la jouer, en réduisant son coût de [5]. …"
+     },
+     {
+      "name": "Récupération",
+      "en": "Salvage",
+      "code": "OGN 224/298",
+      "img": "",
+      "oldText": "… Vous pouvez éliminer un équipement. …",
+      "newText": "… Vous pouvez éliminer jusqu'à un équipement. …"
+     },
+     {
+      "name": "Sceau de la tempête",
+      "en": "Sigil of the Storm",
+      "code": "OGN 287/298",
+      "img": "",
+      "oldText": "Lorsque vous conquérez ici, recyclez une de vos runes.",
+      "newText": "Lorsque vous conquérez ici, vous devez recycler une de vos runes. (Ceci ne choisit rien.)"
+     },
+     {
+      "name": "Sona, Harmonieuse",
+      "en": "Sona, Harmonious",
+      "code": "OGN 073/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogn-fr-73-p.webp",
+      "oldText": "Tant que je suis sur un champ de bataille, préparez 4 runes alliées à la fin de votre tour.",
+      "newText": "À la fin de votre tour, si je suis sur un champ de bataille, préparez jusqu'à 4 runes alliées."
+     },
+     {
+      "name": "Pic étoilé",
+      "en": "Startipped Peak",
+      "code": "OGN 288/298",
+      "img": "",
+      "oldText": "Lorsque vous contrôlez ici, vous pouvez canaliser 1 rune épuisée.",
+      "newText": "Lorsque vous occupez ici, vous pouvez canaliser 1 rune épuisée."
+     },
+     {
+      "name": "Traqueuse furtive",
+      "en": "Stealthy Pursuer",
+      "code": "OGN 177/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogn-fr-177-p.webp",
+      "oldText": "Lorsqu'une unité alliée quitte l'endroit où je me trouve, je peux me déplacer avec elle.",
+      "newText": "Lorsqu'une unité alliée se déplace de mon emplacement, je peux me déplacer avec elle."
+     },
+     {
+      "name": "Pic de Targon",
+      "en": "Targon's Peak",
+      "code": "OGN 289/298",
+      "img": "",
+      "oldText": "Lorsque vous conquérez ici, préparez 2 runes à la fin de ce tour.",
+      "newText": "Lorsque vous conquérez ici, préparez jusqu'à 2 runes à la fin de ce tour."
+     },
+     {
+      "name": "Teemo, Stratège",
+      "en": "Teemo, Strategist",
+      "code": "OGN 121/298",
+      "img": "",
+      "oldText": "… Lorsque je défends ou que je suis joué via [Caché], révélez les 5 premières cartes de votre deck principal. Infligez 1 dégât à une unité ennemie ici pour chaque carte possédant [Caché] parmi les cartes révélées, ensuite recyclez-les.",
+      "newText": "… Lorsque je défends, choisissez une unité ennemie ici et révélez les 5 premières cartes de votre deck principal. Infligez 1 dégât à cette unité pour chaque carte avec [Caché] révélée de cette manière, puis recyclez les cartes révélées."
+     },
+     {
+      "name": "Le Patron",
+      "en": "The Boss",
+      "code": "OGN 269/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogn-fr-269-p.webp",
+      "oldText": "Lorsqu'une unité que vous contrôlez et bénéficiant d'un buff doit être éliminée, vous pouvez payer [C] et m'épuiser pour dépenser son buff et la rappeler épuisée à la place. …",
+      "newText": "Si une unité buffée que vous contrôlez doit être éliminée, vous pouvez payer [C], m'épuiser et dépenser son buff pour la soigner, l'épuiser et la rappeler à la place. …"
+     },
+     {
+      "name": "Arbre des rêves",
+      "en": "The Dreaming Tree",
+      "code": "OGN 292/298",
+      "img": "",
+      "oldText": "À chaque tour, la première fois que vous choisissez une unité alliée avec un sort ici, piochez 1 carte.",
+      "newText": "Lorsqu'un joueur choisit une unité alliée ici avec un sort pour la première fois à chaque tour, il pioche 1 carte."
+     },
+     {
+      "name": "Maître des marées",
+      "en": "Tideturner",
+      "code": "OGN 199/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogn-fr-199-p.webp",
+      "oldText": "… Lorsque vous me jouez, vous pouvez choisir une unité que vous contrôlez. …",
+      "newText": "… Lorsque vous me jouez, vous pouvez choisir une unité que vous contrôlez à un autre emplacement. …"
+     },
+     {
+      "name": "Sablier de Zhonya",
+      "en": "Zhonya's Hourglass",
+      "code": "OGN 077/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogn-fr-77-p.webp",
+      "oldText": "… La prochaine fois qu'une unité alliée doit être éliminée, éliminez cette carte à la place. Rappelez cette unité épuisée.",
+      "newText": "… Si une unité alliée doit être éliminée, éliminez ceci à la place. Soignez cette unité, épuisez-la, puis rappelez-la."
+     },
+     {
+      "name": "Armurerie clandestine",
+      "en": "Unlicensed Armory",
+      "code": "OGN 023/298",
+      "img": "",
+      "oldText": "… La prochaine fois qu'elle est éliminée pendant ce tour, vous pouvez payer [C] pour la rappeler épuisée à la place.",
+      "newText": "… La prochaine fois qu'elle doit être éliminée ce tour-ci, vous pouvez payer [C] pour la soigner, l'épuiser et la rappeler à la place."
+     },
+     {
+      "name": "Volibear, Furieux",
+      "en": "Volibear, Furious",
+      "code": "OGN 041/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/ogn-fr-41-p.webp",
+      "oldText": "… répartis entre les unités ennemies ici.",
+      "newText": "… répartis entre n'importe quel nombre d'unités ennemies ici."
+     }
+    ]
+   },
+   {
+    "set": "Armes spirituelles (Spiritforged)",
+    "cards": [
+     {
+      "name": "Dresse-toi !",
+      "en": "Arise!",
+      "code": "SFD 198/221",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/sfd-fr-198-p.webp",
+      "oldText": "… Puis préparez deux d'entre eux.",
+      "newText": "… Puis faites ceci : préparez-en jusqu'à 2."
+     },
+     {
+      "name": "Pulsion sanguinaire",
+      "en": "Blood Rush",
+      "code": "SFD 003/221",
+      "img": "",
+      "oldText": "… Octroyez [Assaut 2] à une unité. (+2 [S] lorsqu'elle attaque.)",
+      "newText": "… Octroyez [Assaut 2] à une unité ce tour-ci. (+2 [S] tant qu'elle attaque.)"
+     },
+     {
+      "name": "Janna, Sauveuse",
+      "en": "Janna, Savior",
+      "code": "SFD 053/221",
+      "img": "",
+      "oldText": "… puis déplacez une unité ennemie d'ici vers sa base.",
+      "newText": "… puis déplacez jusqu'à une unité ennemie d'ici vers sa base."
+     },
+     {
+      "name": "Jax, Inégalable",
+      "en": "Jax, Unmatched",
+      "code": "SFD 054/221",
+      "img": "",
+      "oldText": "… Chaque objet dans votre main a [Dégainer].",
+      "newText": "… Vos objets ont [Dégainer] partout."
+     },
+     {
+      "name": "Kato le bras",
+      "en": "Kato the Arm",
+      "code": "SFD 112/221",
+      "img": "",
+      "oldText": "… octroyez à une unité alliée mes mots-clés et +[S] d'un montant égal à ma puissance pendant ce tour.",
+      "newText": "… octroyez ce tour-ci à une autre unité alliée mes mots-clés et +[S] d'un montant égal à ma puissance."
+     },
+     {
+      "name": "Rek'Sai, Reine de l'essaim",
+      "en": "Rek'Sai, Swarm Queen",
+      "code": "SFD 170/221",
+      "img": "",
+      "oldText": "… Vous pouvez en jouer une. Recyclez ensuite le reste. Si la carte jouée est une unité, vous pouvez la jouer ici.",
+      "newText": "… Vous pouvez en bannir une, puis la jouer. Si c'est une unité, vous pouvez la jouer ici. Recyclez le reste."
+     },
+     {
+      "name": "Rell, Magnétique",
+      "en": "Rell, Magnetic",
+      "code": "SFD 024/221",
+      "img": "",
+      "oldText": "… Lorsque j'attaque, vous pouvez jouer un objet avec un coût en énergie maximal de [2], ignorer son coût and me l'équiper.",
+      "newText": "… Lorsque j'attaque, vous pouvez jouer un objet avec un coût en énergie de [2] ou moins, en ignorant son coût. Si vous le faites, faites ensuite ceci : équipez-le-moi."
+     },
+     {
+      "name": "Tianna Crownguard",
+      "en": "Tianna Crownguard",
+      "code": "SFD 060/221",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/sfd-fr-60-p.webp",
+      "oldText": "… les adversaires ne peuvent pas marquer de points.",
+      "newText": "… les adversaires ne peuvent pas gagner de points."
+     },
+     {
+      "name": "Traqueuse du Néant",
+      "en": "Void Burrower",
+      "code": "SFD 187/221",
+      "img": "",
+      "oldText": "… Vous pouvez en jouer une. Recyclez ensuite le reste.",
+      "newText": "… Vous pouvez en bannir une, puis la jouer. Recyclez le reste."
+     },
+     {
+      "name": "Rush du Néant",
+      "en": "Void Rush",
+      "code": "SFD 188/221",
+      "img": "",
+      "oldText": "… Vous pouvez en jouer une, en réduisant son coût de [2]. Piochez les cartes que vous n'avez pas jouées de cette façon.",
+      "newText": "… Vous pouvez en bannir une, puis la jouer, en réduisant son coût de [2]. Piochez toute carte que vous n'avez pas bannie."
+     },
+     {
+      "name": "Yone, Maître épéiste",
+      "en": "Yone, Blademaster",
+      "code": "SFD 116/221",
+      "img": "",
+      "oldText": "… Lorsque je conquiers un champ de bataille libre, …",
+      "newText": "… Lorsque je conquiers un champ de bataille qui n'était pas contrôlé, …"
+     },
+     {
+      "name": "Draven, Vainqueur",
+      "en": "Draven, Vanquisher",
+      "code": "SFD 020/221",
+      "img": "",
+      "oldText": "… Lorsque j'attaque ou que je défends, vous pouvez payer [C]. Si vous le faites, octroyez-moi +2 [S] pendant ce tour.",
+      "newText": "… Lorsque j'attaque ou que je défends, vous pouvez payer [C] pour m'octroyer +2 [S] ce tour-ci."
+     },
+     {
+      "name": "Frappe armée",
+      "en": "",
+      "code": "Spiritforged",
+      "img": "",
+      "oldText": "… Ensuite, déséquipez son objet.",
+      "newText": "… Ensuite, déséquipez-lui un objet."
+     }
+    ]
+   },
+   {
+    "set": "Déchaînement (Unleashed)",
+    "cards": [
+     {
+      "name": "Exécution abyssale",
+      "en": "Death from Below",
+      "code": "UNL 186/219",
+      "img": "",
+      "oldText": "… Ensuite, si elle avait 3 [S] ou moins, vous pouvez jouer ceci de votre défausse pour [A].",
+      "newText": "… Puis, si elle avait 3 [S] ou moins, faites ceci : vous pouvez jouer ceci de votre défausse pour [A]."
+     },
+     {
+      "name": "Harponnage",
+      "en": "Bone Skewer",
+      "code": "UNL 139/219",
+      "img": "",
+      "oldText": "… Un adversaire doit révéler sa main. … Lorsque l'unité est jouée, [Étourdissez]-la.",
+      "newText": "… Un adversaire révèle sa main. … S'il le fait, faites ceci ensuite : [Étourdissez]-la."
+     },
+     {
+      "name": "LeBlanc, Manipulatrice",
+      "en": "LeBlanc, Deceiver",
+      "code": "UNL 199/219",
+      "img": "",
+      "oldText": "… Elle devient une copie d'une autre unité qui s'y trouve.",
+      "newText": "… Puis faites ceci : elle devient une copie d'une autre unité qui s'y trouve."
+     },
+     {
+      "name": "Image miroir",
+      "en": "Mirror Image",
+      "code": "UNL 200/219",
+      "img": "",
+      "oldText": "… Elle devient une copie de l'unité choisie. …",
+      "newText": "… Puis faites ceci : elle devient une copie de l'unité choisie. …"
+     },
+     {
+      "name": "Gardienne des masques",
+      "en": "Keeper of Masks",
+      "code": "UNL 081/219",
+      "img": "",
+      "oldText": "… Elles deviennent des copies de moi.",
+      "newText": "… Puis faites ceci : elles deviennent des copies de moi."
+     },
+     {
+      "name": "Rengar, Chasseur de trophées",
+      "en": "Rengar, Trophy Hunter",
+      "code": "UNL 120/219",
+      "img": "",
+      "oldText": "… Je peux être joué sur un champ de bataille où se trouvent des unités ennemies (même si vous n'y avez pas d'unité).",
+      "newText": "… Je peux tendre une [Embuscade] sur un champ de bataille où se trouvent des unités ennemies, même si vous n'y avez pas d'unités."
+     },
+     {
+      "name": "Diana, Lunari",
+      "en": "Diana, Lunari",
+      "code": "UNL 079/219",
+      "img": "",
+      "oldText": "Lorsqu'une confrontation commence ici, vous pouvez payer [1]. Si vous le faites, faites une [Prédiction], …",
+      "newText": "Lorsqu'une confrontation commence ici, vous pouvez payer [1] pour faire une [Prédiction], puis révélez …"
+     },
+     {
+      "name": "Loup traqueur",
+      "en": "Stalking Wolf",
+      "code": "UNL 166/219",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/card-images/fr/unl-fr-166-p.webp",
+      "oldText": "… Vous pouvez me jouer sur son champ de bataille (même si vous n'y avez pas d'autres unités).",
+      "newText": "… Vous pouvez me faire tendre une [Embuscade] sur son champ de bataille, même si vous n'y avez pas d'autres unités."
+     }
+    ]
+   }
+  ]
+ },
+ "ko": {
+  "groups": [
+   {
+    "set": "증명의 전장 (Proving Grounds)",
+    "cards": [
+     {
+      "name": "결정타",
+      "en": "Decisive Strike",
+      "code": "OGS 024/024",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogs-korean/ogs-kr-024.png",
+      "oldText": "… 아군 유닛에게 +2 [M] …",
+      "newText": "… 아군 유닛들에게 +2 [M] …"
+     }
+    ]
+   },
+   {
+    "set": "주 세트 (Origins main set)",
+    "cards": [
+     {
+      "name": "최후의 저항",
+      "en": "Last Stand",
+      "code": "OGN 069/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-69.jpg",
+      "oldText": "… (해당 카드 통제자의 개시 단계 시작 시, 득점 이전에 이 카드를 처치합니다.)",
+      "newText": "… (해당 유닛 통제자의 개시 단계 시작 시, 득점 이전에 해당 유닛을 처치합니다.)"
+     },
+     {
+      "name": "정령 부름",
+      "en": "Sprite Call",
+      "code": "OGN 094/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-94.jpg",
+      "oldText": "… (해당 카드 통제자의 … 득점 이전에 이 카드를 처치합니다.)",
+      "newText": "… (해당 유닛 통제자의 … 득점 이전에 해당 유닛을 처치합니다.)"
+     },
+     {
+      "name": "바래지는 기억",
+      "en": "Fading Memories",
+      "code": "OGN 180/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-180.jpg",
+      "oldText": "… 득점 이전에 이 카드를 처치합니다 …",
+      "newText": "… 득점 이전에 해당 카드를 처치합니다 …"
+     },
+     {
+      "name": "정령 어머니",
+      "en": "Sprite Mother",
+      "code": "OGN 106/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-106.jpg",
+      "oldText": "… (해당 카드 통제자의 … 득점 이전에 이 카드를 처치합니다.)",
+      "newText": "… (해당 유닛 통제자의 … 득점 이전에 해당 유닛을 처치합니다.)"
+     },
+     {
+      "name": "정령 (토큰)",
+      "en": "Sprite token",
+      "code": "Origins token",
+      "img": "",
+      "oldText": "… (해당 카드 통제자의 개시 단계 … 이 카드를 처치합니다.)",
+      "newText": "… (내 개시 단계 시작 시, 득점 이전에 이 토큰을 처치합니다.)"
+     },
+     {
+      "name": "세트, 두목",
+      "en": "Sett, Kingpin",
+      "code": "OGN 240/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-240.jpg",
+      "oldText": "… 이 카드가 이 카드의 전장에 있는 다른 버프된 아군 유닛 1명당 +1 [M]을 획득합니다 …",
+      "newText": "… 이 카드의 전장에 있는 버프된 아군 유닛 1명당 이 카드가 +1 [M]을 획득합니다 …"
+     },
+     {
+      "name": "쌍권총 난사",
+      "en": "Bullet Time",
+      "code": "OGN 268/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-268.jpg",
+      "oldText": "… 전장에 있는 모든 적 유닛에게 그만큼 피해 …",
+      "newText": "… 한 전장에 있는 모든 적 유닛에게 그만큼 피해 …"
+     },
+     {
+      "name": "최후의 숨결",
+      "en": "Last Breath",
+      "code": "OGN 260/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-260.jpg",
+      "oldText": "… 전장에 있는 적 유닛 1명에게 해당 아군 유닛의 위력과 동일한 피해를 입힙니다.",
+      "newText": "… 해당 유닛이 자신의 위력과 동일한 피해를 전장에 있는 적 유닛 1명에게 입힙니다."
+     },
+     {
+      "name": "구미호",
+      "en": "Nine-Tailed Fox",
+      "code": "OGN 255/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-255.jpg",
+      "oldText": "… 해당 유닛에게 -1 [M]을 부여합니다 …",
+      "newText": "… 이번 턴에 해당 유닛에게 -1 [M]을 부여합니다 …"
+     },
+     {
+      "name": "단결된 의지",
+      "en": "Stand United",
+      "code": "OGN 053/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-53.jpg",
+      "oldText": "… (해당 유닛에게 버프가 없을 경우 +1 [M]을 부여합니다 …)",
+      "newText": "… (해당 유닛에게 버프가 없을 경우 +1 [M] 버프를 부여합니다 …)"
+     },
+     {
+      "name": "봉우리 수호자",
+      "en": "Peak Guardian",
+      "code": "OGN 223/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-223.jpg",
+      "oldText": "… +1 [M]을 부여합니다. …",
+      "newText": "… +1 [M] 버프를 부여합니다. …"
+     },
+     {
+      "name": "쪼개기",
+      "en": "Cleave",
+      "code": "OGN 004/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-4.jpg",
+      "oldText": "… (이 카드가 공격자인 동안 +3 [M]을 획득합니다.)",
+      "newText": "… (해당 유닛이 공격자인 동안 +3 [M]을 획득합니다.)"
+     },
+     {
+      "name": "막기",
+      "en": "Block",
+      "code": "OGN 057/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-57.jpg",
+      "oldText": "… (이 카드가 방어자인 동안 +3 [M]을 획득합니다. 이 카드는 전투 피해를 가장 먼저 배정받습니다.)",
+      "newText": "… (해당 유닛이 방어자인 동안 +3 [M]을 획득합니다. 해당 유닛은 전투 피해를 가장 먼저 배정받습니다.)"
+     },
+     {
+      "name": "요새화 진형",
+      "en": "Fortified Position",
+      "code": "OGN 279/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-279.jpg",
+      "oldText": "… (이 카드가 방어자인 동안 +2 [M]을 획득합니다.)",
+      "newText": "… (해당 유닛이 방어자인 동안 +2 [M]을 획득합니다.)"
+     },
+     {
+      "name": "불꽃 수도승",
+      "en": "Ember Monk",
+      "code": "OGN 167/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-167.jpg",
+      "oldText": "… [숨겨짐] 상태에서 카드를 사용하면 …",
+      "newText": "… 내가 [숨겨짐] 상태에서 카드를 사용하면 …"
+     },
+     {
+      "name": "유격 전투",
+      "en": "Guerilla Warfare",
+      "code": "OGN 264/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-264.jpg",
+      "oldText": "… [숨겨짐] 카드 최대 2장을 내 폐기장에서 내 손으로 되돌립니다.",
+      "newText": "… 내 폐기장에서 [숨겨짐] 카드 최대 2장을 내 손으로 되돌립니다."
+     },
+     {
+      "name": "시간선 뒤집기",
+      "en": "Invert Timelines",
+      "code": "OGN 201/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-201.jpg",
+      "oldText": "… 각 플레이어가 자신의 손에 있는 카드를 버린 후 …",
+      "newText": "… 각 플레이어가 자신의 손에 있는 모든 카드를 버린 후 …"
+     },
+     {
+      "name": "선봉대 투구",
+      "en": "Vanguard Helm",
+      "code": "OGN 228/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-228.jpg",
+      "oldText": "… 다른 아군 유닛을 버프합니다. …",
+      "newText": "… 다른 아군 유닛 1명을 버프합니다. …"
+     },
+     {
+      "name": "웅장한 책략",
+      "en": "Grand Strategem",
+      "code": "OGN 233/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-233.jpg",
+      "oldText": "이번 턴에 아군 유닛에게 +5 [M]을 부여합니다. …",
+      "newText": "이번 턴에 아군 유닛들에게 +5 [M]을 부여합니다. …"
+     },
+     {
+      "name": "불가사의한 꾸러미",
+      "en": "Pack of Wonders",
+      "code": "OGN 181/298",
+      "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/ogn-korean/ogn-kr-181.jpg",
+      "oldText": "… 다른 아군 도구, 유닛 또는 뒷면 표시 카드를 소유자의 손으로 되돌립니다.",
+      "newText": "… 다른 아군 도구, 유닛 또는 뒷면 표시 카드 하나를 소유자의 손으로 되돌립니다."
+     }
+    ]
+   }
+  ]
+ }
 };
 
 RIFT.setKeywords = {
@@ -2647,7 +3331,7 @@ function flipCardHtml(o){
   return `<div class="flip-card ${o.cls || ''}" tabindex="0" role="button" aria-label="${o.name} — hover or tap to flip">
     <div class="flip-inner">
       <div class="flip-face flip-front">
-        <div class="fc-thumb">${o.ribbon ? `<span class="fc-ribbon">${o.ribbon}</span>` : ''}<img src="${o.img}" alt="${o.name}" loading="lazy"></div>
+        <div class="fc-thumb">${o.ribbon ? `<span class="fc-ribbon">${o.ribbon}</span>` : ''}${o.img ? `<img src="${o.img}" alt="${o.name}" loading="lazy">` : `<span class="fc-noimg">Picture coming soon</span>`}</div>
         <div class="fc-lbl"><span class="fc-name">${o.name}</span><span class="fc-code">${o.code}</span></div>
       </div>
       <div class="flip-face flip-back">${o.back}</div>
@@ -2658,17 +3342,17 @@ const errataFlip = e => flipCardHtml({name:e.name, code:e.code, img:e.img,
   back:`<div class="fc-back-title">${e.name}</div><div class="fc-back-code">${e.code}</div><div class="errata-old"><b>Old text</b><p>${e.oldText}</p></div><div class="errata-new"><b>New text</b><p>${e.newText}</p></div>`});
 const bannedFlip = (b, ribbon) => flipCardHtml({cls:'banned', name:b.name, code:b.code, img:b.img, ribbon:ribbon || 'Banned',
   back:`<div class="fc-back-title">${b.name}</div><div class="fc-back-meta"><span class="banned-type">${b.type}</span><span class="fc-back-code">${b.code}</span></div><div class="banned-date">Effective ${b.date}</div><p class="banned-reason">${b.reason}</p>`});
-const errataSetKeys = ['ogn','sfd','unl','ven'];
+const errataSetKeys = ['ogn','sfd','unl','ven','rad'];
 errataSetKeys.forEach(key=>{
   const s = RIFT.errataData[key];
   // 1) Errata
   const ep = document.getElementById('erratapanel-'+key);
   const nE = (s.errata || []).length;
-  ep.innerHTML = nE
+  if (ep) ep.innerHTML = nE
     ? `<p class="flip-hint">Hover a card to flip it and see the official wording change (tap on a touch screen). Text shown is the exact revision, not a summary.</p>
        <div class="flip-grid">${s.errata.map(errataFlip).join('')}</div>`
     : `<div class="errata-empty">No card errata has been issued for this set yet.</div>`;
-  document.getElementById('erratacount-'+key).textContent = nE || '';
+  if (ep) document.getElementById('erratacount-'+key).textContent = nE || '';
   // 2) Ban list
   const bp = document.getElementById('banspanel-'+key);
   const nB = (s.banned || []).length + (s.bannedExtra ? 1 : 0);
@@ -2685,6 +3369,12 @@ errataSetKeys.forEach(key=>{
   }
   bp.innerHTML = bh;
   document.getElementById('banscount-'+key).textContent = nB || '';
+});
+['fr','ko'].forEach(lang=>{
+  const box = document.getElementById('langErrata-'+lang);
+  if (!box || !RIFT.langErrata) return;
+  box.innerHTML = RIFT.langErrata[lang].groups.map(g=>`<h5 class="errata-lang-set">${g.set} <small>(${g.cards.length})</small></h5><div class="flip-grid">${g.cards.map(c=>flipCardHtml({name:c.name, code:c.code + (c.en ? ' · ' + c.en : ''), img:c.img,
+    back:`<div class="fc-back-title">${c.name}</div><div class="fc-back-code">${c.en ? c.en + ' · ' : ''}${c.code}</div><div class="errata-old"><b>Old wording</b><p>${c.oldText}</p></div><div class="errata-new"><b>New wording</b><p>${c.newText}</p></div>`})).join('')}</div>`).join('');
 });
 document.querySelectorAll('#errata .eb-tabs').forEach(group=>{
   const kind = group.dataset.group;
