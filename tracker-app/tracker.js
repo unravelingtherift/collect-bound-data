@@ -5079,7 +5079,7 @@ function cbAddComingSoonOptions(){
       const value = 'upcoming:' + u.name;
       if([...setSel.options].some(o=>o.value===value)) return;
       const o = document.createElement('option');
-      o.value = value; o.textContent = u.code ? `${u.code} — ${u.name} (${u.label || 'coming soon'})` : `${u.name} — coming soon`;
+      o.value = value; o.textContent = u.code ? `${u.code} — ${u.name}${u.label ? ` (${u.label})` : ''}` : u.name;
       setSel.appendChild(o);
     });
   }
@@ -5221,7 +5221,7 @@ function promosComingSoonHtml(){
 
 // Set names shown in the Promos "All sets" dropdown. Codes not listed here
 // show as just the code.
-const PROMO_SET_NAMES = { OGN:'Origins', OGS:'Proving Grounds', SFD:'Spiritforged', UNL:'Unleashed', VEN:'Vendetta', RAD:'Radiance' };
+const PROMO_SET_NAMES = { OGN:'Origins', OGS:'Origins Starter (Proving Grounds)', FND:'Project K Exclusive Promos', ARC:'Arcane Box Set', SGN:'Secret Garden Collector Box', SFD:'Spiritforged', UNL:'Unleashed', VEN:'Vendetta', RAD:'Radiance' };
 const PROMO_SET_ORDER = ['OGN','OGS','SFD','UNL','VEN','RAD'];
 // 'soon' = the set's promos are just starting to be added; 'more' = more on the way.
 const PROMO_SET_NOTES = {};
