@@ -1039,11 +1039,11 @@ function renderSetCompletion(){
   let open = false; try{ open = localStorage.getItem('cb_setprog_open') === '1'; }catch(e){}
   const progress = list.length ? `<details class="sc-progress"${open ? ' open' : ''} ontoggle="try{localStorage.setItem('cb_setprog_open', this.open ? '1' : '0')}catch(e){}">
     <summary><span class="sc-chev" aria-hidden="true">&#9654;</span><span class="sc-sum-title">&#128202; Set progress</span><span class="sc-sum-count">${list.length} set${list.length===1?'':'s'}</span><span class="sc-sum-hint"><span class="sc-show">Tap to show</span><span class="sc-hide">Tap to hide</span></span></summary>
-    <div class="sc-cards">${list.map(g => `
+    <div class="sc-cols">${[...new Set(list.map(g => g.lang))].sort((x,y) => (LANG_ORDER.indexOf(x)<0?99:LANG_ORDER.indexOf(x)) - (LANG_ORDER.indexOf(y)<0?99:LANG_ORDER.indexOf(y))).map(lang => `<div class="sc-col"><div class="sc-col-head">${escapeHtml(lang)}</div>${list.filter(g => g.lang === lang).map(g => `
       <div class="sc-card"><div class="sc-name">${name(g)}</div>
         <div class="sc-line"><span class="sc-k">Base</span><b>${pct(g.base[0], g.base[1])}%</b></div>${bar(g.base[0], g.base[1])}<div class="sc-n">${g.base[0]} / ${g.base[1]}</div>
         <div class="sc-line"><span class="sc-k">Master</span><b>${pct(g.master[0], g.master[1])}%</b></div>${bar(g.master[0], g.master[1])}<div class="sc-n">${g.master[0]} / ${g.master[1]}</div>
-      </div>`).join('')}</div></details>` : '';
+      </div>`).join('')}</div>`).join('')}</div></details>` : '';
   el.innerHTML = banners + progress;
 }
 

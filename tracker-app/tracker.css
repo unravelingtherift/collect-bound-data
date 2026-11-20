@@ -1301,6 +1301,9 @@
   .sc-progress .sc-hide, .sc-progress[open] .sc-show{ display:none; }
   .sc-progress[open] .sc-hide{ display:inline; }
   .sc-cards{ margin-top:10px; display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:10px; }
+  .sc-cols{ margin-top:10px; display:grid; grid-auto-flow:column; grid-auto-columns:minmax(160px,1fr); gap:10px; overflow-x:auto; align-items:start; }
+  .sc-col{ display:flex; flex-direction:column; gap:10px; }
+  .sc-col-head{ font-weight:700; color:var(--gold-bright,#d7a64c); text-align:center; letter-spacing:.06em; }
   .sc-card{ padding:12px 14px; border:1px solid var(--line); border-radius:10px; background:rgba(255,255,255,.03); display:grid; gap:4px; }
   .sc-card .sc-name{ margin-bottom:4px; font-weight:600; }
   .sc-line{ display:flex; justify-content:space-between; align-items:baseline; margin-top:4px; }
