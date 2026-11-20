@@ -4724,6 +4724,7 @@ const MC_PRICES = {
   tier2: { month:{amt:'$15.00', per:'/ month', sub:''}, year:{amt:'$150.00', per:'/ year', sub:'2 months free \u2014 about $12.50 a month'} }
 };
 function renderMembershipPrices(){
+  applySalePricing();
   document.querySelectorAll('#mcBilling .mc-bill-btn').forEach(b=>b.classList.toggle('mc-bill-on', b.dataset.billing === mcBilling));
   document.querySelectorAll('#mcTiers .mc-tier').forEach(t=>{
     const p = MC_PRICES[t.dataset.tier] && MC_PRICES[t.dataset.tier][mcBilling];
@@ -4734,6 +4735,153 @@ function renderMembershipPrices(){
   });
 }
 document.querySelectorAll('#mcBilling .mc-bill-btn').forEach(b=>b.addEventListener('click', ()=>{ mcBilling = b.dataset.billing; renderMembershipPrices(); }));
+
+// ---------- Holiday sale: Club $3, VIP $10 through Dec 26, 11:59 PM Pacific ----------
+// Sale members keep their price (it's a separate Stripe price). After the sale,
+// Club goes back to $5 and VIP becomes $12 on its own. Nothing to change on Dec 27.
+const SALE_ENDS = Date.parse('2026-12-27T07:59:59Z');
+function saleOn(){ return Date.now() < SALE_ENDS; }
+function applySalePricing(){
+  if(saleOn()){
+    CHECKOUT_LINKS.tier1.month = 'https://buy.stripe.com/00w14f7bl2rZbpJamVgUM05'; // Collector Club $3/month holiday price (LIVE)
+    CHECKOUT_LINKS.tier2.month = 'https://buy.stripe.com/14A14f8fpfeL51lfHfgUM04'; // VIP Collector $10/month holiday price (LIVE)
+    MC_PRICES.tier1.month = {amt:'$3.00',  per:'/ month', sub:'❄ Holiday price (was $5), yours for as long as you stay'};
+    MC_PRICES.tier2.month = {amt:'$10.00', per:'/ month', sub:'❄ Holiday price (was $12), yours for as long as you stay'};
+  } else {
+    CHECKOUT_LINKS.tier1.month = 'https://buy.stripe.com/fZubITfHRc2z1P91QpgUM00'; // Collector Club $5/month (LIVE)
+    CHECKOUT_LINKS.tier2.month = 'https://buy.stripe.com/4gM3cn9jteaH3Xh8eNgUM06'; // VIP Collector $12/month from Dec 27 (LIVE)
+    MC_PRICES.tier1.month = {amt:'$5.00',  per:'/ month', sub:''};
+    MC_PRICES.tier2.month = {amt:'$12.00', per:'/ month', sub:''};
+  }
+}
+applySalePricing();
+
+// Holiday sale pop-up: shows once per browser after 30 seconds of looking at the
+// tracker, only during the sale and only for people who aren't members yet.
+(function(){
+  const SEEN_KEY = 'cbHolidayPopupSeen2026';
+  let seen = false;
+  try{ seen = localStorage.getItem(SEEN_KEY) === '1'; }catch(e){}
+  if(seen || !saleOn()) return;
+
+  const css = document.createElement('style');
+  css.textContent = `
+.hs-overlay{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(10,4,20,.62);backdrop-filter:blur(3px);animation:hsFade .3s ease}
+@keyframes hsFade{from{opacity:0}to{opacity:1}}
+.hs-box{position:relative;overflow:hidden;width:100%;max-width:560px;max-height:calc(100vh - 32px);overflow-y:auto;border-radius:22px;padding:44px 24px 22px;text-align:center;color:#fff;
+  background:radial-gradient(120% 90% at 85% 0%,rgba(191,233,255,.28) 0%,transparent 55%),radial-gradient(90% 80% at 0% 100%,rgba(255,159,210,.25) 0%,transparent 60%),linear-gradient(160deg,#1d1046 0%,#3a1450 55%,#5b1a5c 100%);
+  border:1px solid rgba(191,233,255,.4);box-shadow:0 24px 60px rgba(0,0,0,.5),inset 0 0 60px rgba(191,233,255,.12);animation:hsPop .35s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes hsPop{from{transform:translateY(16px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+.hs-close{position:absolute;top:10px;right:12px;z-index:3;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:22px;line-height:1;cursor:pointer}
+.hs-close:hover{background:rgba(255,255,255,.22)}
+.hs-lights{position:absolute;top:0;left:0;right:0;height:30px;display:flex;justify-content:space-around;pointer-events:none;z-index:1}
+.hs-lights i{width:9px;height:9px;border-radius:50%;margin-top:9px;animation:hsTw 2.4s ease-in-out infinite}
+.hs-lights i:nth-child(3n+2){margin-top:14px}.hs-lights i:nth-child(3n){margin-top:5px}
+@keyframes hsTw{50%{opacity:.35}}
+.hs-snow{position:absolute;inset:0;pointer-events:none;z-index:0}
+.hs-flake{position:absolute;top:-12px;color:#fff;animation:hsFall linear infinite}
+@keyframes hsFall{to{transform:translate(var(--d),640px) rotate(200deg)}}
+.hs-in{position:relative;z-index:2}
+.hs-tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;color:#1d1046;background:#bfe9ff;padding:5px 13px;border-radius:999px}
+.hs-title{font-size:clamp(26px,6vw,36px);font-weight:800;line-height:1.1;margin:12px 0 6px;color:#fff;text-shadow:0 0 18px rgba(191,233,255,.55)}
+.hs-title b{background:linear-gradient(180deg,#fff 10%,#bfe9ff 60%,#8fd3ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hs-sub{font-size:15px;line-height:1.5;margin:0 auto 18px;max-width:420px;color:#f3e6ff}
+.hs-deals{display:flex;gap:12px;justify-content:center;margin-bottom:16px}
+.hs-deal{position:relative;flex:1 1 0;max-width:220px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:16px 10px 14px}
+.hs-deal::before{content:"";position:absolute;left:0;right:0;top:0;height:7px;border-radius:16px 16px 0 0;background:var(--r);opacity:.85}
+.hs-deal::after{content:"\\1F380";position:absolute;top:-13px;right:10px;font-size:24px}
+.hs-club{--r:#ffd166}.hs-vip{--r:#ff9fd2}
+.hs-name{font-size:14px;font-weight:800}.hs-club .hs-name{color:#ffd166}.hs-vip .hs-name{color:#ff9fd2}
+.hs-price{font-size:34px;font-weight:800;line-height:1.05;margin:4px 0 0}
+.hs-price small{font-size:13px;font-weight:600;color:#e6d8f5}
+.hs-was{font-size:16px;color:#cdb8e0;text-decoration:line-through;margin-right:5px;font-weight:600}
+.hs-btn{display:inline-block;margin-top:10px;padding:10px 18px;border-radius:999px;border:0;font:inherit;font-size:14px;font-weight:800;cursor:pointer}
+.hs-club .hs-btn{background:#ffd166;color:#241500}.hs-vip .hs-btn{background:#ff9fd2;color:#2a0b1f}
+.hs-btn:hover{filter:brightness(1.08)}
+.hs-count{font-size:13px;color:#f3e6ff}
+.hs-count b{display:inline-block;min-width:34px;padding:3px 6px;margin:0 2px;border-radius:8px;background:rgba(191,233,255,.16);border:1px solid rgba(191,233,255,.35);font-size:15px;color:#fff}
+.hs-fine{font-size:11.5px;color:#cdb8e0;margin:10px 0 0}
+@media (max-width:420px){.hs-box{padding:42px 12px 18px}.hs-deals{gap:8px}.hs-price{font-size:28px}.hs-btn{padding:9px 12px;font-size:13px}}
+@media (prefers-reduced-motion:reduce){.hs-flake,.hs-lights i,.hs-overlay,.hs-box{animation:none}}`;
+  document.head.appendChild(css);
+
+  function blocked(){
+    if(typeof MEMBERSHIP_ENABLED !== 'undefined' && !MEMBERSHIP_ENABLED) return true;
+    if(typeof isPaidTier === 'function' && isPaidTier()) return true;
+    const chooser = document.getElementById('membershipChooser');
+    if(chooser && !chooser.hidden) return true;
+    const reset = document.getElementById('passwordReset');
+    if(reset && !reset.hidden) return true;
+    const modal = document.getElementById('modalBackdrop');
+    if(modal && (modal.classList.contains('open') || modal.classList.contains('show') || getComputedStyle(modal).display !== 'none')) return true;
+    return false;
+  }
+
+  function show(){
+    if(!saleOn()) return;
+    const ov = document.createElement('div');
+    ov.className = 'hs-overlay';
+    ov.innerHTML = `
+<div class="hs-box" role="dialog" aria-modal="true" aria-labelledby="hsTitle">
+  <button class="hs-close" type="button" aria-label="Close">&times;</button>
+  <div class="hs-lights" aria-hidden="true">${['#ffd166','#ff9fd2','#7ef0c8','#bfe9ff'].concat(['#ffd166','#ff9fd2','#7ef0c8','#bfe9ff','#ffd166','#ff9fd2','#7ef0c8','#bfe9ff']).map((c,i)=>`<i style="background:${c};box-shadow:0 0 8px ${c};animation-delay:${(i%5)*.45}s"></i>`).join('')}</div>
+  <div class="hs-snow" aria-hidden="true"></div>
+  <div class="hs-in">
+    <span class="hs-tag">❄ Holiday Rift Sale ❄</span>
+    <h2 class="hs-title" id="hsTitle">We <b>froze</b> the prices.</h2>
+    <p class="hs-sub">Join before December 26 and your price stays frozen for as long as you're a member. No January thaw.</p>
+    <div class="hs-deals">
+      <div class="hs-deal hs-club"><div class="hs-name">Collector Club</div><div class="hs-price"><span class="hs-was">$5</span>$3<small>/mo</small></div><button class="hs-btn" type="button" data-tier="tier1">Join the Club</button></div>
+      <div class="hs-deal hs-vip"><div class="hs-name">\u{1F451} VIP Collector</div><div class="hs-price"><span class="hs-was">$12</span>$10<small>/mo</small></div><button class="hs-btn" type="button" data-tier="tier2">Go VIP</button></div>
+    </div>
+    <div class="hs-count">Prices thaw in <b class="hs-d"></b> days <b class="hs-h"></b> hrs <b class="hs-m"></b> min</div>
+    <p class="hs-fine">Monthly memberships only. Sale ends Dec 26 at 11:59 PM Pacific.</p>
+  </div>
+</div>`;
+    document.body.appendChild(ov);
+
+    const snow = ov.querySelector('.hs-snow'), glyphs = ['❄','❅','•','•'];
+    for(let i=0;i<26;i++){
+      const f = document.createElement('span'); f.className = 'hs-flake'; f.textContent = glyphs[i%4];
+      f.style.left = Math.random()*100+'%'; f.style.fontSize = (8+Math.random()*11)+'px';
+      f.style.opacity = (.35+Math.random()*.55).toFixed(2);
+      f.style.animationDuration = (7+Math.random()*8)+'s'; f.style.animationDelay = (-Math.random()*12)+'s';
+      f.style.setProperty('--d', (Math.random()*60-30)+'px');
+      snow.appendChild(f);
+    }
+    const left = SALE_ENDS - Date.now();
+    ov.querySelector('.hs-d').textContent = Math.max(0, Math.floor(left/864e5));
+    ov.querySelector('.hs-h').textContent = Math.max(0, Math.floor(left/36e5)%24);
+    ov.querySelector('.hs-m').textContent = Math.max(0, Math.floor(left/6e4)%60);
+
+    function close(){
+      ov.remove();
+      document.removeEventListener('keydown', onKey);
+    }
+    function onKey(e){ if(e.key === 'Escape') close(); }
+    document.addEventListener('keydown', onKey);
+    ov.addEventListener('click', e=>{ if(e.target === ov) close(); });
+    ov.querySelector('.hs-close').addEventListener('click', close);
+    ov.querySelectorAll('.hs-btn').forEach(b=>b.addEventListener('click', ()=>{
+      close();
+      mcBilling = 'month';
+      if(typeof openMembershipChooser === 'function') openMembershipChooser(b.dataset.tier);
+    }));
+    try{ localStorage.setItem(SEEN_KEY, '1'); }catch(e){}
+  }
+
+  // Count only time the tracker tab is actually open on screen.
+  let viewed = 0;
+  const timer = setInterval(()=>{
+    if(document.hidden) return;
+    viewed++;
+    if(viewed < 30) return;
+    if(!saleOn()){ clearInterval(timer); return; }
+    if(blocked()) return;            // wait until whatever's open is closed
+    clearInterval(timer);
+    show();
+  }, 1000);
+})();
 
 function openMembershipPortal(){
   const url = PORTAL_LINK + (currentUser && currentUser.email ? `?prefilled_email=${encodeURIComponent(currentUser.email)}` : '');
@@ -4775,6 +4923,7 @@ function closeMembershipChooser(){
 
 function startCheckout(tier){
   if(!currentUser){ openMembershipChooser(); return; }
+  applySalePricing();
   const base = CHECKOUT_LINKS[tier] && CHECKOUT_LINKS[tier][mcBilling];
   if(!base) return;
   // client_reference_id tells the webhook which Collection-Bound account paid.
