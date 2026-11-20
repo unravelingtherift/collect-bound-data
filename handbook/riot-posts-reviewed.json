@@ -1,7 +1,37 @@
 {
   "_about": "Riot posts already reviewed for the Starter Handbook. The weekly update task only considers posts published after checked_through or not listed below, and adds every post it reviews here (including ones it decided not to use).",
-  "checked_through": "2026-11-09",
+  "checked_through": "2026-11-20",
   "posts": [
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/celebrate-convergence-fest-at-american-game-stores",
+      "published": "2026-11-16",
+      "result": "added",
+      "note": "Convergence Fest US store events Dec 9-15 with Ionic Spark battlefield promo, Las Vegas Dec 11-13 (roadmap table row)"
+    },
+    {
+      "url": "http://teamfighttactics.leagueoflegends.com/en-us/news/community/convergence-fest-side-events-and-the-encore-details",
+      "published": "2026-11-17",
+      "result": "skipped",
+      "note": "TFT-site post about Convergence Fest side events; not read, Riftbound facts covered by the store-events post"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026",
+      "published": "2026-11-13",
+      "result": "added",
+      "note": "8 cards + 2 battlefields banned from Nov 23 (ban list flip cards, new Radiance tab, notes on regional ban lists and 2027 ban windows, roadmap row)"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/organizedplay/best-ofs-for-the-european-championship",
+      "published": "2026-11-11",
+      "result": "skipped",
+      "note": "RC Europe Best-Of decklists and results; handbook doesn't cover event results or decklists"
+    },
+    {
+      "url": "https://playriftbound.com/fr-fr/news/announcements/errata-de-traduction-franaise/",
+      "published": "2026-09-01",
+      "result": "added",
+      "note": "French translation errata, 55 cards up to Déchaînement, last updated Aug 25 2026 (French cards note in the Errata section)"
+    },
     {
       "url": "https://playriftbound.com/en-us/news/organizedplay/riftbound-world-showcase",
       "published": "2026-11-05",
