@@ -3,6 +3,48 @@
   "checked_through": "2026-11-20",
   "posts": [
     {
+      "url": "https://playriftbound.com/ko-kr/news/announcements/kr-ban-list-nov-14",
+      "published": "2026-11-13",
+      "result": "added",
+      "note": "Korea ban list: no bans from Nov 23 until the Origins season ends, then the March 2026 list once Spiritforged releases in Korea (note under the Ban List)"
+    },
+    {
+      "url": "https://playriftbound.com/ko-kr/news/announcements/errata-nov-2026",
+      "published": "2026-11-06",
+      "result": "added",
+      "note": "Korean edition errata, 21 Origins/Proving Grounds cards (Korean printings flip cards in the Errata section)"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/radiance-errata-updates/",
+      "published": "2026-10-09",
+      "result": "added",
+      "note": "4 Radiance errata (Forbidden Technique, Elnuk Herd, Last Caress, Neeko) in a new Radiance errata tab"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/vendetta-errata-updates/",
+      "published": "2026-07-23",
+      "result": "already-listed",
+      "note": "All 8 cards were already in the handbook's errata tabs"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/announcing-riftbounds-first-bans/",
+      "published": "2026-03-30",
+      "result": "already-listed",
+      "note": "March 31 bans already in the ban list"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/july-ban-list-updates/",
+      "published": "2026-07-17",
+      "result": "already-listed",
+      "note": "July 24 bans and 2v2 Master Yi already in the ban list"
+    },
+    {
+      "url": "https://playriftbound.com/en-us/news/announcements/september-ban-list-updates-effective-september-18-2026/",
+      "published": "2026-09-15",
+      "result": "already-listed",
+      "note": "September 18 bans already in the ban list"
+    },
+    {
       "url": "https://playriftbound.com/en-us/news/announcements/celebrate-convergence-fest-at-american-game-stores",
       "published": "2026-11-16",
       "result": "added",
@@ -30,7 +72,7 @@
       "url": "https://playriftbound.com/fr-fr/news/announcements/errata-de-traduction-franaise/",
       "published": "2026-09-01",
       "result": "added",
-      "note": "French translation errata, 55 cards up to Déchaînement, last updated Aug 25 2026 (French cards note in the Errata section)"
+      "note": "French translation errata, 55 cards up to Déchaînement, last updated Aug 25 2026 (French printings flip cards in the Errata section)"
     },
     {
       "url": "https://playriftbound.com/en-us/news/organizedplay/riftbound-world-showcase",
