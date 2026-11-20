@@ -4756,12 +4756,12 @@ function applySalePricing(){
 }
 applySalePricing();
 
-// Holiday sale pop-up: shows once per browser after 30 seconds of looking at the
-// tracker, only during the sale and only for people who aren't members yet.
+// Holiday sale pop-up: shows once per visit after 30 seconds of looking at the
+// tracker, every visit until the sale ends, only for people who aren't members yet.
 (function(){
   const SEEN_KEY = 'cbHolidayPopupSeen2026';
   let seen = false;
-  try{ seen = localStorage.getItem(SEEN_KEY) === '1'; }catch(e){}
+  try{ seen = sessionStorage.getItem(SEEN_KEY) === '1'; }catch(e){}
   if(seen || !saleOn()) return;
 
   const css = document.createElement('style');
@@ -4867,7 +4867,7 @@ applySalePricing();
       mcBilling = 'month';
       if(typeof openMembershipChooser === 'function') openMembershipChooser(b.dataset.tier);
     }));
-    try{ localStorage.setItem(SEEN_KEY, '1'); }catch(e){}
+    try{ sessionStorage.setItem(SEEN_KEY, '1'); }catch(e){}
   }
 
   // Count only time the tracker tab is actually open on screen.
