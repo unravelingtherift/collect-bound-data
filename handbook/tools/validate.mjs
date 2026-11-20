@@ -9,7 +9,7 @@ const html = readFileSync(file, 'utf8');
 const problems = [];
 
 // 1. Every <script> must be valid JavaScript
-const scripts = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)].map(m => m[1]);
+const scripts = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script[^>]*>/gi)].map(m => m[1]);
 if (scripts.length < 2) problems.push(`expected at least 2 <script> blocks, found ${scripts.length}`);
 scripts.forEach((code, i) => {
   try { new vm.Script(code, { filename: `script-${i}` }); }
