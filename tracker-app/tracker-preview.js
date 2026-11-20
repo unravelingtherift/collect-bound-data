@@ -5221,10 +5221,10 @@ function promosComingSoonHtml(){
 
 // Set names shown in the Promos "All sets" dropdown. Codes not listed here
 // show as just the code.
-const PROMO_SET_NAMES = { OGN:'Origins', SFD:'Spiritforged', UNL:'Unleashed', VEN:'Vendetta', RAD:'Radiance' };
+const PROMO_SET_NAMES = { OGN:'Origins', OGS:'Proving Grounds', SFD:'Spiritforged', UNL:'Unleashed', VEN:'Vendetta', RAD:'Radiance' };
 const PROMO_SET_ORDER = ['OGN','OGS','SFD','UNL','VEN','RAD'];
 // 'soon' = the set's promos are just starting to be added; 'more' = more on the way.
-const PROMO_SET_NOTES = { RAD:'soon', SFD:'more', UNL:'more', VEN:'more' };
+const PROMO_SET_NOTES = {};
 
 function promoSetLabel(code){
   if(code === 'N/A') return 'No set (N/A)';
