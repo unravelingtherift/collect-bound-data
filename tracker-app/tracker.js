@@ -4710,7 +4710,7 @@ const CHECKOUT_LINKS = {
   },
   tier2: {
     month: 'https://buy.stripe.com/8x28wH9jt9Ur1P99iRgUM01', // VIP Collector $15/month (LIVE)
-    year:  'https://buy.stripe.com/7sY8wHanxaYv65p66FgUM03'  // VIP Collector $150/year (LIVE)
+    year:  'https://buy.stripe.com/28E7sDeDN7Mj3Xh0MlgUM07'  // VIP Collector $120/year (LIVE)
   }
 };
 let mcBilling = 'month';   // 'month' | 'year'
@@ -4721,7 +4721,7 @@ const PORTAL_LINK = 'https://billing.stripe.com/p/login/fZubITfHRc2z1P91QpgUM00'
 
 const MC_PRICES = {
   tier1: { month:{amt:'$5.00',  per:'/ month', sub:''}, year:{amt:'$50.00',  per:'/ year', sub:'2 months free \u2014 about $4.17 a month'} },
-  tier2: { month:{amt:'$15.00', per:'/ month', sub:''}, year:{amt:'$150.00', per:'/ year', sub:'2 months free \u2014 about $12.50 a month'} }
+  tier2: { month:{amt:'$15.00', per:'/ month', sub:''}, year:{amt:'$120.00', per:'/ year', sub:'2 months free \u2014 $10 a month'} }
 };
 function renderMembershipPrices(){
   applySalePricing();
