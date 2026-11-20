@@ -1,0 +1,90 @@
+# Once a week: search eBay for cards and promos with no picture (or a much
+# worse one) and open one pull request per suggested picture.
+# Merge = use the picture. Close = reject it (that listing is never suggested again).
+name: Weekly eBay picture suggestions
+
+on:
+  schedule:
+    - cron: '17 15 * * 1'   # Mondays, about 7:17 am Pacific
+  workflow_dispatch:
+    inputs:
+      max:
+        description: 'Most suggestions to open (default 10)'
+        required: false
+
+concurrency: ebay-weekly
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  suggest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Read the cards and promos
+        env:
+          DB: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          psql "$DB" -t -A -c "select coalesce(json_agg(json_build_object('id', r, 'nm', nm, 'se', se, 'cn', cn, 'la', la, 'img', img)), '[]') from public.cards" > /tmp/cards.json
+          psql "$DB" -t -A -c "select coalesce(json_agg(json_build_object('id', id, 'nm', data->>'nm', 'la', data->>'la', 'ev', data->>'ev', 'img', data->>'img')), '[]') from public.promo_items" > /tmp/promos.json
+      - name: Skip listings already suggested
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr list --state all --limit 1000 --json headRefName,body,state > /tmp/prs.json
+          python3 - <<'EOF'
+          import json, re
+          prs = [p for p in json.load(open('/tmp/prs.json')) if p['headRefName'].startswith('ebay/')]
+          listings = [p['headRefName'].split('/')[1].split('-')[0] for p in prs]
+          targets = []
+          for p in prs:
+              m = re.search(r'<!-- key: (.+?) -->', p.get('body') or '')
+              if m and p['state'] == 'OPEN':
+                  targets.append(m.group(1))
+          json.dump({'listings': listings, 'targets': targets}, open('/tmp/skip.json', 'w'))
+          print(len(listings), 'listings already suggested,', len(targets), 'still open')
+          EOF
+      - name: Search eBay
+        env:
+          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+          MAX: ${{ github.event.inputs.max }}
+        run: |
+          pip install -q pillow
+          python3 tools/ebay_weekly.py
+      - name: Open one pull request per picture
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          python3 - <<'EOF'
+          import json, os, re, subprocess, shutil
+          def sh(*a): subprocess.run(a, check=True)
+          repo = os.environ['REPO']
+          made = 0
+          for p in json.load(open('/tmp/proposals/proposals.json')):
+              slug = re.sub(r'[^A-Za-z0-9]+', '-', p['key']).strip('-').lower()
+              branch = f"ebay/{p['listing_id']}-{slug}"
+              sh('git', 'checkout', '-q', '-B', branch, 'origin/main')
+              shutil.copy(f"/tmp/proposals/{p['file']}", f"add-card-pictures/{p['file']}")
+              sh('git', 'add', f"add-card-pictures/{p['file']}")
+              sh('git', 'commit', '-qm', f"eBay picture for {p['name']} ({p['lang']})")
+              sh('git', 'push', '-q', '-f', 'origin', branch)
+              new = f"https://github.com/{repo}/blob/{branch}/add-card-pictures/{p['file']}?raw=true"
+              cur = f'<img src="{p["current"]}" width="250">' if p['current'] else '_none_'
+              body = (f"**{p['name']}** · {p['lang']} · {p['what']}\n\n{p['reason']}\n\n"
+                      f"| eBay picture | On the tracker now |\n|---|---|\n| <img src=\"{new}\" width=\"250\"> | {cur} |\n\n"
+                      f"eBay listing: [{p['title']}]({p['listing']})\n\n"
+                      f"**Merge** to use this picture. **Close** to reject it.\n\n<!-- key: {p['key']} -->")
+              sh('gh', 'pr', 'create', '-B', 'main', '-H', branch,
+                 '-t', f"eBay picture: {p['name']} ({p['lang']}, {p['what']})", '-b', body)
+              made += 1
+          print(made, 'pull requests opened')
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
+              f.write(f"## eBay picture suggestions\n{made} new pull requests to review.\n")
+          EOF
