@@ -1,0 +1,28 @@
+# Emails yesterday's anonymous click counts (click_events table) every morning.
+# Repository secrets it uses:
+#   SUPABASE_DB_URL  (already set, also used by apply-sql)
+#   RESEND_API_KEY   (a Resend API key with sending access)
+#   REPORT_EMAIL     (the address the email goes to)
+name: Daily click email
+
+on:
+  schedule:
+    - cron: '7 16 * * *'   # about 8 AM Pacific
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  email:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Count clicks and send email
+        env:
+          DB: ${{ secrets.SUPABASE_DB_URL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          REPORT_EMAIL: ${{ secrets.REPORT_EMAIL }}
+        run: |
+          if [ -z "$DB" ]; then echo "SUPABASE_DB_URL secret is not set."; exit 1; fi
+          psql "$DB" -v ON_ERROR_STOP=1 -At -f tools/click_counts.sql | python3 tools/click_email.py
