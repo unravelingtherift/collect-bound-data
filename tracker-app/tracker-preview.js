@@ -6866,7 +6866,7 @@ function deckClean(d){
   if(!d || typeof d !== 'object') return null;
   const cards = {};
   if(d.cards && typeof d.cards === 'object') Object.keys(d.cards).forEach(k => { const n = d.cards[k]|0; if(n > 0 && /^[A-Z0-9]+\|/.test(k)) cards[k] = Math.min(n, 99); });
-  return { id: String(d.id || ('d' + Date.now() + Math.random().toString(36).slice(2,6))).slice(0,40), name: String(d.name || 'Untitled deck').slice(0,60), cards, updated: d.updated || new Date().toISOString() };
+  return { id: String(d.id || ('d' + Date.now() + Math.random().toString(36).slice(2,6))).replace(/[^A-Za-z0-9_-]/g,'').slice(0,40) || ('d' + Date.now()), name: String(d.name || 'Untitled deck').slice(0,60), cards, updated: d.updated || new Date().toISOString() };
 }
 function deckData(){ deckLoad(); return DECK_STATE.decks; }
 function deckPersist(){
@@ -6888,6 +6888,7 @@ function deckMergeIn(list){
 function deckCur(){ deckLoad(); return DECK_STATE.decks.find(d => d.id === DECK_STATE.current) || null; }
 function deckCount(d){ return Object.keys(d.cards).reduce((a,k)=>a + d.cards[k], 0); }
 function deckUsedElsewhere(key, exceptId){
+  if(exceptId === 'shared') return 0;
   let n = 0; deckData().forEach(d => { if(d.id !== exceptId) n += d.cards[key] || 0; }); return n;
 }
 function deckNew(name){
@@ -6968,24 +6969,95 @@ function deckStatus(d){
   });
   return { need, have, short, club };
 }
-var DECK_PRICES = {};
-function deckLoadPrices(d){
+var DECK_PRICES = {}, DECK_VAL = {}, DECK_VALSIG = {}, DECK_CHEAP = {}, DECK_CHEAPSIG = {};
+function deckSig(d){ return JSON.stringify(d.cards); }
+function deckPrintingOf(c){ return (c.printings||[]).includes('Normal') ? 'Normal' : (c.printings||[])[0]; }
+// Club and VIP: today's price for every card plus the deck's value over time (Club about a week, VIP up to 90 days).
+function deckLoadValue(d){
   if(typeof sb === 'undefined' || !sb) return;
-  const cards = []; const keys = [];
-  deckStatus(d).short.forEach(s => {
-    const c = deckCard(s.k); if(!c || (s.k in DECK_PRICES) || (c.printings||[]).length === 0) return;
-    const pr = c.printings.includes('Normal') ? 'Normal' : c.printings[0];
-    cards.push({ k: 'k:' + s.k, set_code: c.setCode, collector_number: c.collectorNum, card_name: c.name, card_language: c.language, printing: pr, qty:1, foil_only: c.printings.length === 1 && c.printings[0] === 'Foil' });
-    keys.push(s.k);
+  const sig = deckSig(d); if(DECK_VALSIG[d.id] === sig) return; DECK_VALSIG[d.id] = sig;
+  const cards = [];
+  Object.keys(d.cards).forEach(k => {
+    const c = deckCard(k); if(!c || !(c.printings||[]).length) return;
+    cards.push({ k: 'k:' + k, set_code: c.setCode, collector_number: c.collectorNum, card_name: c.name, card_language: c.language, printing: deckPrintingOf(c), qty: d.cards[k], foil_only: c.printings.length === 1 && c.printings[0] === 'Foil' });
   });
   if(!cards.length) return;
-  sb.functions.invoke(HISTORY_FUNCTION, { body:{ mode:'binder', cards, products:[], ebay:[], no_history:true } }).then(r => {
-    if(r.error || !r.data) return;
-    const items = r.data.items || {};
-    keys.forEach(k => { DECK_PRICES[k] = items['k:' + k] ? Number(items['k:' + k].unit) || 0 : 0; });
+  sb.functions.invoke(HISTORY_FUNCTION, { body:{ mode:'binder', days: 90, cards, products:[], ebay:[] } }).then(r => {
+    if(r.error || !r.data){ DECK_VALSIG[d.id] = ''; return; }
+    const items = r.data.items || {}; let total = 0;
+    Object.keys(d.cards).forEach(k => { const it = items['k:' + k]; DECK_PRICES[k] = it ? Number(it.unit) || 0 : 0; if(it) total += (Number(it.unit) || 0) * d.cards[k]; });
+    DECK_VAL[d.id] = { total, history: r.data.history || [], sig };
     renderDecks();
-  }).catch(()=>{});
+  }).catch(() => { DECK_VALSIG[d.id] = ''; });
 }
+// VIP: for the cards you still need, find the cheapest language to buy (CardTrader lowest listings).
+function deckLoadCheap(d, short){
+  if(typeof sb === 'undefined' || !sb || !short.length) return;
+  const list = short.slice(0, 25); const sig = deckSig(d) + '#' + list.map(s => s.k + s.miss).join(',');
+  if(DECK_CHEAPSIG[d.id] === sig) return; DECK_CHEAPSIG[d.id] = sig;
+  Promise.all(list.map(s => {
+    const c = deckCard(s.k); if(!c) return null;
+    const foilOnly = c.printings.length === 1 && c.printings[0] === 'Foil';
+    return sb.functions.invoke(HISTORY_FUNCTION, { body:{ mode:'international', set_code: c.setCode, collector_number: c.collectorNum } }).then(r => {
+      const intl = r.data || {}; if(intl.status !== 'ok' || (intl.currency && intl.currency !== 'USD')) return;
+      let best = null;
+      (intl.prices || []).forEach(p => { if(!!p.foil !== foilOnly) return; const n = CT_LANG_NAME[p.language]; if(!n || !(p.low > 0)) return; if(!best || p.low < best.low) best = { lang: n, low: p.low }; });
+      if(best) DECK_CHEAP[d.id + '|' + s.k] = best;
+    }).catch(() => {});
+  })).then(() => renderDecks());
+}
+function deckValueHtml(d, club){
+  if(!club) return '<div class="dk-shop"><h4>Deck value</h4><p class="dk-dim">The Collector Club shows what this deck is worth today and how its value has moved. <a href="#" onclick="event.preventDefault(); openMembershipChooser(\'tier1\');">See memberships</a></p></div>';
+  const v = DECK_VAL[d.id];
+  if(!v || v.sig !== deckSig(d)) return '<div class="dk-shop"><h4>Deck value</h4><p class="dk-dim">Adding up your deck&hellip;</p></div>';
+  const h = v.history || []; let line = '', chg = '';
+  if(h.length > 1){
+    const a = h[0].value, z = h[h.length-1].value, pct = a ? (z - a) / a * 100 : 0;
+    const mn = Math.min.apply(null, h.map(x=>x.value)), mx = Math.max.apply(null, h.map(x=>x.value)), span = (mx - mn) || 1;
+    const pts = h.map((x,i) => (i / (h.length-1) * 300).toFixed(1) + ',' + (46 - (x.value - mn) / span * 42).toFixed(1)).join(' ');
+    line = '<svg class="dk-spark" viewBox="0 0 300 50" preserveAspectRatio="none"><polyline fill="none" stroke="currentColor" stroke-width="2" points="' + pts + '"/></svg>';
+    chg = '<span class="' + (pct >= 0 ? 'dk-up' : 'dk-down') + '">' + (pct >= 0 ? '+' : '') + pct.toFixed(1) + '%</span> <span class="dk-dim">over ' + h.length + ' days</span>';
+  }
+  return '<div class="dk-shop"><h4>Deck value</h4><div class="dk-shop-row"><span>Worth today <small>(lowest-priced version of each card)</small></span><b>' + deckMoney(v.total) + '</b></div>' + (chg ? '<div class="dk-shop-row"><span>Change</span><span>' + chg + '</span></div>' : '') + line + (isVipTier() ? '' : '<p class="dk-dim">VIP shows up to 90 days of history.</p>') + '</div>';
+}
+// Share links: the deck is packed into the link itself, so nothing is stored on a server.
+function deckEncode(d){
+  const o = { n: d.name, c: Object.keys(d.cards).map(k => k.split('|').join('-') + ':' + d.cards[k]).join(',') };
+  return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+}
+function deckDecode(str){
+  try{
+    const o = JSON.parse(decodeURIComponent(escape(atob(String(str).replace(/-/g,'+').replace(/_/g,'/')))));
+    const cards = {};
+    String(o.c||'').split(',').forEach(p => { const i = p.lastIndexOf(':'); if(i < 1) return; const kk = p.slice(0,i), j = kk.indexOf('-'); if(j < 1) return; cards[kk.slice(0,j) + '|' + kk.slice(j+1)] = +p.slice(i+1) || 0; });
+    const d = deckClean({ id:'shared', name: o.n, cards });
+    return d && Object.keys(d.cards).length ? d : null;
+  }catch(e){ return null; }
+}
+function deckShare(){
+  const d = deckCur(); if(!d) return;
+  if(MEMBERSHIP_ENABLED && !isPaidTier()){
+    currentModalId = null; currentModalKind = 'promo';
+    document.getElementById('modalBody').innerHTML = '<button class="modal-close" onclick="closeModal()">&times;</button><div class="member-gate-card limit-gate"><div class="member-gate-icon">&#128279;</div><div class="member-gate-title">Share links are a Collector Club feature</div><div class="member-gate-sub">Send anyone a link to this deck. They see it with their own collection checked against it. You can still export the list as text for free.</div><a class="mg-btn" href="#" onclick="event.preventDefault(); closeModal(); openMembershipChooser(\'tier1\');">Join the Collector Club</a><a class="limit-gate-later" href="#" onclick="event.preventDefault(); closeModal();">Not right now</a></div>';
+    document.getElementById('modalBackdrop').classList.add('open'); if(typeof updateModalNavButtons === 'function') updateModalNavButtons(); return;
+  }
+  const url = location.href.split('#')[0] + '#deck=' + deckEncode(d);
+  (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(() => deckFlash('Share link copied'), () => { prompt('Copy this link', url); });
+}
+function deckSharedSave(){ const s = DECK_STATE.shared; if(!s) return; const d = deckNew(s.name); if(!d) return; d.cards = Object.assign({}, s.cards); deckPersist(); deckSharedClose(true); }
+function deckSharedClose(keep){ DECK_STATE.shared = null; try{ history.replaceState(null, '', location.href.split('#')[0]); }catch(e){} if(!keep) DECK_STATE.current = null; renderDecks(); }
+(function(){
+  if(!/deck=/.test(location.hash || '')) return;
+  let tries = 0;
+  const t = setInterval(() => {
+    if(++tries > 80){ clearInterval(t); return; }
+    if(typeof switchTab === 'function' && deckEnsureUI() && CARDS.length){
+      clearInterval(t);
+      const m = (location.hash || '').match(/deck=([A-Za-z0-9_-]+)/); const d = m && deckDecode(m[1]);
+      if(d){ DECK_STATE.shared = d; switchTab('tabDecksBtn'); }
+    }
+  }, 500);
+})();
 function deckMoney(n){ return '$' + (Number(n)||0).toFixed(2); }
 function deckEnsureUI(){
   if(document.getElementById('decksPanel')) return true;
@@ -7052,16 +7124,16 @@ function deckSearchHtml(d){
   const seen = new Set(); const out = [];
   deckIndex().byKey.forEach((e, k) => { const c = e.card; if(out.length < 12 && deckNorm(c.name).includes(q) && !seen.has(k)){ seen.add(k); out.push({k, c}); } });
   if(!out.length) return '<div class="dk-dim">No cards match.</div>';
-  return out.map(x => `<button class="dk-hit" onclick="deckAdd('${x.k.replace(/'/g,"\\'")}',1)">${x.c.img ? `<img src="${escapeHtml(x.c.img)}" alt="" loading="lazy">` : ''}<span>${escapeHtml(deckDisplayName(x.c))}<small>${escapeHtml(x.c.setCode)} ${escapeHtml(x.c.collectorNum||'')}</small></span><b>+</b></button>`).join('');
+  return out.map(x => `<button class="dk-hit" data-k="${escapeHtml(x.k)}" onclick="deckAdd(this.dataset.k,1)">${x.c.img ? `<img src="${escapeHtml(x.c.img)}" alt="" loading="lazy">` : ''}<span>${escapeHtml(deckDisplayName(x.c))}<small>${escapeHtml(x.c.setCode)} ${escapeHtml(x.c.collectorNum||'')}</small></span><b>+</b></button>`).join('');
 }
 function renderDecks(){
   if(!deckEnsureUI()) return;
   const panel = document.getElementById('decksPanel'); if(!panel) return;
   deckLoad();
   if(!CARDS.length){ panel.innerHTML = '<div class="dk-wrap"><p class="dk-dim">Loading cards&hellip;</p></div>'; return; }
-  const decks = DECK_STATE.decks; const d = deckCur();
+  const decks = DECK_STATE.decks; const ro = !!DECK_STATE.shared; const d = ro ? DECK_STATE.shared : deckCur();
   const lim = deckLimit();
-  const side = decks.map(x => `<button class="dk-deck${d && d.id===x.id?' on':''}" onclick="deckPick('${x.id}')"><span>${escapeHtml(x.name)}</span><small>${deckCount(x)} cards</small></button>`).join('')
+  const side = decks.map(x => `<button class="dk-deck${d && d.id===x.id?' on':''}" data-id="${escapeHtml(x.id)}" onclick="DECK_STATE.shared=null; deckPick(this.dataset.id)"><span>${escapeHtml(x.name)}</span><small>${deckCount(x)} cards</small></button>`).join('')
     || '<div class="dk-dim">No decks yet. Start one or import a list.</div>';
   let main = '';
   if(!d){
@@ -7075,28 +7147,36 @@ function renderDecks(){
       else if(st.club && own - other < want){ cls = 'warn'; note = 'Also in another deck'; }
       return `<div class="dk-card ${cls}">${x.c && x.c.img ? `<img src="${escapeHtml(x.c.img)}" alt="" loading="lazy">` : '<span class="dk-noimg"></span>'}
         <div class="dk-cn">${escapeHtml(x.c ? deckDisplayName(x.c) : x.k)}<small>${x.c ? escapeHtml(x.c.setCode + ' ' + (x.c.collectorNum||'')) : ''} &middot; ${note} (own ${own})</small></div>
-        <div class="dk-qty"><button onclick="deckAdd('${x.k.replace(/'/g,"\\'")}',-1)">&minus;</button><b>${want}</b><button onclick="deckAdd('${x.k.replace(/'/g,"\\'")}',1)">+</button></div></div>`;
+        ${ro ? `<div class="dk-qty"><b>${want}&times;</b></div>` : `<div class="dk-qty"><button data-k="${escapeHtml(x.k)}" onclick="deckAdd(this.dataset.k,-1)">&minus;</button><b>${want}</b><button data-k="${escapeHtml(x.k)}" onclick="deckAdd(this.dataset.k,1)">+</button></div>`}</div>`;
     }).join('') || '<div class="dk-dim">Search above to add cards.</div>';
     let shop = '';
     const missingCount = st.short.filter(s => s.kind==='missing').reduce((a,s)=>a+s.miss,0);
+    const vip = isVipTier();
+    if(st.club) deckLoadValue(d);
     if(st.short.length){
       if(st.club){
-        deckLoadPrices(d);
-        let total = 0;
-        const lines = st.short.map(s => { const c = deckCard(s.k); const p = DECK_PRICES[s.k]; if(p) total += p * s.miss;
-          return `<div class="dk-shop-row"><span>${s.miss}&times; ${escapeHtml(c ? deckDisplayName(c) : s.k)}${s.kind==='conflict' ? ' <small>(owned, used in another deck)</small>' : ''}</span><b>${p ? deckMoney(p * s.miss) : '&hellip;'}</b></div>`; }).join('');
-        shop = `<div class="dk-shop"><h4>Shopping list</h4>${lines}<div class="dk-shop-row dk-total"><span>Estimated total</span><b>${deckMoney(total)}</b></div></div>`;
+        if(vip) deckLoadCheap(d, st.short);
+        let total = 0, cheapTotal = 0, anyCheap = false;
+        const lines = st.short.map(s => { const c = deckCard(s.k); const p = DECK_PRICES[s.k]; const ch = vip ? DECK_CHEAP[d.id + '|' + s.k] : null;
+          if(p) total += p * s.miss;
+          let best = p || 0, tip = '';
+          if(ch && (!p || ch.low < p)){ best = ch.low; tip = ' <small class="dk-cheap">Cheapest: ' + escapeHtml(ch.lang) + ' ' + deckMoney(ch.low) + '</small>'; anyCheap = true; }
+          cheapTotal += best * s.miss;
+          return `<div class="dk-shop-row"><span>${s.miss}&times; ${escapeHtml(c ? deckDisplayName(c) : s.k)}${s.kind==='conflict' ? ' <small>(owned, used in another deck)</small>' : ''}${tip}</span><b>${p ? deckMoney(p * s.miss) : '&hellip;'}</b></div>`; }).join('');
+        const cheapRow = vip ? (anyCheap ? `<div class="dk-shop-row"><span>Total buying the cheapest language <small>(you'd save ${deckMoney(total - cheapTotal)})</small></span><b>${deckMoney(cheapTotal)}</b></div>` : '') : '<p class="dk-dim">VIP also shows the cheapest language to buy each card in, with your total savings.</p>';
+        shop = `<div class="dk-shop"><h4>Shopping list</h4>${lines}<div class="dk-shop-row dk-total"><span>Estimated total</span><b>${deckMoney(total)}</b></div>${cheapRow}</div>`;
       } else {
         shop = `<div class="dk-shop"><h4>Missing ${missingCount} card${missingCount===1?'':'s'}</h4><p class="dk-dim">The Collector Club shows exactly which cards you're missing, warns when a card is already in another deck, and builds a priced shopping list. <a href="#" onclick="event.preventDefault(); openMembershipChooser('tier1');">See memberships</a></p></div>`;
       }
     } else if(st.need){ shop = '<div class="dk-shop"><h4>Deck complete</h4><p class="dk-dim">You own every card in this deck.</p></div>'; }
+    shop += deckValueHtml(d, st.club);
     main = `<div class="dk-head"><h3>${escapeHtml(d.name)}</h3><span class="dk-dim">${st.need} cards &middot; you own ${st.have}</span></div>
       <div class="dk-bar"><i style="width:${st.need ? Math.round(100*st.have/st.need) : 0}%"></i></div>
       <div class="dk-row">
-        <button class="dk-btn" onclick="deckRename()">Rename</button><button class="dk-btn" onclick="deckCopyText()">Copy list</button>
-        <button class="dk-btn" onclick="deckExportFile()">Download .txt</button><button class="dk-btn dk-danger" onclick="deckDelete()">Delete</button><span id="dkFlash" class="dk-dim"></span></div>
-      <input class="dk-input" id="dkSearch" placeholder="Search a card to add&hellip;" value="${escapeHtml(DECK_STATE.q)}" autocomplete="off">
-      <div class="dk-hits" id="dkHits">${deckSearchHtml(d)}</div>
+        ${ro ? `<button class="dk-btn dk-primary" onclick="deckSharedSave()">Save to my decks</button><button class="dk-btn" onclick="deckSharedClose()">Close</button><span class="dk-dim">Shared deck &middot; checked against your collection</span>` : `<button class="dk-btn" onclick="deckRename()">Rename</button><button class="dk-btn" onclick="deckCopyText()">Copy list</button>
+        <button class="dk-btn" onclick="deckExportFile()">Download .txt</button><button class="dk-btn" onclick="deckShare()">Share link</button><button class="dk-btn dk-danger" onclick="deckDelete()">Delete</button>`}<span id="dkFlash" class="dk-dim"></span></div>
+      ${ro ? '' : `<input class="dk-input" id="dkSearch" placeholder="Search a card to add&hellip;" value="${escapeHtml(DECK_STATE.q)}" autocomplete="off">
+      <div class="dk-hits" id="dkHits">${deckSearchHtml(d)}</div>`}
       <div class="dk-cards">${rows}</div>${shop}`;
   }
   panel.innerHTML = `<div class="dk-wrap"><div class="dk-side">

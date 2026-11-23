@@ -2263,3 +2263,5 @@
   .dk-shop h4{ margin:0 0 8px; } .dk-shop-row{ display:flex; justify-content:space-between; gap:10px; padding:3px 0; font-size:13px; }
   .dk-total{ border-top:1px solid var(--line-strong); margin-top:6px; padding-top:8px; font-weight:700; }
   .dk-import{ padding:6px; } .dk-lim{ margin-bottom:8px; }
+  .dk-spark{ width:100%; height:50px; color:var(--gold-bright); margin-top:8px; }
+  .dk-up{ color:#5c9; font-weight:700; } .dk-down{ color:#e66; font-weight:700; } .dk-cheap{ color:var(--gold-bright); margin-left:6px; }
