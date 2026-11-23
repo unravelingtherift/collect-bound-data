@@ -6866,7 +6866,7 @@ function deckClean(d){
   if(!d || typeof d !== 'object') return null;
   const cards = {};
   if(d.cards && typeof d.cards === 'object') Object.keys(d.cards).forEach(k => { const n = d.cards[k]|0; if(n > 0 && /^[A-Z0-9]+\|/.test(k)) cards[k] = Math.min(n, 99); });
-  return { id: String(d.id || ('d' + Date.now() + Math.random().toString(36).slice(2,6))).slice(0,40), name: String(d.name || 'Untitled deck').slice(0,60), cards, updated: d.updated || new Date().toISOString() };
+  return { id: String(d.id || ('d' + Date.now() + Math.random().toString(36).slice(2,6))).replace(/[^A-Za-z0-9_-]/g,'').slice(0,40) || ('d' + Date.now()), name: String(d.name || 'Untitled deck').slice(0,60), cards, updated: d.updated || new Date().toISOString() };
 }
 function deckData(){ deckLoad(); return DECK_STATE.decks; }
 function deckPersist(){
@@ -7124,7 +7124,7 @@ function deckSearchHtml(d){
   const seen = new Set(); const out = [];
   deckIndex().byKey.forEach((e, k) => { const c = e.card; if(out.length < 12 && deckNorm(c.name).includes(q) && !seen.has(k)){ seen.add(k); out.push({k, c}); } });
   if(!out.length) return '<div class="dk-dim">No cards match.</div>';
-  return out.map(x => `<button class="dk-hit" onclick="deckAdd('${x.k.replace(/'/g,"\\'")}',1)">${x.c.img ? `<img src="${escapeHtml(x.c.img)}" alt="" loading="lazy">` : ''}<span>${escapeHtml(deckDisplayName(x.c))}<small>${escapeHtml(x.c.setCode)} ${escapeHtml(x.c.collectorNum||'')}</small></span><b>+</b></button>`).join('');
+  return out.map(x => `<button class="dk-hit" data-k="${escapeHtml(x.k)}" onclick="deckAdd(this.dataset.k,1)">${x.c.img ? `<img src="${escapeHtml(x.c.img)}" alt="" loading="lazy">` : ''}<span>${escapeHtml(deckDisplayName(x.c))}<small>${escapeHtml(x.c.setCode)} ${escapeHtml(x.c.collectorNum||'')}</small></span><b>+</b></button>`).join('');
 }
 function renderDecks(){
   if(!deckEnsureUI()) return;
@@ -7133,7 +7133,7 @@ function renderDecks(){
   if(!CARDS.length){ panel.innerHTML = '<div class="dk-wrap"><p class="dk-dim">Loading cards&hellip;</p></div>'; return; }
   const decks = DECK_STATE.decks; const ro = !!DECK_STATE.shared; const d = ro ? DECK_STATE.shared : deckCur();
   const lim = deckLimit();
-  const side = decks.map(x => `<button class="dk-deck${d && d.id===x.id?' on':''}" onclick="DECK_STATE.shared=null; deckPick('${x.id}')"><span>${escapeHtml(x.name)}</span><small>${deckCount(x)} cards</small></button>`).join('')
+  const side = decks.map(x => `<button class="dk-deck${d && d.id===x.id?' on':''}" data-id="${escapeHtml(x.id)}" onclick="DECK_STATE.shared=null; deckPick(this.dataset.id)"><span>${escapeHtml(x.name)}</span><small>${deckCount(x)} cards</small></button>`).join('')
     || '<div class="dk-dim">No decks yet. Start one or import a list.</div>';
   let main = '';
   if(!d){
@@ -7147,7 +7147,7 @@ function renderDecks(){
       else if(st.club && own - other < want){ cls = 'warn'; note = 'Also in another deck'; }
       return `<div class="dk-card ${cls}">${x.c && x.c.img ? `<img src="${escapeHtml(x.c.img)}" alt="" loading="lazy">` : '<span class="dk-noimg"></span>'}
         <div class="dk-cn">${escapeHtml(x.c ? deckDisplayName(x.c) : x.k)}<small>${x.c ? escapeHtml(x.c.setCode + ' ' + (x.c.collectorNum||'')) : ''} &middot; ${note} (own ${own})</small></div>
-        ${ro ? `<div class="dk-qty"><b>${want}&times;</b></div>` : `<div class="dk-qty"><button onclick="deckAdd('${x.k.replace(/'/g,"\\'")}',-1)">&minus;</button><b>${want}</b><button onclick="deckAdd('${x.k.replace(/'/g,"\\'")}',1)">+</button></div>`}</div>`;
+        ${ro ? `<div class="dk-qty"><b>${want}&times;</b></div>` : `<div class="dk-qty"><button data-k="${escapeHtml(x.k)}" onclick="deckAdd(this.dataset.k,-1)">&minus;</button><b>${want}</b><button data-k="${escapeHtml(x.k)}" onclick="deckAdd(this.dataset.k,1)">+</button></div>`}</div>`;
     }).join('') || '<div class="dk-dim">Search above to add cards.</div>';
     let shop = '';
     const missingCount = st.short.filter(s => s.kind==='missing').reduce((a,s)=>a+s.miss,0);
