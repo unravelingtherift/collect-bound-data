@@ -3534,7 +3534,8 @@ function buildExportData(){
     products: { owned: productState.owned, qty: productState.qty },
     grading: gradeState,
     serials: serialState,
-    extras: extraState
+    extras: extraState,
+    decks: (typeof deckData === 'function') ? deckData() : []
   };
 }
 
@@ -3632,6 +3633,8 @@ async function applyCollectionData(data){
       try{ await window.storage.set('extra:'+key, JSON.stringify(v), false); }catch(e){}
     }
   }
+
+  if(Array.isArray(data.decks) && typeof deckMergeIn === 'function'){ deckMergeIn(data.decks); if(typeof renderDecks === 'function' && document.getElementById('decksPanel')) renderDecks(); }
 
   renderAll();
   renderSetAll();
@@ -4465,7 +4468,7 @@ function wipeLocalCollection(){
     const kill = [];
     for(let i=0;i<localStorage.length;i++){
       const k = localStorage.key(i);
-      if(k && /^cb:(owned|qty|card|prodowned|prodqty|grade|serial|extra):/.test(k)) kill.push(k);
+      if(k && /^cb:(owned|qty|card|prodowned|prodqty|grade|serial|extra|decks):/.test(k)) kill.push(k);
     }
     kill.forEach(k=>localStorage.removeItem(k));
   }catch(e){}
@@ -6819,3 +6822,290 @@ if(!MEMBERSHIP_ENABLED){
   n.querySelector('.growth-note-text').textContent = 'About the pictures: Riot Games does not supply pictures of promos and collectibles. We find them through careful research of publicly available pictures online and from the collector community, so some may be lower quality or photos of the real item. We replace them with sharper ones whenever we find them. Pictures are shown only to help you identify items. Card art and game content belong to Riot Games and their artists.';
   first.parentNode.insertBefore(n, first.nextSibling);
 })();
+
+/* =========================================================
+   Decks tab: plan decks against your collection
+   Free: build, import, export (up to 3 decks). Collector Club: 15 decks, conflict warnings, shopping list.
+   VIP: unlimited decks. Decks are saved on this device and with your account backup.
+   ========================================================= */
+var DECK_STATE = { decks: [], current: null, loaded: false, q: '' };
+var DECK_LIMITS = { free: 3, tier1: 15, tier2: 9999 };
+function deckLimit(){ if(!MEMBERSHIP_ENABLED) return 9999; return DECK_LIMITS[currentUserTier] || DECK_LIMITS.free; }
+function deckKeyOf(c){ return String(c.setCode||'').toUpperCase() + '|' + String(c.collectorNum||'').toLowerCase().replace(/^0+(?=\d)/,''); }
+function deckNorm(s){ return String(s||'').toLowerCase().replace(/[\u2018\u2019]/g,"'").replace(/\s+aa$/,'').replace(/[^a-z0-9']+/g,' ').trim(); }
+var DECK_IDX = null;
+function deckIndex(){
+  if(DECK_IDX && DECK_IDX.n === CARDS.length) return DECK_IDX;
+  const byKey = new Map(), byName = new Map(), owners = new Map();
+  CARDS.forEach(c => {
+    if(typeof isTokenCard === 'function' && isTokenCard(c)) return;
+    const k = deckKeyOf(c);
+    const pref = c.language === 'English' ? 2 : 1;
+    const cur = byKey.get(k);
+    if(!cur || pref > cur.pref || (pref === cur.pref && /^\d+$/.test(c.collectorNum) && !/^\d+$/.test(cur.card.collectorNum))) byKey.set(k, { card:c, pref });
+    if(!owners.has(k)) owners.set(k, []); owners.get(k).push(c);
+    if(c.language === 'English'){
+      const nn = deckNorm(c.name); const arr = byName.get(nn) || []; arr.push(c); byName.set(nn, arr);
+    }
+  });
+  DECK_IDX = { n: CARDS.length, byKey, byName, owners };
+  return DECK_IDX;
+}
+function deckCard(key){ const e = deckIndex().byKey.get(key); return e ? e.card : null; }
+function deckOwned(key){
+  let n = 0;
+  (deckIndex().owners.get(key) || []).forEach(c => (c.printings || ['Normal']).forEach(p => { n += getCardQty(c.id, p); }));
+  return n;
+}
+function deckLoad(){
+  if(DECK_STATE.loaded) return;
+  DECK_STATE.loaded = true;
+  try{ const raw = localStorage.getItem('cb:decks:v1'); if(raw){ const a = JSON.parse(raw); if(Array.isArray(a)) DECK_STATE.decks = a.map(deckClean).filter(Boolean); } }catch(e){}
+}
+function deckClean(d){
+  if(!d || typeof d !== 'object') return null;
+  const cards = {};
+  if(d.cards && typeof d.cards === 'object') Object.keys(d.cards).forEach(k => { const n = d.cards[k]|0; if(n > 0 && /^[A-Z0-9]+\|/.test(k)) cards[k] = Math.min(n, 99); });
+  return { id: String(d.id || ('d' + Date.now() + Math.random().toString(36).slice(2,6))).slice(0,40), name: String(d.name || 'Untitled deck').slice(0,60), cards, updated: d.updated || new Date().toISOString() };
+}
+function deckData(){ deckLoad(); return DECK_STATE.decks; }
+function deckPersist(){
+  try{ localStorage.setItem('cb:decks:v1', JSON.stringify(DECK_STATE.decks)); }catch(e){}
+  if(typeof queueCloudSave === 'function') queueCloudSave();
+}
+function deckMergeIn(list){
+  deckLoad();
+  if(!Array.isArray(list)) return 0;
+  let added = 0;
+  list.map(deckClean).filter(Boolean).forEach(d => {
+    const have = DECK_STATE.decks.find(x => x.id === d.id);
+    if(!have){ DECK_STATE.decks.push(d); added++; }
+    else if(String(d.updated) > String(have.updated)) Object.assign(have, d);
+  });
+  try{ localStorage.setItem('cb:decks:v1', JSON.stringify(DECK_STATE.decks)); }catch(e){}
+  return added;
+}
+function deckCur(){ deckLoad(); return DECK_STATE.decks.find(d => d.id === DECK_STATE.current) || null; }
+function deckCount(d){ return Object.keys(d.cards).reduce((a,k)=>a + d.cards[k], 0); }
+function deckUsedElsewhere(key, exceptId){
+  let n = 0; deckData().forEach(d => { if(d.id !== exceptId) n += d.cards[key] || 0; }); return n;
+}
+function deckNew(name){
+  deckLoad();
+  if(DECK_STATE.decks.length >= deckLimit()){ deckLimitGate(); return null; }
+  const d = deckClean({ name: name || 'New deck ' + (DECK_STATE.decks.length + 1), cards:{} });
+  DECK_STATE.decks.push(d); DECK_STATE.current = d.id; deckPersist(); return d;
+}
+function deckLimitGate(){
+  const lim = deckLimit();
+  currentModalId = null; currentModalKind = 'promo';
+  document.getElementById('modalBody').innerHTML = `
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="member-gate-card limit-gate">
+      <div class="member-gate-icon">&#127183;</div>
+      <div class="member-gate-title">You've filled your ${lim} deck spots</div>
+      <div class="member-gate-sub">Free accounts save up to 3 decks. The Collector Club keeps 15 decks and adds missing-card warnings and a shopping list. VIP keeps unlimited decks. You can still export any deck.</div>
+      <a class="mg-btn" href="#" onclick="event.preventDefault(); closeModal(); openMembershipChooser('tier1');">See memberships</a>
+      <a class="limit-gate-later" href="#" onclick="event.preventDefault(); closeModal();">Not right now</a>
+    </div>`;
+  document.getElementById('modalBackdrop').classList.add('open');
+  if(typeof updateModalNavButtons === 'function') updateModalNavButtons();
+}
+function deckAdd(key, delta){
+  const d = deckCur(); if(!d) return;
+  const n = Math.max(0, Math.min(99, (d.cards[key]||0) + delta));
+  if(n) d.cards[key] = n; else delete d.cards[key];
+  d.updated = new Date().toISOString();
+  deckPersist(); renderDecks();
+}
+// Parse pasted deck text: "3 Name", "3x Name", "Name x3", "Name", optionally "SET-123". Section headers are skipped.
+function deckParse(text){
+  const idx = deckIndex(); const cards = {}; const missing = []; let found = 0;
+  String(text||'').split(/\r?\n/).forEach(raw => {
+    let line = raw.trim(); if(!line) return;
+    if(/^(\/\/|#)/.test(line)) return;
+    if(/^[A-Za-z ]+:\s*$/.test(line)) return;
+    let qty = 1, m;
+    if((m = line.match(/^(\d+)\s*x?\s+(.+)$/i))){ qty = +m[1]; line = m[2]; }
+    else if((m = line.match(/^(.+?)\s+x\s*(\d+)$/i))){ qty = +m[2]; line = m[1]; }
+    line = line.replace(/\s*\(([A-Za-z0-9]{2,4})\)\s*(\d+[a-z]?)?\s*$/, '').trim();
+    let key = null;
+    if((m = line.match(/^([A-Za-z]{2,4})[- ](\d{1,3}[a-z]?)$/)) && idx.byKey.has(m[1].toUpperCase() + '|' + m[2].toLowerCase().replace(/^0+(?=\d)/,''))) key = m[1].toUpperCase() + '|' + m[2].toLowerCase().replace(/^0+(?=\d)/,'');
+    if(!key){
+      const list = idx.byName.get(deckNorm(line));
+      if(list && list.length){
+        const plain = list.find(c => /^\d+$/.test(c.collectorNum) && !/showcase|overnumber|signature|ultimate/i.test(String(c.rarity||''))) || list[0];
+        key = deckKeyOf(plain);
+      }
+    }
+    if(key){ cards[key] = Math.min(99, (cards[key]||0) + qty); found += qty; }
+    else missing.push(raw.trim());
+  });
+  return { cards, missing, found };
+}
+function deckExportText(d){
+  const lines = [];
+  Object.keys(d.cards).map(k => ({ k, c: deckCard(k) })).sort((a,b)=> String((a.c&&a.c.name)||a.k).localeCompare(String((b.c&&b.c.name)||b.k)))
+    .forEach(x => lines.push(d.cards[x.k] + ' ' + (x.c ? deckDisplayName(x.c) : x.k)));
+  return lines.join('\n');
+}
+function deckDisplayName(c){ return typeof cardDisplayName === 'function' ? cardDisplayName(c) : String(c.name||''); }
+function deckDownload(name, text, type){
+  const blob = new Blob([text], { type: type || 'text/plain' });
+  const url = URL.createObjectURL(blob); const a = document.createElement('a');
+  a.href = url; a.download = name; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+function deckSlug(s){ return String(s||'deck').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'deck'; }
+function deckStatus(d){
+  const club = !MEMBERSHIP_ENABLED || isPaidTier();
+  let need = 0, have = 0, short = [];
+  Object.keys(d.cards).forEach(k => {
+    const want = d.cards[k]; const own = deckOwned(k); const other = deckUsedElsewhere(k, d.id);
+    const free = Math.max(0, own - other);
+    have += Math.min(want, own); need += want;
+    if(own < want) short.push({ k, want, own, miss: want - own, kind:'missing' });
+    else if(free < want) short.push({ k, want, own, miss: want - free, kind:'conflict', other });
+  });
+  return { need, have, short, club };
+}
+var DECK_PRICES = {};
+function deckLoadPrices(d){
+  if(typeof sb === 'undefined' || !sb) return;
+  const cards = []; const keys = [];
+  deckStatus(d).short.forEach(s => {
+    const c = deckCard(s.k); if(!c || (s.k in DECK_PRICES) || (c.printings||[]).length === 0) return;
+    const pr = c.printings.includes('Normal') ? 'Normal' : c.printings[0];
+    cards.push({ k: 'k:' + s.k, set_code: c.setCode, collector_number: c.collectorNum, card_name: c.name, card_language: c.language, printing: pr, qty:1, foil_only: c.printings.length === 1 && c.printings[0] === 'Foil' });
+    keys.push(s.k);
+  });
+  if(!cards.length) return;
+  sb.functions.invoke(HISTORY_FUNCTION, { body:{ mode:'binder', cards, products:[], ebay:[], no_history:true } }).then(r => {
+    if(r.error || !r.data) return;
+    const items = r.data.items || {};
+    keys.forEach(k => { DECK_PRICES[k] = items['k:' + k] ? Number(items['k:' + k].unit) || 0 : 0; });
+    renderDecks();
+  }).catch(()=>{});
+}
+function deckMoney(n){ return '$' + (Number(n)||0).toFixed(2); }
+function deckEnsureUI(){
+  if(document.getElementById('decksPanel')) return true;
+  const tb = document.getElementById('tabBinderBtn'), bp = document.getElementById('binderPanel');
+  if(!tb || !bp) return false;
+  const btn = document.createElement('button');
+  btn.className = tb.className.replace(/\bactive\b/,'').trim(); btn.id = 'tabDecksBtn'; btn.type = 'button';
+  btn.innerHTML = 'Decks <span class="tab-new" data-new-until="2026-12-31">NEW</span>';
+  tb.parentNode.insertBefore(btn, tb.nextSibling);
+  const panel = document.createElement('div');
+  panel.id = 'decksPanel'; panel.style.display = 'none';
+  bp.parentNode.insertBefore(panel, bp.nextSibling);
+  TABS.push({ btn: 'tabDecksBtn', panel: 'decksPanel', onShow: () => renderDecks() });
+  btn.addEventListener('click', () => switchTab('tabDecksBtn'));
+  return true;
+}
+function deckPick(id){ DECK_STATE.current = id; DECK_STATE.q = ''; renderDecks(); }
+function deckRename(){ const d = deckCur(); if(!d) return; const n = prompt('Deck name', d.name); if(n && n.trim()){ d.name = n.trim().slice(0,60); d.updated = new Date().toISOString(); deckPersist(); renderDecks(); } }
+function deckDelete(){ const d = deckCur(); if(!d) return; if(!confirm('Delete "' + d.name + '"? This cannot be undone.')) return; DECK_STATE.decks = DECK_STATE.decks.filter(x => x.id !== d.id); DECK_STATE.current = null; deckPersist(); renderDecks(); }
+function deckCopyText(){ const d = deckCur(); if(!d) return; const t = deckExportText(d); (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(()=>deckFlash('Copied to clipboard'), ()=>deckDownload(deckSlug(d.name)+'.txt', t)); }
+function deckFlash(m){ const e = document.getElementById('dkFlash'); if(e){ e.textContent = m; setTimeout(()=>{ if(e.textContent === m) e.textContent = ''; }, 2500); } }
+function deckExportFile(){ const d = deckCur(); if(d) deckDownload(deckSlug(d.name) + '.txt', deckExportText(d)); }
+function deckExportAll(){ deckDownload('collection-bound-decks-' + new Date().toISOString().slice(0,10) + '.json', JSON.stringify({ cbDecks:1, decks: deckData() }, null, 2), 'application/json'); }
+function deckImportOpen(){
+  currentModalId = null; currentModalKind = 'promo';
+  document.getElementById('modalBody').innerHTML = `
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="dk-import">
+      <h3>Import a deck</h3>
+      <p class="dk-dim">Paste a deck list (one card per line, like <b>3 Jinx, Loose Cannon</b>) or choose a .txt / .json file. Decks you exported from here also work.</p>
+      <input id="dkImpName" class="dk-input" placeholder="Deck name (optional)" maxlength="60">
+      <textarea id="dkImpText" class="dk-text" rows="10" placeholder="3 Card Name&#10;2 Another Card"></textarea>
+      <div class="dk-row"><input type="file" id="dkImpFile" accept=".txt,.json,text/plain,application/json"><button class="mg-btn" onclick="deckImportGo()">Import</button></div>
+      <div id="dkImpReport" class="dk-dim"></div>
+    </div>`;
+  document.getElementById('modalBackdrop').classList.add('open');
+  const f = document.getElementById('dkImpFile');
+  f.addEventListener('change', () => { const file = f.files[0]; if(!file) return; const r = new FileReader(); r.onload = () => { document.getElementById('dkImpText').value = String(r.result||''); const n = document.getElementById('dkImpName'); if(!n.value) n.value = file.name.replace(/\.(txt|json)$/i,''); }; r.readAsText(file); });
+}
+function deckImportGo(){
+  const text = document.getElementById('dkImpText').value; const rep = document.getElementById('dkImpReport');
+  let json = null; try{ json = JSON.parse(text); }catch(e){}
+  if(json && (Array.isArray(json.decks) || json.cards)){
+    const list = Array.isArray(json.decks) ? json.decks : [json];
+    deckLoad(); let added = 0, skipped = 0;
+    list.map(deckClean).filter(Boolean).forEach(d => {
+      if(DECK_STATE.decks.length >= deckLimit()){ skipped++; return; }
+      d.id = 'd' + Date.now() + Math.random().toString(36).slice(2,6); DECK_STATE.decks.push(d); added++;
+    });
+    deckPersist(); renderDecks();
+    rep.textContent = 'Imported ' + added + ' deck(s).' + (skipped ? ' ' + skipped + ' not imported (deck limit).' : '');
+    if(!skipped) setTimeout(closeModal, 900); return;
+  }
+  const res = deckParse(text);
+  if(!res.found){ rep.textContent = 'No cards were recognized. Check the card names and try again.'; return; }
+  const d = deckNew((document.getElementById('dkImpName').value || '').trim() || 'Imported deck'); if(!d) return;
+  d.cards = res.cards; d.updated = new Date().toISOString(); deckPersist(); renderDecks();
+  if(res.missing.length){
+    rep.innerHTML = 'Imported ' + res.found + ' cards. <b>' + res.missing.length + ' line(s) not matched:</b><br>' + res.missing.slice(0,30).map(escapeHtml).join('<br>');
+  } else { rep.textContent = 'Imported ' + res.found + ' cards.'; setTimeout(closeModal, 900); }
+}
+function deckSearchHtml(d){
+  const q = deckNorm(DECK_STATE.q); if(q.length < 2) return '';
+  const seen = new Set(); const out = [];
+  deckIndex().byKey.forEach((e, k) => { const c = e.card; if(out.length < 12 && deckNorm(c.name).includes(q) && !seen.has(k)){ seen.add(k); out.push({k, c}); } });
+  if(!out.length) return '<div class="dk-dim">No cards match.</div>';
+  return out.map(x => `<button class="dk-hit" onclick="deckAdd('${x.k.replace(/'/g,"\\'")}',1)">${x.c.img ? `<img src="${escapeHtml(x.c.img)}" alt="" loading="lazy">` : ''}<span>${escapeHtml(deckDisplayName(x.c))}<small>${escapeHtml(x.c.setCode)} ${escapeHtml(x.c.collectorNum||'')}</small></span><b>+</b></button>`).join('');
+}
+function renderDecks(){
+  if(!deckEnsureUI()) return;
+  const panel = document.getElementById('decksPanel'); if(!panel) return;
+  deckLoad();
+  if(!CARDS.length){ panel.innerHTML = '<div class="dk-wrap"><p class="dk-dim">Loading cards&hellip;</p></div>'; return; }
+  const decks = DECK_STATE.decks; const d = deckCur();
+  const lim = deckLimit();
+  const side = decks.map(x => `<button class="dk-deck${d && d.id===x.id?' on':''}" onclick="deckPick('${x.id}')"><span>${escapeHtml(x.name)}</span><small>${deckCount(x)} cards</small></button>`).join('')
+    || '<div class="dk-dim">No decks yet. Start one or import a list.</div>';
+  let main = '';
+  if(!d){
+    main = '<div class="dk-empty"><h3>Plan your decks</h3><p>Build a deck, see which cards you own, and import or export deck lists anytime. Cards you own are counted once across all your decks.</p></div>';
+  } else {
+    const st = deckStatus(d);
+    const rows = Object.keys(d.cards).map(k => ({ k, c: deckCard(k) })).sort((a,b)=>String((a.c&&a.c.name)||a.k).localeCompare(String((b.c&&b.c.name)||b.k))).map(x => {
+      const want = d.cards[x.k], own = deckOwned(x.k), other = deckUsedElsewhere(x.k, d.id);
+      let cls = 'ok', note = 'Owned';
+      if(own < want){ cls = 'miss'; note = own ? 'Need ' + (want-own) + ' more' : 'Not owned'; }
+      else if(st.club && own - other < want){ cls = 'warn'; note = 'Also in another deck'; }
+      return `<div class="dk-card ${cls}">${x.c && x.c.img ? `<img src="${escapeHtml(x.c.img)}" alt="" loading="lazy">` : '<span class="dk-noimg"></span>'}
+        <div class="dk-cn">${escapeHtml(x.c ? deckDisplayName(x.c) : x.k)}<small>${x.c ? escapeHtml(x.c.setCode + ' ' + (x.c.collectorNum||'')) : ''} &middot; ${note} (own ${own})</small></div>
+        <div class="dk-qty"><button onclick="deckAdd('${x.k.replace(/'/g,"\\'")}',-1)">&minus;</button><b>${want}</b><button onclick="deckAdd('${x.k.replace(/'/g,"\\'")}',1)">+</button></div></div>`;
+    }).join('') || '<div class="dk-dim">Search above to add cards.</div>';
+    let shop = '';
+    const missingCount = st.short.filter(s => s.kind==='missing').reduce((a,s)=>a+s.miss,0);
+    if(st.short.length){
+      if(st.club){
+        deckLoadPrices(d);
+        let total = 0;
+        const lines = st.short.map(s => { const c = deckCard(s.k); const p = DECK_PRICES[s.k]; if(p) total += p * s.miss;
+          return `<div class="dk-shop-row"><span>${s.miss}&times; ${escapeHtml(c ? deckDisplayName(c) : s.k)}${s.kind==='conflict' ? ' <small>(owned, used in another deck)</small>' : ''}</span><b>${p ? deckMoney(p * s.miss) : '&hellip;'}</b></div>`; }).join('');
+        shop = `<div class="dk-shop"><h4>Shopping list</h4>${lines}<div class="dk-shop-row dk-total"><span>Estimated total</span><b>${deckMoney(total)}</b></div></div>`;
+      } else {
+        shop = `<div class="dk-shop"><h4>Missing ${missingCount} card${missingCount===1?'':'s'}</h4><p class="dk-dim">The Collector Club shows exactly which cards you're missing, warns when a card is already in another deck, and builds a priced shopping list. <a href="#" onclick="event.preventDefault(); openMembershipChooser('tier1');">See memberships</a></p></div>`;
+      }
+    } else if(st.need){ shop = '<div class="dk-shop"><h4>Deck complete</h4><p class="dk-dim">You own every card in this deck.</p></div>'; }
+    main = `<div class="dk-head"><h3>${escapeHtml(d.name)}</h3><span class="dk-dim">${st.need} cards &middot; you own ${st.have}</span></div>
+      <div class="dk-bar"><i style="width:${st.need ? Math.round(100*st.have/st.need) : 0}%"></i></div>
+      <div class="dk-row">
+        <button class="dk-btn" onclick="deckRename()">Rename</button><button class="dk-btn" onclick="deckCopyText()">Copy list</button>
+        <button class="dk-btn" onclick="deckExportFile()">Download .txt</button><button class="dk-btn dk-danger" onclick="deckDelete()">Delete</button><span id="dkFlash" class="dk-dim"></span></div>
+      <input class="dk-input" id="dkSearch" placeholder="Search a card to add&hellip;" value="${escapeHtml(DECK_STATE.q)}" autocomplete="off">
+      <div class="dk-hits" id="dkHits">${deckSearchHtml(d)}</div>
+      <div class="dk-cards">${rows}</div>${shop}`;
+  }
+  panel.innerHTML = `<div class="dk-wrap"><div class="dk-side">
+      <div class="dk-row"><button class="dk-btn dk-primary" onclick="deckNew()">+ New deck</button><button class="dk-btn" onclick="deckImportOpen()">Import</button></div>
+      <div class="dk-decks">${side}</div>
+      <div class="dk-dim dk-lim">${decks.length}${lim < 999 ? ' / ' + lim : ''} decks</div>
+      ${decks.length ? '<button class="dk-btn" onclick="deckExportAll()">Export all decks</button>' : ''}
+    </div><div class="dk-main">${main}</div></div>`;
+  const s = document.getElementById('dkSearch');
+  if(s) s.addEventListener('input', () => { DECK_STATE.q = s.value; document.getElementById('dkHits').innerHTML = deckSearchHtml(d); });
+}
+(function(){ const go = () => { try{ deckEnsureUI(); }catch(e){} }; if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go(); setTimeout(go, 1500); })();
