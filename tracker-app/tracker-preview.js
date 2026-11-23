@@ -4104,6 +4104,37 @@ document.getElementById('exportBtn2').addEventListener('click', openExportGate);
 const SUPABASE_URL = 'https://jnxgkasdbzobwzyxiumg.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_cnsyWSOCpek5R1fjhf4o6Q_NP4rWyJI';
 
+// ---------- Anonymous click counter ----------
+// Saves only which button was clicked and where the visitor came from on this
+// site (e.g. "membership-popup"). No user id, email, IP or cookie. Totals show
+// in Supabase: Table Editor -> click_totals / click_daily.
+const CLICK_COUNTER_ON = false;
+function cleanSource(s){ return String(s || '').toLowerCase().replace(/[^a-z0-9/_-]/g, '').slice(0, 60); }
+const VISIT_SOURCE = (function(){
+  let src = '';
+  try{ src = sessionStorage.getItem('cbVisitSource') || ''; }catch(e){}
+  const from = new URLSearchParams(location.search).get('from');
+  if(from) src = cleanSource(from);
+  else if(!src){
+    try{
+      const r = document.referrer ? new URL(document.referrer) : null;
+      src = !r ? 'direct' : (r.hostname.replace(/^www\./,'') === location.hostname.replace(/^www\./,'') ? cleanSource(r.pathname) : 'external');
+    }catch(e){ src = 'direct'; }
+  }
+  try{ sessionStorage.setItem('cbVisitSource', src); }catch(e){}
+  return src;
+})();
+function trackClick(event, source){
+  if(!CLICK_COUNTER_ON) return;
+  try{
+    fetch(`${SUPABASE_URL}/rest/v1/click_events`, {
+      method: 'POST', keepalive: true,
+      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ event: event, source: cleanSource(source === undefined ? VISIT_SOURCE : source) })
+    }).catch(()=>{});
+  }catch(e){}
+}
+
 // Where Supabase sends people back to after confirming their email or
 // resetting their password. Uses this page's address when it's on the web;
 // the fallback is used when the file is opened from your computer.
@@ -4564,6 +4595,7 @@ if(sb){
     }
   });
 
+  document.getElementById('authSignupBtn').addEventListener('click', ()=>trackClick('signup_button'));
   document.getElementById('authSignupBtn').addEventListener('click', handleSignUp);
   document.getElementById('authLoginBtn').addEventListener('click', handleLogIn);
   document.getElementById('authLogoutBtn').addEventListener('click', handleLogOut);
@@ -4844,6 +4876,7 @@ applySalePricing();
   </div>
 </div>`;
     document.body.appendChild(ov);
+    trackClick('popup_shown', 'tracker-popup');
 
     const snow = ov.querySelector('.hs-snow'), glyphs = ['❄','❅','•','•'];
     for(let i=0;i<26;i++){
@@ -4867,9 +4900,10 @@ applySalePricing();
     }
     function onKey(e){ if(e.key === 'Escape') close(); }
     document.addEventListener('keydown', onKey);
-    ov.addEventListener('click', e=>{ if(e.target === ov) close(); });
-    ov.querySelector('.hs-close').addEventListener('click', close);
+    ov.addEventListener('click', e=>{ if(e.target === ov){ trackClick('popup_close', 'tracker-popup'); close(); } });
+    ov.querySelector('.hs-close').addEventListener('click', ()=>{ trackClick('popup_close', 'tracker-popup'); close(); });
     ov.querySelectorAll('.hs-btn').forEach(b=>b.addEventListener('click', ()=>{
+      trackClick(b.dataset.tier === 'tier2' ? 'popup_vip' : 'popup_club', 'tracker-popup');
       close();
       mcBilling = 'month';
       if(typeof openMembershipChooser === 'function') openMembershipChooser(b.dataset.tier);
@@ -4937,6 +4971,7 @@ function startCheckout(tier){
   applySalePricing();
   const base = CHECKOUT_LINKS[tier] && CHECKOUT_LINKS[tier][mcBilling];
   if(!base) return;
+  trackClick(`checkout_${tier === 'tier2' ? 'vip' : 'club'}_${mcBilling}`);
   // client_reference_id tells the webhook which Collection-Bound account paid.
   const url = `${base}?client_reference_id=${encodeURIComponent(currentUser.id)}`
             + (currentUser.email ? `&prefilled_email=${encodeURIComponent(currentUser.email)}` : '');
@@ -4946,7 +4981,7 @@ function startCheckout(tier){
   setSyncStatus('Finish checkout in the new tab — your tier updates when you come back.');
 }
 
-document.getElementById('joinChaseBtn').addEventListener('click', (e)=>{ e.preventDefault(); openMembershipChooser(); });
+document.getElementById('joinChaseBtn').addEventListener('click', (e)=>{ e.preventDefault(); trackClick('join_chase_button'); openMembershipChooser(); });
 document.getElementById('mcClose').addEventListener('click', closeMembershipChooser);
 document.getElementById('mcManage').addEventListener('click', openMembershipPortal);
 document.getElementById('membershipChooser').addEventListener('click', (e)=>{ if(e.target.id === 'membershipChooser') closeMembershipChooser(); });
@@ -4998,6 +5033,7 @@ function watchTierChange(seconds){
 async function handleJoinLink(){
   const hash = (location.hash || '').toLowerCase();
   if(!hash) return;
+  if(hash === '#signup' || hash.startsWith('#join')) trackClick('arrive_' + hash.slice(1).replace(/-/g,'_'));
   // Give a returning member's saved login a moment to load first.
   if(sb){ try{ await sb.auth.getSession(); }catch(e){} await new Promise(r=>setTimeout(r, 400)); }
   if(hash === '#signup'){
