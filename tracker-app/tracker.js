@@ -7022,14 +7022,14 @@ function deckValueHtml(d, club){
 }
 // Share links: the deck is packed into the link itself, so nothing is stored on a server.
 function deckEncode(d){
-  const o = { n: d.name, c: Object.keys(d.cards).map(k => k.replace('|','-') + ':' + d.cards[k]).join(',') };
+  const o = { n: d.name, c: Object.keys(d.cards).map(k => k.split('|').join('-') + ':' + d.cards[k]).join(',') };
   return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
 }
 function deckDecode(str){
   try{
     const o = JSON.parse(decodeURIComponent(escape(atob(String(str).replace(/-/g,'+').replace(/_/g,'/')))));
     const cards = {};
-    String(o.c||'').split(',').forEach(p => { const i = p.lastIndexOf(':'); if(i < 1) return; cards[p.slice(0,i).replace('-','|')] = +p.slice(i+1) || 0; });
+    String(o.c||'').split(',').forEach(p => { const i = p.lastIndexOf(':'); if(i < 1) return; const kk = p.slice(0,i), j = kk.indexOf('-'); if(j < 1) return; cards[kk.slice(0,j) + '|' + kk.slice(j+1)] = +p.slice(i+1) || 0; });
     const d = deckClean({ id:'shared', name: o.n, cards });
     return d && Object.keys(d.cards).length ? d : null;
   }catch(e){ return null; }
