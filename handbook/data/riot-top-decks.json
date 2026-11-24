@@ -1,5 +1,5 @@
 {
- "_about": "Decklists Riot published in its official 'Top Decks' / 'Best-of' posts on playriftbound.com, collected for the Starter Handbook's Legend Finder. Card names and quantities as Riot posted them. Rebuild the Legend Finder table after editing: python3 handbook/tools/build_legend_finder.py",
+ "_about": "Decklists from official Riftbound organized-play events: Riot's own 'Top Decks' / 'Best-of' posts on playriftbound.com, plus official events Riot doesn't post lists for (Riot China National/Regional Opens, Riot's Showdown Series), transcribed from Runes & Rift's Top 8 posts. Community-run events are never included. Rebuild after editing: python3 handbook/tools/build_legend_finder.py",
  "events": [
   {
    "id": "houston",
@@ -1935,7 +1935,8 @@
      ],
      "incomplete": false
     }
-   ]
+   ],
+   "source": "riot"
   },
   {
    "id": "bologna",
@@ -4562,7 +4563,8 @@
      ],
      "incomplete": false
     }
-   ]
+   ],
+   "source": "riot"
   },
   {
    "id": "vegas",
@@ -7310,7 +7312,8 @@
      ],
      "incomplete": false
     }
-   ]
+   ],
+   "source": "riot"
   },
   {
    "id": "lille",
@@ -9977,7 +9980,8 @@
      ],
      "incomplete": false
     }
-   ]
+   ],
+   "source": "riot"
   },
   {
    "id": "atlanta",
@@ -12459,7 +12463,8 @@
      ],
      "incomplete": false
     }
-   ]
+   ],
+   "source": "riot"
   },
   {
    "id": "sydney",
@@ -16053,7 +16058,8 @@
      ],
      "incomplete": false
     }
-   ]
+   ],
+   "source": "riot"
   },
   {
    "id": "vancouver",
@@ -19561,7 +19567,8 @@
      ],
      "incomplete": false
     }
-   ]
+   ],
+   "source": "riot"
   },
   {
    "id": "utrecht",
@@ -22969,7 +22976,8 @@
      ],
      "incomplete": false
     }
-   ]
+   ],
+   "source": "riot"
   },
   {
    "id": "barcelona",
@@ -26441,7 +26449,8 @@
      ],
      "incomplete": false
     }
-   ]
+   ],
+   "source": "riot"
   },
   {
    "id": "singapore",
@@ -29791,7 +29800,8 @@
      ],
      "incomplete": false
     }
-   ]
+   ],
+   "source": "riot"
   },
   {
    "id": "los-angeles",
@@ -32991,6 +33001,2834 @@
      ],
      "incomplete": false
     }
+   ],
+   "source": "riot"
+  },
+  {
+   "id": "showdown-murcia-2026",
+   "title": "Murcia Showdown – Riftbound Top 8 Decklists",
+   "url": "https://runesandrift.com/riftbound-showdown-murcia-top-8-decklists",
+   "published": "2026-10-05",
+   "event": "Showdown Murcia",
+   "winner_legend": "Kennen, Heart of the Tempest",
+   "top8_note": null,
+   "top8_known": null,
+   "source": "runesandrift",
+   "organizer": "Hosted by SpellNexus and produced by GGTech",
+   "players": 765,
+   "event_date": "October 3–4, 2026",
+   "decks": [
+    {
+     "player": "Javier D",
+     "legend": "Kennen, Heart of the Tempest",
+     "champion": "Kennen, Storm of Shuriken",
+     "top8": true,
+     "winner": true,
+     "overall_rank": 1,
+     "legend_players": null,
+     "main": [
+      [
+       1,
+       "Existential Dread"
+      ],
+      [
+       2,
+       "Ezreal, Prodigy"
+      ],
+      [
+       2,
+       "Fizz, Trickster"
+      ],
+      [
+       1,
+       "Flash"
+      ],
+      [
+       1,
+       "Gust"
+      ],
+      [
+       2,
+       "Last Rites"
+      ],
+      [
+       3,
+       "Lightning Rush"
+      ],
+      [
+       3,
+       "Rhasa the Sunderer"
+      ],
+      [
+       1,
+       "Ride the Wind"
+      ],
+      [
+       1,
+       "Salvage"
+      ],
+      [
+       3,
+       "Seal of Discord"
+      ],
+      [
+       3,
+       "Shadow Order Disciple"
+      ],
+      [
+       2,
+       "Star-Crossed"
+      ],
+      [
+       1,
+       "Switcheroo"
+      ],
+      [
+       3,
+       "Tail-Cloaked Matriarch"
+      ],
+      [
+       2,
+       "Tideturner"
+      ],
+      [
+       3,
+       "Tornado Warrior"
+      ],
+      [
+       3,
+       "Traveling Merchant"
+      ],
+      [
+       2,
+       "Up from the Deep"
+      ]
+     ],
+     "battlefields": [
+      "Minefield",
+      "Shadow Temple",
+      "Zaun Warrens"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "X2Y1 Zotta",
+     "legend": "Rengar, Pridestalker",
+     "champion": "Rengar, Trophy Hunter",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 2,
+     "legend_players": null,
+     "main": [
+      [
+       1,
+       "Brynhir Thundersong"
+      ],
+      [
+       2,
+       "Ferrous Forerunner"
+      ],
+      [
+       2,
+       "First Mate"
+      ],
+      [
+       2,
+       "Grim Apothecary"
+      ],
+      [
+       3,
+       "Inferna"
+      ],
+      [
+       3,
+       "Irresistible Faefolk"
+      ],
+      [
+       3,
+       "Kai'Sa, Survivor"
+      ],
+      [
+       3,
+       "Kinkou Initiate"
+      ],
+      [
+       3,
+       "Nidalee, Cat Form"
+      ],
+      [
+       3,
+       "Noxus Hopeful"
+      ],
+      [
+       3,
+       "Pit Rookie"
+      ],
+      [
+       3,
+       "Punch First"
+      ],
+      [
+       1,
+       "Pyke, Dockside Butcher"
+      ],
+      [
+       2,
+       "Rampage"
+      ],
+      [
+       2,
+       "Sabotage"
+      ],
+      [
+       3,
+       "Thrill of the Hunt"
+      ]
+     ],
+     "battlefields": [
+      "Emperor's Dais",
+      "Forbidding Waste",
+      "Star Spring"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "XeNonWoN",
+     "legend": "Fiora, Grand Duelist",
+     "champion": "Fiora, Victorious",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 3,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Dazzling Aurora"
+      ],
+      [
+       3,
+       "Divining Shells"
+      ],
+      [
+       2,
+       "Doran's Blade"
+      ],
+      [
+       3,
+       "Elder Dragon"
+      ],
+      [
+       1,
+       "Grim Resolve"
+      ],
+      [
+       2,
+       "Harnessed Dragon"
+      ],
+      [
+       3,
+       "Kayle, Justified"
+      ],
+      [
+       3,
+       "Punch First"
+      ],
+      [
+       3,
+       "Rampage"
+      ],
+      [
+       3,
+       "Rengar, Trophy Hunter"
+      ],
+      [
+       1,
+       "Repulse"
+      ],
+      [
+       3,
+       "Rift Herald"
+      ],
+      [
+       3,
+       "Riposte"
+      ],
+      [
+       3,
+       "Sacrifice"
+      ],
+      [
+       3,
+       "Shepherd's Heirloom"
+      ]
+     ],
+     "battlefields": [
+      "Amateur Recital",
+      "Risen Altar",
+      "Sunken Temple"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "HXN ElGranBoa",
+     "legend": "Irelia, Blade Dancer",
+     "champion": "Irelia, Fervent",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 4,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Boots of Swiftness"
+      ],
+      [
+       2,
+       "Charm"
+      ],
+      [
+       3,
+       "Defiant Dance"
+      ],
+      [
+       3,
+       "Defy"
+      ],
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       1,
+       "Edge of Night"
+      ],
+      [
+       2,
+       "En Garde"
+      ],
+      [
+       1,
+       "Flash"
+      ],
+      [
+       1,
+       "Guardian Angel"
+      ],
+      [
+       2,
+       "Gust"
+      ],
+      [
+       1,
+       "Not So Fast"
+      ],
+      [
+       2,
+       "Ride the Wind"
+      ],
+      [
+       3,
+       "Scuttle Crab"
+      ],
+      [
+       2,
+       "Star-Crossed"
+      ],
+      [
+       3,
+       "Stellacorn Herder"
+      ],
+      [
+       3,
+       "Tideturner"
+      ],
+      [
+       2,
+       "Vex, Apathetic"
+      ],
+      [
+       2,
+       "Zhonya's Hourglass"
+      ]
+     ],
+     "battlefields": [
+      "Abandoned Hall",
+      "Rockfall Path",
+      "Targon's Peak"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "Contre",
+     "legend": "Irelia, Blade Dancer",
+     "champion": "Irelia, Fervent",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 5,
+     "legend_players": null,
+     "main": [
+      [
+       1,
+       "Adaptatron"
+      ],
+      [
+       3,
+       "Astral Heron"
+      ],
+      [
+       2,
+       "Boots of Swiftness"
+      ],
+      [
+       3,
+       "Defiant Dance"
+      ],
+      [
+       3,
+       "Defy"
+      ],
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       1,
+       "Edge of Night"
+      ],
+      [
+       1,
+       "Evelynn, Entrancing"
+      ],
+      [
+       1,
+       "Gust"
+      ],
+      [
+       1,
+       "Not So Fast"
+      ],
+      [
+       1,
+       "Pyke, Returned"
+      ],
+      [
+       1,
+       "Rebuke"
+      ],
+      [
+       2,
+       "Ride the Wind"
+      ],
+      [
+       3,
+       "Scuttle Crab"
+      ],
+      [
+       1,
+       "Star-Crossed"
+      ],
+      [
+       3,
+       "Stellacorn Herder"
+      ],
+      [
+       2,
+       "Switcheroo"
+      ],
+      [
+       3,
+       "Tideturner"
+      ],
+      [
+       1,
+       "Vex, Apathetic"
+      ],
+      [
+       3,
+       "Zhonya's Hourglass"
+      ]
+     ],
+     "battlefields": [
+      "Abandoned Hall",
+      "Sunken Temple",
+      "Targon's Peak"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "TCR SesgoSesguez",
+     "legend": "Irelia, Blade Dancer",
+     "champion": "Irelia, Fervent",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 6,
+     "legend_players": null,
+     "main": [
+      [
+       1,
+       "Adaptatron"
+      ],
+      [
+       3,
+       "Astral Heron"
+      ],
+      [
+       2,
+       "Boots of Swiftness"
+      ],
+      [
+       3,
+       "Defiant Dance"
+      ],
+      [
+       3,
+       "Defy"
+      ],
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       1,
+       "Evelynn, Entrancing"
+      ],
+      [
+       1,
+       "Fizz, Trickster"
+      ],
+      [
+       1,
+       "Flash"
+      ],
+      [
+       1,
+       "Gust"
+      ],
+      [
+       1,
+       "Not So Fast"
+      ],
+      [
+       2,
+       "Rebuke"
+      ],
+      [
+       1,
+       "Ride the Wind"
+      ],
+      [
+       3,
+       "Scuttle Crab"
+      ],
+      [
+       2,
+       "Star-Crossed"
+      ],
+      [
+       3,
+       "Stellacorn Herder"
+      ],
+      [
+       1,
+       "Switcheroo"
+      ],
+      [
+       3,
+       "Tideturner"
+      ],
+      [
+       1,
+       "Traveling Merchant"
+      ],
+      [
+       3,
+       "Zhonya's Hourglass"
+      ]
+     ],
+     "battlefields": [
+      "Abandoned Hall",
+      "Forgotten Monument",
+      "Sigil of the Storm"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "KаmilGC",
+     "legend": "LeBlanc, Deceiver",
+     "champion": "LeBlanc, Fragmented",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 7,
+     "legend_players": null,
+     "main": [
+      [
+       1,
+       "Ashe, Focused"
+      ],
+      [
+       3,
+       "Baited Hook"
+      ],
+      [
+       3,
+       "Black Rose Dignitary"
+      ],
+      [
+       3,
+       "Glasc Mixologist"
+      ],
+      [
+       3,
+       "Harnessed Dragon"
+      ],
+      [
+       2,
+       "Hidden Blade"
+      ],
+      [
+       3,
+       "Karthus, Eternal"
+      ],
+      [
+       2,
+       "Mirror Image"
+      ],
+      [
+       3,
+       "Rift Herald"
+      ],
+      [
+       3,
+       "Ruined Rex"
+      ],
+      [
+       3,
+       "Sacrifice"
+      ],
+      [
+       3,
+       "Soaring Scout"
+      ],
+      [
+       1,
+       "Thousand-Tailed Watcher"
+      ],
+      [
+       3,
+       "Vi, Peacekeeper"
+      ],
+      [
+       3,
+       "Watchful Sentry"
+      ]
+     ],
+     "battlefields": [
+      "Dusk Rose Lab",
+      "Star Spring",
+      "Windswept Hillock"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "PlаymobilTCG",
+     "legend": "Irelia, Blade Dancer",
+     "champion": "Irelia, Fervent",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 8,
+     "legend_players": null,
+     "main": [
+      [
+       1,
+       "Adaptatron"
+      ],
+      [
+       1,
+       "Akali, Silent"
+      ],
+      [
+       3,
+       "Boots of Swiftness"
+      ],
+      [
+       2,
+       "Charm"
+      ],
+      [
+       3,
+       "Defiant Dance"
+      ],
+      [
+       3,
+       "Defy"
+      ],
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       2,
+       "En Garde"
+      ],
+      [
+       1,
+       "Gust"
+      ],
+      [
+       1,
+       "Irelia, Fervent"
+      ],
+      [
+       1,
+       "Not So Fast"
+      ],
+      [
+       1,
+       "Pyke, Returned"
+      ],
+      [
+       2,
+       "Ride the Wind"
+      ],
+      [
+       3,
+       "Scuttle Crab"
+      ],
+      [
+       2,
+       "Star-Crossed"
+      ],
+      [
+       3,
+       "Stellacorn Herder"
+      ],
+      [
+       3,
+       "Tideturner"
+      ],
+      [
+       1,
+       "Twilight Shroud"
+      ],
+      [
+       3,
+       "Zhonya's Hourglass"
+      ]
+     ],
+     "battlefields": [
+      "Abandoned Hall",
+      "Sunken Temple",
+      "Targon's Peak"
+     ],
+     "incomplete": false
+    }
+   ]
+  },
+  {
+   "id": "cn-chengdu-national-open-2026",
+   "title": "Riftbound Top 8 Decklists - Chengdu National Open",
+   "url": "https://runesandrift.com/chengdu-national-open-top-8-decklists",
+   "published": "2026-10-14",
+   "event": "China National Open (Chengdu)",
+   "winner_legend": "Azir, Emperor of the Sands",
+   "top8_note": null,
+   "top8_known": null,
+   "source": "runesandrift",
+   "organizer": null,
+   "players": 1835,
+   "event_date": "October 9–11, 2026",
+   "decks": [
+    {
+     "player": "燐川",
+     "legend": "Azir, Emperor of the Sands",
+     "champion": "Azir, Sovereign",
+     "top8": true,
+     "winner": true,
+     "overall_rank": 1,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Soul Sword"
+      ],
+      [
+       3,
+       "Doran's Shield"
+      ],
+      [
+       3,
+       "Brutalizer"
+      ],
+      [
+       3,
+       "Eye of the Herald"
+      ],
+      [
+       3,
+       "B.F. Sword"
+      ],
+      [
+       3,
+       "Arise!"
+      ],
+      [
+       3,
+       "Defy"
+      ],
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       3,
+       "Guards!"
+      ],
+      [
+       3,
+       "Hand Hammer"
+      ],
+      [
+       1,
+       "En Garde"
+      ],
+      [
+       2,
+       "Salvage"
+      ],
+      [
+       3,
+       "Vi, Peacekeeper"
+      ],
+      [
+       3,
+       "Back Off"
+      ]
+     ],
+     "battlefields": [
+      "Hall of Legends",
+      "Ornn's Forge",
+      "Trifarian War Camp"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "XXT.tqw",
+     "legend": "Vex, Gloomist",
+     "champion": "Vex, Apathetic",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 2,
+     "legend_players": null,
+     "main": [
+      [
+       1,
+       "Vex, Apathetic"
+      ],
+      [
+       3,
+       "Astral Heron"
+      ],
+      [
+       2,
+       "Evelynn, Entrancing"
+      ],
+      [
+       2,
+       "Star-Crossed"
+      ],
+      [
+       3,
+       "Switcheroo"
+      ],
+      [
+       1,
+       "Rebuke"
+      ],
+      [
+       3,
+       "Boots of Swiftness"
+      ],
+      [
+       1,
+       "Edge of Night"
+      ],
+      [
+       2,
+       "Defy"
+      ],
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       2,
+       "Back Off"
+      ],
+      [
+       3,
+       "Steel Paws"
+      ],
+      [
+       3,
+       "Scuttle Crab"
+      ],
+      [
+       3,
+       "Tornado Warrior"
+      ],
+      [
+       1,
+       "Gust"
+      ],
+      [
+       2,
+       "Clockwork Keeper"
+      ],
+      [
+       2,
+       "Zhonya's Hourglass"
+      ],
+      [
+       2,
+       "Ember Monk"
+      ]
+     ],
+     "battlefields": [
+      "Fortified Position",
+      "Forbidding Waste",
+      "Startipped Peak"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "纸传.晓镜",
+     "legend": "Nasus, Curator of the Sands",
+     "champion": "Nasus, Ascended",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 3,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Thousand-Tailed Watcher"
+      ],
+      [
+       3,
+       "Ravenbloom Student"
+      ],
+      [
+       3,
+       "Steel Paws"
+      ],
+      [
+       3,
+       "Scuttle Crab"
+      ],
+      [
+       1,
+       "Charm"
+      ],
+      [
+       3,
+       "Find Your Center"
+      ],
+      [
+       3,
+       "Defy"
+      ],
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       3,
+       "Temporal Breach"
+      ],
+      [
+       3,
+       "Stupefy"
+      ],
+      [
+       3,
+       "Retreat"
+      ],
+      [
+       1,
+       "Time Warp"
+      ],
+      [
+       2,
+       "Zhonya's Hourglass"
+      ],
+      [
+       2,
+       "Bellows Breath"
+      ],
+      [
+       1,
+       "Whiteflame Protector"
+      ],
+      [
+       2,
+       "Tasty Faefolk"
+      ]
+     ],
+     "battlefields": [
+      "Ripper's Bay",
+      "Rockfall Path",
+      "The Papertree"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "GAG imcute",
+     "legend": "Irelia, Blade Dancer",
+     "champion": "Irelia, Fervent",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 4,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Astral Heron"
+      ],
+      [
+       3,
+       "Scuttle Crab"
+      ],
+      [
+       1,
+       "Baron Nashor"
+      ],
+      [
+       3,
+       "Stellacorn Herder"
+      ],
+      [
+       3,
+       "Tideturner"
+      ],
+      [
+       3,
+       "Defiant Dance"
+      ],
+      [
+       1,
+       "Pyke, Returned"
+      ],
+      [
+       1,
+       "Fizz, Trickster"
+      ],
+      [
+       1,
+       "Star-Crossed"
+      ],
+      [
+       1,
+       "Not So Fast"
+      ],
+      [
+       1,
+       "Switcheroo"
+      ],
+      [
+       1,
+       "Flash"
+      ],
+      [
+       3,
+       "Defy"
+      ],
+      [
+       3,
+       "Find Your Center"
+      ],
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       1,
+       "Rebuke"
+      ],
+      [
+       2,
+       "Boots of Swiftness"
+      ],
+      [
+       1,
+       "Edge of Night"
+      ],
+      [
+       3,
+       "Zhonya's Hourglass"
+      ],
+      [
+       1,
+       "Back Off"
+      ]
+     ],
+     "battlefields": [
+      "Abandoned Hall",
+      "Sigil of the Storm",
+      "Sunken Temple"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "闪电家.乐事.阿迪打野",
+     "legend": "Kha'Zix, Voidreaver",
+     "champion": "Kha'Zix, Mutating Horror",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 5,
+     "legend_players": null,
+     "main": [
+      [
+       1,
+       "Rampage"
+      ],
+      [
+       3,
+       "Shadow Order Disciple"
+      ],
+      [
+       2,
+       "Tornado Warrior"
+      ],
+      [
+       2,
+       "Up from the Deep"
+      ],
+      [
+       2,
+       "Tail-Cloaked Matriarch"
+      ],
+      [
+       1,
+       "Zed, Without a Sound"
+      ],
+      [
+       3,
+       "Irresistible Faefolk"
+      ],
+      [
+       3,
+       "Nidalee, Cat Form"
+      ],
+      [
+       1,
+       "Rengar, Trophy Hunter"
+      ],
+      [
+       2,
+       "Star-Crossed"
+      ],
+      [
+       2,
+       "Vex, Apathetic"
+      ],
+      [
+       3,
+       "Void Assault"
+      ],
+      [
+       3,
+       "Punch First"
+      ],
+      [
+       1,
+       "Hard Bargain"
+      ],
+      [
+       3,
+       "Fizz, Trickster"
+      ],
+      [
+       2,
+       "Switcheroo"
+      ],
+      [
+       2,
+       "Sabotage"
+      ],
+      [
+       1,
+       "Ride the Wind"
+      ],
+      [
+       2,
+       "Traveling Merchant"
+      ]
+     ],
+     "battlefields": [
+      "Sandswept Tomb",
+      "Forbidding Waste",
+      "Star Spring"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "𝑲𝑫𝑿.山青知",
+     "legend": "Kennen, Heart of the Tempest",
+     "champion": "Kennen, Storm of Shuriken",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 6,
+     "legend_players": null,
+     "main": [
+      [
+       2,
+       "Ezreal, Prodigy"
+      ],
+      [
+       2,
+       "Fizz, Trickster"
+      ],
+      [
+       3,
+       "Shadow Order Disciple"
+      ],
+      [
+       3,
+       "Tail-Cloaked Matriarch"
+      ],
+      [
+       2,
+       "Tornado Warrior"
+      ],
+      [
+       1,
+       "Treasure Hunter"
+      ],
+      [
+       3,
+       "Traveling Merchant"
+      ],
+      [
+       3,
+       "Rhasa the Sunderer"
+      ],
+      [
+       1,
+       "Tideturner"
+      ],
+      [
+       2,
+       "Star-Crossed"
+      ],
+      [
+       1,
+       "Shadows of the Past"
+      ],
+      [
+       2,
+       "Gust"
+      ],
+      [
+       2,
+       "Flash"
+      ],
+      [
+       1,
+       "Switcheroo"
+      ],
+      [
+       2,
+       "Ride the Wind"
+      ],
+      [
+       1,
+       "Salvage"
+      ],
+      [
+       2,
+       "Last Rites"
+      ],
+      [
+       3,
+       "Seal of Discord"
+      ],
+      [
+       3,
+       "Lightning Rush"
+      ]
+     ],
+     "battlefields": [
+      "Minefield",
+      "Shadow Temple",
+      "Zaun Warrens"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "滔滔",
+     "legend": "Vex, Gloomist",
+     "champion": "Vex, Apathetic",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 7,
+     "legend_players": null,
+     "main": [
+      [
+       2,
+       "Evelynn, Entrancing"
+      ],
+      [
+       2,
+       "Irelia, Fervent"
+      ],
+      [
+       1,
+       "Tideturner"
+      ],
+      [
+       3,
+       "Switcheroo"
+      ],
+      [
+       3,
+       "Defy"
+      ],
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       3,
+       "Boots of Swiftness"
+      ],
+      [
+       2,
+       "Zhonya's Hourglass"
+      ],
+      [
+       3,
+       "Steel Paws"
+      ],
+      [
+       3,
+       "Tornado Warrior"
+      ],
+      [
+       1,
+       "Edge of Night"
+      ],
+      [
+       1,
+       "Gust Monk"
+      ],
+      [
+       1,
+       "Astral Heron"
+      ],
+      [
+       1,
+       "Rebuke"
+      ],
+      [
+       1,
+       "Pyke, Returned"
+      ],
+      [
+       1,
+       "Star-Crossed"
+      ],
+      [
+       1,
+       "Not So Fast"
+      ],
+      [
+       2,
+       "Scuttle Crab"
+      ],
+      [
+       1,
+       "Charm"
+      ],
+      [
+       1,
+       "Back Off"
+      ],
+      [
+       1,
+       "Pack of Wonders"
+      ],
+      [
+       1,
+       "Ride the Wind"
+      ],
+      [
+       1,
+       "Gust"
+      ]
+     ],
+     "battlefields": [
+      "Fortified Position",
+      "Trifarian War Camp",
+      "Bandle Tree"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "lovestorm",
+     "legend": "Irelia, Blade Dancer",
+     "champion": "Irelia, Fervent",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 8,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Defiant Dance"
+      ],
+      [
+       3,
+       "Zhonya's Hourglass"
+      ],
+      [
+       3,
+       "Boots of Swiftness"
+      ],
+      [
+       3,
+       "Tideturner"
+      ],
+      [
+       3,
+       "Astral Heron"
+      ],
+      [
+       3,
+       "Scuttle Crab"
+      ],
+      [
+       3,
+       "Stellacorn Herder"
+      ],
+      [
+       2,
+       "Pyke, Returned"
+      ],
+      [
+       1,
+       "Vex, Apathetic"
+      ],
+      [
+       1,
+       "Charm"
+      ],
+      [
+       3,
+       "Defy"
+      ],
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       2,
+       "Star-Crossed"
+      ],
+      [
+       1,
+       "Gust"
+      ],
+      [
+       1,
+       "Switcheroo"
+      ],
+      [
+       1,
+       "Ride the Wind"
+      ],
+      [
+       2,
+       "Rebuke"
+      ],
+      [
+       1,
+       "En Garde"
+      ]
+     ],
+     "battlefields": [
+      "Abandoned Hall",
+      "Sunken Temple",
+      "Targon's Peak"
+     ],
+     "incomplete": false
+    }
+   ]
+  },
+  {
+   "id": "showdown-sacramento-2026",
+   "title": "Riftbound Showdown Sacramento - Top 8 Decklists",
+   "url": "https://runesandrift.com/riftbound-showdown-sacramento-top-8-decklists",
+   "published": "2026-10-26",
+   "event": "Showdown Sacramento",
+   "winner_legend": "Riven, The Exile",
+   "top8_note": null,
+   "top8_known": null,
+   "source": "runesandrift",
+   "organizer": "Laughing Dragon Events",
+   "players": 755,
+   "event_date": null,
+   "decks": [
+    {
+     "player": "Nam Dang",
+     "legend": "Riven, The Exile",
+     "champion": "Riven, Broken Blade",
+     "top8": true,
+     "winner": true,
+     "overall_rank": 1,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Astral Heron"
+      ],
+      [
+       2,
+       "Battle Preparations"
+      ],
+      [
+       2,
+       "Bedeviling Stranger"
+      ],
+      [
+       3,
+       "Blade of the Exile"
+      ],
+      [
+       2,
+       "Blitzcrank, Impassive"
+      ],
+      [
+       3,
+       "Defy"
+      ],
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       2,
+       "Gust"
+      ],
+      [
+       1,
+       "Not So Fast"
+      ],
+      [
+       1,
+       "Rebuke"
+      ],
+      [
+       2,
+       "Reckless Innovator"
+      ],
+      [
+       3,
+       "Scuttle Crab"
+      ],
+      [
+       1,
+       "Star-Crossed"
+      ],
+      [
+       3,
+       "Stellacorn Herder"
+      ],
+      [
+       2,
+       "Switcheroo"
+      ],
+      [
+       3,
+       "Tideturner"
+      ],
+      [
+       3,
+       "Zhonya's Hourglass"
+      ]
+     ],
+     "battlefields": [
+      "Emperor's Dais",
+      "Rakelstake",
+      "Star Spring"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "Calvin Jin",
+     "legend": "Viktor, Herald of the Arcane",
+     "champion": "Viktor, Leader",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 2,
+     "legend_players": null,
+     "main": [
+      [
+       1,
+       "B.F. Sword"
+      ],
+      [
+       3,
+       "Bellows Breath"
+      ],
+      [
+       1,
+       "Blood Money"
+      ],
+      [
+       3,
+       "Carrion Dredger"
+      ],
+      [
+       3,
+       "Concert Poster"
+      ],
+      [
+       3,
+       "Cull the Weak"
+      ],
+      [
+       1,
+       "Facebreaker"
+      ],
+      [
+       3,
+       "Hidden Blade"
+      ],
+      [
+       3,
+       "Imperial Decree"
+      ],
+      [
+       1,
+       "Kennen, Keeper of Balance"
+      ],
+      [
+       1,
+       "Salvage"
+      ],
+      [
+       3,
+       "Shadow's Call"
+      ],
+      [
+       3,
+       "Sprite Burst"
+      ],
+      [
+       3,
+       "Sprite Fountain"
+      ],
+      [
+       3,
+       "Stupefy"
+      ],
+      [
+       1,
+       "Thousand-Tailed Watcher"
+      ],
+      [
+       3,
+       "Wages of Pain"
+      ]
+     ],
+     "battlefields": [
+      "Forbidding Waste",
+      "Ravenbloom Conservatory",
+      "Rockfall Path"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "Alex Gorica",
+     "legend": "Akali, Rogue Assassin",
+     "champion": "Akali, Deadly Weapon",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 3,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Astral Heron"
+      ],
+      [
+       2,
+       "Back Off"
+      ],
+      [
+       2,
+       "Blitzcrank, Impassive"
+      ],
+      [
+       1,
+       "Block"
+      ],
+      [
+       3,
+       "Defy"
+      ],
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       3,
+       "Falling Star"
+      ],
+      [
+       3,
+       "Kai'Sa, Survivor"
+      ],
+      [
+       3,
+       "Long Sword"
+      ],
+      [
+       1,
+       "Mischievous Marai"
+      ],
+      [
+       3,
+       "Mournful Witness"
+      ],
+      [
+       1,
+       "Not So Fast"
+      ],
+      [
+       1,
+       "Noxus Hopeful"
+      ],
+      [
+       3,
+       "Shuriken Flip"
+      ],
+      [
+       3,
+       "Stellacorn Herder"
+      ],
+      [
+       1,
+       "Tomb-Raider Barbara"
+      ],
+      [
+       3,
+       "Zhonya's Hourglass"
+      ]
+     ],
+     "battlefields": [
+      "Forgotten Monument",
+      "Sigil of the Storm",
+      "Void Gate"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "Bo Su",
+     "legend": "Riven, The Exile",
+     "champion": "Riven, Broken Blade",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 4,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Astral Heron"
+      ],
+      [
+       1,
+       "Baron Nashor"
+      ],
+      [
+       3,
+       "Bedeviling Stranger"
+      ],
+      [
+       3,
+       "Blade of the Exile"
+      ],
+      [
+       2,
+       "Blitzcrank, Impassive"
+      ],
+      [
+       3,
+       "Defy"
+      ],
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       2,
+       "Evelynn, Entrancing"
+      ],
+      [
+       2,
+       "Gust"
+      ],
+      [
+       1,
+       "Ki Burst"
+      ],
+      [
+       2,
+       "Rebuke"
+      ],
+      [
+       3,
+       "Reckless Innovator"
+      ],
+      [
+       2,
+       "Star-Crossed"
+      ],
+      [
+       3,
+       "Stellacorn Herder"
+      ],
+      [
+       3,
+       "Tideturner"
+      ],
+      [
+       3,
+       "Zhonya's Hourglass"
+      ]
+     ],
+     "battlefields": [
+      "Emperor's Dais",
+      "Hunters' Circle",
+      "Star Spring"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "Capt.Dewgong",
+     "legend": "Riven, The Exile",
+     "champion": "Riven, Broken Blade",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 5,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Astral Heron"
+      ],
+      [
+       1,
+       "Baron Nashor"
+      ],
+      [
+       3,
+       "Bedeviling Stranger"
+      ],
+      [
+       3,
+       "Blade of the Exile"
+      ],
+      [
+       1,
+       "Charm"
+      ],
+      [
+       3,
+       "Defy"
+      ],
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       1,
+       "Gust"
+      ],
+      [
+       1,
+       "Not So Fast"
+      ],
+      [
+       1,
+       "Rebuke"
+      ],
+      [
+       2,
+       "Reckless Innovator"
+      ],
+      [
+       1,
+       "Ride the Wind"
+      ],
+      [
+       2,
+       "Scuttle Crab"
+      ],
+      [
+       1,
+       "Star-Crossed"
+      ],
+      [
+       3,
+       "Stellacorn Herder"
+      ],
+      [
+       2,
+       "Switcheroo"
+      ],
+      [
+       2,
+       "Tideturner"
+      ],
+      [
+       1,
+       "Twilight Shroud"
+      ],
+      [
+       1,
+       "Vex, Apathetic"
+      ],
+      [
+       1,
+       "Vilemaw"
+      ],
+      [
+       3,
+       "Zhonya's Hourglass"
+      ]
+     ],
+     "battlefields": [
+      "Emperor's Dais",
+      "Hunters' Circle",
+      "Star Spring"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "Dylan Sumner",
+     "legend": "Kennen, Heart of the Tempest",
+     "champion": "Kennen, Storm of Shuriken",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 6,
+     "legend_players": null,
+     "main": [
+      [
+       1,
+       "An Offer You Can't Refuse"
+      ],
+      [
+       1,
+       "Carrion Dredger"
+      ],
+      [
+       1,
+       "Edge of Night"
+      ],
+      [
+       1,
+       "Fizz, Trickster"
+      ],
+      [
+       1,
+       "Flash"
+      ],
+      [
+       2,
+       "Gust"
+      ],
+      [
+       1,
+       "Hard Bargain"
+      ],
+      [
+       2,
+       "Last Rites"
+      ],
+      [
+       3,
+       "Lightning Rush"
+      ],
+      [
+       3,
+       "Nocturne, Horrifying"
+      ],
+      [
+       3,
+       "Reckless Innovator"
+      ],
+      [
+       3,
+       "Rhasa the Sunderer"
+      ],
+      [
+       3,
+       "Ride the Wind"
+      ],
+      [
+       3,
+       "Seal of Discord"
+      ],
+      [
+       1,
+       "Shadow Order Disciple"
+      ],
+      [
+       1,
+       "Star-Crossed"
+      ],
+      [
+       2,
+       "Switcheroo"
+      ],
+      [
+       1,
+       "Tideturner"
+      ],
+      [
+       3,
+       "Traveling Merchant"
+      ],
+      [
+       3,
+       "Trifarian Captain"
+      ]
+     ],
+     "battlefields": [
+      "Minefield",
+      "Ruined Monastery",
+      "Zaun Warrens"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "Arnon",
+     "legend": "Riven, The Exile",
+     "champion": "Riven, Broken Blade",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 7,
+     "legend_players": null,
+     "main": [],
+     "battlefields": [
+      "Emperor's Dais",
+      "Rakelstake",
+      "Star Spring"
+     ],
+     "incomplete": true
+    },
+    {
+     "player": "Daniel Vu",
+     "legend": "Rengar, Pridestalker",
+     "champion": "Rengar, Trophy Hunter",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 8,
+     "legend_players": null,
+     "main": [
+      [
+       2,
+       "Elnuk Herd"
+      ],
+      [
+       1,
+       "Ferrous Forerunner"
+      ],
+      [
+       2,
+       "First Mate"
+      ],
+      [
+       2,
+       "Grim Apothecary"
+      ],
+      [
+       3,
+       "Inferna"
+      ],
+      [
+       3,
+       "Irresistible Faefolk"
+      ],
+      [
+       3,
+       "Kai'Sa, Survivor"
+      ],
+      [
+       3,
+       "Kinkou Initiate"
+      ],
+      [
+       2,
+       "Nidalee, Cat Form"
+      ],
+      [
+       3,
+       "Noxus Hopeful"
+      ],
+      [
+       3,
+       "Pit Rookie"
+      ],
+      [
+       3,
+       "Punch First"
+      ],
+      [
+       2,
+       "Pyke, Dockside Butcher"
+      ],
+      [
+       2,
+       "Rampage"
+      ],
+      [
+       2,
+       "Sabotage"
+      ],
+      [
+       3,
+       "Thrill of the Hunt"
+      ]
+     ],
+     "battlefields": [
+      "Emperor's Dais",
+      "Seat of Power",
+      "Star Spring"
+     ],
+     "incomplete": false
+    }
+   ]
+  },
+  {
+   "id": "showdown-orlando-2026",
+   "title": "Riftbound Showdown Orlando – Top 8 Decklists",
+   "url": "https://runesandrift.com/riftbound-showdown-orlando-top-8-decklists",
+   "published": "2026-11-02",
+   "event": "Showdown Orlando",
+   "winner_legend": "Riven, The Exile",
+   "top8_note": null,
+   "top8_known": null,
+   "source": "runesandrift",
+   "organizer": "CoolStuffInc",
+   "players": 556,
+   "event_date": "October 31 to November 1, 2026",
+   "decks": [
+    {
+     "player": "MERC Koopastar",
+     "legend": "Riven, The Exile",
+     "champion": "Riven, Broken Blade",
+     "top8": true,
+     "winner": true,
+     "overall_rank": 1,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       3,
+       "Zhonya's Hourglass"
+      ],
+      [
+       3,
+       "Tideturner"
+      ],
+      [
+       3,
+       "Stellacorn Herder"
+      ],
+      [
+       3,
+       "Astral Heron"
+      ],
+      [
+       3,
+       "Reckless Innovator"
+      ],
+      [
+       3,
+       "Bedeviling Stranger"
+      ],
+      [
+       3,
+       "Blade of the Exile"
+      ],
+      [
+       2,
+       "Defy"
+      ],
+      [
+       2,
+       "Gust"
+      ],
+      [
+       2,
+       "Rebuke"
+      ],
+      [
+       2,
+       "Scuttle Crab"
+      ],
+      [
+       1,
+       "Not So Fast"
+      ],
+      [
+       1,
+       "Switcheroo"
+      ],
+      [
+       1,
+       "Star-Crossed"
+      ],
+      [
+       1,
+       "Baron Nashor"
+      ],
+      [
+       1,
+       "Battle Preparations"
+      ],
+      [
+       2,
+       "Blitzcrank, Impassive"
+      ]
+     ],
+     "battlefields": [
+      "Emperor's Dais",
+      "Star Spring",
+      "Rakelstake"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "Felipe",
+     "legend": "Riven, The Exile",
+     "champion": "Riven, Broken Blade",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 2,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Defy"
+      ],
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       3,
+       "Zhonya's Hourglass"
+      ],
+      [
+       3,
+       "Tideturner"
+      ],
+      [
+       3,
+       "Stellacorn Herder"
+      ],
+      [
+       3,
+       "Scuttle Crab"
+      ],
+      [
+       3,
+       "Astral Heron"
+      ],
+      [
+       3,
+       "Blade of the Exile"
+      ],
+      [
+       2,
+       "Gust"
+      ],
+      [
+       2,
+       "Switcheroo"
+      ],
+      [
+       2,
+       "Battle Preparations"
+      ],
+      [
+       2,
+       "Reckless Innovator"
+      ],
+      [
+       2,
+       "Bedeviling Stranger"
+      ],
+      [
+       1,
+       "Rebuke"
+      ],
+      [
+       1,
+       "Not So Fast"
+      ],
+      [
+       1,
+       "Star-Crossed"
+      ],
+      [
+       2,
+       "Blitzcrank, Impassive"
+      ]
+     ],
+     "battlefields": [
+      "Emperor's Dais",
+      "Star Spring",
+      "Rakelstake"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "LURK xSimo",
+     "legend": "Kha'Zix, Voidreaver",
+     "champion": "Kha'Zix, Mutating Horror",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 3,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Punch First"
+      ],
+      [
+       3,
+       "Irresistible Faefolk"
+      ],
+      [
+       3,
+       "Void Assault"
+      ],
+      [
+       3,
+       "Reckless Innovator"
+      ],
+      [
+       3,
+       "The Good Stuff"
+      ],
+      [
+       2,
+       "Traveling Merchant"
+      ],
+      [
+       2,
+       "Shadow Order Disciple"
+      ],
+      [
+       2,
+       "Up from the Deep"
+      ],
+      [
+       1,
+       "Sabotage"
+      ],
+      [
+       1,
+       "Gust"
+      ],
+      [
+       1,
+       "Ride the Wind"
+      ],
+      [
+       1,
+       "Tideturner"
+      ],
+      [
+       1,
+       "Hard Bargain"
+      ],
+      [
+       1,
+       "Switcheroo"
+      ],
+      [
+       1,
+       "Star-Crossed"
+      ],
+      [
+       1,
+       "Onslaught"
+      ],
+      [
+       1,
+       "Rampage"
+      ],
+      [
+       1,
+       "Bloodscent Swarm"
+      ],
+      [
+       2,
+       "Fizz, Trickster"
+      ],
+      [
+       2,
+       "Rengar, Trophy Hunter"
+      ],
+      [
+       2,
+       "Vex, Apathetic"
+      ],
+      [
+       2,
+       "Zed, Without a Sound"
+      ]
+     ],
+     "battlefields": [
+      "Forbidding Waste",
+      "Star Spring",
+      "Sandswept Tomb"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "Frosty",
+     "legend": "Kai'Sa, Daughter of the Void",
+     "champion": "Kai'Sa, Survivor",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 4,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Hextech Ray"
+      ],
+      [
+       3,
+       "Noxus Hopeful"
+      ],
+      [
+       3,
+       "Brynhir Thundersong"
+      ],
+      [
+       3,
+       "Falling Star"
+      ],
+      [
+       3,
+       "Lecturing Yordle"
+      ],
+      [
+       3,
+       "Stupefy"
+      ],
+      [
+       3,
+       "Thousand-Tailed Watcher"
+      ],
+      [
+       3,
+       "Temporal Breach"
+      ],
+      [
+       3,
+       "Bilgewater Tracker"
+      ],
+      [
+       2,
+       "Smoke Screen"
+      ],
+      [
+       2,
+       "Singularity"
+      ],
+      [
+       2,
+       "Time Warp"
+      ],
+      [
+       2,
+       "Bellows Breath"
+      ],
+      [
+       2,
+       "The Empyrean"
+      ],
+      [
+       1,
+       "Consult the Past"
+      ],
+      [
+       1,
+       "Brittle Steel"
+      ]
+     ],
+     "battlefields": [
+      "Void Gate",
+      "Rockfall Path",
+      "Frozen Fortress"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "TM2",
+     "legend": "Riven, The Exile",
+     "champion": "Riven, Broken Blade",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 5,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       3,
+       "Zhonya's Hourglass"
+      ],
+      [
+       3,
+       "Tideturner"
+      ],
+      [
+       3,
+       "Stellacorn Herder"
+      ],
+      [
+       3,
+       "Astral Heron"
+      ],
+      [
+       3,
+       "Blade of the Exile"
+      ],
+      [
+       3,
+       "Defy"
+      ],
+      [
+       3,
+       "Gust"
+      ],
+      [
+       2,
+       "Switcheroo"
+      ],
+      [
+       2,
+       "Scuttle Crab"
+      ],
+      [
+       2,
+       "Reckless Innovator"
+      ],
+      [
+       2,
+       "Bedeviling Stranger"
+      ],
+      [
+       2,
+       "Blitzcrank, Impassive"
+      ],
+      [
+       1,
+       "Rebuke"
+      ],
+      [
+       1,
+       "Traveling Merchant"
+      ],
+      [
+       1,
+       "Not So Fast"
+      ],
+      [
+       1,
+       "Star-Crossed"
+      ],
+      [
+       1,
+       "Battle Preparations"
+      ]
+     ],
+     "battlefields": [
+      "Emperor's Dais",
+      "Star Spring",
+      "Rakelstake"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "CTCG Relivia",
+     "legend": "Riven, The Exile",
+     "champion": "Riven, Broken Blade",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 6,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Discipline"
+      ],
+      [
+       3,
+       "Zhonya's Hourglass"
+      ],
+      [
+       3,
+       "Traveling Merchant"
+      ],
+      [
+       3,
+       "Tideturner"
+      ],
+      [
+       3,
+       "Stellacorn Herder"
+      ],
+      [
+       3,
+       "Astral Heron"
+      ],
+      [
+       3,
+       "Blade of the Exile"
+      ],
+      [
+       2,
+       "Defy"
+      ],
+      [
+       2,
+       "Gust"
+      ],
+      [
+       2,
+       "Switcheroo"
+      ],
+      [
+       2,
+       "Battle Preparations"
+      ],
+      [
+       2,
+       "Reckless Innovator"
+      ],
+      [
+       2,
+       "Bedeviling Stranger"
+      ],
+      [
+       2,
+       "Blitzcrank, Impassive"
+      ],
+      [
+       1,
+       "Rebuke"
+      ],
+      [
+       1,
+       "Not So Fast"
+      ],
+      [
+       1,
+       "Star-Crossed"
+      ],
+      [
+       1,
+       "Baron Nashor"
+      ]
+     ],
+     "battlefields": [
+      "Star Spring",
+      "Hunters' Circle",
+      "Rakelstake"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "Swagyolo420yea",
+     "legend": "Jayce, Defender of Tomorrow",
+     "champion": "Jayce, Brilliant Inventor",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 7,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Garbage Grabber"
+      ],
+      [
+       3,
+       "Flurry of Blades"
+      ],
+      [
+       3,
+       "Mobilize"
+      ],
+      [
+       3,
+       "Catalyst of Aeons"
+      ],
+      [
+       3,
+       "Dazzling Aurora"
+      ],
+      [
+       3,
+       "Bellows Breath"
+      ],
+      [
+       3,
+       "Gutter Palace"
+      ],
+      [
+       3,
+       "Elder Dragon"
+      ],
+      [
+       3,
+       "Dredge Up"
+      ],
+      [
+       3,
+       "Clairvoyance"
+      ],
+      [
+       3,
+       "Platewyrm Egg"
+      ],
+      [
+       2,
+       "Repulse"
+      ],
+      [
+       1,
+       "Progress Day"
+      ],
+      [
+       1,
+       "Sabotage"
+      ],
+      [
+       1,
+       "Temporal Breach"
+      ],
+      [
+       1,
+       "Avalanche"
+      ]
+     ],
+     "battlefields": [
+      "Sigil of the Storm",
+      "Forgotten Monument",
+      "Dragon Roost"
+     ],
+     "incomplete": false
+    },
+    {
+     "player": "Zapdos",
+     "legend": "Jayce, Defender of Tomorrow",
+     "champion": "Jayce, Brilliant Inventor",
+     "top8": true,
+     "winner": false,
+     "overall_rank": 8,
+     "legend_players": null,
+     "main": [
+      [
+       3,
+       "Mobilize"
+      ],
+      [
+       3,
+       "Catalyst of Aeons"
+      ],
+      [
+       3,
+       "Dazzling Aurora"
+      ],
+      [
+       3,
+       "Bellows Breath"
+      ],
+      [
+       3,
+       "Elder Dragon"
+      ],
+      [
+       3,
+       "Dredge Up"
+      ],
+      [
+       3,
+       "Clairvoyance"
+      ],
+      [
+       3,
+       "Platewyrm Egg"
+      ],
+      [
+       2,
+       "Garbage Grabber"
+      ],
+      [
+       2,
+       "Flurry of Blades"
+      ],
+      [
+       2,
+       "Sabotage"
+      ],
+      [
+       2,
+       "Sprite Burst"
+      ],
+      [
+       2,
+       "Gutter Palace"
+      ],
+      [
+       2,
+       "Temporal Breach"
+      ],
+      [
+       1,
+       "Progress Day"
+      ],
+      [
+       1,
+       "Rocket Barrage"
+      ],
+      [
+       1,
+       "Repulse"
+      ]
+     ],
+     "battlefields": [
+      "Sigil of the Storm",
+      "Forgotten Monument",
+      "The Papertree"
+     ],
+     "incomplete": false
+    }
    ]
   },
   {
@@ -35127,7 +37965,8 @@
      ],
      "incomplete": false
     }
-   ]
+   ],
+   "source": "riot"
   }
  ]
 }

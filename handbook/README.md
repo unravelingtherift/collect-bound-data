@@ -7,7 +7,7 @@ The live Starter Handbook on unravelingtherift.com loads from this folder.
 | `riftbound-starter-handbook.html` | The handbook itself. Edit this to change the live page. |
 | `squarespace-loader.html` | The small snippet pasted into the Starter Handbook's Page Settings → Advanced → Page Header Code Injection in Squarespace. It fetches the handbook from here, so it never needs to change. |
 | `riot-posts-reviewed.json` | Riot news posts already reviewed for the handbook, so the weekly update doesn't repeat them. |
-| `data/riot-top-decks.json` | Every decklist Riot published in its "Top Decks" / "Best-of" posts. The Legend Finder is built from it. |
+| `data/riot-top-decks.json` | Decklists from official Riftbound events: every list Riot published in its "Top Decks" / "Best-of" posts, plus Top 8 lists from official events Riot doesn't post (China National Open, Showdown Series) transcribed by Runes & Rift. Runes & Rift's own community events are never included. The Legend Finder is built from it. |
 | `data/china-results.json` | Official China event results (from 符文战场 graphics the owner sends as screenshots), used by the Legend Finder. |
 | `tools/build_legend_finder.py` | Rebuilds the Legend Finder table inside the handbook from the two data files, the card files and the handbook's ban list: `python3 handbook/tools/build_legend_finder.py` |
 | `tools/validate.mjs` | Safety check run before any update is proposed: `node handbook/tools/validate.mjs` |
