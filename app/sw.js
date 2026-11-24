@@ -12,13 +12,15 @@
  *   - the tracker code itself (tracker-app/ on jsDelivr): network first, cached copy only
  *     when offline, so merged tracker PRs show up in the app right away.
  */
-const CACHE_VERSION = 'cb-v3';
+const CACHE_VERSION = 'cb-v4';
 const SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 
 const SHELL_FILES = [
   '/',
   '/index.html',
+  '/handbook.html',
+  '/nav.js',
   '/offline.html',
   '/manifest.webmanifest',
   '/icons/icon-192.png',
@@ -67,11 +69,13 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(req)
         .then((res) => {
-          const copy = res.clone();
-          caches.open(SHELL_CACHE).then((c) => c.put('/index.html', copy));
+          if (res && res.ok) { const copy = res.clone(); caches.open(SHELL_CACHE).then((c) => c.put(req, copy)); }
           return res;
         })
-        .catch(async () => (await caches.match('/index.html')) || caches.match('/offline.html'))
+        .catch(async () =>
+          (await caches.match(req, { ignoreSearch: true })) ||
+          (url.pathname.includes('handbook') ? await caches.match('/handbook.html') : await caches.match('/index.html')) ||
+          caches.match('/offline.html'))
     );
     return;
   }
@@ -82,8 +86,8 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Tracker code: always try for the newest version first.
-  if (url.pathname.includes('/tracker-app/')) {
+  // Tracker and handbook code: always try for the newest version first.
+  if (url.pathname.includes('/tracker-app/') || url.pathname.includes('/handbook/')) {
     event.respondWith(
       fetch(req)
         .then((res) => {
