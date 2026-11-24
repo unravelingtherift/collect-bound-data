@@ -1,7 +1,7 @@
 """Builds and sends the daily click count email.
 Run by .github/workflows/daily-click-email.yml. Reads the counts as JSON on stdin.
 The address it sends to comes from the REPORT_EMAIL repository secret."""
-import json, os, sys, urllib.request, html, datetime
+import json, os, sys, urllib.request, urllib.error, html, datetime
 
 rows = json.loads(sys.stdin.read() or '[]')
 to = os.environ.get('REPORT_EMAIL', '')
@@ -51,7 +51,9 @@ page = (f"<div style='font-family:Arial,sans-serif;color:#222'>"
         f"(Daily click email). Counts are anonymous.</p></div>")
 
 if not key or not to:
-    print('RESEND_API_KEY or REPORT_EMAIL secret is not set yet, so no email was sent. Preview:\n')
+    missing = ', '.join(n for n, v in (('RESEND_API_KEY', key), ('REPORT_EMAIL', to)) if not v)
+    print(f'::warning title=No email sent::Missing secret(s): {missing}')
+    print('Preview:\n')
     print(page)
     sys.exit(0)
 
@@ -62,5 +64,13 @@ req = urllib.request.Request(
                    'html': page}).encode(),
   headers={'Authorization': f'Bearer {key}', 'Content-Type': 'application/json',
            'User-Agent': 'collection-bound-click-email'})
-with urllib.request.urlopen(req) as r:
-    print('Sent:', r.status, r.read().decode())
+try:
+    with urllib.request.urlopen(req) as r:
+        print('Sent:', r.status, r.read().decode())
+except urllib.error.HTTPError as e:
+    detail = e.read().decode(errors='replace')[:300].replace('\n', ' ')
+    print(f'::error title=Resend refused the email::HTTP {e.code}: {detail}')
+    sys.exit(1)
+except Exception as e:
+    print(f'::error title=Could not reach Resend::{type(e).__name__}: {e}')
+    sys.exit(1)

@@ -25,4 +25,8 @@ jobs:
           REPORT_EMAIL: ${{ secrets.REPORT_EMAIL }}
         run: |
           if [ -z "$DB" ]; then echo "SUPABASE_DB_URL secret is not set."; exit 1; fi
-          psql "$DB" -v ON_ERROR_STOP=1 -At -f tools/click_counts.sql | python3 tools/click_email.py
+          if ! out=$(psql "$DB" -v ON_ERROR_STOP=1 -At -f tools/click_counts.sql 2>&1); then
+            echo "::error title=Database query failed::$(echo "$out" | tr '\n' ' ' | cut -c1-300)"
+            exit 1
+          fi
+          echo "$out" | python3 tools/click_email.py
