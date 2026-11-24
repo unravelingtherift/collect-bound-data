@@ -7099,7 +7099,7 @@ function deckEnsureUI(){
   if(document.getElementById('decksPanel')) return true;
   const last = TABS.filter(t => document.getElementById(t.btn) && document.getElementById(t.panel)).pop();
   const tb = document.getElementById('tabBinderBtn') || (last && document.getElementById(last.btn)), bp = document.getElementById('binderPanel') || (last && document.getElementById(last.panel));
-  if(!tb || !bp || !tb.parentNode || !bp.parentNode) return false;
+  if(!tb || !bp || !tb.parentNode || !bp.parentNode){ DECK_STATE.why = 'tab bar not found (' + (tb ? 'tab ok' : 'no tab button') + ', ' + (bp ? 'panel ok' : 'no panel') + ')'; return false; }
   const btn = document.createElement('button');
   btn.className = tb.className.replace(/\bactive\b/,'').trim(); btn.id = 'tabDecksBtn'; btn.type = 'button';
   btn.innerHTML = 'Decks <span class="tab-new" data-new-until="2026-12-31">NEW</span>';
@@ -7225,12 +7225,22 @@ function renderDecks(){
   const s = document.getElementById('dkSearch');
   if(s) s.addEventListener('input', () => { DECK_STATE.q = s.value; document.getElementById('dkHits').innerHTML = deckSearchHtml(d); });
 }
+// Add ?decks=debug to the page address to see a note when the Decks tab could not start.
+function deckDebugNote(){
+  try{
+    if(!/decks=debug/.test(location.search) || document.getElementById('tabDecksBtn')) return;
+    const n = document.createElement('div');
+    n.style.cssText = 'margin:8px auto;max-width:900px;padding:10px 14px;border:1px solid #d55;border-radius:8px;background:#2a1418;color:#fff;font:13px sans-serif';
+    n.textContent = 'Decks tab did not start: ' + (DECK_STATE.why || 'unknown reason') + '. Script version: decks-debug-1.';
+    const app = document.getElementById('collectBoundApp') || document.body; app.insertBefore(n, app.firstChild);
+  }catch(e){}
+}
 // Keep trying until the tab bar exists (some pages build it after this script runs), then stop.
 (function(){
   let n = 0;
   const go = () => { try{ if(deckEnsureUI()) return true; }catch(e){ console.warn('[Collection-Bound] decks tab', e); } return false; };
-  if(go()) return;
-  const t = setInterval(() => { if(go() || ++n > 60) clearInterval(t); }, 500);
+  if(go()){ if(/decks=debug/.test(location.search)) setTimeout(() => { const m = document.createElement('div'); m.style.cssText = 'margin:8px auto;max-width:900px;padding:8px 14px;border:1px solid #4a9;border-radius:8px;background:#102a20;color:#fff;font:13px sans-serif'; m.textContent = 'Decks tab started. Script version: decks-debug-1.'; (document.getElementById('collectBoundApp') || document.body).insertBefore(m, (document.getElementById('collectBoundApp') || document.body).firstChild); }, 200); return; }
+  const t = setInterval(() => { if(go() || ++n > 60){ clearInterval(t); if(n > 60) deckDebugNote(); } }, 500);
   document.addEventListener('DOMContentLoaded', go);
   window.addEventListener('load', go);
 })();
