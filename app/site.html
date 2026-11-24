@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Collection-Bound</title>
+<meta name="theme-color" content="#0e111e">
+<meta name="robots" content="noindex">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+  html, body { margin: 0; height: 100%; background: #140f24; overflow: hidden; }
+  #cb-site-frame {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    top: calc(var(--cb-appbar-h) + 26px);
+    width: 100%; height: calc(100% - var(--cb-appbar-h) - 26px);
+    border: 0; background: #140f24;
+  }
+  #cb-site-strip {
+    position: fixed; left: 0; right: 0; top: var(--cb-appbar-h); height: 26px; z-index: 80;
+    display: flex; align-items: center; justify-content: flex-end; padding: 0 12px;
+    background: #0e111e; font: 12px Georgia, serif; color: #8f8a7d;
+  }
+  #cb-site-strip a { color: #d4af5f; text-decoration: none; }
+</style>
+<script src="/nav.js"></script>
+</head>
+<body>
+<div id="cb-site-strip"><a id="cb-site-open" href="#" target="_blank" rel="noopener">Open in browser ↗</a></div>
+<iframe id="cb-site-frame" title="Unraveling the Rift" allow="fullscreen; clipboard-write"></iframe>
+<script>
+/* Lore Codex and Play Simulator live on the Squarespace site. Until their code is
+   in the repo, the app shows the site's page here, under the app's top bar, so
+   Tracker and Handbook are always one tap away. */
+(function () {
+  var SITE = 'https://www.unravelingtherift.com';
+  var PAGES = {
+    lore: { path: '/lore', title: 'Lore Codex' },
+    simulator: { path: '/riftbound-play-tutorial-simulator', title: 'Play Simulator' }
+  };
+  var key = new URLSearchParams(location.search).get('p');
+  var page = PAGES[key] || PAGES.lore;
+  var url = SITE + page.path;
+  document.title = page.title + ' · Collection-Bound';
+  document.getElementById('cb-site-frame').src = url;
+  document.getElementById('cb-site-open').href = url;
+})();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
+}
+</script>
+</body>
+</html>

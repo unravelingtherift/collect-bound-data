@@ -8,7 +8,8 @@ Play app and the Apple App Store app.
 | --- | --- |
 | `index.html` | The app page. Loads the same tracker files as the website (`tracker-app/tracker-markup.html`, `tracker.css`, `tracker.js`), so merged tracker PRs reach the app automatically. |
 | `handbook.html` | The Starter Handbook, loaded from `handbook/riftbound-starter-handbook.html` (same file as the website). |
-| `nav.js` | The top bar: Tracker and Handbook in the app; Lore and Simulator open the website until their code is in this repo. |
+| `nav.js` | The top bar: Tracker, Handbook, Lore, Simulator. |
+| `site.html` | Shows the website's Lore Codex or Play Simulator under the top bar (`?p=lore`, `?p=simulator`) until their code is in this repo. |
 | `manifest.webmanifest` | Name, colors and icons phones use when the app is installed. |
 | `sw.js` | Offline support. Caches set lists and card images. Never caches Supabase, Stripe, PayPal or Patreon. |
 | `offline.html` | Shown if the app is opened with no connection before it's ever loaded. |

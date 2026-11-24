@@ -12,7 +12,7 @@
  *   - the tracker code itself (tracker-app/ on jsDelivr): network first, cached copy only
  *     when offline, so merged tracker PRs show up in the app right away.
  */
-const CACHE_VERSION = 'cb-v4';
+const CACHE_VERSION = 'cb-v5';
 const SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 
@@ -21,6 +21,7 @@ const SHELL_FILES = [
   '/index.html',
   '/handbook.html',
   '/nav.js',
+  '/site.html',
   '/offline.html',
   '/manifest.webmanifest',
   '/icons/icon-192.png',

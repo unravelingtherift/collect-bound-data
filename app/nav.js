@@ -1,21 +1,22 @@
 /* Collection-Bound app: top bar for moving between sections.
  *
- * In the app:   Tracker (index.html), Handbook (handbook.html)
- * On the site:  Lore Codex, Play Simulator (open in the phone's browser until
- *               their code lives in the repo like the tracker and handbook)
+ * Tracker (index.html), Handbook (handbook.html), and Lore Codex / Play Simulator
+ * (site.html, which shows those website pages under this bar until their code
+ * lives in the repo like the tracker and handbook).
  *
  * Height is exposed as --cb-appbar-h so pages can leave room for it.
  */
 (function () {
-  var SITE = 'https://www.unravelingtherift.com';
-  var ITEMS = [
+    var ITEMS = [
     { label: 'Tracker',   href: '/',               page: 'tracker'  },
     { label: 'Handbook',  href: '/handbook.html',  page: 'handbook' },
-    { label: 'Lore',      href: SITE + '/lore',    external: true },
-    { label: 'Simulator', href: SITE + '/riftbound-play-simulator', external: true }
+    { label: 'Lore',      href: '/site.html?p=lore',      page: 'lore' },
+    { label: 'Simulator', href: '/site.html?p=simulator', page: 'simulator' }
   ];
 
-  var current = /handbook/.test(location.pathname) ? 'handbook' : 'tracker';
+  var current = /handbook/.test(location.pathname) ? 'handbook'
+    : /site\.html/.test(location.pathname) ? (new URLSearchParams(location.search).get('p') || 'lore')
+    : 'tracker';
 
   var css = document.createElement('style');
   css.textContent =
