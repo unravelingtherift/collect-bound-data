@@ -6023,8 +6023,12 @@ function findCardForMover(m){
 function findPromoForMover(m){
   const norm = s => String(s||'').toLowerCase().replace(/\(.*?\)/g,'').replace(/[^a-z0-9]/g,'');
   const num = String(m.collector_number||'').toLowerCase().replace(/^([a-z]*)0+(?=\d)/,'$1');
-  return ITEMS.find(i=>i.language==='English' && i.img &&
-    String(i.collectorNum||'').toLowerCase().replace(/^([a-z]*)0+(?=\d)/,'$1') === num && norm(i.name) === norm(m.name)) || null;
+  const hit = ITEMS.find(i=>i.language==='English' && i.img &&
+    String(i.collectorNum||'').toLowerCase().replace(/^([a-z]*)0+(?=\d)/,'$1') === num && norm(i.name) === norm(m.name));
+  if(hit) return hit;
+  // Promos without a collector number (like the Prize Wall battlefields): match by set and name when exactly one fits.
+  const same = ITEMS.filter(i=>i.language==='English' && i.img && (!i.set || i.set === m.set_code) && norm(i.name) === norm(m.name) && !/^\d/.test(String(i.collectorNum||'')));
+  return same.length === 1 ? same[0] : null;
 }
 
 function priceLinksHtml(body, label){
