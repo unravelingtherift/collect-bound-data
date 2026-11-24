@@ -1,0 +1,135 @@
+{
+ "_about": "Official China (符文战场 / Riot Games & Shining Soul) event results the owner sends as screenshots, because the official Chinese posts live on apps that can't be read automatically (Bilibili, Weibo, Exchange Society). Only rows that could be read with confidence are entered; Legend names are matched from their Chinese titles. players = players on that Legend, advanced = how many made Day 2.",
+ "events": [
+  {
+   "id": "cn-s5-ningbo-ro-day1",
+   "event": "China Regional Open, Season 5 (Ningbo), Day 1",
+   "date": null,
+   "source": "Official 符文战场 results graphic (screenshot sent by the owner, Nov 24, 2026)",
+   "total_players": 1280,
+   "legends": [
+    {
+     "legend": "Riven, The Exile",
+     "cn": "放逐之刃",
+     "players": 238,
+     "advanced": 18
+    },
+    {
+     "legend": "Kennen, Heart of the Tempest",
+     "cn": "狂暴之心",
+     "players": 115,
+     "advanced": 8
+    },
+    {
+     "legend": "Kai'Sa, Daughter of the Void",
+     "cn": "虚空之女",
+     "players": 99,
+     "advanced": 7
+    },
+    {
+     "legend": "Evelynn, Agony's Embrace",
+     "cn": "痛苦之拥",
+     "players": 61,
+     "advanced": 4
+    },
+    {
+     "legend": "Orianna, Lady of Clockwork",
+     "cn": "发条魔灵",
+     "players": 44,
+     "advanced": 3
+    },
+    {
+     "legend": "Jayce, Defender of Tomorrow",
+     "cn": "未来守护者",
+     "players": 44,
+     "advanced": 3
+    },
+    {
+     "legend": "Seraphine, Starry-Eyed Songstress",
+     "cn": "星籁歌姬",
+     "players": 41,
+     "advanced": 3
+    },
+    {
+     "legend": "Mordekaiser, Iron Revenant",
+     "cn": "铁铠冥魂",
+     "players": 41,
+     "advanced": 3
+    },
+    {
+     "legend": "Lillia, Bashful Bloom",
+     "cn": "含羞蓓蕾",
+     "players": 38,
+     "advanced": 2
+    },
+    {
+     "legend": "Rek'Sai, Void Burrower",
+     "cn": "虚空遁地兽",
+     "players": 36,
+     "advanced": 2
+    },
+    {
+     "legend": "LeBlanc, Deceiver",
+     "cn": "诡术妖姬",
+     "players": 31,
+     "advanced": 2
+    },
+    {
+     "legend": "Master Yi, Wuju Bladesman",
+     "cn": "无极剑圣",
+     "players": 28,
+     "advanced": 2
+    },
+    {
+     "legend": "Nasus, Curator of the Sands",
+     "cn": "沙漠死神",
+     "players": 26,
+     "advanced": 2
+    },
+    {
+     "legend": "Jarvan IV, Exemplar of Demacia",
+     "cn": "德玛西亚皇子",
+     "players": 21,
+     "advanced": 1
+    },
+    {
+     "legend": "Master Yi, Wuju Master",
+     "cn": "无极宗师",
+     "players": 21,
+     "advanced": 1
+    },
+    {
+     "legend": "Diana, Scorn of the Moon",
+     "cn": "皎月女神",
+     "players": 21,
+     "advanced": 1
+    },
+    {
+     "legend": "Akali, Rogue Assassin",
+     "cn": "离群之刺",
+     "players": 21,
+     "advanced": 1
+    },
+    {
+     "legend": "Ziggs, Hexplosives Expert",
+     "cn": "爆破鬼才",
+     "players": 19,
+     "advanced": 1
+    },
+    {
+     "legend": "K'Sante, Pride of Nazumah",
+     "cn": "纳祖芒荣耀",
+     "players": 19,
+     "advanced": 1
+    },
+    {
+     "legend": "Pyke, Bloodharbor Ripper",
+     "cn": "血港鬼影",
+     "players": 18,
+     "advanced": 1
+    }
+   ],
+   "not_entered": "Four rows on the graphic (45, 35, 17 and 17 players) weren't readable enough to match to a Legend, so they're left out."
+  }
+ ]
+}

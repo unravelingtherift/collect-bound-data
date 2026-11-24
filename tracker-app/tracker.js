@@ -7098,6 +7098,24 @@ function deckSharedClose(keep){ DECK_STATE.shared = null; try{ history.replaceSt
     }
   }, 500);
 })();
+// Links from the Starter Handbook's Legend Finder: #card=SET-NUMBER opens that card
+// (English printing) in the Card Sets tab, so visitors can see it, its price and other languages.
+(function(){
+  const m = (location.hash || '').match(/card=([A-Za-z0-9]+)-([A-Za-z0-9]+)/);
+  if(!m) return;
+  const set = m[1].toUpperCase(), num = m[2].toLowerCase().replace(/^0+(?=\d)/,'');
+  let tries = 0;
+  const t = setInterval(() => {
+    if(++tries > 80){ clearInterval(t); return; }
+    if(typeof openCardModal !== 'function' || !CARDS.length) return;
+    clearInterval(t);
+    const same = c => String(c.setCode||'').toUpperCase() === set && String(c.collectorNum||'').toLowerCase().replace(/^0+(?=\d)/,'') === num;
+    const card = CARDS.find(c => same(c) && c.language === 'English') || CARDS.find(same);
+    if(!card) return;
+    if(typeof switchTab === 'function' && document.getElementById('tabSetBtn')) switchTab('tabSetBtn');
+    openCardModal(card.id);
+  }, 500);
+})();
 function deckMoney(n){ return '$' + (Number(n)||0).toFixed(2); }
 function deckEnsureUI(){
   if(document.getElementById('decksPanel') && document.getElementById('tabDecksBtn')) return true;
