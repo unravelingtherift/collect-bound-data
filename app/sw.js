@@ -9,9 +9,10 @@
  *   - Supabase (logins, binders, prices), Stripe, PayPal, Patreon. Those always go
  *     straight to the network so nobody ever sees someone else's data or a stale price.
  *
- * Bump CACHE_VERSION whenever the tracker code changes so phones pick up the new build.
+ *   - the tracker code itself (tracker-app/ on jsDelivr): network first, cached copy only
+ *     when offline, so merged tracker PRs show up in the app right away.
  */
-const CACHE_VERSION = 'cb-v1';
+const CACHE_VERSION = 'cb-v2';
 const SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 
@@ -78,6 +79,19 @@ self.addEventListener('fetch', (event) => {
   // Our own files: cache first, update in the background.
   if (url.origin === self.location.origin) {
     event.respondWith(staleWhileRevalidate(req, SHELL_CACHE));
+    return;
+  }
+
+  // Tracker code: always try for the newest version first.
+  if (url.pathname.includes('/tracker-app/')) {
+    event.respondWith(
+      fetch(req)
+        .then((res) => {
+          if (res && res.ok) { const copy = res.clone(); caches.open(DATA_CACHE).then((c) => c.put(req, copy)); }
+          return res;
+        })
+        .catch(() => caches.match(req))
+    );
     return;
   }
 

@@ -6,7 +6,7 @@ Play app and the Apple App Store app.
 
 | File | What it does |
 | --- | --- |
-| `index.html` | The app page. The tracker code goes between `CB-TRACKER-START` and `CB-TRACKER-END`. |
+| `index.html` | The app page. Loads the same tracker files as the website (`tracker-app/tracker-markup.html`, `tracker.css`, `tracker.js`), so merged tracker PRs reach the app automatically. |
 | `manifest.webmanifest` | Name, colors and icons phones use when the app is installed. |
 | `sw.js` | Offline support. Caches set lists and card images. Never caches Supabase, Stripe, PayPal or Patreon. |
 | `offline.html` | Shown if the app is opened with no connection before it's ever loaded. |
@@ -16,7 +16,7 @@ Play app and the Apple App Store app.
 
 ## Stage 1: put the app online
 
-1. Paste the tracker code into `index.html` (Claude can do this once it has the code).
+1. Done: the app loads the live tracker files.
 2. Cloudflare (free plan) → Workers & Pages → Create → Pages → Connect to Git →
    `unravelingtherift/collect-bound-data`.
    - Framework preset: None
@@ -27,10 +27,16 @@ Play app and the Apple App Store app.
 4. Supabase → Authentication → URL Configuration → add
    `https://app.unravelingtherift.com/**` to Redirect URLs so sign-up and password reset
    emails can send people back to the app.
-5. If any Edge Function only allows `unravelingtherift.com` as an origin
-   (`get-promos`, `convert-tcg-price`), add `https://app.unravelingtherift.com`.
+5. Done: all six Supabase functions accept `https://app.unravelingtherift.com`.
+   If CAPTCHA (Turnstile) is turned on later, add `app.unravelingtherift.com` to its hostnames.
 6. Open `app.unravelingtherift.com` on a phone, then use Add to Home Screen. It should open
    full screen with the Collection-Bound icon.
+
+## Changing the tracker layout
+
+The page layout (tabs, panels, buttons) lives in `tracker-app/tracker-markup.html`. The website's
+Squarespace loader still has its own copy of the layout, so a layout change goes in both places
+until the loader is switched to load this file too.
 
 ## Stage 2: Google Play
 

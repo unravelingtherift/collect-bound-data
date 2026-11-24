@@ -17,11 +17,15 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Collection-Bound">
 
+<!-- The app loads the same tracker files as the website, so every merged
+     tracker PR shows up here too. Nothing to copy by hand. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/tracker-app/tracker.css">
+
 <script>
-  /* App mode flag. The tracker can check window.CB_APP to:
-   *   - drop the Squarespace header offset (there's no Squarespace header in the app)
-   *   - open membership / store / affiliate links in the phone's browser
-   */
   window.CB_APP = {
     isApp: true,
     site: 'https://www.unravelingtherift.com',
@@ -32,58 +36,77 @@
 <style>
   html, body { margin: 0; background: #0e111e; min-height: 100%; }
   body {
-    /* keep content clear of the notch and the home bar */
     padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior-y: none;
   }
-  /* The tracker uses CSS offset variables to sit under Squarespace's header.
-     The app has no Squarespace header, so once the tracker is pasted in,
-     set those offset variables to 0px here. */
+  /* No Squarespace header in the app, so the sticky filter bar sits at the top. */
+  #collectBoundApp { --embed-header-offset: 0px; }
+  /* "Phone app coming soon" badge: you're in the app already. */
+  #collectBoundApp .app-soon { display: none !important; }
 
-  #cb-app-placeholder {
+  #cb-app-loading {
     min-height: 100vh; display: flex; flex-direction: column; align-items: center;
     justify-content: center; gap: 18px; color: #bdb6a4; font-family: Georgia, serif; text-align: center; padding: 24px;
   }
-  #cb-app-placeholder img { width: min(340px, 82vw); height: auto; }
+  #cb-app-loading img { width: min(340px, 82vw); height: auto; }
+  #cb-app-loading button { background: #d4af5f; color: #0e111e; border: 0; border-radius: 6px; padding: 12px 22px; font-size: 1rem; font-weight: bold; }
 </style>
 </head>
 <body>
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
-<!-- =====================================================================
-     TRACKER GOES HERE
-     Paste everything from the tracker page's Settings → Advanced →
-     Code Injection between these two markers (the <style>, the
-     #collection-bound markup and the <script> tags), then delete the
-     placeholder div below.
-     ===================================================================== -->
-<!-- CB-TRACKER-START -->
-<div id="cb-app-placeholder">
+<div id="cb-app-loading">
   <img src="/icons/icon-512.png" alt="Collection-Bound">
-  <div>App shell is live. Tracker code drops in here next.</div>
+  <div id="cb-app-loading-msg">Loading your binder…</div>
 </div>
-<!-- CB-TRACKER-END -->
 
 <script>
-  // Offline support + "Add to Home Screen"
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js').catch(() => {});
-    });
+(function () {
+  var BASE = 'https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/tracker-app/';
+  var loading = document.getElementById('cb-app-loading');
+
+  function fail() {
+    document.getElementById('cb-app-loading-msg').textContent =
+      "Couldn't load Collection-Bound. Check your connection and try again.";
+    var b = document.createElement('button');
+    b.textContent = 'Try again';
+    b.onclick = function () { location.reload(); };
+    loading.appendChild(b);
   }
 
-  // Links that leave the app (membership, Riot stores, TCGplayer / CardTrader / eBay)
-  // open in the phone's browser instead of replacing the app screen.
-  document.addEventListener('click', (e) => {
-    const a = e.target.closest && e.target.closest('a[href]');
-    if (!a) return;
-    let url;
-    try { url = new URL(a.href, location.href); } catch (_) { return; }
-    if (url.origin !== location.origin && /^https?:$/.test(url.protocol)) {
-      a.target = '_blank';
-      a.rel = 'noopener';
-    }
-  }, true);
+  fetch(BASE + 'tracker-markup.html')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function (html) {
+      loading.insertAdjacentHTML('afterend', html);
+      loading.remove();
+      var s = document.createElement('script');
+      s.src = BASE + 'tracker.js';
+      s.onerror = fail;
+      document.body.appendChild(s);
+    })
+    .catch(fail);
+})();
+
+// Offline support + "Add to Home Screen"
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function () {});
+  });
+}
+
+// Links that leave the app (membership checkout, Riot stores, TCGplayer / CardTrader / eBay)
+// open in the phone's browser instead of replacing the app screen.
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href]');
+  if (!a) return;
+  var url;
+  try { url = new URL(a.href, location.href); } catch (_) { return; }
+  if (url.origin !== location.origin && /^https?:$/.test(url.protocol)) {
+    a.target = '_blank';
+    a.rel = 'noopener';
+  }
+}, true);
 </script>
 </body>
 </html>

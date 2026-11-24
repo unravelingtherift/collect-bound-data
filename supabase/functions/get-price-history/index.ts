@@ -498,7 +498,7 @@ async function movers(body: any) {
 
 // Only unravelingtherift.com (and Squarespace's own preview sites) may call this function.
 const ALLOWED_ORIGINS = [
-  /^https:\/\/(www\.)?unravelingtherift\.com$/,
+  /^https:\/\/(www\.|app\.)?unravelingtherift\.com$/,
   /^https:\/\/[a-z0-9-]+\.squarespace\.com$/,
 ];
 const originAllowed = (o: string | null) => !!o && ALLOWED_ORIGINS.some((r) => r.test(o));
