@@ -3433,7 +3433,7 @@ document.getElementById('chinaProductsNote').textContent = RIFT.chinaProductsNot
   }
   function trackerDeckLink(l){
     if(!l.list) return '';
-    const o = { n: l.name + ' (Riot list, ' + (EV[l.list.e] ? EV[l.list.e].event : '') + ')', c: Object.keys(l.list.cards).map(k => k.replace('|', '-') + ':' + l.list.cards[k]).join(',') };
+    const o = { n: l.name + ' (Riot list, ' + (EV[l.list.e] ? EV[l.list.e].event : '') + ')', c: Object.keys(l.list.cards).map(k => k.replace(/\|/g, '-') + ':' + l.list.cards[k]).join(',') };
     let enc = '';
     try{ enc = btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }catch(e){ return ''; }
     return `<a class="btn btn-ghost" href="${TRACKER}#deck=${enc}" target="_blank" rel="noopener">Open Riot’s latest ${esc(l.champ)} list in Collection-Bound</a>`;
