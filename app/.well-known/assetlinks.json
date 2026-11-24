@@ -1,11 +1,13 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.unravelingtherift.collectionbound",
       "sha256_cert_fingerprints": [
-        "REPLACE_WITH_SHA256_FROM_PWABUILDER_OR_PLAY_CONSOLE"
+        "D2:84:88:43:4B:E4:AF:CC:13:6A:6B:F3:0F:25:BE:90:C5:52:2B:7C:BA:64:2A:0A:9A:DA:C2:52:E3:24:C1:9D"
       ]
     }
   }
