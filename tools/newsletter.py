@@ -16,7 +16,7 @@ Repository secrets it uses:
 File format (see newsletter/_example.md):
   subject: ...
   preview: ...
-  topic: New Features        (New Sets & Cards | New Features | New Videos)
+  topic: New Features        (must match a topic name in Resend's Topics tab)
   ---
   Email body. Blank lines between paragraphs, "- " for bullets,
   **bold**, [link text](https://...). Bare https:// links become links.
@@ -26,8 +26,11 @@ import html, json, os, re, sys, urllib.error, urllib.parse, urllib.request
 FROM = 'Unraveling the Rift <updates@unravelingtherift.com>'
 REPLY_TO = 'customerservice@unravelingtherift.com'
 DEFAULT_SEGMENT = 'fd3d9bab-9f85-427a-8a00-eae69eb2f1b9'  # Collection-Bound Updates
-TOPICS = ['New Sets & Cards', 'New Features', 'New Videos']
-ADDRESS = 'Unraveling the Rift, 600 1st Ave, Ste 102 PMB 1142, Seattle, WA 98104'
+ADDRESS = 'Unraveling the Rift · 600 1st Ave Ste 102 PMB 1142, Seattle, WA 98104'
+NOTE = ("You're getting this because you signed up for Collection-Bound update emails on "
+        "unravelingtherift.com. Updates only: no tracking, no ads.")
+RIOT = ("Unraveling the Rift is a fan site and isn't endorsed by Riot Games. Riftbound and "
+        "League of Legends are trademarks of Riot Games, Inc.")
 UNSUB = '{{{RESEND_UNSUBSCRIBE_URL}}}'
 
 KEY = os.environ.get('RESEND_API_KEY', '').strip()
@@ -53,8 +56,6 @@ def parse(path):
     for k in ('subject', 'topic'):
         if not meta.get(k):
             fail('Newsletter file format', f'{path} is missing a "{k}:" line.')
-    if meta['topic'] not in TOPICS:
-        fail('Newsletter topic', f'{path}: topic must be one of {", ".join(TOPICS)} (it says "{meta["topic"]}").')
     return meta, body.strip()
 
 
@@ -101,20 +102,17 @@ def to_html(meta, body):
                  + '&#847;&zwnj;&nbsp;' * 40 + '</div>') if preview else ''
     foot = "style='margin:0 0 8px;color:#777;font-size:12px;line-height:1.5'"
     footer = (f"<hr style='border:none;border-top:1px solid #ddd;margin:22px 0 14px'>"
-              f"<p {foot}>This email has no tracking pixels or tracked links. We don't know if you opened it, "
-              f"and that's how we like it.<br>You're getting this because you signed up at "
-              f"<a href='https://unravelingtherift.com' style='color:#777'>unravelingtherift.com</a>.</p>"
+              f"<p {foot}>{html.escape(NOTE)}</p>"
               f"<p {foot}>{html.escape(ADDRESS)}</p>"
-              f"<p {foot}><a href='{UNSUB}' style='color:#777'>Unsubscribe</a></p>")
+              f"<p {foot}><a href='{UNSUB}' style='color:#777'>Unsubscribe</a></p>"
+              f"<p {foot}>{html.escape(RIOT)}</p>")
     return (f"<div style='font-family:Arial,Helvetica,sans-serif;color:#222;font-size:15px;max-width:600px;"
             f"margin:0 auto;padding:8px'>{preheader}{''.join(blocks)}{footer}</div>")
 
 
 def to_text(body):
     clean = re.sub(r'\[([^\]]+)\]\((https?://[^\s)]+)\)', r'\1 (\2)', body).replace('**', '')
-    return (f"{clean}\n\n---\nThis email has no tracking pixels or tracked links. We don't know if you opened it, "
-            f"and that's how we like it.\nYou're getting this because you signed up at unravelingtherift.com.\n"
-            f"{ADDRESS}\nUnsubscribe: {UNSUB}\n")
+    return f"{clean}\n\n---\n{NOTE}\n{ADDRESS}\nUnsubscribe: {UNSUB}\n\n{RIOT}\n"
 
 
 def resend(method, path, payload=None):

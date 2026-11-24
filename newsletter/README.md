@@ -12,6 +12,6 @@ Close the pull request without merging and nothing is sent.
 Only new files are sent when merged, so editing an old file never re-sends it.
 Files starting with `_` (like `_example.md`) and this README are never sent.
 
-File layout: `subject:`, `preview:` and `topic:` lines (topic is New Sets & Cards,
-New Features or New Videos), then a line with `---`, then the email body.
-The no-tracking note, mailing address and Unsubscribe link are added automatically.
+File layout: `subject:`, `preview:` and `topic:` lines (topic = a topic name from
+Resend's Topics tab), then a line with `---`, then the email body.
+The footer (no-tracking note, mailing address, Unsubscribe link, Riot fan-site line) is added automatically.
