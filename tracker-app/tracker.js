@@ -7100,19 +7100,23 @@ function deckSharedClose(keep){ DECK_STATE.shared = null; try{ history.replaceSt
 })();
 function deckMoney(n){ return '$' + (Number(n)||0).toFixed(2); }
 function deckEnsureUI(){
-  if(document.getElementById('decksPanel')) return true;
+  if(document.getElementById('decksPanel') && document.getElementById('tabDecksBtn')) return true;
   const last = TABS.filter(t => document.getElementById(t.btn) && document.getElementById(t.panel)).pop();
   const tb = document.getElementById('tabBinderBtn') || (last && document.getElementById(last.btn)), bp = document.getElementById('binderPanel') || (last && document.getElementById(last.panel));
   if(!tb || !bp || !tb.parentNode || !bp.parentNode){ DECK_STATE.why = 'tab bar not found (' + (tb ? 'tab ok' : 'no tab button') + ', ' + (bp ? 'panel ok' : 'no panel') + ')'; return false; }
-  const btn = document.createElement('button');
-  btn.className = tb.className.replace(/\bactive\b/,'').trim(); btn.id = 'tabDecksBtn'; btn.type = 'button';
-  btn.innerHTML = 'Decks <span class="tab-new" data-new-until="2026-12-31">NEW</span>';
-  tb.parentNode.insertBefore(btn, tb.nextSibling);
-  const panel = document.createElement('div');
-  panel.id = 'decksPanel'; panel.style.display = 'none';
-  bp.parentNode.insertBefore(panel, bp.nextSibling);
-  TABS.push({ btn: 'tabDecksBtn', panel: 'decksPanel', onShow: () => renderDecks() });
-  btn.addEventListener('click', () => switchTab('tabDecksBtn'));
+  if(!document.getElementById('tabDecksBtn')){
+    const btn = document.createElement('button');
+    btn.className = tb.className.replace(/\bactive\b/,'').trim(); btn.id = 'tabDecksBtn'; btn.type = 'button';
+    btn.innerHTML = 'Decks <span class="tab-new" data-new-until="2026-12-31">NEW</span>';
+    tb.parentNode.insertBefore(btn, tb.nextSibling);
+    btn.addEventListener('click', () => switchTab('tabDecksBtn'));
+  }
+  if(!document.getElementById('decksPanel')){
+    const panel = document.createElement('div');
+    panel.id = 'decksPanel'; panel.style.display = 'none';
+    bp.parentNode.insertBefore(panel, bp.nextSibling);
+  }
+  if(!TABS.some(t => t.btn === 'tabDecksBtn')) TABS.push({ btn: 'tabDecksBtn', panel: 'decksPanel', onShow: () => renderDecks() });
   return true;
 }
 function deckPick(id){ DECK_STATE.current = id; DECK_STATE.q = ''; renderDecks(); }
@@ -7235,7 +7239,7 @@ function deckDebugNote(){
     if(!/decks=debug/.test(location.search) || document.getElementById('tabDecksBtn')) return;
     const n = document.createElement('div');
     n.style.cssText = 'margin:8px auto;max-width:900px;padding:10px 14px;border:1px solid #d55;border-radius:8px;background:#2a1418;color:#fff;font:13px sans-serif';
-    n.textContent = 'Decks tab did not start: ' + (DECK_STATE.why || 'unknown reason') + '. Script version: decks-debug-1.';
+    n.textContent = 'Decks tab did not start: ' + (DECK_STATE.why || 'unknown reason') + '. Script version: decks-debug-2.';
     const app = document.getElementById('collectBoundApp') || document.body; app.insertBefore(n, app.firstChild);
   }catch(e){}
 }
@@ -7243,8 +7247,10 @@ function deckDebugNote(){
 (function(){
   let n = 0;
   const go = () => { try{ if(deckEnsureUI()) return true; }catch(e){ console.warn('[Collection-Bound] decks tab', e); } return false; };
-  if(go()){ if(/decks=debug/.test(location.search)) setTimeout(() => { const m = document.createElement('div'); m.style.cssText = 'margin:8px auto;max-width:900px;padding:8px 14px;border:1px solid #4a9;border-radius:8px;background:#102a20;color:#fff;font:13px sans-serif'; m.textContent = 'Decks tab started. Script version: decks-debug-1.'; (document.getElementById('collectBoundApp') || document.body).insertBefore(m, (document.getElementById('collectBoundApp') || document.body).firstChild); }, 200); return; }
+  if(go()){ if(/decks=debug/.test(location.search)) setTimeout(() => { const m = document.createElement('div'); m.style.cssText = 'margin:8px auto;max-width:900px;padding:8px 14px;border:1px solid #4a9;border-radius:8px;background:#102a20;color:#fff;font:13px sans-serif'; m.textContent = 'Decks tab started. Script version: decks-debug-2.'; (document.getElementById('collectBoundApp') || document.body).insertBefore(m, (document.getElementById('collectBoundApp') || document.body).firstChild); }, 200); return; }
   const t = setInterval(() => { if(go() || ++n > 60){ clearInterval(t); if(n > 60) deckDebugNote(); } }, 500);
+  // If anything on the page later removes or rebuilds the tab bar, put the Decks tab back.
+  setInterval(go, 2000);
   document.addEventListener('DOMContentLoaded', go);
   window.addEventListener('load', go);
 })();
