@@ -7097,8 +7097,9 @@ function deckSharedClose(keep){ DECK_STATE.shared = null; try{ history.replaceSt
 function deckMoney(n){ return '$' + (Number(n)||0).toFixed(2); }
 function deckEnsureUI(){
   if(document.getElementById('decksPanel')) return true;
-  const tb = document.getElementById('tabBinderBtn'), bp = document.getElementById('binderPanel');
-  if(!tb || !bp) return false;
+  const last = TABS.filter(t => document.getElementById(t.btn) && document.getElementById(t.panel)).pop();
+  const tb = document.getElementById('tabBinderBtn') || (last && document.getElementById(last.btn)), bp = document.getElementById('binderPanel') || (last && document.getElementById(last.panel));
+  if(!tb || !bp || !tb.parentNode || !bp.parentNode) return false;
   const btn = document.createElement('button');
   btn.className = tb.className.replace(/\bactive\b/,'').trim(); btn.id = 'tabDecksBtn'; btn.type = 'button';
   btn.innerHTML = 'Decks <span class="tab-new" data-new-until="2026-12-31">NEW</span>';
@@ -7224,7 +7225,15 @@ function renderDecks(){
   const s = document.getElementById('dkSearch');
   if(s) s.addEventListener('input', () => { DECK_STATE.q = s.value; document.getElementById('dkHits').innerHTML = deckSearchHtml(d); });
 }
-(function(){ const go = () => { try{ deckEnsureUI(); }catch(e){} }; if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go(); setTimeout(go, 1500); })();
+// Keep trying until the tab bar exists (some pages build it after this script runs), then stop.
+(function(){
+  let n = 0;
+  const go = () => { try{ if(deckEnsureUI()) return true; }catch(e){ console.warn('[Collection-Bound] decks tab', e); } return false; };
+  if(go()) return;
+  const t = setInterval(() => { if(go() || ++n > 60) clearInterval(t); }, 500);
+  document.addEventListener('DOMContentLoaded', go);
+  window.addEventListener('load', go);
+})();
 
 /* ---------- "Get the app" (install from the browser) ---------- */
 function cbShowAppSteps(){
