@@ -7225,3 +7225,24 @@ function renderDecks(){
   if(s) s.addEventListener('input', () => { DECK_STATE.q = s.value; document.getElementById('dkHits').innerHTML = deckSearchHtml(d); });
 }
 (function(){ const go = () => { try{ deckEnsureUI(); }catch(e){} }; if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go(); setTimeout(go, 1500); })();
+
+/* ---------- "Get the app" (install from the browser) ---------- */
+function cbShowAppSteps(){
+  const old = document.getElementById('cbAppSteps'); if(old) old.remove();
+  const box = document.createElement('div');
+  box.id = 'cbAppSteps'; box.className = 'patch-notice-backdrop';
+  box.onclick = e => { if(e.target === box) box.remove(); };
+  box.innerHTML = `<div class="patch-notice app-steps" role="dialog" aria-label="Get the Collection-Bound app">
+    <h3>Get the Collection-Bound app</h3>
+    <p>The app is not in the App Store or Google Play yet. You can install it from your phone's browser instead. It opens full screen with its own icon, just like a regular app.</p>
+    <h4>iPhone or iPad</h4>
+    <ol><li>Open <b>app.unravelingtherift.com</b> in Safari.</li><li>Tap the Share button.</li><li>Tap <b>Add to Home Screen</b>, then <b>Add</b>.</li></ol>
+    <h4>Android</h4>
+    <ol><li>Open <b>app.unravelingtherift.com</b> in Chrome.</li><li>Tap the menu (three dots).</li><li>Tap <b>Install app</b> or <b>Add to Home screen</b>.</li></ol>
+    <p>Sign in with the same account you use here and your collection will be there.</p>
+    <div class="pn-actions" style="display:flex;gap:8px;flex-wrap:wrap;">
+      <a class="pn-primary" href="https://app.unravelingtherift.com" target="_blank" rel="noopener" style="text-decoration:none;text-align:center;">Open app.unravelingtherift.com</a>
+      <button type="button" class="pn-secondary" onclick="document.getElementById('cbAppSteps').remove()">Close</button>
+    </div></div>`;
+  document.body.appendChild(box);
+}

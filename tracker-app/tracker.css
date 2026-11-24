@@ -212,6 +212,13 @@
       drop-shadow(0 0 60px rgba(60,140,255,0.2));
   }
   .app-soon img{ width:0; min-width:60%; margin:0 auto; height:auto; display:block; user-select:none; -webkit-user-drag:none; }
+  .app-get{ line-height:1.3; pointer-events:auto; filter:none; animation:none; text-align:center; }
+  .app-get-btn{ width:100%; padding:11px 20px; border-radius:999px; border:1px solid rgba(90,170,255,.8); background:linear-gradient(180deg,#2a5d9a,#183c66); color:#fff; font-weight:700; letter-spacing:.03em; cursor:pointer; box-shadow:0 0 18px rgba(90,170,255,.35); }
+  .app-get-btn:hover{ filter:brightness(1.12); }
+  .app-get-note{ margin-top:5px; font-size:12px; opacity:.8; }
+  @media (display-mode: standalone){ .app-get{ display:none !important; } }
+  .app-steps ol{ margin:6px 0 12px; padding-left:20px; }
+  .app-steps h4{ margin:12px 0 2px; }
   @keyframes cbAppFloat{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-4px); } }
   @media (prefers-reduced-motion:reduce){ .app-soon{ animation:none; } }
   @media (max-width:760px){
