@@ -1,0 +1,59 @@
+# Sends the subscriber newsletter from files in newsletter/.
+#   - Pull request that adds a newsletter file -> a [TEST] copy goes to REPORT_EMAIL.
+#   - Merging that pull request               -> the real newsletter goes to the
+#                                               Collection-Bound Updates segment in Resend.
+#   - Actions tab -> Newsletter -> Run workflow -> send one file by hand (e.g. if a send failed).
+# Only newly ADDED files are sent on merge, so fixing a typo in an old file never re-sends it.
+# Repository secrets: RESEND_API_KEY (Full access), REPORT_EMAIL, optional RESEND_SEGMENT_ID.
+name: Newsletter
+
+on:
+  pull_request:
+    paths: ['newsletter/**']
+  push:
+    branches: [main]
+    paths: ['newsletter/**']
+  workflow_dispatch:
+    inputs:
+      file:
+        description: 'Newsletter file to send to subscribers now, e.g. newsletter/2026-11-23-poro-tab.md'
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: newsletter-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  newsletter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Test or send newsletter
+        env:
+          EVENT: ${{ github.event_name }}
+          INPUT_FILE: ${{ github.event.inputs.file }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          REPORT_EMAIL: ${{ secrets.REPORT_EMAIL }}
+          RESEND_SEGMENT_ID: ${{ secrets.RESEND_SEGMENT_ID }}
+        run: |
+          pick() { grep -E '^newsletter/[^/]+\.md$' | grep -vE '^newsletter/(_|README)' || true; }
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            mode=send
+            files=$(printf '%s\n' "$INPUT_FILE" | pick)
+            if [ -z "$files" ] || [ ! -f "$files" ]; then
+              echo "::error title=File not found::'$INPUT_FILE' isn't a newsletter file in this repo."; exit 1
+            fi
+          elif [ "$EVENT" = "pull_request" ]; then
+            mode=test
+            files=$(git diff --name-only --diff-filter=AM HEAD^1 HEAD | pick)
+          else
+            mode=send
+            files=$(git diff --name-only --diff-filter=A HEAD^1 HEAD | pick)
+          fi
+          if [ -z "$files" ]; then echo "No new newsletter files to $mode."; exit 0; fi
+          python3 tools/newsletter.py "$mode" $files
