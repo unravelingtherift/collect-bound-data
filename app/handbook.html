@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Starter Handbook · Collection-Bound</title>
+<meta name="theme-color" content="#0e111e">
+<meta name="robots" content="noindex">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Collection-Bound">
+<style>
+  html, body { margin: 0; background: #291B43; }
+  #rift-handbook-root { min-height: 100vh; }
+  .cb-hb-msg { text-align: center; padding: 160px 20px; font-family: Georgia, serif; color: #bdb6a4; }
+  .cb-hb-msg button { margin-top: 16px; background: #d4af5f; color: #0e111e; border: 0; border-radius: 6px; padding: 12px 22px; font-size: 1rem; font-weight: bold; }
+  /* The handbook's TOP button sits left of Squarespace's language picker on the website.
+     The app has no picker, so move it to the corner. */
+  .utr-hb-top { right: 18px !important; bottom: calc(18px + env(safe-area-inset-bottom)) !important; }
+  .nav-toggle-float { bottom: calc(18px + env(safe-area-inset-bottom)) !important; }
+  /* The handbook's drawer starts below the app's top bar */
+  @media (max-width:1149px) { .side-panel { top: var(--cb-appbar-h) !important; height: calc(100vh - var(--cb-appbar-h)) !important; } }
+</style>
+<script src="/nav.js"></script>
+</head>
+<body>
+<div id="rift-handbook-root"><div class="cb-hb-msg">Loading the Starter Handbook…</div></div>
+
+<script>
+/* Same handbook file as the website's Starter Handbook page, so every merged
+   handbook PR shows up here too. */
+(function () {
+  var FILE = 'handbook/riftbound-starter-handbook.html';
+  var REPO = 'unravelingtherift/collect-bound-data';
+  var root = document.getElementById('rift-handbook-root');
+
+  function get(url) {
+    return fetch(url, { cache: 'no-cache' }).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.text();
+    }).then(function (t) {
+      if (t.indexOf('window.RIFT') === -1) throw new Error('not the handbook');
+      return t;
+    });
+  }
+
+  function render(html) {
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    doc.head.querySelectorAll('link[rel="stylesheet"], link[rel="preconnect"], style').forEach(function (n) {
+      document.head.appendChild(document.importNode(n, true));
+    });
+    root.innerHTML = '';
+    Array.prototype.forEach.call(doc.body.childNodes, function (n) {
+      root.appendChild(document.importNode(n, true));
+    });
+    // Copied scripts don't run, so re-create each one in order
+    root.querySelectorAll('script').forEach(function (old) {
+      var s = document.createElement('script');
+      Array.prototype.forEach.call(old.attributes, function (a) { s.setAttribute(a.name, a.value); });
+      s.textContent = old.textContent;
+      old.parentNode.replaceChild(s, old);
+    });
+    if (location.hash.length > 1) {
+      var t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (t) setTimeout(function () { t.scrollIntoView(); }, 50);
+    }
+  }
+
+  function fail() {
+    root.innerHTML = '<div class="cb-hb-msg">The handbook couldn’t load. Check your connection and try again.' +
+      '<br><button onclick="location.reload()">Try again</button></div>';
+  }
+
+  get('https://cdn.jsdelivr.net/gh/' + REPO + '@main/' + FILE)
+    .catch(function () { return get('https://raw.githubusercontent.com/' + REPO + '/main/' + FILE); })
+    .then(render)
+    .catch(fail);
+})();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
+}
+
+// Links that leave the app open in the phone's browser
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href]');
+  if (!a) return;
+  var url; try { url = new URL(a.href, location.href); } catch (_) { return; }
+  if (url.origin !== location.origin && /^https?:$/.test(url.protocol)) { a.target = '_blank'; a.rel = 'noopener'; }
+}, true);
+</script>
+</body>
+</html>

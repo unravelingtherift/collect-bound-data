@@ -40,8 +40,8 @@
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior-y: none;
   }
-  /* No Squarespace header in the app, so the sticky filter bar sits at the top. */
-  #collectBoundApp { --embed-header-offset: 0px; }
+  /* No Squarespace header in the app: the sticky filter bar sits just under the app's top bar. */
+  #collectBoundApp { --embed-header-offset: var(--cb-appbar-h, 0px); }
   /* "Phone app coming soon" badge: you're in the app already. */
   #collectBoundApp .app-soon { display: none !important; }
 
@@ -52,6 +52,7 @@
   #cb-app-loading img { width: min(340px, 82vw); height: auto; }
   #cb-app-loading button { background: #d4af5f; color: #0e111e; border: 0; border-radius: 6px; padding: 12px 22px; font-size: 1rem; font-weight: bold; }
 </style>
+<script src="/nav.js"></script>
 </head>
 <body>
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
