@@ -41,7 +41,11 @@ def check_existing(t):
     if not t['img']:
         t['state'] = 'missing'; return t
     try:
-        w, h, s = measure(get(t['img']))
+        try:
+            data = get(t['img'])
+        except Exception:
+            time.sleep(1.5); data = get(t['img'])
+        w, h, s = measure(data)
         t['w'], t['sharp'] = w, s
         r = w / h if h else 0
         if t['kind'] == 'card' and 0.85 < r < 1.18:
@@ -49,7 +53,8 @@ def check_existing(t):
         else:
             t['state'] = 'has'
     except Exception:
-        t['state'] = 'missing'
+        # Could not download it (busy, timeout): do not claim it is missing.
+        t['state'] = 'unknown'
     return t
 
 
@@ -76,7 +81,9 @@ def clean_name(n):
 def query(t):
     lang = t['la'] if t['la'] != 'English' else ''
     if t['kind'] == 'card':
-        return f"riftbound {clean_name(t['nm'])} {t['se']} {t['cn'].replace('*', '')} {lang}".strip()
+        cn = t['cn'].lower()
+        hint = ' signature' if '*' in cn else (' alt art' if re.search(r'[a-z]$', cn) else '')
+        return f"riftbound {clean_name(t['nm'])} {t['se']} {t['cn'].replace('*', '')}{hint} {lang}".strip()
     ev = (t.get('ev') or '').strip()
     extra = ' nexus night' if ('nexus' in ev.lower() or ev.upper().startswith('NN')) and 'nexus' not in t['nm'].lower() else ''
     return f"riftbound {clean_name(t['nm'])} promo{extra} {lang}".strip()
@@ -88,6 +95,8 @@ def title_ok(t, title):
         return False
     if any(b in low for b in BAD_WORDS):
         return False
+    if not variant_ok(t, title):
+        return False
     for w in re.findall(r"[a-z0-9']{3,}", clean_name(t['nm']).lower()):
         if w not in low:
             return False
@@ -97,6 +106,31 @@ def title_ok(t, title):
     elif not any(x in low for x in LANG_WORDS.get(t['la'], [])):
         return False
     return True
+
+
+ALT_RE = re.compile(r'alt(?:ernate)?[ .-]*art|showcase')
+SIG_RE = re.compile(r'signature|over-?numbered')
+
+
+def variant_ok(t, title):
+    """The listing must be the same version as the tracker card: plain, alt art ("a") or signature ("*")."""
+    if t['kind'] != 'card':
+        return True
+    m = re.match(r'^0*(\d{1,3})([a-z]?)(\*?)$', (t.get('cn') or '').lower())
+    if not m:
+        return True
+    num, suf = int(m.group(1)), (m.group(2) or m.group(3))
+    low = title.lower()
+    alt, sig = bool(ALT_RE.search(low)), bool(SIG_RE.search(low))
+    found = re.search(r'(?<![\d/])0*(\d{1,3})\s*([a-z]|\*)?\s*/\s*0*\d{2,3}(?!\d)', low)
+    tnum, tsuf = (int(found.group(1)), found.group(2) or '') if found else (None, '')
+    if tnum is not None and tnum != num:
+        return False
+    if not suf:                      # plain card: reject any alt-art / signature listing
+        return not alt and not sig and not tsuf
+    if suf == '*':
+        return tsuf == '*' or sig
+    return (tsuf == suf or alt) and tsuf != '*' and not sig
 
 
 def file_name(t):
