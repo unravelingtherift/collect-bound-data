@@ -10,7 +10,7 @@ Play app and the Apple App Store app.
 | `manifest.webmanifest` | Name, colors and icons phones use when the app is installed. |
 | `sw.js` | Offline support. Caches set lists and card images. Never caches Supabase, Stripe, PayPal or Patreon. |
 | `offline.html` | Shown if the app is opened with no connection before it's ever loaded. |
-| `icons/` | App icons. These are stand-ins made from the wordmark; swap in a square icon before store submission. |
+| `icons/` | App icons (the CB crest). `store-icon-1024.png` is for the Google Play and App Store listings. |
 | `_headers` | Cloudflare Pages headers (keeps `sw.js` and the manifest fresh). |
 | `.well-known/assetlinks.json` | Proves to Android that the Play app and this site belong together. The fingerprint is filled in at the Google Play step. |
 
