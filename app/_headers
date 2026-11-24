@@ -16,3 +16,26 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: SAMEORIGIN
+
+# Files the website pages (www.unravelingtherift.com) load from here.
+# Pictures: browsers may reuse them for a day. Code and data: always checked
+# for a newer copy, so merged changes show up right away (no CDN purge needed).
+/*
+  Access-Control-Allow-Origin: *
+
+/card-images/*
+  Cache-Control: public, max-age=86400
+/promo-images/*
+  Cache-Control: public, max-age=86400
+/product-images/*
+  Cache-Control: public, max-age=86400
+/ogn-korean/*
+  Cache-Control: public, max-age=86400
+/ogs-korean/*
+  Cache-Control: public, max-age=86400
+/lang-images-ko-OGS/*
+  Cache-Control: public, max-age=86400
+/handbook-images/*
+  Cache-Control: public, max-age=86400
+/codex/img/*
+  Cache-Control: public, max-age=86400
