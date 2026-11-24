@@ -7,7 +7,7 @@
 
 const PAGE = 200;
 const ALLOWED = [
-  /^https:\/\/(www\.)?unravelingtherift\.com$/,
+  /^https:\/\/(www\.|app\.)?unravelingtherift\.com$/,
   /^https:\/\/[a-z0-9-]+\.squarespace\.com$/,
 ];
 const originAllowed = (o: string | null) => !!o && ALLOWED.some((r) => r.test(o));
