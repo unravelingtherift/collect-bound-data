@@ -3,5 +3,446 @@
   "folder_name": "New promo finds (screenshots for Claude)",
   "note": "Every file created before done_before has been reviewed. Files after it are reviewed only if their id is listed in processed.",
   "done_before": "2026-11-24T10:30:00Z",
-  "processed": {}
+  "processed": {
+    "1WzJwgUwJ0SdXbiM4g23PBWsO5fD03gWR": {
+      "title": "Screenshot_20261023-011658.png",
+      "result": "skipped: already on tracker"
+    },
+    "1pcZHJOe_Wm2lG6mdMhcSA7AVsEoH6UA3": {
+      "title": "Screenshot_20261114-145511.png",
+      "result": "skipped: already on tracker"
+    },
+    "1bganammTqdg8CETtBsaEH5qa6RiNtTNS": {
+      "title": "Screenshot_20261116-150909.png",
+      "result": "Sona - Harmonious (Convergence Fest Promo)"
+    },
+    "1BhimmzziuqufzJpdWBUbBcXSudGpiw8Q": {
+      "title": "Screenshot_20261116-150915.png",
+      "result": "skipped: already on tracker"
+    },
+    "1DC1Ni0J1P3KSC7yuRA3Sj43x15-sBLEi": {
+      "title": "Screenshot_20261116-185744.png",
+      "result": "skipped: already on tracker"
+    },
+    "1JxHG8IDvGadq8y4OT72gfws2gwqcWkq4": {
+      "title": "Screenshot_20261116-192311.png",
+      "result": "Packed Amphitheater (Sonic Spark LGS Promo)"
+    },
+    "1TtAmhwNK2f2TnS2I9lMUo76fnAAa9lJt": {
+      "title": "Screenshot_20261116-192320.png",
+      "result": "skipped: already on tracker"
+    },
+    "1b6Gw8f-7pA_Ma_2qoLAAWBx1K8xd-HxY": {
+      "title": "Screenshot_20261124-232257.png",
+      "result": "skipped: already on tracker"
+    },
+    "1eCA7xeoqPYyUe-IZ9QHHJL20no9kZjDP": {
+      "title": "Screenshot_20261124-232304.png",
+      "result": "Regional Open Playmat - Bandle Scouts' Academy (Season 5)"
+    },
+    "1CNXlMdBFIWAFcVAIOS4THnvHxc4qDJKn": {
+      "title": "Screenshot_20261124-232312.png",
+      "result": "Orianna - Exquisite (Regional Open Qingdao Top 32)"
+    },
+    "1k_rxCHN8Iw0d1J8la30yExeiWHc6tgIk": {
+      "title": "Screenshot_20261124-232320.png",
+      "result": "Bandle Scouts' Academy (Regional Open Qingdao Participation)"
+    },
+    "14KOHAwqbHLK5wd8NNVGg2891u90eTtbN": {
+      "title": "Screenshot_20261124-232323.png",
+      "result": "Orianna - Exquisite (Regional Open Qingdao Top 8)"
+    },
+    "1VsHoSE7t6xNTw1X6UuYD9Kn7XVHl3gTT": {
+      "title": "Screenshot_20261124-232327.png",
+      "result": "Ekko - Revolutionary (Regional Open Qingdao Top 4)"
+    },
+    "1K5EkwNs0cXM9Ml4YIEnIW6-axJXnk7H5": {
+      "title": "Screenshot_20261124-232331.png",
+      "result": "Ekko - Revolutionary (Regional Open Qingdao Champion)"
+    },
+    "1b-c5ets_zJ_NIJcCX8n6x7NAqiBsfb4Z": {
+      "title": "Screenshot_20261124-232338.png",
+      "result": "skipped: already on tracker"
+    },
+    "1GD5IpvQTRl4VUFYypXsXO73WsuijwXR7": {
+      "title": "Screenshot_20261124-232355.png",
+      "result": "not an item"
+    },
+    "1PcYHQzjPnHhQmWvqTs38HNjeoGZwtfkw": {
+      "title": "Screenshot_20261124-232405.png",
+      "result": "skipped: already on tracker"
+    },
+    "1jwM5iDNZLxTY-GlWaXG0OEo0VDfXhTLJ": {
+      "title": "Screenshot_20261124-232429.png",
+      "result": "Poro Blanket"
+    },
+    "15CkjjwxkOCxOedpkEhGNBtB7TPIGhLPx": {
+      "title": "Screenshot_20261124-232525.png",
+      "result": "not an item"
+    },
+    "1RCUORBEZTDXSdoekkPJRh-CVIi2J5Ykn": {
+      "title": "Screenshot_20261124-232528.png",
+      "result": "not an item"
+    },
+    "1ZVc-wg-39jYA0ePa4UPIN-OhYUfwQKaL": {
+      "title": "Screenshot_20261124-232558.png",
+      "result": "skipped: already on tracker"
+    },
+    "1zTQBcuvh0BDYOdNPjaNUccHpW0cIncA1": {
+      "title": "Screenshot_20261124-232609.png",
+      "result": "skipped: already on tracker"
+    },
+    "1Mpoox91VhKfe8SYykUBXQGdBv52gzQGm": {
+      "title": "Screenshot_20261124-232633.png",
+      "result": "not an item"
+    },
+    "1FGrB_vmEGdDV4bjXKoErBZxhCQnYOvEw": {
+      "title": "Screenshot_20261124-232646.png",
+      "result": "skipped: already on tracker"
+    },
+    "1X_Kg1QHiYhyeSMtytPHHq9oMTDDiJWZu": {
+      "title": "Screenshot_20261124-232651.png",
+      "result": "Firelights' Hideout (Regional Open Ningbo Extended Art)"
+    },
+    "14RYLJyj9mghVRIOMrJPvyl1eqrHhioEL": {
+      "title": "Screenshot_20261124-232658.png",
+      "result": "skipped: already on tracker"
+    },
+    "1-Df501oIPXzbN6XKU0dDLsk5gobrxJZA": {
+      "title": "Screenshot_20261124-232701.png",
+      "result": "skipped: already on tracker"
+    },
+    "1yfStjNJeHUSilk97ZIHIv0GfXx7l9oxl": {
+      "title": "Screenshot_20261124-232705.png",
+      "result": "skipped: already on tracker"
+    },
+    "1nlhMcIphq9GFVFnsIsXrVojq1bR24nhq": {
+      "title": "Screenshot_20261124-232709.png",
+      "result": "skipped: already on tracker"
+    },
+    "1b9vjFhnuD2TWY-OfJq1bU6hLGFRtZrz3": {
+      "title": "Screenshot_20261124-232716.png",
+      "result": "skipped: already on tracker"
+    },
+    "1s82X68R9saeK6yOnnhK2XE-BdNWFR0RK": {
+      "title": "Screenshot_20261124-232721.png",
+      "result": "skipped: already on tracker"
+    },
+    "1yJsRK3osHETkiOY3CpyjIBIiIX5_dVkr": {
+      "title": "Screenshot_20261124-232723.png",
+      "result": "skipped: already on tracker"
+    },
+    "1emETaik0atCOXlZsBdEKB6Af8cWsstlE": {
+      "title": "Screenshot_20261124-232731.png",
+      "result": "Firelights' Hideout (Regional Open Ningbo Participation)"
+    },
+    "18f2iIesBwJdXIaXhkopdNfgwyNYPOWeM": {
+      "title": "Screenshot_20261124-232740.png",
+      "result": "skipped: already on tracker"
+    },
+    "1IbHdITux9hRkrAlPSHHKk2E1umjuIiKy": {
+      "title": "Screenshot_20261124-232745.png",
+      "result": "skipped: already on tracker"
+    },
+    "1aFqdEULpQWa4PkChjErdck8RUKP47vOh": {
+      "title": "Screenshot_20261124-232750.png",
+      "result": "skipped: already on tracker"
+    },
+    "1StTG2-yVch3-4oITdVRTutCi3HLgSjxL": {
+      "title": "Screenshot_20261124-232753.png",
+      "result": "skipped: already on tracker"
+    },
+    "1ofwyjgpq-8tf9Isz4VovUNwahcxbOlwI": {
+      "title": "Screenshot_20261124-232803.png",
+      "result": "skipped: already on tracker"
+    },
+    "1fhQuDLQyI4b8wzPXGmbqU7dm3oXcs-G9": {
+      "title": "Screenshot_20261124-232901.png",
+      "result": "not an item"
+    },
+    "16sYnvAKilx_1MR7JMbDGORuzTyLZgt7t": {
+      "title": "Screenshot_20261124-232919.png",
+      "result": "not an item"
+    },
+    "1JNPL9zldVeRoCdBcBPiAeQQfrBTG88nS": {
+      "title": "Screenshot_20261124-232927.png",
+      "result": "not an item"
+    },
+    "1fRAT0HmUcY-Ajg_EbukcI2F98pCEASeC": {
+      "title": "Screenshot_20261124-232930.png",
+      "result": "not an item"
+    },
+    "1nnNI-c784fCdvTwuf_2T9EkvsqZ03vlb": {
+      "title": "Screenshot_20261124-232933.png",
+      "result": "not an item"
+    },
+    "1DvH5v6KjSAQZJ-mhAW_AoODDAYwM_XJz": {
+      "title": "Screenshot_20261124-232944.png",
+      "result": "skipped: question for Jessica in PR #212"
+    },
+    "1ezIb7Tmw-xl-Urk7D0EcVMFsKDZPu8m6": {
+      "title": "Screenshot_20261124-233050.png",
+      "result": "skipped: already on tracker"
+    },
+    "1X6b8GHMv0CrpjBYUZc_sbWwHQFQ4rfxh": {
+      "title": "Screenshot_20261124-233314.png",
+      "result": "skipped: already on tracker"
+    },
+    "1d9buVZC2br8bcc6GDshwomdtDSiniO1D": {
+      "title": "Screenshot_20261124-233524.png",
+      "result": "skipped: already on tracker"
+    },
+    "1SEK0d7LK5qBuxch7stSiSODV26swcHAk": {
+      "title": "Screenshot_20261124-234226.png",
+      "result": "Poro Blanket; Regional Open Playmat - Sona (new picture)"
+    },
+    "1EDy1SbFML4qSUrQwJDMchxMdHZfmmh7v": {
+      "title": "Screenshot_20261124-234232.png",
+      "result": "Blitzcrank Plush Hat; Ascension Playmat - Wolf of the North (new picture)"
+    },
+    "169DGi4fes2cGz-6WDZ6mBnYH8rhxsDLZ": {
+      "title": "Screenshot_20261124-234240.png",
+      "result": "Riftbound Dry Bag - Red, Orange, Yellow, Green, Blue, Purple, Black"
+    },
+    "1GlD_W76t4EAdsaFasQWybozrrDoSqSdg": {
+      "title": "Screenshot_20261124-234244.png",
+      "result": "not an item"
+    },
+    "1idXjGoqxqr01isvscw8eT0Te0eRoyxWI": {
+      "title": "Screenshot_20261124-234327.png",
+      "result": "skipped: already on tracker"
+    },
+    "1NHdPlbAaBZaVQmp1vg-6SNkT98MHVWwq": {
+      "title": "Screenshot_20261124-234331.png",
+      "result": "skipped: already on tracker"
+    },
+    "1b2RWs5f6zYo7xHtBbsi_Ky-LHayS4-gW": {
+      "title": "Screenshot_20261124-234336.png",
+      "result": "not an item"
+    },
+    "1-5ivntrY9zgMyKcnJFFOvjce5qq34ZTO": {
+      "title": "Screenshot_20261124-234342.png",
+      "result": "skipped: already on tracker"
+    },
+    "1vtkf520xqVtiiY_-krZqKST1PJeDtkJi": {
+      "title": "Screenshot_20261124-234347.png",
+      "result": "skipped: already on tracker"
+    },
+    "1KhN7EzRGanlObS2L9GB-MmYCjVFrHKsI": {
+      "title": "Screenshot_20261124-234447.png",
+      "result": "not an item"
+    },
+    "1_6wH2LMG6SbCbdoSduAhdU7VJNHT16jp": {
+      "title": "Screenshot_20261124-234454.png",
+      "result": "skipped: already on tracker"
+    },
+    "1T_FAkjHx7vc0fitK8Wwg0pDs0sMd3Us0": {
+      "title": "Screenshot_20261124-234457.png",
+      "result": "skipped: already on tracker"
+    },
+    "1LlqsSREbfinr4TXaKceJBNqYvtopa71-": {
+      "title": "Screenshot_20261124-234500.png",
+      "result": "skipped: already on tracker"
+    },
+    "1WzU05sv75jYG3Np-g3yQrrEwJE2fC9fS": {
+      "title": "Screenshot_20261124-234506.png",
+      "result": "skipped: already on tracker"
+    },
+    "1FvoaboFOSmyeYfbkVEyF6e67OgeWC05B": {
+      "title": "Screenshot_20261124-234509.png",
+      "result": "skipped: already on tracker"
+    },
+    "1TeihuBPZ__s26Kmp9GlrZI7N7nRf20T6": {
+      "title": "Screenshot_20261124-234512.png",
+      "result": "skipped: already on tracker"
+    },
+    "1nwUqKMgL2bxH1ISBSLY1JszmIMSbvK74": {
+      "title": "Screenshot_20261124-234515.png",
+      "result": "skipped: already on tracker"
+    },
+    "1X2ZVUk0mCdMf8P4wYeyV4So7VZt2vkJT": {
+      "title": "Screenshot_20261124-234519.png",
+      "result": "skipped: already on tracker"
+    },
+    "1kNJkIZvIO0fiN8x2PdIDtQWgLE3a3jEX": {
+      "title": "Screenshot_20261124-234523.png",
+      "result": "skipped: already on tracker"
+    },
+    "19oKVEHkBVQM5Uo5U21EXuiuBqbCgJhD-": {
+      "title": "Screenshot_20261124-234528.png",
+      "result": "skipped: already on tracker"
+    },
+    "1a_B9u4ve4JQMhWD-qEc86VAE6jB14gES": {
+      "title": "Screenshot_20261124-234531.png",
+      "result": "skipped: already on tracker"
+    },
+    "1CERUv4Sm48UeD0jnhqsbclDZquCLI31Z": {
+      "title": "Screenshot_20261124-234539.png",
+      "result": "skipped: already on tracker"
+    },
+    "1KSjGIifiTeE5_xWbdJKVltB_kgieuS2O": {
+      "title": "Screenshot_20261124-235019.png",
+      "result": "skipped: question for Jessica in PR #212"
+    },
+    "1-PCHxUsPGQ3i9lNmcwKZrA1b6eFxxMpa": {
+      "title": "Screenshot_20261124-235027.png",
+      "result": "skipped: question for Jessica in PR #212"
+    },
+    "1gHSHyJPug6UxseyN3wviIvLgftR5g4On": {
+      "title": "Screenshot_20261124-235031.png",
+      "result": "skipped: question for Jessica in PR #212"
+    },
+    "1xvHE32lgJiwIRRrKNv9biqzTv-oKFyVA": {
+      "title": "Screenshot_20261124-235034.png",
+      "result": "skipped: question for Jessica in PR #212"
+    },
+    "1OedfFDZcL9Aimqboj1a4HnUu8jhqRNnC": {
+      "title": "Screenshot_20261124-235041.png",
+      "result": "skipped: question for Jessica in PR #212"
+    },
+    "18--JdbcsTfURPi8-KqTh0m4l5TfG1L38": {
+      "title": "Screenshot_20261124-235232.png",
+      "result": "not an item"
+    },
+    "1xKRYuDnfbn9Cyj_7eoab7Mh6IBCzpFxG": {
+      "title": "Screenshot_20261124-235238.png",
+      "result": "not an item"
+    },
+    "1NhXa1tGGCdMIqxdXwOhE1I0YERnpPSUC": {
+      "title": "Screenshot_20261124-235251.png",
+      "result": "not an item"
+    },
+    "16D3eJQiX4eZnUG9xY-MZPmGe6pZUU942": {
+      "title": "Screenshot_20261124-235303.png",
+      "result": "not an item"
+    },
+    "1bjQpkPC2tT_i_ygFGrjsa8LfJFeHy5FZ": {
+      "title": "Screenshot_20261124-235310.png",
+      "result": "not an item"
+    },
+    "1wksuztWNwig24uI3SaB8CS64WJTDqVXo": {
+      "title": "Screenshot_20261124-235322.png",
+      "result": "skipped: already on tracker"
+    },
+    "1P9r2KfGBeZnFtTLOHT9Dh9ofMZGWQjyn": {
+      "title": "Screenshot_20261124-235649.png",
+      "result": "not an item"
+    },
+    "15EoUPTVZu_KHlSMfkuCD5miDysZ5TqD0": {
+      "title": "Screenshot_20261124-235652.png",
+      "result": "not an item"
+    },
+    "1zZD0Ppmr5ikNNtIY1dDhRRKyOrGMdewc": {
+      "title": "Screenshot_20261124-235728.png",
+      "result": "skipped: already on tracker"
+    },
+    "1VNJcS7xP7oql8maLzCV5zhypYFY7gWS-": {
+      "title": "Screenshot_20261124-235732.png",
+      "result": "Regional Open Playmat - Piltovan Forge (Wuhan Top 64)"
+    },
+    "1wjtTmMn3GueDi6wiKX4MN5-YvaEvULb3": {
+      "title": "Screenshot_20261124-235809.png",
+      "result": "not an item"
+    },
+    "1AdpY0RwgR3bksmdkghzAQl4zIkGYN_vN": {
+      "title": "Screenshot_20261124-235851.png",
+      "result": "skipped: question for Jessica in PR #212"
+    },
+    "1_xt9keOWZkFoF8qsPycpAQ82sOrnSFxb": {
+      "title": "Screenshot_20261124-235900.png",
+      "result": "Risen Altar (Regional Open Shenyang Participation)"
+    },
+    "1sx0rePO2hrYt7dFjfOEfLXphsAYif2lB": {
+      "title": "Screenshot_20261124-235908.png",
+      "result": "skipped: question for Jessica in PR #212"
+    },
+    "15egp1uLm-fZ3QNkRgjSCuXQAlzBIOlkT": {
+      "title": "Screenshot_20261125-000011.png",
+      "result": "not an item"
+    },
+    "1av7oRJAeYp_Dj-_0p3SMmodU3Em8amTM": {
+      "title": "Screenshot_20261125-000014.png",
+      "result": "not an item"
+    },
+    "1uAClw7P7zfPYPRkUF0Y8xOMuhiEvGIVM": {
+      "title": "Screenshot_20261125-000021.png",
+      "result": "skipped: already on tracker"
+    },
+    "1ZxFHyibQEP7xnThfBLZk2Tsiq3ME7fXq": {
+      "title": "Screenshot_20261125-000300.png",
+      "result": "Mystic Vortex (Resonance Open Participation)"
+    },
+    "1IDvIXmMWIVcguA9wMgv8DOEQqFgz0LEL": {
+      "title": "Screenshot_20261125-000334.png",
+      "result": "skipped: already on tracker"
+    },
+    "15al8kv2VMVmWqI5y5DEp2u1whzMbb1da": {
+      "title": "Screenshot_20261125-000338.png",
+      "result": "Piltovan Forge (Regional Open Wuhan Participation)"
+    },
+    "11A5XaAuKAWCS0d_31SoEJ_pcB0m6FTyW": {
+      "title": "Screenshot_20261125-000348.png",
+      "result": "skipped: already on tracker"
+    },
+    "1qPOgUByEKpVJL7sApc66DkWiPyaB6uEN": {
+      "title": "Screenshot_20261125-000410.png",
+      "result": "Arcane Immersive Show Poster - Viktor & Jayce"
+    },
+    "1XTPfwN9cihyS1zi35LRBmb0wzxlE9j3y": {
+      "title": "Screenshot_20261125-000517.png",
+      "result": "skipped: already on tracker"
+    },
+    "1gpzHQPojN0uRAnIvqd_o1QRd2dzTGXCh": {
+      "title": "Screenshot_20261125-000729.png",
+      "result": "skipped: already on tracker"
+    },
+    "18MG-QVbLSQMfvqG0F76hxABZB2oh7a37": {
+      "title": "Screenshot_20261125-000733.png",
+      "result": "skipped: already on tracker"
+    },
+    "1A8cVmTtgiQ00g7ygtrtixH0htC_C4gww": {
+      "title": "Screenshot_20261125-000736.png",
+      "result": "skipped: already on tracker"
+    },
+    "1YBEaX4geZH3QCzz3Aew6ldpfcW5UqPdp": {
+      "title": "Screenshot_20261125-000738.png",
+      "result": "skipped: already on tracker"
+    },
+    "1EGaTMLUWMYvsMGPfDvBRhWdyWSOo5t_c": {
+      "title": "Screenshot_20261125-000741.png",
+      "result": "skipped: already on tracker"
+    },
+    "1jRMevKIcRXFjWLac7HyrMqlgWQw3YJEy": {
+      "title": "Screenshot_20261125-000743.png",
+      "result": "skipped: already on tracker"
+    },
+    "15wwyBxSjok_pr89bYol9itCcV9JACjzS": {
+      "title": "Screenshot_20261125-000753.png",
+      "result": "skipped: already on tracker"
+    },
+    "1Ffawi8e-LP6saAcDw4nHWL7nXtBIPVga": {
+      "title": "Screenshot_20261125-000803.png",
+      "result": "skipped: already on tracker"
+    },
+    "1FJjjrDdbStVvSaln-DFRYyLtVFp5N6bW": {
+      "title": "Screenshot_20261125-000846.png",
+      "result": "Crystal Rose Divider - Ahri, Kai'Sa, Sett, Sona, Ezreal, Lux"
+    },
+    "1KxNhlwyoJOB0rPxeFce1zgQ8CpqKNXVA": {
+      "title": "Screenshot_20261125-000850.png",
+      "result": "skipped: already on tracker"
+    },
+    "12Zn5r904wodeSRr6yBZt-4TnRtMOmZhj": {
+      "title": "Screenshot_20261125-000953.png",
+      "result": "skipped: already on tracker"
+    },
+    "1syFfXZDCRqV6kK6uqNxDgqN14JoHjCVQ": {
+      "title": "Screenshot_20261125-001004.png",
+      "result": "skipped: already on tracker"
+    },
+    "1BCH6YxPBxDnHMoUA5s3FbbVslCunt6rY": {
+      "title": "to ind red box poro and put on collectible tab.png",
+      "result": "K/DA Poro Plush Keychain Blind Box"
+    }
+  }
 }
