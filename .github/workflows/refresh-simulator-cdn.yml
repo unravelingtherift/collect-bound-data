@@ -1,0 +1,24 @@
+# When the Play Simulator changes on main, tell jsDelivr to drop its cached copy so
+# the live Squarespace page shows the new version within minutes instead of up to 12 hours.
+name: Refresh simulator on CDN
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'simulator/**'
+  workflow_dispatch: # also lets you run it by hand from the Actions tab
+
+permissions:
+  contents: read
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Purge jsDelivr cache
+        run: |
+          # jsDelivr needs a moment to see the new commit; purge after 1 minute, then again after 3.
+          URL="https://purge.jsdelivr.net/gh/${{ github.repository }}@main/simulator/riftbound-play-simulator.html"
+          sleep 60;  curl -fsS "$URL"; echo
+          sleep 120; curl -fsS "$URL"; echo
