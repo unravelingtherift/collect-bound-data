@@ -1,4 +1,231 @@
 {
   "note": "Prize wall and regional prize pages already checked by the daily prize wall task. Per page: the item names already handled, so only new items are reviewed.",
-  "pages": {}
+  "pages": {
+    "https://uvsgames.com/rq-barcelona-prize-wall/": {
+      "checked": "2026-11-25",
+      "added": [
+        "Kai'Sa Crystal Rose Playmat",
+        "Ezreal Crystal Rose Playmat",
+        "Barcelona Commemorative Pin"
+      ],
+      "event_added": [
+        "Plated Legend - Rumble, Mechanized Menace",
+        "Plated Legend - Lucian, Purifier",
+        "Plated Legend - Draven, Glorious Executioner",
+        "Plated Legend - Rek'Sai, Void Burrower",
+        "Plated Legend - Ornn, Fire Below the Mountain",
+        "Plated Legend - Jax, Grandmaster at Arms",
+        "Plated Legend - Irelia, Blade Dancer",
+        "Plated Legend - Azir, Emperor of Sands",
+        "Plated Legend - Ezreal, Prodigal Explorer",
+        "Plated Legend - Renata Glasc, Chem-Baroness",
+        "Plated Legend - Sivir, Battle Mistress",
+        "Plated Legend - Fiora, Grand Duelist",
+        "Plated Legend - Lillia, Bashful Bloom",
+        "Plated Legend - Pyke, Bloodharbor Ripper",
+        "Plated Legend - LeBlanc, Deceiver",
+        "Plated Legend - Vex, Gloomist",
+        "Plated Legend - Ivern, Green Father",
+        "Plated Legend - Poppy, Keeper of the Hammer",
+        "Plated Legend - Vi, Piltover Enforcer",
+        "Plated Legend - Rengar, Pridestalker",
+        "Plated Legend - Diana, Scorn of the Moon",
+        "Plated Legend - Jhin, Virtuoso",
+        "Plated Legend - Kha'Zix, Voidreaver",
+        "Plated Legend - Master Yi, Wuju Master/Bladesman",
+        "Plated Legend - Akali, Rogue Assassin",
+        "Plated Legend - Renekton, Butcher of Sands",
+        "Plated Legend - Zed, Master of Shadows",
+        "Plated Legend - Nasus, Curator of Sands",
+        "Plated Legend - Shen, Eye of Twilight",
+        "Plated Legend - Jayce, Defender of Tomorrow",
+        "Plated Legend - Mel, Soul's Reflection",
+        "Plated Legend - Ambessa, Matriarch of War",
+        "Plated Legend - Kennen, Heart of the Tempest",
+        "Double-Sized Battleground Card - Treasure Hoard",
+        "Double-Sized Battleground Card - Emperor's Dais",
+        "Double-Sized Battleground Card - Dusk Rose Lab",
+        "Double-Sized Battleground Card - Ripper's Bay",
+        "Regional Rune Collection"
+      ],
+      "research": [
+        "Double-Sized Battleground Card - Mystic Vortex",
+        "Double-Sized Battleground Card - Sandswept Tomb"
+      ],
+      "skipped_basic": [
+        "Booster packs and boxes (all sets)",
+        "Champion Decks and Showdown Deck Zed vs Shen",
+        "Vendetta, Unleashed, Spiritforged and Origins set art sleeves",
+        "Vendetta, Unleashed, Spiritforged and Origins set playmats"
+      ]
+    },
+    "https://uvsgames.com/rq-singapore-prize-wall/": {
+      "checked": "2026-11-25",
+      "added": [
+        "Kai'Sa Crystal Rose Playmat",
+        "Ezreal Crystal Rose Playmat",
+        "Singapore Commemorative Pin"
+      ],
+      "event_added": [
+        "Plated Legend - Rumble, Mechanized Menace",
+        "Plated Legend - Lucian, Purifier",
+        "Plated Legend - Draven, Glorious Executioner",
+        "Plated Legend - Rek'Sai, Void Burrower",
+        "Plated Legend - Ornn, Fire Below the Mountain",
+        "Plated Legend - Jax, Grandmaster at Arms",
+        "Plated Legend - Irelia, Blade Dancer",
+        "Plated Legend - Azir, Emperor of Sands",
+        "Plated Legend - Ezreal, Prodigal Explorer",
+        "Plated Legend - Renata Glasc, Chem-Baroness",
+        "Plated Legend - Sivir, Battle Mistress",
+        "Plated Legend - Fiora, Grand Duelist",
+        "Plated Legend - Lillia, Bashful Bloom",
+        "Plated Legend - Pyke, Bloodharbor Ripper",
+        "Plated Legend - LeBlanc, Deceiver",
+        "Plated Legend - Vex, Gloomist",
+        "Plated Legend - Ivern, Green Father",
+        "Plated Legend - Poppy, Keeper of the Hammer",
+        "Plated Legend - Vi, Piltover Enforcer",
+        "Plated Legend - Rengar, Pridestalker",
+        "Plated Legend - Diana, Scorn of the Moon",
+        "Plated Legend - Jhin, Virtuoso",
+        "Plated Legend - Kha'Zix, Voidreaver",
+        "Plated Legend - Master Yi, Wuju Master/Bladesman",
+        "Plated Legend - Akali, Rogue Assassin",
+        "Plated Legend - Renekton, Butcher of Sands",
+        "Plated Legend - Zed, Master of Shadows",
+        "Plated Legend - Nasus, Curator of Sands",
+        "Plated Legend - Shen, Eye of Twilight",
+        "Plated Legend - Jayce, Defender of Tomorrow",
+        "Plated Legend - Mel, Soul's Reflection",
+        "Plated Legend - Ambessa, Matriarch of War",
+        "Plated Legend - Kennen, Heart of the Tempest",
+        "Double-Sized Battleground Card - Treasure Hoard",
+        "Double-Sized Battleground Card - Emperor's Dais",
+        "Double-Sized Battleground Card - Dusk Rose Lab",
+        "Double-Sized Battleground Card - Ripper's Bay",
+        "Regional Rune Collection"
+      ],
+      "research": [
+        "Double-Sized Battleground Card - Mystic Vortex",
+        "Double-Sized Battleground Card - Sandswept Tomb",
+        "RQ Exclusive Vex / Vex Shadow Art Sleeves"
+      ],
+      "skipped_basic": [
+        "Booster packs and boxes (all sets)",
+        "Champion Decks and Showdown Deck Zed vs Shen",
+        "Vendetta, Unleashed, Spiritforged and Origins set art sleeves",
+        "Vendetta, Unleashed, Spiritforged and Origins set playmats",
+        "Lunar New Year Bundle"
+      ]
+    },
+    "https://riftboundop.com/rq-los-angeles-prize-wall/": {
+      "checked": "2026-11-25",
+      "added": [
+        "Kai'Sa Crystal Rose Playmat",
+        "Ezreal Crystal Rose Playmat",
+        "Riftbound Regional Qualifier: Los Angeles Commemorative Pin"
+      ],
+      "event_added": [
+        "Plated Legend - Rumble, Mechanized Menace",
+        "Plated Legend - Lucian, Purifier",
+        "Plated Legend - Draven, Glorious Executioner",
+        "Plated Legend - Rek'Sai, Void Burrower",
+        "Plated Legend - Ornn, Fire Below the Mountain",
+        "Plated Legend - Jax, Grandmaster at Arms",
+        "Plated Legend - Irelia, Blade Dancer",
+        "Plated Legend - Azir, Emperor of Sands",
+        "Plated Legend - Ezreal, Prodigal Explorer",
+        "Plated Legend - Renata Glasc, Chem-Baroness",
+        "Plated Legend - Sivir, Battle Mistress",
+        "Plated Legend - Fiora, Grand Duelist",
+        "Plated Legend - Lillia, Bashful Bloom",
+        "Plated Legend - Pyke, Bloodharbor Ripper",
+        "Plated Legend - LeBlanc, Deceiver",
+        "Plated Legend - Vex, Gloomist",
+        "Plated Legend - Ivern, Green Father",
+        "Plated Legend - Poppy, Keeper of the Hammer",
+        "Plated Legend - Vi, Piltover Enforcer",
+        "Plated Legend - Rengar, Pridestalker",
+        "Plated Legend - Diana, Scorn of the Moon",
+        "Plated Legend - Jhin, Virtuoso",
+        "Plated Legend - Kha'Zix, Voidreaver",
+        "Plated Legend - Master Yi, Wuju Master/Bladesman",
+        "Plated Legend - Akali, Rogue Assassin",
+        "Plated Legend - Renekton, Butcher of Sands",
+        "Plated Legend - Zed, Master of Shadows",
+        "Plated Legend - Nasus, Curator of Sands",
+        "Plated Legend - Shen, Eye of Twilight",
+        "Plated Legend - Jayce, Defender of Tomorrow",
+        "Plated Legend - Mel, Soul's Reflection",
+        "Plated Legend - Ambessa, Matriarch of War",
+        "Plated Legend - Kennen, Heart of the Tempest",
+        "Double-Sized Battleground Card - Treasure Hoard",
+        "Double-Sized Battleground Card - Emperor's Dais",
+        "Double-Sized Battleground Card - Dusk Rose Lab",
+        "Double-Sized Battleground Card - Ripper's Bay",
+        "Regional Rune Collection"
+      ],
+      "research": [
+        "Double-Sized Battleground Card - Mystic Vortex",
+        "Double-Sized Battleground Card - Sandswept Tomb",
+        "Vex & Shadow Art Sleeves",
+        "Spirit Blossom Yasuo Playmat",
+        "Spirit Blossom Aphelios, Exalted Playmat"
+      ],
+      "skipped_basic": [
+        "Booster packs and boxes (all sets)",
+        "Champion Decks and Showdown Deck Zed vs Shen",
+        "Vendetta, Unleashed, Spiritforged and Origins set art sleeves",
+        "Vendetta, Unleashed, Spiritforged and Origins set playmats"
+      ]
+    },
+    "https://playriftbound.com/en-us/news/organizedplay/all-eyes-on-los-angeles/": {
+      "checked": "2026-11-25",
+      "research": [
+        "Lux, Crownguard (Crystal Rose) Playmat",
+        "Jayce, Brilliant Inventor (Alt Art) - Top 128 Promo",
+        "Jayce, Brilliant Inventor (Exclusive Art) - Top 8 Promo Card",
+        "Jayce, Brilliant Inventor (Exclusive Art) - Winners Promo Card",
+        "Jayce, Brilliant Inventor (Alt Art) - Top Cut Playmat",
+        "Jayce, Brilliant Inventor (Exclusive Art) - Winners Playmat"
+      ],
+      "skipped_basic": [
+        "Secret Garden Bundle"
+      ]
+    },
+    "https://riftboundop.com/rceu-prize-wall/": {
+      "checked": "2026-11-25",
+      "already_on_tracker": [
+        "16 RQ/RC Exclusive Double-Tall Battlefields",
+        "Regional Championship: Europe Pin",
+        "K'Sante Dauntless Playmat",
+        "Riven, Deserter Playmat",
+        "Seraphine, Not Alone Playmat",
+        "Regional Rune Collection",
+        "30 Prize Wall Plated Legends"
+      ],
+      "research": [
+        "2 Player Poro - Playmat"
+      ],
+      "skipped_basic": [
+        "Booster packs and boxes (all sets)",
+        "Lunar New Year Bundle",
+        "Radiance, Vendetta, Unleashed, Spiritforged and Origins set art sleeves (incl. Vex & Shadow)",
+        "Radiance, Vendetta, Unleashed, Spiritforged and Origins set playmats"
+      ]
+    },
+    "https://riftboundop.com/rceu-plated-legends-availability/": {
+      "checked": "2026-11-25",
+      "already_on_tracker": [
+        "Availability notice for the 30 Prize Wall Plated Legends, no new items"
+      ]
+    }
+  },
+  "not_read": {
+    "https://riftboundop.com/season-5-rceu-prizing/": "fetch blocked on 2026-11-25 (permission prompt unanswered); items from it were already added in sql/pending/2026-11-25-a",
+    "https://playriftbound.com/fr-fr/news/": "fetch blocked 2026-11-25",
+    "https://playriftbound.com/zh-cn/news/": "fetch blocked 2026-11-25",
+    "https://playriftbound.com/ko-kr/news/": "fetch blocked 2026-11-25"
+  }
 }
