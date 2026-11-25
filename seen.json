@@ -205,14 +205,15 @@
         "Regional Rune Collection",
         "30 Prize Wall Plated Legends"
       ],
-      "research": [
-        "2 Player Poro - Playmat"
-      ],
+      "research": [],
       "skipped_basic": [
         "Booster packs and boxes (all sets)",
         "Lunar New Year Bundle",
         "Radiance, Vendetta, Unleashed, Spiritforged and Origins set art sleeves (incl. Vex & Shadow)",
         "Radiance, Vendetta, Unleashed, Spiritforged and Origins set playmats"
+      ],
+      "added": [
+        "2 Player Poro - Playmat"
       ]
     },
     "https://riftboundop.com/rceu-plated-legends-availability/": {
@@ -220,12 +221,107 @@
       "already_on_tracker": [
         "Availability notice for the 30 Prize Wall Plated Legends, no new items"
       ]
+    },
+    "https://uvsgames.com/rq-sydney-prize-wall/": {
+      "checked": "2026-11-25",
+      "event_added": [
+        "Plated Legends: 16 Origins, 12 Spiritforged, 12 Unleashed (40 total)",
+        "Double-Sized Battleground Card - Treasure Hoard",
+        "Double-Sized Battleground Card - Emperor's Dais",
+        "Double-Sized Battleground Card - Dusk Rose Lab",
+        "Double-Sized Battleground Card - Ripper's Bay"
+      ],
+      "skipped_basic": [
+        "Booster packs and boxes",
+        "Champion Decks",
+        "Unleashed, Origins and Spiritforged set art sleeves",
+        "Unleashed, Origins and Spiritforged set playmats"
+      ],
+      "already_on_tracker": [
+        "Sydney Commemorative Pin (already on tracker)"
+      ]
+    },
+    "https://uvsgames.com/rq-vancouver-prize-wall/": {
+      "checked": "2026-11-25",
+      "event_added": [
+        "Plated Legends: 16 Origins, 12 Spiritforged, 12 Unleashed (40 total)",
+        "Double-Sized Battleground Card - Treasure Hoard",
+        "Double-Sized Battleground Card - Emperor's Dais",
+        "Double-Sized Battleground Card - Dusk Rose Lab",
+        "Double-Sized Battleground Card - Ripper's Bay",
+        "Regional Rune Collection"
+      ],
+      "skipped_basic": [
+        "Booster packs and boxes",
+        "Champion Decks",
+        "Unleashed, Origins and Spiritforged set art sleeves",
+        "Unleashed, Origins and Spiritforged set playmats"
+      ],
+      "research": [
+        "Riftbound Regional Qualifier: Vancouver Commemorative Pin"
+      ]
+    },
+    "https://uvsgames.com/rq-utrecht-prize-wall/": {
+      "checked": "2026-11-25",
+      "event_added": [
+        "Plated Legends: 16 Origins, 12 Spiritforged, 12 Unleashed (40 total)",
+        "Double-Sized Battleground Card - Treasure Hoard",
+        "Double-Sized Battleground Card - Emperor's Dais",
+        "Double-Sized Battleground Card - Dusk Rose Lab",
+        "Double-Sized Battleground Card - Ripper's Bay"
+      ],
+      "skipped_basic": [
+        "Booster packs and boxes",
+        "Champion Decks",
+        "Unleashed, Origins and Spiritforged set art sleeves",
+        "Unleashed, Origins and Spiritforged set playmats"
+      ],
+      "already_on_tracker": [
+        "Utrecht Commemorative Pin (already on tracker)"
+      ]
+    },
+    "https://uvsgames.com/rq-hartford-prize-wall/": {
+      "checked": "2026-11-25",
+      "event_added": [
+        "Plated Legends: 16 Origins, 12 Spiritforged, 12 Unleashed (40 total)",
+        "Double-Sized Battleground Card - Treasure Hoard",
+        "Double-Sized Battleground Card - Emperor's Dais",
+        "Double-Sized Battleground Card - Dusk Rose Lab",
+        "Double-Sized Battleground Card - Ripper's Bay",
+        "Regional Rune Collection"
+      ],
+      "skipped_basic": [
+        "Booster packs and boxes",
+        "Champion Decks",
+        "Unleashed, Origins and Spiritforged set art sleeves",
+        "Unleashed, Origins and Spiritforged set playmats"
+      ],
+      "already_on_tracker": [
+        "Hartford Commemorative Pin (already on tracker; page misnames it Vancouver)"
+      ]
+    },
+    "https://riftboundop.com/season-5-rceu-prizing/": {
+      "checked": "2026-11-25",
+      "already_on_tracker": [
+        "K'Sante, Courageous Participation, Top 128, Top 8 and Champion promos",
+        "K'Sante, Courageous Champion Playmat",
+        "Overnumbered Foil Plated Legend draft"
+      ],
+      "research": [
+        "Day 2 Best-Of Foil Plated Legends"
+      ]
+    },
+    "https://playriftbound.com/en-us/news/organizedplay/north-american-regional-championship-info/": {
+      "checked": "2026-11-25",
+      "note": "RC North America, Las Vegas Dec 11-13 2026: prize cards/playmats not named yet; recheck after the event",
+      "handled": []
     }
   },
   "not_read": {
-    "https://riftboundop.com/season-5-rceu-prizing/": "fetch blocked on 2026-11-25 (permission prompt unanswered); items from it were already added in sql/pending/2026-11-25-a",
     "https://playriftbound.com/fr-fr/news/": "fetch blocked 2026-11-25",
     "https://playriftbound.com/zh-cn/news/": "fetch blocked 2026-11-25",
-    "https://playriftbound.com/ko-kr/news/": "fetch blocked 2026-11-25"
+    "https://playriftbound.com/ko-kr/news/": "fetch blocked 2026-11-25",
+    "https://riftbound.zone/en/convergence-fest-prize-wall-plated-legends-tickets/": "RC North America prize wall catalog, fetch blocked 2026-11-25",
+    "Korea Major (Dec 5 2026)": "only in Korean news so far; no official playriftbound ko-kr page could be read"
   }
 }
