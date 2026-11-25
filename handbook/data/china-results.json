@@ -1,135 +1,895 @@
 {
- "_about": "Official China (符文战场 / Riot Games & Shining Soul) event results the owner sends as screenshots, because the official Chinese posts live on apps that can't be read automatically (Bilibili, Weibo, Exchange Society). Only rows that could be read with confidence are entered; Legend names are matched from their Chinese titles. players = players on that Legend, advanced = how many made Day 2.",
+ "_about": "Official China (符文战场, Riot Games + Shining Soul) event results, read from the official results graphics the owner collected as screenshots (official Chinese posts live on apps that can't be read automatically). players = Day 1 players on that Legend; day2 = how many made Day 2 (Top 64 at Regional Opens, Top 128 at National Opens); pct = share shown when a graphic gives only percentages. Rows that couldn't be read or matched to a Legend with confidence are left out. Exchange Society's own weekly community meta charts and store events are never used.",
  "events": [
   {
-   "id": "cn-s5-ningbo-ro-day1",
-   "event": "China Regional Open, Season 5 (Ningbo), Day 1",
-   "date": null,
-   "source": "Official 符文战场 results graphic (screenshot sent by the owner, Nov 24, 2026)",
-   "total_players": 1280,
+   "id": "cn-s3-beijing-no",
+   "event": "China National Open, Beijing (Season 3)",
+   "season": "S3",
+   "city": "Beijing",
+   "date": "July 2026",
+   "iso": "2026-07-15",
+   "source": "Official 符文战场 (Riftbound China) results graphics, from screenshots of the official posts the owner collected on Exchange Society",
+   "total_players": 2048,
+   "winner_legend": "Irelia, Blade Dancer",
+   "day2_size": 128,
+   "deck_event": null,
+   "note": "Day 1 graphic shows only the 7 most-played Legends as percentages.",
    "legends": [
     {
-     "legend": "Riven, The Exile",
-     "cn": "放逐之刃",
-     "players": 238,
-     "advanced": 18
+     "legend": "Annie, Dark Child",
+     "day2": 2
     },
     {
-     "legend": "Kennen, Heart of the Tempest",
-     "cn": "狂暴之心",
-     "players": 115,
-     "advanced": 8
+     "legend": "Azir, Emperor of the Sands",
+     "day2": 5,
+     "pct": 3.5
     },
     {
-     "legend": "Kai'Sa, Daughter of the Void",
-     "cn": "虚空之女",
-     "players": 99,
-     "advanced": 7
-    },
-    {
-     "legend": "Evelynn, Agony's Embrace",
-     "cn": "痛苦之拥",
-     "players": 61,
-     "advanced": 4
-    },
-    {
-     "legend": "Orianna, Lady of Clockwork",
-     "cn": "发条魔灵",
-     "players": 44,
-     "advanced": 3
-    },
-    {
-     "legend": "Jayce, Defender of Tomorrow",
-     "cn": "未来守护者",
-     "players": 44,
-     "advanced": 3
-    },
-    {
-     "legend": "Seraphine, Starry-Eyed Songstress",
-     "cn": "星籁歌姬",
-     "players": 41,
-     "advanced": 3
-    },
-    {
-     "legend": "Mordekaiser, Iron Revenant",
-     "cn": "铁铠冥魂",
-     "players": 41,
-     "advanced": 3
-    },
-    {
-     "legend": "Lillia, Bashful Bloom",
-     "cn": "含羞蓓蕾",
-     "players": 38,
-     "advanced": 2
-    },
-    {
-     "legend": "Rek'Sai, Void Burrower",
-     "cn": "虚空遁地兽",
-     "players": 36,
-     "advanced": 2
-    },
-    {
-     "legend": "LeBlanc, Deceiver",
-     "cn": "诡术妖姬",
-     "players": 31,
-     "advanced": 2
-    },
-    {
-     "legend": "Master Yi, Wuju Bladesman",
-     "cn": "无极剑圣",
-     "players": 28,
-     "advanced": 2
-    },
-    {
-     "legend": "Nasus, Curator of the Sands",
-     "cn": "沙漠死神",
-     "players": 26,
-     "advanced": 2
-    },
-    {
-     "legend": "Jarvan IV, Exemplar of Demacia",
-     "cn": "德玛西亚皇子",
-     "players": 21,
-     "advanced": 1
-    },
-    {
-     "legend": "Master Yi, Wuju Master",
-     "cn": "无极宗师",
-     "players": 21,
-     "advanced": 1
+     "legend": "Darius, Hand of Noxus",
+     "day2": 1
     },
     {
      "legend": "Diana, Scorn of the Moon",
-     "cn": "皎月女神",
-     "players": 21,
-     "advanced": 1
+     "day2": 16,
+     "pct": 8.2
     },
     {
-     "legend": "Akali, Rogue Assassin",
-     "cn": "离群之刺",
-     "players": 21,
-     "advanced": 1
+     "legend": "Draven, Glorious Executioner",
+     "day2": 1
     },
     {
-     "legend": "Ziggs, Hexplosives Expert",
-     "cn": "爆破鬼才",
-     "players": 19,
-     "advanced": 1
+     "legend": "Ezreal, Prodigal Explorer",
+     "day2": 3
     },
     {
-     "legend": "K'Sante, Pride of Nazumah",
-     "cn": "纳祖芒荣耀",
-     "players": 19,
-     "advanced": 1
+     "legend": "Fiora, Grand Duelist",
+     "day2": 5
+    },
+    {
+     "legend": "Irelia, Blade Dancer",
+     "day2": 15,
+     "pct": 10.0
+    },
+    {
+     "legend": "Jinx, Loose Cannon",
+     "day2": 1
+    },
+    {
+     "legend": "Kai'Sa, Daughter of the Void",
+     "day2": 2
+    },
+    {
+     "legend": "Kha'Zix, Voidreaver",
+     "day2": 1
+    },
+    {
+     "legend": "LeBlanc, Deceiver",
+     "day2": 11,
+     "pct": 4.3
+    },
+    {
+     "legend": "Lee Sin, Blind Monk",
+     "day2": 1
+    },
+    {
+     "legend": "Lillia, Bashful Bloom",
+     "day2": 4
+    },
+    {
+     "legend": "Lucian, Purifier",
+     "day2": 1
+    },
+    {
+     "legend": "Lux, Lady of Luminosity",
+     "day2": 6
+    },
+    {
+     "legend": "Master Yi, Wuju Bladesman",
+     "day2": 28,
+     "pct": 15.2
+    },
+    {
+     "legend": "Master Yi, Wuju Master",
+     "day2": 1
+    },
+    {
+     "legend": "Miss Fortune, Bounty Hunter",
+     "day2": 5
     },
     {
      "legend": "Pyke, Bloodharbor Ripper",
-     "cn": "血港鬼影",
-     "players": 18,
-     "advanced": 1
+     "day2": 2
+    },
+    {
+     "legend": "Rek'Sai, Void Burrower",
+     "day2": 2
+    },
+    {
+     "legend": "Rengar, Pridestalker",
+     "day2": 2
+    },
+    {
+     "legend": "Sett, The Boss",
+     "day2": 2
+    },
+    {
+     "legend": "Sivir, Battle Mistress",
+     "day2": 1
+    },
+    {
+     "legend": "Vex, Gloomist",
+     "day2": 2,
+     "pct": 4.3
+    },
+    {
+     "legend": "Vi, Piltover Enforcer",
+     "day2": 1
+    },
+    {
+     "legend": "Viktor, Herald of the Arcane",
+     "day2": 7,
+     "pct": 4.2
     }
-   ],
-   "not_entered": "Four rows on the graphic (45, 35, 17 and 17 players) weren't readable enough to match to a Legend, so they're left out."
+   ]
+  },
+  {
+   "id": "cn-s4-wuhan-ro",
+   "event": "China Regional Open, Wuhan (Season 4)",
+   "season": "S4",
+   "city": "Wuhan",
+   "date": "Aug 29–30, 2026",
+   "iso": "2026-08-30",
+   "source": "Official 符文战场 (Riftbound China) results graphics, from screenshots of the official posts the owner collected on Exchange Society",
+   "total_players": 1280,
+   "winner_legend": "Irelia, Blade Dancer",
+   "day2_size": null,
+   "deck_event": null,
+   "note": "Day 2 graphic shows the top Legends as percentages only.",
+   "legends": [
+    {
+     "legend": "Ahri, Nine-Tailed Fox",
+     "players": 1
+    },
+    {
+     "legend": "Akali, Rogue Assassin",
+     "players": 67,
+     "day2_pct": 4.7
+    },
+    {
+     "legend": "Ambessa, Matriarch of War",
+     "players": 10
+    },
+    {
+     "legend": "Azir, Emperor of the Sands",
+     "players": 37
+    },
+    {
+     "legend": "Diana, Scorn of the Moon",
+     "players": 43,
+     "day2_pct": 7.8
+    },
+    {
+     "legend": "Draven, Glorious Executioner",
+     "players": 25
+    },
+    {
+     "legend": "Ezreal, Prodigal Explorer",
+     "players": 20
+    },
+    {
+     "legend": "Fiora, Grand Duelist",
+     "players": 54
+    },
+    {
+     "legend": "Irelia, Blade Dancer",
+     "players": 100,
+     "day2_pct": 12.5
+    },
+    {
+     "legend": "Ivern, Green Father",
+     "players": 11
+    },
+    {
+     "legend": "Jax, Grandmaster at Arms",
+     "players": 17
+    },
+    {
+     "legend": "Jayce, Defender of Tomorrow",
+     "players": 61,
+     "day2_pct": 6.8
+    },
+    {
+     "legend": "Jhin, Virtuoso",
+     "players": 14
+    },
+    {
+     "legend": "Kai'Sa, Daughter of the Void",
+     "players": 50
+    },
+    {
+     "legend": "Kennen, Heart of the Tempest",
+     "players": 135,
+     "day2_pct": 26.6
+    },
+    {
+     "legend": "Kha'Zix, Voidreaver",
+     "players": 25
+    },
+    {
+     "legend": "LeBlanc, Deceiver",
+     "players": 35,
+     "day2_pct": 6.2
+    },
+    {
+     "legend": "Leona, Radiant Dawn",
+     "players": 5
+    },
+    {
+     "legend": "Lillia, Bashful Bloom",
+     "players": 34
+    },
+    {
+     "legend": "Lucian, Purifier",
+     "players": 16
+    },
+    {
+     "legend": "Lux, Lady of Luminosity",
+     "players": 1
+    },
+    {
+     "legend": "Master Yi, Wuju Bladesman",
+     "players": 97,
+     "day2_pct": 10.9
+    },
+    {
+     "legend": "Master Yi, Wuju Master",
+     "players": 16
+    },
+    {
+     "legend": "Mel, Soul's Reflection",
+     "players": 34
+    },
+    {
+     "legend": "Miss Fortune, Bounty Hunter",
+     "players": 2
+    },
+    {
+     "legend": "Nasus, Curator of the Sands",
+     "players": 39
+    },
+    {
+     "legend": "Ornn, Fire Below the Mountain",
+     "players": 60
+    },
+    {
+     "legend": "Poppy, Keeper of the Hammer",
+     "players": 12
+    },
+    {
+     "legend": "Pyke, Bloodharbor Ripper",
+     "players": 8
+    },
+    {
+     "legend": "Rek'Sai, Void Burrower",
+     "players": 38
+    },
+    {
+     "legend": "Renata Glasc, Chem-Baroness",
+     "players": 11
+    },
+    {
+     "legend": "Renekton, Butcher of the Sands",
+     "players": 12
+    },
+    {
+     "legend": "Rengar, Pridestalker",
+     "players": 48
+    },
+    {
+     "legend": "Rumble, Mechanized Menace",
+     "players": 26
+    },
+    {
+     "legend": "Sett, The Boss",
+     "players": 1
+    },
+    {
+     "legend": "Shen, Eye of Twilight",
+     "players": 15
+    },
+    {
+     "legend": "Sivir, Battle Mistress",
+     "players": 12
+    },
+    {
+     "legend": "Teemo, Swift Scout",
+     "players": 1
+    },
+    {
+     "legend": "Vex, Gloomist",
+     "players": 44
+    },
+    {
+     "legend": "Viktor, Herald of the Arcane",
+     "players": 11
+    },
+    {
+     "legend": "Volibear, Relentless Storm",
+     "players": 1
+    },
+    {
+     "legend": "Zed, Master of Shadows",
+     "players": 18
+    }
+   ]
+  },
+  {
+   "id": "cn-s4-shenyang-ro",
+   "event": "China Regional Open, Shenyang (Season 4)",
+   "season": "S4",
+   "city": "Shenyang",
+   "date": "Sep 12–13, 2026",
+   "iso": "2026-09-13",
+   "source": "Official 符文战场 (Riftbound China) results graphics, from screenshots of the official posts the owner collected on Exchange Society",
+   "total_players": 1191,
+   "winner_legend": "Akali, Rogue Assassin",
+   "day2_size": 64,
+   "deck_event": null,
+   "note": "Day 1 graphic lists the 21 most-played Legends.",
+   "legends": [
+    {
+     "legend": "Akali, Rogue Assassin",
+     "players": 72,
+     "day2": 2
+    },
+    {
+     "legend": "Azir, Emperor of the Sands",
+     "players": 44,
+     "day2": 3
+    },
+    {
+     "legend": "Diana, Scorn of the Moon",
+     "players": 44,
+     "day2": 4
+    },
+    {
+     "legend": "Draven, Glorious Executioner",
+     "day2": 1
+    },
+    {
+     "legend": "Ezreal, Prodigal Explorer",
+     "day2": 3
+    },
+    {
+     "legend": "Fiora, Grand Duelist",
+     "players": 59,
+     "day2": 2
+    },
+    {
+     "legend": "Irelia, Blade Dancer",
+     "players": 74,
+     "day2": 4
+    },
+    {
+     "legend": "Ivern, Green Father",
+     "players": 35
+    },
+    {
+     "legend": "Jayce, Defender of Tomorrow",
+     "players": 65,
+     "day2": 4
+    },
+    {
+     "legend": "Kai'Sa, Daughter of the Void",
+     "players": 33,
+     "day2": 1
+    },
+    {
+     "legend": "Kennen, Heart of the Tempest",
+     "players": 118,
+     "day2": 18
+    },
+    {
+     "legend": "LeBlanc, Deceiver",
+     "players": 35,
+     "day2": 3
+    },
+    {
+     "legend": "Lillia, Bashful Bloom",
+     "players": 27
+    },
+    {
+     "legend": "Lucian, Purifier",
+     "day2": 1
+    },
+    {
+     "legend": "Master Yi, Wuju Bladesman",
+     "players": 65,
+     "day2": 5
+    },
+    {
+     "legend": "Mel, Soul's Reflection",
+     "players": 26
+    },
+    {
+     "legend": "Nasus, Curator of the Sands",
+     "players": 26
+    },
+    {
+     "legend": "Ornn, Fire Below the Mountain",
+     "players": 46
+    },
+    {
+     "legend": "Pyke, Bloodharbor Ripper",
+     "players": 27
+    },
+    {
+     "legend": "Rek'Sai, Void Burrower",
+     "players": 40,
+     "day2": 4
+    },
+    {
+     "legend": "Renata Glasc, Chem-Baroness",
+     "players": 21
+    },
+    {
+     "legend": "Rengar, Pridestalker",
+     "players": 29,
+     "day2": 2
+    },
+    {
+     "legend": "Shen, Eye of Twilight",
+     "players": 23
+    },
+    {
+     "legend": "Sivir, Battle Mistress",
+     "day2": 1
+    },
+    {
+     "legend": "Vex, Gloomist",
+     "players": 34,
+     "day2": 3
+    },
+    {
+     "legend": "Vi, Piltover Enforcer",
+     "day2": 1
+    },
+    {
+     "legend": "Viktor, Herald of the Arcane",
+     "day2": 1
+    },
+    {
+     "legend": "Volibear, Relentless Storm",
+     "day2": 1
+    }
+   ]
+  },
+  {
+   "id": "cn-s4-chengdu-no",
+   "event": "China National Open, Chengdu (Season 4)",
+   "season": "S4",
+   "city": "Chengdu",
+   "date": "Oct 9–11, 2026",
+   "iso": "2026-10-11",
+   "source": "Official 符文战场 (Riftbound China) results graphics, from screenshots of the official posts the owner collected on Exchange Society",
+   "total_players": 1835,
+   "winner_legend": "Azir, Emperor of the Sands",
+   "day2_size": 128,
+   "deck_event": "cn-chengdu-national-open-2026",
+   "note": null,
+   "legends": [
+    {
+     "legend": "Ahri, Nine-Tailed Fox",
+     "players": 4
+    },
+    {
+     "legend": "Akali, Rogue Assassin",
+     "players": 126,
+     "day2": 9
+    },
+    {
+     "legend": "Annie, Dark Child",
+     "players": 5
+    },
+    {
+     "legend": "Azir, Emperor of the Sands",
+     "players": 89,
+     "day2": 7
+    },
+    {
+     "legend": "Darius, Hand of Noxus",
+     "players": 1
+    },
+    {
+     "legend": "Diana, Scorn of the Moon",
+     "players": 45,
+     "day2": 1
+    },
+    {
+     "legend": "Draven, Glorious Executioner",
+     "players": 23,
+     "day2": 1
+    },
+    {
+     "legend": "Ezreal, Prodigal Explorer",
+     "players": 45,
+     "day2": 1
+    },
+    {
+     "legend": "Fiora, Grand Duelist",
+     "players": 88,
+     "day2": 5
+    },
+    {
+     "legend": "Garen, Might of Demacia",
+     "players": 1
+    },
+    {
+     "legend": "Irelia, Blade Dancer",
+     "players": 194,
+     "day2": 30
+    },
+    {
+     "legend": "Ivern, Green Father",
+     "players": 14
+    },
+    {
+     "legend": "Jax, Grandmaster at Arms",
+     "players": 23
+    },
+    {
+     "legend": "Jayce, Defender of Tomorrow",
+     "players": 132,
+     "day2": 6
+    },
+    {
+     "legend": "Jhin, Virtuoso",
+     "players": 33
+    },
+    {
+     "legend": "Kai'Sa, Daughter of the Void",
+     "players": 26,
+     "day2": 1
+    },
+    {
+     "legend": "Kennen, Heart of the Tempest",
+     "players": 117,
+     "day2": 18
+    },
+    {
+     "legend": "Kha'Zix, Voidreaver",
+     "players": 33,
+     "day2": 1
+    },
+    {
+     "legend": "LeBlanc, Deceiver",
+     "players": 94,
+     "day2": 9
+    },
+    {
+     "legend": "Leona, Radiant Dawn",
+     "players": 4
+    },
+    {
+     "legend": "Lillia, Bashful Bloom",
+     "players": 41,
+     "day2": 2
+    },
+    {
+     "legend": "Lucian, Purifier",
+     "players": 12
+    },
+    {
+     "legend": "Lux, Lady of Luminosity",
+     "players": 3
+    },
+    {
+     "legend": "Master Yi, Wuju Bladesman",
+     "players": 113,
+     "day2": 9
+    },
+    {
+     "legend": "Master Yi, Wuju Master",
+     "players": 36
+    },
+    {
+     "legend": "Miss Fortune, Bounty Hunter",
+     "players": 1
+    },
+    {
+     "legend": "Nasus, Curator of the Sands",
+     "players": 38,
+     "day2": 2
+    },
+    {
+     "legend": "Ornn, Fire Below the Mountain",
+     "players": 58,
+     "day2": 3
+    },
+    {
+     "legend": "Poppy, Keeper of the Hammer",
+     "players": 14
+    },
+    {
+     "legend": "Pyke, Bloodharbor Ripper",
+     "players": 25
+    },
+    {
+     "legend": "Rek'Sai, Void Burrower",
+     "players": 67,
+     "day2": 4
+    },
+    {
+     "legend": "Renata Glasc, Chem-Baroness",
+     "players": 22
+    },
+    {
+     "legend": "Renekton, Butcher of the Sands",
+     "players": 11
+    },
+    {
+     "legend": "Rengar, Pridestalker",
+     "players": 69,
+     "day2": 8
+    },
+    {
+     "legend": "Rumble, Mechanized Menace",
+     "players": 23
+    },
+    {
+     "legend": "Sett, The Boss",
+     "players": 2
+    },
+    {
+     "legend": "Shen, Eye of Twilight",
+     "players": 26
+    },
+    {
+     "legend": "Sivir, Battle Mistress",
+     "players": 22
+    },
+    {
+     "legend": "Vex, Gloomist",
+     "players": 71,
+     "day2": 7
+    },
+    {
+     "legend": "Vi, Piltover Enforcer",
+     "players": 8
+    },
+    {
+     "legend": "Viktor, Herald of the Arcane",
+     "players": 23,
+     "day2": 2
+    },
+    {
+     "legend": "Volibear, Relentless Storm",
+     "players": 3,
+     "day2": 1
+    },
+    {
+     "legend": "Yasuo, Unforgiven",
+     "players": 2
+    },
+    {
+     "legend": "Zed, Master of Shadows",
+     "players": 14
+    }
+   ]
+  },
+  {
+   "id": "cn-s5-ningbo-ro",
+   "event": "China Regional Open, Ningbo (Season 5)",
+   "season": "S5",
+   "city": "Ningbo",
+   "date": "November 2026",
+   "iso": "2026-11-22",
+   "source": "Official 符文战场 (Riftbound China) results graphics, from screenshots of the official posts the owner collected on Exchange Society",
+   "total_players": 1280,
+   "winner_legend": "Kennen, Heart of the Tempest",
+   "day2_size": 64,
+   "deck_event": null,
+   "note": null,
+   "legends": [
+    {
+     "legend": "Ahri, Nine-Tailed Fox",
+     "players": 3
+    },
+    {
+     "legend": "Akali, Rogue Assassin",
+     "players": 21,
+     "day2": 2
+    },
+    {
+     "legend": "Ambessa, Matriarch of War",
+     "players": 12
+    },
+    {
+     "legend": "Azir, Emperor of the Sands",
+     "players": 10
+    },
+    {
+     "legend": "Diana, Scorn of the Moon",
+     "players": 21,
+     "day2": 1
+    },
+    {
+     "legend": "Draven, Glorious Executioner",
+     "players": 2
+    },
+    {
+     "legend": "Evelynn, Agony's Embrace",
+     "players": 61,
+     "day2": 1
+    },
+    {
+     "legend": "Ezreal, Prodigal Explorer",
+     "players": 2
+    },
+    {
+     "legend": "Fiora, Grand Duelist",
+     "players": 10
+    },
+    {
+     "legend": "Irelia, Blade Dancer",
+     "players": 16
+    },
+    {
+     "legend": "Ivern, Green Father",
+     "players": 13
+    },
+    {
+     "legend": "Jarvan IV, Exemplar of Demacia",
+     "players": 21
+    },
+    {
+     "legend": "Jayce, Defender of Tomorrow",
+     "players": 44,
+     "day2": 1
+    },
+    {
+     "legend": "Jhin, Virtuoso",
+     "players": 17
+    },
+    {
+     "legend": "Jinx, Loose Cannon",
+     "players": 1
+    },
+    {
+     "legend": "K'Sante, Pride of Nazumah",
+     "players": 19
+    },
+    {
+     "legend": "Kai'Sa, Daughter of the Void",
+     "players": 99,
+     "day2": 8
+    },
+    {
+     "legend": "Kennen, Heart of the Tempest",
+     "players": 115,
+     "day2": 12
+    },
+    {
+     "legend": "Kha'Zix, Voidreaver",
+     "players": 15,
+     "day2": 1
+    },
+    {
+     "legend": "LeBlanc, Deceiver",
+     "players": 31,
+     "day2": 1
+    },
+    {
+     "legend": "Leona, Radiant Dawn",
+     "players": 4
+    },
+    {
+     "legend": "Lillia, Bashful Bloom",
+     "players": 38,
+     "day2": 2
+    },
+    {
+     "legend": "Lux, Lady of Luminosity",
+     "players": 1
+    },
+    {
+     "legend": "Master Yi, Wuju Bladesman",
+     "players": 28,
+     "day2": 1
+    },
+    {
+     "legend": "Master Yi, Wuju Master",
+     "players": 21
+    },
+    {
+     "legend": "Mordekaiser, Iron Revenant",
+     "players": 41
+    },
+    {
+     "legend": "Nasus, Curator of the Sands",
+     "players": 26,
+     "day2": 1
+    },
+    {
+     "legend": "Orianna, Lady of Clockwork",
+     "players": 44
+    },
+    {
+     "legend": "Ornn, Fire Below the Mountain",
+     "players": 5
+    },
+    {
+     "legend": "Poppy, Keeper of the Hammer",
+     "players": 16
+    },
+    {
+     "legend": "Pyke, Bloodharbor Ripper",
+     "players": 18
+    },
+    {
+     "legend": "Rek'Sai, Void Burrower",
+     "players": 36,
+     "day2": 3
+    },
+    {
+     "legend": "Renekton, Butcher of the Sands",
+     "players": 6
+    },
+    {
+     "legend": "Rengar, Pridestalker",
+     "players": 35
+    },
+    {
+     "legend": "Riven, The Exile",
+     "players": 238,
+     "day2": 27
+    },
+    {
+     "legend": "Rumble, Mechanized Menace",
+     "players": 3
+    },
+    {
+     "legend": "Seraphine, Starry-Eyed Songstress",
+     "players": 41
+    },
+    {
+     "legend": "Sett, The Boss",
+     "players": 4
+    },
+    {
+     "legend": "Shen, Eye of Twilight",
+     "players": 6
+    },
+    {
+     "legend": "Teemo, Swift Scout",
+     "players": 3
+    },
+    {
+     "legend": "Vex, Gloomist",
+     "players": 45,
+     "day2": 3
+    },
+    {
+     "legend": "Vi, Piltover Enforcer",
+     "players": 14
+    },
+    {
+     "legend": "Viktor, Herald of the Arcane",
+     "players": 2
+    },
+    {
+     "legend": "Volibear, Relentless Storm",
+     "players": 5
+    },
+    {
+     "legend": "Zed, Master of Shadows",
+     "players": 15
+    },
+    {
+     "legend": "Ziggs, Hexplosives Expert",
+     "players": 19
+    }
+   ]
   }
  ]
 }

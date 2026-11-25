@@ -118,7 +118,19 @@ for d in load(os.path.join(ROOT, 'tracker-data', 'decks.json'))['decks']:
 # ---------------------------------------------------------------- decks
 data = load(DECKS)
 events = sorted(data['events'], key=lambda e: e['published'])
-recent_ids = {e['id'] for e in events[-RECENT_EVENTS:]}
+
+# official China results (handbook/data/china-results.json): Day 1 / Day 2 Legend counts and winners
+china_path = os.path.join(ROOT, 'handbook', 'data', 'china-results.json')
+china = load(china_path)['events'] if os.path.exists(china_path) else []
+china_wins = {}   # legend -> [china event ids it won] (events that also have decklists are counted there)
+for ce in china:
+    if ce.get('winner_legend') and not ce.get('deck_event'):
+        china_wins.setdefault(ce['winner_legend'], []).append(ce['id'])
+
+# "right now" = the most recent official events, decklist events and China results together
+timeline = sorted([(e['published'], e['id']) for e in events] +
+                  [(c['iso'], c['id']) for c in china if not c.get('deck_event')])
+recent_ids = {i for _, i in timeline[-RECENT_EVENTS:]}
 unmatched = {}
 
 per = {}  # legend -> list of (event, deck)
@@ -199,7 +211,9 @@ for key, lg in sorted(legends.items(), key=lambda kv: kv[0]):
         'dom': lg['dom'], 'precon': precons.get(key, []),
     }
     if not lst:
-        entry['tier'] = 'none'
+        cw = [c for c in china_wins.get(key, [])]
+        entry['tier'] = 'winning' if any(c in recent_ids for c in cw) else ('earlier' if cw else 'none')
+        entry['wins'] = cw
         out.append(entry)
         continue
     evs = {}
@@ -214,7 +228,7 @@ for key, lg in sorted(legends.items(), key=lambda kv: kv[0]):
     top8_events = [e for e in events if evs.get(e['id'], {}).get('top8')]
     wins = [e for e in events if evs.get(e['id'], {}).get('win')]
     recent_top8 = [e for e in top8_events if e['id'] in recent_ids]
-    recent_wins = [e for e in wins if e['id'] in recent_ids]
+    recent_wins = [e['id'] for e in wins if e['id'] in recent_ids] + [c for c in china_wins.get(key, []) if c in recent_ids]
     if recent_wins or len(recent_top8) >= 2:
         tier = 'winning'
     elif recent_top8:
@@ -299,7 +313,7 @@ for key, lg in sorted(legends.items(), key=lambda kv: kv[0]):
         'tier': tier, 'axes': axes.get(key), 'decks': len(lst),
         'stats': {k: round(v, 3) for k, v in raw.get(key, {}).items()},
         'events': [evs[e['id']] for e in events if e['id'] in evs],
-        'top8': sum(x['top8'] for x in evs.values()), 'wins': [e['id'] for e in wins],
+        'top8': sum(x['top8'] for x in evs.values()), 'wins': [e['id'] for e in wins] + china_wins.get(key, []),
         'bans': ban_list, 'repl': repl, 'legal': legal_now, 'recent_events': [e['id'] for e in leg_events],
     })
     out.append(entry)
@@ -318,25 +332,28 @@ for e in out:
         cand.append((dist, o['k']))
     e['similar'] = [k for _, k in sorted(cand)[:3]]
 
-# official China results entered from screenshots (handbook/data/china-results.json)
-china_path = os.path.join(ROOT, 'handbook', 'data', 'china-results.json')
-china = load(china_path)['events'] if os.path.exists(china_path) else []
 by_name = {e['name']: e for e in out}
 for ce in china:
     for row in ce['legends']:
         if row['legend'] not in by_name:
             sys.exit(f"Unknown legend in china-results.json: {row['legend']}")
-        by_name[row['legend']].setdefault('china', []).append(
-            {'e': ce['id'], 'players': row['players'], 'adv': row['advanced'], 'total': ce['total_players']})
+        r = {'e': ce['id']}
+        for k in ('players', 'day2', 'pct', 'day2_pct'):
+            if row.get(k) is not None:
+                r[k] = row[k]
+        if ce.get('winner_legend') == row['legend']:
+            r['win'] = True
+        by_name[row['legend']].setdefault('china', []).append(r)
 
 table = {
     'updated': datetime.date.today().isoformat(),
-    'recent': [e['id'] for e in events[-RECENT_EVENTS:]],
+    'recent': [i for _, i in timeline[-RECENT_EVENTS:]],
     'events': [{'id': e['id'], 'event': e['event'], 'title': e['title'], 'url': e['url'], 'published': e['published'],
                 'winner': e['winner_legend'], 'decks': len(e['decks']), 'note': e.get('top8_note'),
                 'src': e.get('source', 'riot'), 'org': e.get('organizer')} for e in events],
-    'china': [{'id': c['id'], 'event': c['event'], 'date': c.get('date'), 'source': c['source'],
-               'total': c['total_players']} for c in china],
+    'china': [{'id': c['id'], 'event': c['event'], 'date': c.get('date'), 'iso': c['iso'], 'source': c['source'],
+               'total': c['total_players'], 'day2': c.get('day2_size'), 'winner': c.get('winner_legend'),
+               'deck_event': c.get('deck_event')} for c in china],
     'bans': [{'card': b['name'], 'date': b['date'], 'iso': b['iso']} for b in bans],
     'legends': out,
 }
