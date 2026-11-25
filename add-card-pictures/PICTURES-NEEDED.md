@@ -30,3 +30,16 @@ To fix one: drop the picture into this `add-card-pictures/` folder (name the fil
 - [ ] Acrylic Token - K/DA (Fan Support Event)
 - [ ] Card Shield - Number One Fan (Fan Support Event)
 - [ ] Card Shield - Super Fan (Fan Support Event)
+
+## Regional Championship Europe (Stuttgart)
+- [ ] Kai'Sa - Daughter of the Void (RC Stuttgart Plated Legend)
+- [ ] Master Yi - Wuju Bladesman (RC Stuttgart Plated Legend)
+- [ ] Kennen - Heart of the Tempest (RC Stuttgart Plated Legend)
+- [ ] Mordekaiser - Iron Revenant (RC Stuttgart Plated Legend)
+- [ ] Ziggs - Hexplosives Expert (RC Stuttgart Plated Legend)
+- [ ] K'Sante - Courageous (RC Stuttgart Participation Promo)
+- [ ] K'Sante - Courageous (RC Stuttgart Top 128 Promo)
+- [ ] K'Sante - Courageous (RC Stuttgart Top 8 Promo)
+- [ ] K'Sante - Courageous (RC Stuttgart Champion Promo)
+- [ ] K'Sante, Courageous Champion Playmat (RC Stuttgart)
+- [ ] The other plated legends from the draft (still showing Image coming soon); stills from the riftboundop video on X would work
