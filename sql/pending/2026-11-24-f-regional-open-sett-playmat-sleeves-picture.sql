@@ -1,0 +1,6 @@
+-- Season 4 Regional Open (China) Sett playmat, and a sharper picture for the Ezreal & Lux art sleeves.
+insert into promo_items (id, r, data)
+select 'item-10805', 10805, $j${"cat": "COLLECTIBLE", "nm": "Regional Open Playmat - Sett (Season 4)", "se": "N/A", "cn": "N/A", "ra": "N/A", "do": "N/A", "tg": "Playmat\nSett\nRegional Open", "img": "https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/regional-open-s4-playmat-sett-ch-item-10805.webp", "inf": "Season 4 Regional Open event-exclusive playmat, Sett design. Sold only at the Chinese Regional Open venues through an on-site purchase draw.", "r": 10805, "id": "item-10805", "la": "Chinese", "ev": "RO - China", "ty": "Playmat", "fo": false, "tn": false, "me": false, "nn": false, "bm": false, "pw": false, "pt": ""}$j$::jsonb || jsonb_build_object('st', coalesce((select data->>'st' from promo_items where upper(data->>'st')='NEED' limit 1),'NEED'))
+where not exists (select 1 from promo_items where id = 'item-10805' or (data->>'nm' = $n$Regional Open Playmat - Sett (Season 4)$n$ and data->>'la' = 'Chinese'));
+update promo_items set data = data || jsonb_build_object('img', 'https://cdn.jsdelivr.net/gh/unravelingtherift/collect-bound-data@main/promo-images/art-card-sleeves-ezreal-lux-1st-anniversary-ch-item-10755-v2.webp')
+ where id = 'item-10755';
