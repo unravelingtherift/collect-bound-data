@@ -46,6 +46,7 @@ done
 # 3. Single files the pages load.
 FILES=(
   handbook/riftbound-starter-handbook.html
+  simulator/riftbound-play-simulator.html
   tracker-data/codex-links.json
   tracker-data/collab-groups.json
   tracker-data/decks.json
