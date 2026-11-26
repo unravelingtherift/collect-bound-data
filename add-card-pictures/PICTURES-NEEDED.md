@@ -50,3 +50,9 @@ To fix one: drop the picture into this `add-card-pictures/` folder (name the fil
 - [ ] item-10854 Blitzcrank Plush Hat (small)
 - [ ] item-10855 to item-10861 Riftbound Dry Bag - Red, Orange, Yellow, Green, Blue, Purple, Black (small)
 - [ ] item-10863 to item-10868 Crystal Rose Divider - Ahri, Kai'Sa, Sett, Sona, Ezreal, Lux (small and tilted; Sett and Ezreal partly covered)
+
+## Prize wall check 2026-11-25 (no picture yet, the tracker shows "Image coming soon")
+- [ ] item-10833 Ezreal Crystal Rose Playmat (RQ Prize Wall)
+- [ ] item-10834 Barcelona Commemorative Pin
+- [ ] item-10835 Singapore Commemorative Pin
+- [ ] item-10836 Los Angeles Commemorative Pin
