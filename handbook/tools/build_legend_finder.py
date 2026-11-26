@@ -6,6 +6,8 @@ Everything in the table is worked out from Riot's own data, not opinion:
   - ogn/ogs/sfd/unl/ven/rad.json       card cost, type and domain
   - cardtext.json                       card text (to count Reaction cards)
   - tracker-data/decks.json             Riot's ready-made decks (Champion Decks, Pre-Rift kits...)
+  - handbook/data/china-results.json   official China Regional / National Open results
+  - handbook/data/china-weekly.json    China's weekly store & City Challenge meta reports
   - the ban list already in the handbook (RIFT.errataData.*.banned)
 
 It rewrites the block between LEGEND-FINDER:START and LEGEND-FINDER:END in
@@ -345,6 +347,22 @@ for ce in china:
             r['win'] = True
         by_name[row['legend']].setdefault('china', []).append(r)
 
+# China weekly Best-of-1 meta reports and store events (handbook/data/china-weekly.json)
+cw_path = os.path.join(ROOT, 'handbook', 'data', 'china-weekly.json')
+cweek = load(cw_path) if os.path.exists(cw_path) else {'weeks': [], 'store_events': []}
+cweek['weeks'].sort(key=lambda w: w['start'])
+for w in cweek['weeks']:
+    for name, n, pct in w['legends']:
+        if name not in by_name:
+            sys.exit(f"Unknown legend in china-weekly.json: {name}")
+        by_name[name].setdefault('cnw', []).append({'w': w['id'], 'n': n, 'pct': pct})
+for se in cweek['store_events']:
+    for role in ('winner', 'second'):
+        if se.get(role):
+            if se[role] not in by_name:
+                sys.exit(f"Unknown legend in china-weekly.json: {se[role]}")
+            by_name[se[role]].setdefault('cns', []).append({'e': se['id'], 'r': 1 if role == 'winner' else 2})
+
 table = {
     'updated': datetime.date.today().isoformat(),
     'recent': [i for _, i in timeline[-RECENT_EVENTS:]],
@@ -354,6 +372,9 @@ table = {
     'china': [{'id': c['id'], 'event': c['event'], 'date': c.get('date'), 'iso': c['iso'], 'source': c['source'],
                'total': c['total_players'], 'day2': c.get('day2_size'), 'winner': c.get('winner_legend'),
                'deck_event': c.get('deck_event')} for c in china],
+    'cnweeks': [{'id': w['id'], 'start': w['start'], 'end': w['end'], 'decks': w['decks'],
+                 'top': [x[0] for x in w['legends'][:3]]} for w in cweek['weeks']],
+    'cnstore': cweek['store_events'],
     'bans': [{'card': b['name'], 'date': b['date'], 'iso': b['iso']} for b in bans],
     'legends': out,
 }
