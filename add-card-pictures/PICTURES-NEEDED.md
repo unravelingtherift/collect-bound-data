@@ -56,3 +56,7 @@ To fix one: drop the picture into this `add-card-pictures/` folder (name the fil
 - [ ] item-10834 Barcelona Commemorative Pin
 - [ ] item-10835 Singapore Commemorative Pin
 - [ ] item-10836 Los Angeles Commemorative Pin
+
+## Fan support event acrylic tokens, one per champion (China)
+- [ ] HEARTSTEEL: Yone, Kayn, Ezreal, K'Sante, Aphelios, Sett
+- [ ] K/DA: Seraphine, Akali, Evelynn, Ahri, Kai'Sa
