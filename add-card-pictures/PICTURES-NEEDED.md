@@ -43,3 +43,10 @@ To fix one: drop the picture into this `add-card-pictures/` folder (name the fil
 - [ ] K'Sante - Courageous (RC Stuttgart Champion Promo)
 - [ ] K'Sante, Courageous Champion Playmat (RC Stuttgart)
 - [ ] The other plated legends from the draft (still showing Image coming soon); stills from the riftboundop video on X would work
+
+## Drive check 2026-11-25
+- [ ] item-10840 K/DA Poro Plush Keychain Blind Box (a plush covers the top of the box)
+- [ ] item-10853 Poro Blanket (small)
+- [ ] item-10854 Blitzcrank Plush Hat (small)
+- [ ] item-10855 to item-10861 Riftbound Dry Bag - Red, Orange, Yellow, Green, Blue, Purple, Black (small)
+- [ ] item-10863 to item-10868 Crystal Rose Divider - Ahri, Kai'Sa, Sett, Sona, Ezreal, Lux (small and tilted; Sett and Ezreal partly covered)
