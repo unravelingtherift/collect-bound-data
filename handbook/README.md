@@ -9,6 +9,7 @@ The live Starter Handbook on unravelingtherift.com loads from this folder.
 | `riot-posts-reviewed.json` | Riot news posts already reviewed for the handbook, so the weekly update doesn't repeat them. |
 | `data/riot-top-decks.json` | Decklists from official Riftbound events: every list Riot published in its "Top Decks" / "Best-of" posts, plus Top 8 lists from official events Riot doesn't post (China National Open, Showdown Series) transcribed by Runes & Rift. Runes & Rift's own community events are never included. The Legend Finder is built from it. |
 | `data/china-results.json` | Official China event results (from 符文战场 graphics the owner sends as screenshots), used by the Legend Finder. |
+| `data/china-weekly.json` | China's weekly Best-of-1 meta reports (top decks from official store events and City Challenges) and store-event winners, from the official China posts the owner sends as screenshots. Shown in the Legend Finder separately; it doesn't change the "right now" ranking. |
 | `tools/build_legend_finder.py` | Rebuilds the Legend Finder table inside the handbook from the two data files, the card files and the handbook's ban list: `python3 handbook/tools/build_legend_finder.py` |
 | `tools/validate.mjs` | Safety check run before any update is proposed: `node handbook/tools/validate.mjs` |
 

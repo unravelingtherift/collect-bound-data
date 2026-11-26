@@ -1,5 +1,5 @@
 {
- "_about": "Official China (符文战场, Riot Games + Shining Soul) event results, read from the official results graphics the owner collected as screenshots. players = Day 1 players on that Legend; day2 = how many made Day 2 (Top 64 at Regional Opens, Top 128 at National Opens); pct = share shown when a graphic gives only percentages. Rows that couldn't be read or matched to a Legend with confidence are left out. Community meta charts and store events are never used.",
+ "_about": "Official China (符文战场, Riot Games + Shining Soul) event results, read from the official results graphics the owner collected as screenshots. players = Day 1 players on that Legend; day2 = how many made Day 2 (Top 64 at Regional Opens, Top 128 at National Opens); pct = share shown when a graphic gives only percentages. Rows that couldn't be read or matched to a Legend with confidence are left out. China's weekly store and City Challenge meta reports live in china-weekly.json.",
  "events": [
   {
    "id": "cn-s3-beijing-no",
