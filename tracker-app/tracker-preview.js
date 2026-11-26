@@ -6075,7 +6075,7 @@ function priceLinksHtml(body, label){
   if(!links.length) return '';
   return `<div class="market-links"><span class="market-links-label">${label || 'Find this card:'}</span>` +
     links.map(([label, url]) => `<a class="market-link" href="${escapeHtml(url)}" target="_blank" rel="noopener">${label} &#8599;</a>`).join('') +
-    (hint ? `<div class="market-hint"><span>Chinese prices are easiest to find in the Jihuanshe (集换社) app, or Exchange Society, its English version. They&rsquo;re app-only (no web link) and some need a sign-in to open photos &mdash; copy the name and search there.</span><button type="button" class="market-copy" data-copy="${escapeHtml(name)}" onclick="cbCopyHint(this)">Copy card name</button></div>` : '') +
+    (hint ? `<div class="market-hint"><span>Chinese prices are easiest to find in a Chinese trading app. Most listings are app-only (no web link) and some need a sign-in to open photos &mdash; copy the name and search there.</span><button type="button" class="market-copy" data-copy="${escapeHtml(name)}" onclick="cbCopyHint(this)">Copy card name</button></div>` : '') +
     `<div class="market-disclaimer">Not affiliated with or endorsed by ${who}. Some sites may have limited access or require a login depending on your country. We're working to find more reliable options.${anyAffiliateActive() ? ' ' + AFFILIATE_DISCLOSURE : ''}</div></div>`;
 }
 
