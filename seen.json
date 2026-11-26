@@ -315,13 +315,69 @@
       "checked": "2026-11-25",
       "note": "RC North America, Las Vegas Dec 11-13 2026: prize cards/playmats not named yet; recheck after the event",
       "handled": []
+    },
+    "https://uvsgames.swoogo.com/bologna/10598147": {
+      "checked": "2026-11-26",
+      "already_on_tracker": [
+        "Blade of the Ruined King Champion promo",
+        "Blade of the Ruined King Top 8 promo",
+        "Blade of the Ruined King Champion Playmat"
+      ],
+      "note": "No prize wall item list on this page"
+    },
+    "https://uvsgames.swoogo.com/riftboundhouston/9882722": {
+      "checked": "2026-11-26",
+      "already_on_tracker": [
+        "Miss Fortune, Buccaneer Champion promo",
+        "Miss Fortune, Buccaneer Top 8 promo"
+      ],
+      "research": [
+        "Champion Playmat (RQ Houston)"
+      ],
+      "note": "No prize wall item list; points to uvsgames.com/rq-houston-prizewall/"
+    },
+    "https://uvsgames.com/lille-atlanta-badge-types/": {
+      "checked": "2026-11-26",
+      "already_on_tracker": [
+        "Boneshiver RQ exclusive alternate art"
+      ],
+      "research": [
+        "Sett, Brawler RQ Lille exclusive playmat (Andie Tong)",
+        "Yone, Blademaster RQ Atlanta exclusive playmat (Anson Tan)"
+      ],
+      "skipped_basic": [
+        "Spiritforged Booster Boxes",
+        "Booster box vouchers"
+      ]
+    },
+    "https://playriftbound.com/en-us/news/organizedplay/2026-regional-championship-info/": {
+      "checked": "2026-11-26",
+      "already_on_tracker": [
+        "RC Europe K'Sante, Courageous participation, Day 2, Top 8 and Champion promos",
+        "RC Europe Champion playmat",
+        "Best-Of Plated Legends"
+      ],
+      "research": [
+        "RC Europe participation commemorative playmat",
+        "NA RC K'Sante, Courageous Day 2/Top 8 promos and Top Cut playmat"
+      ]
+    },
+    "https://articles.starcitygames.com/riftbound/promos-and-best-of-prizes-for-upcoming-riftbound-regional-championships-revealed/": {
+      "checked": "2026-11-26",
+      "research": [
+        "NA RC K'Sante, Courageous Day 2/Top 8 promos and Top Cut playmat",
+        "NA RC Winner promo and playmat (not revealed yet)"
+      ],
+      "note": "Third-party copy of Riot's 2026 Regional Championship Info post"
     }
   },
   "not_read": {
-    "https://playriftbound.com/fr-fr/news/": "fetch blocked 2026-11-25",
-    "https://playriftbound.com/zh-cn/news/": "fetch blocked 2026-11-25",
-    "https://playriftbound.com/ko-kr/news/": "fetch blocked 2026-11-25",
+    "https://playriftbound.com/fr-fr/news/": "fetch blocked 2026-11-25, 2026-11-26",
+    "https://playriftbound.com/zh-cn/news/": "fetch blocked 2026-11-25, 2026-11-26",
+    "https://playriftbound.com/ko-kr/news/": "fetch blocked 2026-11-25, 2026-11-26",
     "https://riftbound.zone/en/convergence-fest-prize-wall-plated-legends-tickets/": "RC North America prize wall catalog, fetch blocked 2026-11-25",
-    "Korea Major (Dec 5 2026)": "only in Korean news so far; no official playriftbound ko-kr page could be read"
+    "Korea Major (Dec 5 2026)": "only in Korean news so far; no official playriftbound ko-kr page could be read",
+    "https://uvsgames.com/rq-houston-prizewall/": "fetch blocked 2026-11-26",
+    "https://playriftbound.com/en-us/news/organizedplay/announcing-the-showdown-series-le-rift-tour/": "fetch blocked 2026-11-26 (Le Rift Tour, France)"
   }
 }
