@@ -11,9 +11,12 @@
 /* ---- home ---- */
 #rbSim .rb-home{padding:14px 6px 6px}
 #rbSim .rb-home h1{font-size:clamp(1.5rem,3.2vw,2.2rem);margin-bottom:6px}
-#rbSim .rb-home p.lead{color:var(--dim);max-width:70ch;margin:0 0 18px}
-#rbSim .rb-home p.rb-subhead{color:var(--gold2);font-size:1.05rem;max-width:62ch;margin:0 0 14px;font-style:italic}
-#rbSim .rb-home .rb-intro{max-width:68ch;margin:0 0 16px}
+#rbSim .rb-home p.lead{color:var(--dim);max-width:none;margin:0 0 18px}
+#rbSim .rb-home p.rb-subhead{color:var(--gold2);font-size:1.05rem;max-width:none;margin:0 0 14px;font-style:italic}
+#rbSim .rb-home .rb-intro{max-width:none;margin:0 0 16px}
+#rbSim .rb-hb-btn{display:inline-block;text-decoration:none;margin:0 0 8px}
+#rbSim .rb-opp{display:flex;flex-direction:column;gap:8px;margin:6px 0 4px}
+#rbSim .rb-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
 #rbSim .rb-home .rb-intro p{margin:0 0 10px;line-height:1.6}
 #rbSim .rb-tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
 #rbSim .rb-tier{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}
@@ -1673,15 +1676,19 @@ function aiAct(state, p) {
   if (state.winner != null) return null;
   var pend = state.pending;
   var P = state.players[p];
+  // Easy: never answers with Reactions or combat tricks, plays at most one card a turn, and only attacks when clearly ahead.
+  var easy = !!(state.aiOpts && state.aiOpts.difficulty === 'easy');
   if (pend) {
     if (pend.for !== p) return null;
     if (pend.type === 'chain') {
+      if (easy) { chainPass(state, p); return 'pass'; }
       var topIt = state.chain[state.chain.length - 1];
       var rc = P.hand.filter(function (c) { return isReactionCard(c) && playable(state, p, c).ok; });
       for (var ri = 0; ri < rc.length; ri++) { var rim = IMPL[rc[ri].def.name]; if (rim && rim.aiChain && rim.aiChain(state, p, topIt)) { var rr = playCard(state, p, rc[ri].uid); if (rr.ok) return 'react'; } }
       chainPass(state, p); return 'pass';
     }
     if (pend.type === 'showdown') {
+      if (easy) { pass(state, p); return 'pass'; }
       // play a useful trick (Reaction/Action with an aiTrick hint) in combat, else a damage spell, else pass
       var trickers = P.hand.filter(function (c) { return isSpell(c) && IMPL[c.def.name] && IMPL[c.def.name].aiTrick && playable(state, p, c).ok; });
       for (var ti = 0; ti < trickers.length; ti++) { if (state.showdown.combat && IMPL[trickers[ti].def.name].aiTrick(state, p)) { var tr = playCard(state, p, trickers[ti].uid); if (tr.ok) return 'play'; } }
@@ -1720,15 +1727,16 @@ function aiAct(state, p) {
     for (var j = 0; j < h0.length; j++) { if (!isSpell(h0[j]) && playable(state, p, h0[j]).ok) { playCard(state, p, h0[j].uid); return 'play'; } }
     endTurn(state); return 'end';
   }
+  if (easy) { state.aiPlays = state.aiPlays || {}; if (state.aiPlays[state.turn] >= 1) { endTurn(state); return 'end'; } }
   // 1. play units/gear, highest cost first
   var hand = P.hand.concat(P.champion).sort(function (a, b) { return (b.def.energy || 0) - (a.def.energy || 0); });
   for (var i = 0; i < hand.length; i++) {
     var c = hand[i];
     if (isSpell(c)) {
-      if (!isAction(c) && /Token|Mech/.test(c.def.text) && playable(state, p, c).ok) { playCard(state, p, c.uid); return 'play'; }
+      if (!isAction(c) && /Token|Mech/.test(c.def.text) && playable(state, p, c).ok) { playCard(state, p, c.uid); if (easy) state.aiPlays[state.turn] = (state.aiPlays[state.turn] || 0) + 1; return 'play'; }
       continue;
     }
-    if (playable(state, p, c).ok) { playCard(state, p, c.uid); return 'play'; }
+    if (playable(state, p, c).ok) { var pr0 = playCard(state, p, c.uid); if (easy && pr0 && pr0.ok !== false) state.aiPlays[state.turn] = (state.aiPlays[state.turn] || 0) + 1; return 'play'; }
   }
   // 2. attach equipment
   for (i = 0; i < P.base.length; i++) { var g = P.base[i]; if (isGear(g) && IMPL[g.def.name] && g.def.might) { var abs = abilitiesFor(state, p, g); if (abs[0] && abs[0].ok) { useAbility(state, p, g.uid, 0); return 'equip'; } } }
@@ -1747,7 +1755,7 @@ function aiAct(state, p) {
       if (b.controller === p) return;
       if (score > bestScore) { bestScore = score; bestBf = b; }
     });
-    if (bestBf && bestScore >= 0) { moveUnits(state, p, uids(movers), bestBf.idx); return 'move'; }
+    if (bestBf && bestScore >= (easy ? 3 : 0)) { moveUnits(state, p, uids(movers), bestBf.idx); return 'move'; }
   }
   endTurn(state); return 'end';
 }
@@ -2046,7 +2054,7 @@ function startGame(l) {
   clearTimeout(timer); var ob = root.querySelector('.rb-banner'); if (ob) ob.remove();
   lesson = l || null; coach = null; S = null;
   ui = { sel: null, selUnits: [], mull: [], detail: null, delay: 650, log: true, runePop: null };
-  setup = { step: 0, deck: 'jayce', bf: null, first: null };
+  setup = { step: 0, deck: 'jayce', bf: null, first: null, ai: 'rnd', diff: 'normal' };
   $('.rb-home').hidden = true; $('.rb-game').hidden = false; enterFull();
   $('.rb-title').textContent = lesson ? lesson.title : 'Free Play vs. Computer';
   $('.rb-board').innerHTML = ''; $('.rb-side').innerHTML = ''; $('.rb-phases').innerHTML = ''; $('.rb-trackwrap').innerHTML = ''; $('.rb-hint').hidden = true;
@@ -2060,7 +2068,10 @@ function renderSetup() {
   h += '<div class="rb-modal rb-setup"><div class="rb-mbox">';
   if (setup.step === 0) {
     h += '<div class="rb-step">Setup · step 1 of 4</div><h2>Choose your deck</h2>';
-    h += '<p class="rb-why"><b>Why:</b> each player brings a deck built around a <b>Legend</b> (it shows which two Domains you may use). The Computer will pick a deck too, at random. Cards marked <b>Reaction</b> can be played in answer to a spell — every deck has some, and Zed, Shen and Lillia have the most.</p>';
+    h += '<p class="rb-why"><b>Why:</b> each player brings a deck built around a <b>Legend</b> (it shows which two Domains you may use). Below, choose the <b>Computer’s deck</b> (or let it pick at random) and <b>how hard it plays</b>, then pick your deck. Cards marked <b>Reaction</b> can be played in answer to a spell — every deck has some, and Zed, Shen and Lillia have the most.</p>';
+    h += '<div class="rb-opp"><div><span class="rb-lbl">Computer’s deck</span><div class="rb-chips">' + barBtn('Random', 'setai', 'small' + (setup.ai === 'rnd' ? '' : ' ghost'), 'data-v="rnd"') + Object.keys(DECKS).map(function (k) { return barBtn(esc(DECKS[k].label.split(' (')[0]), 'setai', 'small' + (setup.ai === k ? '' : ' ghost'), 'data-v="' + k + '"'); }).join('') + '</div></div>' +
+      '<div><span class="rb-lbl">Difficulty</span><div class="rb-chips">' + barBtn('Easy', 'setdiff', 'small' + (setup.diff === 'easy' ? '' : ' ghost'), 'data-v="easy"') + barBtn('Normal', 'setdiff', 'small' + (setup.diff === 'normal' ? '' : ' ghost'), 'data-v="normal"') + '</div><p class="rb-mini" style="margin:4px 0 0">' + (setup.diff === 'easy' ? 'Easy: the Computer never answers your spells, plays one card a turn and only attacks when it’s clearly ahead.' : 'Normal: the Computer plays a simple, legal strategy and can answer your spells with Reactions.') + '</p></div></div>';
+    h += '<p class="rb-lbl" style="margin:10px 0 6px">Your deck</p>';
     h += '<div class="rb-bfpicks rb-decks">' + Object.keys(DECKS).map(function (k) { var d = DECKS[k], lg = DEFS[d.legend]; return '<div class="rb-bfpick" data-act="setdeck" data-deck="' + k + '"><div class="art" style="aspect-ratio:auto;height:100px">' + (lg && lg.img ? '<img src="' + esc(lg.img) + '" alt="" referrerpolicy="no-referrer" onerror="this.remove()">' : '') + '<span>' + esc(d.legend) + '</span></div><div class="nm">' + esc(d.label) + '</div><div class="tx">' + esc(d.blurb) + '</div></div>'; }).join('') + '</div>';
     h += '<div class="rb-row">' + barBtn('← Menu', 'menu', 'ghost') + '</div>';
   } else if (setup.step === 1) {
@@ -2084,7 +2095,8 @@ function finishSetup() {
   var rnd = function (n) { var b = new Uint32Array(1); window.crypto.getRandomValues(b); return b[0] % n; };
   var ids = Object.keys(DECKS), ld = lesson && lesson.decks ? lesson.decks : null, myDeck = ld ? DECKS[ld[0]] : (lesson ? DECK : (DECKS[setup.deck] || DECK));
   var others = ids.filter(function (k) { return DECKS[k] !== myDeck; });
-  var aiDeck = ld ? DECKS[ld[1]] : (lesson ? DECK : DECKS[window.RB_FORCE_AI || others[rnd(others.length)]]);
+  var aiPick = !lesson && setup && setup.ai && setup.ai !== 'rnd' && DECKS[setup.ai] ? setup.ai : null;
+  var aiDeck = ld ? DECKS[ld[1]] : (lesson ? DECK : DECKS[window.RB_FORCE_AI || aiPick || others[rnd(others.length)]]);
   var nb = myDeck.battlefields.length;
   var bfPick = lesson && lesson.bfPick ? lesson.bfPick : [setup.bf === 'rnd' ? rnd(nb) : setup.bf, rnd(aiDeck.battlefields.length)];
   var first = lesson && lesson.first != null ? lesson.first : (setup.first === 'rnd' ? rnd(2) : setup.first);
@@ -2093,9 +2105,10 @@ function finishSetup() {
   S = RB.newGame(o);
   S.players[1].isAI = true;
   if (!lesson || !lesson.scenario) S.manualStart = true;
-  if (!lesson) { $('.rb-title').textContent = 'Free Play · ' + myDeck.label.split(' (')[0] + ' vs. Computer (' + aiDeck.label.split(' (')[0] + ')'; S.log.push('You play the ' + myDeck.label + ' deck. The Computer plays the ' + aiDeck.label + ' deck.'); }
+  if (!lesson) { $('.rb-title').textContent = 'Free Play · ' + myDeck.label.split(' (')[0] + ' vs. Computer (' + aiDeck.label.split(' (')[0] + (setup && setup.diff === 'easy' ? ', Easy' : ', Normal') + ')'; S.log.push('You play the ' + myDeck.label + ' deck. The Computer plays the ' + aiDeck.label + ' deck.'); }
   if (lesson && lesson.aiScript) S.aiScript = JSON.parse(JSON.stringify(lesson.aiScript));
   if (lesson && lesson.aiOpts) S.aiOpts = lesson.aiOpts;
+  if (!lesson && setup) S.aiOpts = { difficulty: setup.diff === 'easy' ? 'easy' : 'normal' };
   if (lesson && lesson.scenario) RB.scenario(S, lesson.scenario);
   if (lesson && lesson.scenario && S.active === 0 && S.phase === 'main') {
     var P0 = S.players[0], back = P0.runes.filter(function (r) { return !r.exhausted; }).slice(-2);
@@ -2536,6 +2549,8 @@ root.addEventListener('click', function (e) {
   if (a === 'none') return;
   if (a === 'oprune') { deny(el, 'that is the Computer\'s rune. You can only click your own runes (the row at the bottom).'); return; }
   if (a === 'setbf') { var iv = el.getAttribute('data-i'); setup.bf = iv === 'rnd' ? 'rnd' : +iv; setup.step = 2; renderSetup(); return; }
+  if (a === 'setai') { setup.ai = el.getAttribute('data-v'); renderSetup(); return; }
+  if (a === 'setdiff') { setup.diff = el.getAttribute('data-v') === 'easy' ? 'easy' : 'normal'; renderSetup(); return; }
   if (a === 'setdeck') { setup.deck = el.getAttribute('data-deck'); setup.step = 1; renderSetup(); return; }
   if (a === 'setfirst') { var fv = el.getAttribute('data-i'); setup.first = fv === 'rnd' ? 'rnd' : +fv; finishSetup(); return; }
   if (a === 'setback') { setup.step = Math.max(0, setup.step - 1); renderSetup(); return; }
@@ -2616,8 +2631,8 @@ function homeHtml() {
     (LESSONS[t.k] || []).forEach(function (l) { h += '<button type="button" class="rb-btn ' + (t.k === 'beginner' && l.id === 'beg-1' ? '' : (t.k === 'beginner' ? '' : 'ghost')) + '" data-act="startlesson" data-lesson="' + l.id + '">' + esc(l.menu || l.title) + '</button>'; });
     h += '</div></div>';
   });
-  h += '<div class="rb-tier free"><span class="rb-badge">Free Play</span><h3>Play the Computer</h3><p>A normal 1v1 game. Pick one of five decks; the Computer picks a deck at random and plays a simple, legal strategy. You can answer its spells with Reactions, and it can answer yours.</p><ul><li>Random first player</li><li>Full rules as implemented here</li></ul><div class="rb-lessons"><button type="button" class="rb-btn" data-act="start">Start a game</button></div></div>';
-  h += '</div><div class="rb-notice">' + (HANDBOOK ? '<a href="' + esc(HANDBOOK) + '" style="color:inherit;font-weight:700">Read the Starter Handbook</a> for the full beginner guide. ' : '') + 'Fan-made learning tool. Not affiliated with or endorsed by Riot Games. Card names and artwork belong to Riot Games. Rules follow the Riftbound Core Rules updated October 9, 2026, with these tutorial simplifications: the Chain is simplified (each player gets one chance to answer, then the newest card resolves), combat damage is assigned automatically, Hidden and Repeat are not in yet, and only the cards in the Jayce, Zed, Shen, Viktor and Lillia decks are implemented. More decks are on the way.</div></div>';
+  h += '<div class="rb-tier free"><span class="rb-badge">Free Play</span><h3>Play the Computer</h3><p>A normal 1v1 game. Pick one of five decks, then choose the Computer’s deck (or let it pick at random) and Easy or Normal. On Normal you can answer its spells with Reactions, and it can answer yours.</p><ul><li>Choose the Computer’s deck, or random</li><li>Easy or Normal difficulty</li><li>Random first player</li><li>Full rules as implemented here</li></ul><div class="rb-lessons"><button type="button" class="rb-btn" data-act="start">Start a game</button></div></div>';
+  h += '</div><div class="rb-notice">' + (HANDBOOK ? '<a class="rb-btn rb-hb-btn" href="' + esc(HANDBOOK) + '">📖 Read the Starter Handbook</a><br>The Starter Handbook is the full beginner guide. ' : '') + 'Fan-made learning tool. Not affiliated with or endorsed by Riot Games. Card names and artwork belong to Riot Games. Rules follow the Riftbound Core Rules updated October 9, 2026, with these tutorial simplifications: the Chain is simplified (each player gets one chance to answer, then the newest card resolves), combat damage is assigned automatically, Hidden and Repeat are not in yet, and only the cards in the Jayce, Zed, Shen, Viktor and Lillia decks are implemented. More decks are on the way.</div></div>';
   return h;
 }
 
