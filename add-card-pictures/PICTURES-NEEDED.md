@@ -1,10 +1,17 @@
 # Pictures needed
 
-Items on the tracker that show "Image coming soon". Upload a picture named with the item id (for example `item-10833.png`) following README.md.
+Items whose only picture is soft, tiny or partly covered. CardTrader, TCGplayer and eBay were checked and had nothing better yet.
+The daily Drive check adds to this list. To fix one: drop a better picture into this `add-card-pictures/` folder (name the file after the item), merge, then tick it off here.
 
-| Item | Name | Language | Event |
-|---|---|---|---|
-| item-10833 | Ezreal Crystal Rose Playmat (RQ Prize Wall) | English | RQ Barcelona / Singapore / Los Angeles |
-| item-10834 | Barcelona Commemorative Pin | English | RQ - Barcelona, Spain |
-| item-10835 | Singapore Commemorative Pin | English | RQ - Singapore |
-| item-10836 | Los Angeles Commemorative Pin | English | RQ - Los Angeles, CA USA |
+## Drive check 2026-11-25
+- [ ] item-10840 K/DA Poro Plush Keychain Blind Box (a plush covers the top of the box)
+- [ ] item-10853 Poro Blanket (small)
+- [ ] item-10854 Blitzcrank Plush Hat (small)
+- [ ] item-10855 to item-10861 Riftbound Dry Bag - Red, Orange, Yellow, Green, Blue, Purple, Black (small)
+- [ ] item-10863 to item-10868 Crystal Rose Divider - Ahri, Kai'Sa, Sett, Sona, Ezreal, Lux (small and tilted; Sett and Ezreal partly covered)
+
+## Prize wall check 2026-11-25 (no picture yet, the tracker shows "Image coming soon")
+- [ ] item-10833 Ezreal Crystal Rose Playmat (RQ Prize Wall)
+- [ ] item-10834 Barcelona Commemorative Pin
+- [ ] item-10835 Singapore Commemorative Pin
+- [ ] item-10836 Los Angeles Commemorative Pin
