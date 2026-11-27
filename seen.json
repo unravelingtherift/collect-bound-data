@@ -369,6 +369,50 @@
         "NA RC Winner promo and playmat (not revealed yet)"
       ],
       "note": "Third-party copy of Riot's 2026 Regional Championship Info post"
+    },
+    "https://playriftbound.com/zh-cn/news/organizedplay/regional-championships-competitive-integrity-prizing/": {
+      "checked": "2026-11-27",
+      "already_on_tracker": [
+        "Overnumbered Foil Plated Legend draft",
+        "Best-Of Plated Legends"
+      ],
+      "research": [
+        "RC China Overnumbered Foil Plated Legends (Chinese version?)"
+      ]
+    },
+    "https://playriftbound.com/ko-kr/news/organizedplay/regional-championships-competitive-integrity-prizing/": {
+      "checked": "2026-11-27",
+      "already_on_tracker": [
+        "Overnumbered Foil Plated Legend draft",
+        "Best-Of Plated Legends"
+      ]
+    },
+    "https://playriftbound.com/zh-cn/news/organizedplay/riftbound-world-showcase": {
+      "checked": "2026-11-27",
+      "research": [
+        "World Showcase numbered English limited card",
+        "World Showcase Overnumbered Foil Plated Legend (no RC stamp)",
+        "World Showcase deluxe player gift package"
+      ],
+      "skipped_basic": [
+        "Travel support, prize money, trophy (not collectibles)"
+      ]
+    },
+    "https://playriftbound.com/ko-kr/news/organizedplay/riftbound-world-showcase": {
+      "checked": "2026-11-27",
+      "research": [
+        "World Showcase numbered English limited card",
+        "World Showcase Overnumbered Foil Plated Legend (no RC stamp)",
+        "World Showcase deluxe player gift package"
+      ],
+      "skipped_basic": [
+        "Travel support, prize money, trophy (not collectibles)"
+      ]
+    },
+    "https://playriftbound.com/fr-fr/news/announcements/riftbounds-upcoming-official-events": {
+      "checked": "2026-11-27",
+      "handled": [],
+      "note": "Roadmap page, no prize items"
     }
   },
   "not_read": {
