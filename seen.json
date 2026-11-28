@@ -413,6 +413,95 @@
       "checked": "2026-11-27",
       "handled": [],
       "note": "Roadmap page, no prize items"
+    },
+    "https://playriftbound.com/en-us/news/announcements/eyes-on-las-vegas-what-to-know/": {
+      "checked": "2026-11-28",
+      "already_on_tracker": [
+        "Best-Of Metal Legends (Origins/Spiritforged)",
+        "RQ Champion Playmat",
+        "Las Vegas Commemorative Pin"
+      ],
+      "research": [
+        "RQ Las Vegas prize wall Plated Legends (not listed by name)"
+      ],
+      "skipped_basic": [
+        "Origins and Spiritforged boxes and packs"
+      ]
+    },
+    "https://uvsgames.com/rq-las-vegas-schedule": {
+      "checked": "2026-11-28",
+      "already_on_tracker": [
+        "RQ Champion Playmat",
+        "Best-Of Metal Legends"
+      ],
+      "research": [
+        "RQ Las Vegas Champion Card (not named)"
+      ],
+      "skipped_basic": [
+        "Prize wall tickets, prize money"
+      ]
+    },
+    "https://playriftbound.com/fr-fr/news/announcements/eyes-on-lille-what-to-know": {
+      "checked": "2026-11-28",
+      "already_on_tracker": [
+        "Best-Of Metal Legends"
+      ]
+    },
+    "https://playriftbound.com/fr-fr/news/organizedplay/announcing-the-showdown-series-le-rift-tour/": {
+      "checked": "2026-11-28",
+      "already_on_tracker": [
+        "Jayce - Man of Progress (Promo)",
+        "Altar to Unity [Autel d'unite]",
+        "Altar to Unity [Autel d'unite] Playmat",
+        "Le Rift Tour Top 8 Jacket",
+        "Le Rift Tour Poro Coin"
+      ],
+      "research": [
+        "Le Rift Tour Gold / Silver / Bronze Coins (separate items?)",
+        "Le Rift Tour Final 1st place English metal legend (not named)",
+        "Showdown Series participation promos (not named)"
+      ],
+      "skipped_basic": [
+        "French booster packs"
+      ]
+    },
+    "https://playriftbound.com/fr-fr/news/organizedplay/august-2026-state-of-play/": {
+      "checked": "2026-11-28",
+      "handled": [],
+      "note": "No named prize items"
+    },
+    "https://playriftbound.com/ko-kr/news/announcements/kr-origin-op-notice/": {
+      "checked": "2026-11-28",
+      "already_on_tracker": [
+        "Teemo - Scout (GG EZ)"
+      ],
+      "research": [
+        "Korea Major Standard Plated Legends (not named)",
+        "Korea Major Best-Of English Standard Plated Metal legends"
+      ],
+      "skipped_not_regional": [
+        "Nexus Night promo pack",
+        "Origin launch promo pack",
+        "Store Qualifier promo cards (not named)"
+      ]
+    },
+    "https://uvsgames.com/rq-unleashed-prizing-update/": {
+      "checked": "2026-11-28",
+      "already_on_tracker": [
+        "Vex Playmat (Season 3 RQ)"
+      ],
+      "research": [],
+      "note": "Season 3 RQ prize ladder; Top 8 and Champion promos not named. Events already covered by the Sydney/Vancouver/Utrecht/Hartford prize wall pages."
+    },
+    "https://playriftbound.com/ko-kr/news/organizedplay/": {
+      "checked": "2026-11-28",
+      "handled": [],
+      "note": "Index readable now; all prize articles listed there already checked"
+    },
+    "https://playriftbound.com/zh-cn/news/": {
+      "checked": "2026-11-28",
+      "handled": [],
+      "note": "Index readable now; all prize articles listed there already checked"
     }
   },
   "not_read": {
@@ -420,8 +509,7 @@
     "https://playriftbound.com/zh-cn/news/": "fetch blocked 2026-11-25, 2026-11-26",
     "https://playriftbound.com/ko-kr/news/": "fetch blocked 2026-11-25, 2026-11-26",
     "https://riftbound.zone/en/convergence-fest-prize-wall-plated-legends-tickets/": "RC North America prize wall catalog, fetch blocked 2026-11-25",
-    "Korea Major (Dec 5 2026)": "only in Korean news so far; no official playriftbound ko-kr page could be read",
     "https://uvsgames.com/rq-houston-prizewall/": "fetch blocked 2026-11-26",
-    "https://playriftbound.com/en-us/news/organizedplay/announcing-the-showdown-series-le-rift-tour/": "fetch blocked 2026-11-26 (Le Rift Tour, France)"
+    "https://playriftbound.com/en-us/news/announcements/eyes-on-bologna-what-to-know/": "fetch blocked 2026-11-28 (Bologna swoogo prize page already checked)"
   }
 }
